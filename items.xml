@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <item>
+        <!-- this is product id, unique number that represents the product, it is used to link related products -->
+        <id>1</id>
+        <titles>
+            <title language="en">Baby soap with chamomile and castor oil</title>
+            <title language="nb">Babysåpe med kamille og ricinusolje</title>
+        </titles>
+        <!-- options are different product types where the first option is default, other options can be bigger size, different shape, etc  -->
+        <!-- write new option by putting <option></option>with name and price inside as shown in the example -->
+        <options>
+            <option>
+                <name>heart 130g</name>
+                <price>90.00</price>
+            </option>
+            <option>
+                <name>square 60g</name>
+                <price>50.00</price>
+            </option>
+        </options>
+        <categories>
+            <category lang="en">
+                <title>hair</title>
+                <thumbnail>b</thumbnail>
+                <description>c</description>
+            </category>
+            <category lang="nb">
+                <title>hår</title>
+                <thumbnail>b</thumbnail>
+                <description>c</description>
+            </category>
+        </categories>
+        <descriptions>
+            <description lang="en">We have never made midler soap than this one. Gentle and soothing, this bar will wash your baby from head to toe while hydrating and nourishing his/her skin. We used only cold pressed olive oil and castor oil to guarantee that sensitive skin and hair are gently taken care of. Both oils posses large number of unsaponifiable fatty acids . They form a thin layer on our skin and act as humectants- attracting moisture to the cells. For its aroma and soothing properties, we infused dried roman chamomile into the olive oil. The bar contains nothing else and can easily be used every day by anybody with very sensitive skin. Store the soap in a dry and cool place and use a soap dish that allows water to escape.
+            </description>
+            <description lang="nb">Vi har aldri laget mildere såpe enn den. Naturlig og beroligende, den kan også brukes som sjampo. Såpen er fri for farge, kjemikalier eller essens duft. Derfor passer den perfekt til barn eller alle som har sensitive hud og hår. Såpen innholdet ingen eteriske oljer, så folk sensitive overfor dufter kan også nyttig den uten problem. Oliven og risin oljer er hoved ingredienser og de bidrar til en mild såpestykke som bevarer fuktighet i huden og håret. Bare huske å unngå kontakt med øyene. Såpe og sjampo helt fri for duft er kjedelig, så vi lå Camille blomster i oljen over flere dager. Resultat er en nydelig, mild aroma av den berømte urte. Ubrukt såpestykke må oppbevares i mørk og tørr plass. I tillegg, er det viktig å ha såpeskål som samler ikke vann for å holde såpen tørr etter bruk.
+            </description>
+        </descriptions>
+        <ingredients>
+            <translation lang="en">
+                <ingredient>water</ingredient>
+                <ingredient>olive oil</ingredient>
+                <ingredient>castor oil</ingredient>
+                <ingredient>sodium hydroxide</ingredient>
+                <ingredient>chamomile extract</ingredient>
+            </translation>
+            <translation lang="nb">
+                <ingredient>vann </ingredient>
+                <ingredient>oliven olje </ingredient>
+                <ingredient>ricinolje </ingredient>
+                <ingredient>lut </ingredient>
+                <ingredient>kamille ekstrakt </ingredient>
+            </translation>
+        </ingredients>
+        <!-- put product's id here, here we have added product id 2,3,4 they are fictional items at the moments -->
+        <related_products>
+            <product_id>2</product_id>
+            <product_id>3</product_id>
+            <product_id>4</product_id>
+        </related_products>
+        <tags>
+            <tag>baby soap</tag>
+            <tag>Babysjampo</tag>
+        </tags>
+        <!-- thumbnail is the main image that will be displayed -->
+        <thumbnail>LINKA SLED KATO SE DOBAVQT IZOBRAJENIQTA</thumbnail>
+        <images>
+            <image>link1</image>
+            <image>link2</image>
+            <image>link3</image>
+        </images>
+    </item>
+    <item>
+        <id>2</id>
+        <titles>
+            <title language="en">Shampoo/soap bar with Lavender &amp; Rosemary</title>
+            <title language="nb">Lavendel og Rosmarin sjampo/såpe</title>
+        </titles>
+        <options>
+            <option>
+                <name>100g</name>
+                <price>80.00</price>
+            </option>
+            <option>
+                <name>60g</name>
+                <price>60.00</price>
+            </option>
+        </options>
+        <categories>
+            <category lang="en">
+                <title>hair</title>
+                <thumbnail>b</thumbnail>
+                <description>c</description>
+            </category>
+            <category lang="nb">
+                <title>hår</title>
+                <thumbnail>b</thumbnail>
+                <description>c</description>
+            </category>
+        </categories>
+        <descriptions>
+            <description lang="en">
+                <p>The name derives from the pearl white colour of this bar, sprinkled with dried calendula petals. A fitting title for a great shampoo bar. It is mild enough to be used daily by people sensitive to harsher soaps. As a shampoo, using it twice a week is sufficient for clean, healthy hair and scalp. </p>
+                <p>The scent comes from a well known and tried combination in aromatherapy- Rosemary and Lavender. This blend of essential oils offers delicate, floral scent with fresh herbaceous notes. In combination, these unique scents act as tonic, stimulating the mind and energising the spirit.  </p>
+                <p>In addition, these herbs share many useful properties tried and tested by mankind for many years. Both Rosemary and Lavender essential oils kill bacteria and parasites; promote root health and hair growth; and prevent dandruff by taking care of the scalp. </p>
+            </description>
+            <description lang="nb">Mild, naturlig og velduftende, vår såpe og sjampo er deilig for daglig bruk. Det renser forsiktig og gir næring til hår,hud og hodebunn. Egnet for alle hår og hud typer, denne produkt passer særskilt bra til folk som er følsom mot mass produsert syntetiske ingredienser og kjemikalier. Vår gunstig plante baserte alternative bevarer fuktighet og nærer på grunn av olje blandingen vi valgte og kald-rørte metoden av produksjon. Blandingen også tilbyr til tyk, kremet, og rensende skum som er gøy i dusj eller i badekar. En av den beste egenskaper av såpen er sin aroma av lavendel og rosmarin eteriske oljer. Begge to er kjent for anti-bakteri egenskaper og støtte funksjoner til hår og hud. I tillegg, er lavendel duft beroligende mens rosmarin spiller forfriskenderolle. Resultatet er en nydelig og balansert produkt som alle kan benytte.</description>
+        </descriptions>
+        <ingredients>
+            <translation lang="en">
+                <ingredient>water</ingredient>
+                <ingredient>coconut oil</ingredient>
+                <ingredient>olive oil</ingredient>
+                <ingredient>babassu oil</ingredient>
+                <ingredient>raw cacao butter</ingredient>
+                <ingredient>sodium hydroxide</ingredient>
+                <ingredient>castor oil</ingredient>
+                <ingredient>evening primrose oil</ingredient>
+                <ingredient>lavender oil</ingredient>
+                <ingredient>rosemary oil</ingredient>
+                <ingredient>rosemary oleoresin extract</ingredient>
+                <ingredient>calendula flower petals</ingredient>
+            </translation>
+            <translation lang="nb">
+                <ingredient>vann </ingredient>
+                <ingredient>kokosolje</ingredient>
+                <ingredient>olivenolje </ingredient>
+                <ingredient>babassuolje </ingredient>
+                <ingredient>rå kakaosmør </ingredient>
+                <ingredient>lut </ingredient>
+                <ingredient>ricinolje </ingredient>
+                <ingredient>nyperoseolje</ingredient>
+                <ingredient>lavendelolje</ingredient>
+                <ingredient>rosmarinolje</ingredient>
+                <ingredient>rosmarin extrakt</ingredient>
+                <ingredient>ringblomst ekstrakt </ingredient>
+            </translation>
+        </ingredients>
+        <related_products>
+            <product_id>5</product_id>
+        </related_products>
+        <tags>
+            <tag>Natural shampoo</tag>
+            <tag>Sjampobar</tag>
+        </tags>
+        <!-- thumbnail is the main image that will be displayed -->
+        <thumbnail>image.jpeg</thumbnail>
+        <images>
+            <image>link1</image>
+        </images>
+    </item>
+    <item>
+        <id>3</id>
+        <titles>
+            <title language="en">Shampoo/soap with rosemary &amp; peppermint</title>
+            <title language="nb">Rosmarin og mynte sjampo/såpe</title>
+        </titles>
+        <options>
+            <option>
+                <name>100g</name>
+                <price>80.00</price>
+            </option>
+            <option>
+                <name>60g</name>
+                <price>60.00</price>
+            </option>
+        </options>
+        <categories>
+            <category lang="en">
+                <title>hair</title>
+                <thumbnail>b</thumbnail>
+                <description>c</description>
+            </category>
+            <category lang="nb">
+                <title>hår</title>
+                <thumbnail>b</thumbnail>
+                <description>c</description>
+            </category>
+        </categories>
+        <descriptions>
+            <description lang="en">
+                <p>The combination of base and essential oils make this shampoo bar perfect for maintaining healthy scalp and beautiful hair. The aroma energises, refreshes and clears the mind.</p>
+                <p>Cacao and Shea butter contain antioxidants and lots of vitamins A and E in addition to fatty acids that strengthen the individual hairs and their roots. The same role share castor and almond oils producing plenty of creamy lather and making your hair shiny and luxurious. Kelp and nettle extract further enrich this bar with vitamins, minerals, and amino acids while rendering it pastel green coluor.</p>
+            </description>
+            <description lang="nb">Peppermynte &amp; Rosmarin urte ekstrakter samme med eteriske olje fra disse planter skaper en forfriskende og stimulerende opplevelse for de som bruker vår &quot;Refresh&quot; sjampo og såpe. Olje basis i kombinasjon med kelp og alfalfa lindrer og styrker hodebunn og gir naturlig glans til håret. Den siste to ingredienser nærer og tilbyr til en grønn farge som påminne av fersk urter. Egnet for alle hår og hud typer, vår produkt er særskilt bra for de som er følsom mot syntetiske aroma, farge og skadelig stoffer fant i mase produsert såper.
+            </description>
+        </descriptions>
+        <ingredients>
+            <translation lang="en">
+                <ingredient>water</ingredient>
+                <ingredient>coconut oil</ingredient>
+                <ingredient>olive oil</ingredient>
+                <ingredient>raw shea butter</ingredient>
+                <ingredient>raw cacao butter</ingredient>
+                <ingredient>sodium hydroxide</ingredient>
+                <ingredient>castor oil</ingredient>
+                <ingredient>almond oil</ingredient>
+                <ingredient>soy oil</ingredient>
+                <ingredient>peppermint essential oil</ingredient>
+                <ingredient>rosemary essential oil</ingredient>
+                <ingredient>rosemary oleoresin extract</ingredient>
+                <ingredient>kelp powder</ingredient>
+                <ingredient>nettles extract</ingredient>
+            </translation>
+            <translation lang="nb">
+                <ingredient>vann </ingredient>
+                <ingredient>kokosolje</ingredient>
+                <ingredient>olivenolje </ingredient>
+                <ingredient>rå sheasmør </ingredient>
+                <ingredient>rå kakaosmør </ingredient>
+                <ingredient>lut </ingredient>
+                <ingredient>ricinolje </ingredient>
+                <ingredient>mandelolje</ingredient>
+                <ingredient>sojaolje</ingredient>
+                <ingredient>mynteolje</ingredient>
+                <ingredient>rosmarinolje</ingredient>
+                <ingredient>kelppulver</ingredient>
+                <ingredient>alfaalfapulver</ingredient>
+                <ingredient>rosmarin extrakt</ingredient>
+            </translation>
+        </ingredients>
+        <related_products>
+            <product_id>5</product_id>
+        </related_products>
+        <tags>
+            <tag>shampoo bar</tag>
+            <tag>sjampobar</tag>
+        </tags>
+        <!-- thumbnail is the main image that will be displayed -->
+        <thumbnail>image.jpeg</thumbnail>
+        <images>
+            <image>link1</image>
+        </images>
+    </item>
+    <item>
+        <id>4</id>
+        <titles>
+            <title language="en">Soap with Dead Sea Salt and Organic Lavender</title>
+            <title language="nb">Dødehavsalt og lavendel såpe</title>
+        </titles>
+        <options>
+            <option>
+                <name>100g</name>
+                <price>80.00</price>
+            </option>
+            <option>
+                <name>60g</name>
+                <price>60.00</price>
+            </option>
+        </options>
+        <categories>
+            <category lang="en">
+                <title>body</title>
+                <thumbnail>b</thumbnail>
+                <description>c</description>
+            </category>
+            <category lang="nb">
+                <title>krop</title>
+                <thumbnail>b</thumbnail>
+                <description>c</description>
+            </category>
+        </categories>
+        <descriptions>
+            <description lang="en">
+                <p>Sea salt soap has many benefits for the skin. Not only they draw toxins out of the body and reduce inflammation, but they also contain many skin nourishing minerals such as magnesium, zinc, calcium, potassium and iodine. These elements along with Lavender florets account for the interesting mixture of colours.</p>
+                <p>Many people find that a proper salt bar effectively combats athlete's foot and other conditions associated with bacteria and parasites. Gently exfoliating, this soap also eliminates dead skin cells and other impurities from the surface of the skin.</p>
+            </description>
+            <description lang="nb">Mild, naturlig og velduftende, vår såpe og sjampo er deilig for daglig bruk. Det renser forsiktig og gir næring til hår,hud og hodebunn. Egnet for alle hår og hud typer, denne produkt passer særskilt bra til folk som er følsom mot mass produsert syntetiske ingredienser og kjemikalier. Vår gunstig plante baserte alternative bevarer fuktighet og nærer på grunn av olje blandingen vi valgte og kald-rørte metoden av produksjon. Blandingen også tilbyr til tyk, kremet, og rensende skum som er gøy i dusj eller i badekar. En av den beste egenskaper av såpen er sin aroma av lavendel og rosmarin eteriske oljer. Begge to er kjent for anti-bakteri egenskaper og støtte funksjoner til hår og hud. I tillegg, er lavendel duft beroligende mens rosmarin spiller forfriskenderolle. Resultatet er en nydelig og balansert produkt som alle kan benytte.</description>
+        </descriptions>
+        <ingredients>
+            <translation lang="en">
+                <ingredient>water</ingredient>
+                <ingredient>olive oil</ingredient>
+                <ingredient>coconut oil</ingredient>
+                <ingredient>raw shea butter</ingredient>
+                <ingredient>rapeseed oil</ingredient>
+                <ingredient>sodium hydroxide</ingredient>
+                <ingredient>castor oil</ingredient>
+                <ingredient>babassu oil</ingredient>
+                <ingredient>dead sea salt</ingredient>
+                <ingredient>lavender oil</ingredient>
+                <ingredient>rosemary oleoresin extract</ingredient>
+                <ingredient>lavender extract</ingredient>
+            </translation>
+            <translation lang="nb">
+                <ingredient>vann </ingredient>
+                <ingredient>olivenolje</ingredient>
+                <ingredient>kokosolje </ingredient>
+                <ingredient>rå sheasmør </ingredient>
+                <ingredient>rapsolje </ingredient>
+                <ingredient>lut </ingredient>
+                <ingredient>ricinolje </ingredient>
+                <ingredient>babassuolje </ingredient>
+                <ingredient>dødehavsalt</ingredient>
+                <ingredient>lavendelolje</ingredient>
+                <ingredient>rosmarinolje</ingredient>
+                <ingredient>rosmarin extrakt</ingredient>
+                <ingredient>lavendel ekstrakt </ingredient>
+            </translation>
+        </ingredients>
+        <related_products>
+            <product_id>5</product_id>
+        </related_products>
+        <tags>
+            <tag>detox</tag>
+            <tag>sea salt soap</tag>
+            <tag>exfoliant</tag>
+        </tags>
+        <!-- thumbnail is the main image that will be displayed -->
+        <thumbnail>image.jpeg</thumbnail>
+        <images>
+            <image>link1</image>
+        </images>
+    </item>
+</root>
