@@ -1,0 +1,221 @@
+@extends('master_page')
+
+@section('links')
+    <script src="{{ asset('js/script.js') }}" type="text/javascript"></script>
+    <link href="{{ asset('css/lightbox.css') }}" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="{{ asset('css/drop-theme-arrows.css') }}" />
+    <script src={{ asset('js/tether.min.js') }}></script>
+    <script src={{ asset('js/drop.min.js') }}></script>
+
+@stop
+
+@section('content')
+<div class="col-sm-12">
+    <div class="wrapper">
+        <div class="col-sm-5">
+            <a href="{{$product->thumbnail_full}}" data-lightbox="image-1" data-title="My caption">
+                <img width=100% id="item-display" src="{{$product->thumbnail_medium}}" alt="{{$product->title}}"/>
+            </a>
+            <div class="col-sm-12 nopadding">
+                @foreach($product->images as $index => $image)
+                <div class="col-sm-3">
+                    <a href="{{$image->thumbnail_full}}" data-lightbox="image-1" data-title="Related image for {{$product->title}}">
+                        <img style="margin:10px;width:100%;" src="{{$image->thumbnail_small}}" alt="Related image for {{$product->title}}"/>
+                    </a>
+                </div>
+                @endforeach
+            </div>
+        </div>
+        <div class="col-sm-1"></div>
+        <div class="col-sm-5">
+            <h1>{{$product->title}}</h1>
+            <p class="green_text inline_block">
+                {{\App\Http\Controllers\HelperController::getCurrencySymbol()}}
+                {{ number_format($option->price * $rate, 2, '.', ',') }}
+            </p>
+            <div class="col-sm-12 nopadding">
+                <div class="col-sm-6 nopadding">
+                    <form action="" class="inline_block" method="POST">
+                        <input type="hidden" name="_token" value="{{csrf_token()}}"/>
+                        <select class="input_styler" name="option" onchange="this.form.submit()">
+                        @foreach($product->options as $opt)
+                            <option 
+                                {{ ($opt->slug == $option->slug) ? 'selected' : "" }} value="{{$opt->slug}}">{{$opt->title}} 
+                            </option>
+                        @endforeach
+                        </select>
+                    </form>
+                    <input class="product_quantity input_styler" type="number" name="quantity" size="1" value="1"/>
+
+                </div>
+                
+                <div class="col-sm-6 nopadding">
+                    <button class="input_styler btn btn-success add_to_cart"
+                            onclick="add_to_cart('{{$product->slug}}', '{{$option->slug}}', '{!! route('add_to_cart') !!}')">
+                                + {{ trans('text.add_to_cart') }}
+                    </button>    
+                </div>
+
+               <div class="col-sm-12 product_nav nopadding">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#description" class="capital" href="#">Description</a></li>
+                        <li><a class="capital" data-toggle="tab" href="#ingredients" href="#">Ingredients</a></li>
+                        <li><a class="capital" data-toggle="tab" href="#tipsforuse" href="#">Tips for use</a></li>
+                        <li><a class="capital" data-toggle="tab" href="#benefits" href="#">Benefits</a></li>
+                    </ul>
+               </div>
+
+               <div class="tab-content">
+                    <div id="description" class="tab-pane fade in active">
+                        <p>{{$product->description}}</p>
+                    </div>
+                    <div id="ingredients" class="tab-pane fade">
+                        <p>
+                        @foreach($product->ingredients as $ingredient)
+                            <span id="{{$ingredient->slug}}" class="product_ingredient" style="background-color:#E4B7B7;">{{$ingredient->title}}</span>,
+                            <script>
+                                var data = render_ingredient('/ingredient/{{$ingredient->slug}}');
+                                var drop = new Drop({
+                                    target: document.querySelector('#{{$ingredient->slug}}'),
+                                    content: data,
+                                    position: 'bottom left',
+                                    openOn: 'hover'
+                                });
+                            </script>
+                        @endforeach
+                        </p>
+                    </div>
+                    <div id="tipsforuse" class="tab-pane fade">
+                        <p>{{$product->tips}}</p>
+                    </div>
+                    <div id="benefits" class="tab-pane fade">
+                        <p>{{$product->benefits}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="col-md-12">
+    <div class="wrapper">
+        <div>
+            <h1 class="capital center">Write review</h1>
+            @if(Auth::check())
+                <!-- if errors -->
+                @if( $errors->all() )
+                    @foreach ($errors->all() as $error)
+                        <div class="alert alert-danger" role="alert">
+                          <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                          <span class="sr-only">Error:</span>
+                            {{ $error }}
+                        </div>
+                    @endforeach
+                @endif
+
+                
+
+                {!! Form::open(array('url' => route("add_review")  )) !!}
+                <p>
+                    {!! Form::hidden('product', $product->slug) !!}
+                    {!! Form::textarea('body', Input::old('body') ,array(
+                                        'placeholder'   => 'Tell us:', 
+                                        'maxlength'     => '5000',
+                                        'id'            => 'review_textbox'
+                                        )
+                                    ) 
+                    !!}
+                </p>
+                <p>
+                    {!! Form::select(
+                            'Rating', 
+                            array(
+                                '5' => '5',
+                                '4' => '4',
+                                '3' => '3',
+                                '2' => '2', 
+                                '1' => '1'
+                            ),
+                            Input::old('rating'), ['placeholder' => 'Rate the product...', 'name'=>'rating']
+                        ) 
+                    !!}
+                </p>
+                <p>{!! Form::submit('Submit review') !!}</p>
+
+                {!! Form::close() !!}
+            @endif
+        </div>
+        <div>
+            <h1 class="capital center">Reviews</h1>
+            @foreach ($reviews as $review)
+            <div class="well">
+                <p>
+                    @if(Auth::user() == $review->user)
+                        {!! Form::open(array('url' => route("delete_review")  )) !!}
+                            {!! Form::hidden('id', $review->id) !!}
+                            {!! Form::submit('Delete review') !!}
+
+                            {!! Form::close() !!}
+                    @endif
+                </p>
+                <p>Rating: {{$review->rating}}/5</p>
+                <p>{!! $review->body !!}</p>    
+                <p>By: {{$review->user->name}} On: {{$review->updated_at}}</p>
+            </div>
+            
+            @endforeach
+
+        </div>
+    </div>
+</div>
+<div class="col-md-12 gallery_second">
+    <div class="wrapper">
+        <h1 class="index_h1_margin capital center">Related products</h1>
+        <div class="item_container col-md-12">
+            @foreach ($product->related()->get()->chunk(5) as $chunk)
+            <div class="row">
+                <div class="col-md-1"></div>
+
+                @foreach ($chunk as $index=>$product)
+                <div class="col-md-2 thumbnail_item">
+                    <div class="thumbnail_item_inner">
+                        
+                        <img src="{{$product->thumbnail_small}}">
+                        <h2 class="thumbnail_title">
+                            <a class="" href="{!! route('product', [ $product->slug ]) !!}"> {{$product->title}} </a>
+                        </h2>
+                        <span class="underliner"></span>
+                        <p>{{$product->price()}}</p>
+                        <div class="view_product">
+                            <p>
+                                <a class="" href="{!! route('product', [ $product->slug ]) !!}">view product</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+
+                <div class="col-md-1"></div>
+            </div>
+            @endforeach
+            <a class="green_link" href="">View all products</a>
+    </div>
+</div>
+
+<div class="col-md-12">
+    <div class="wrapper">
+        
+    </div>
+    
+</div>
+
+<script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace( 'review_textbox' );
+</script>
+
+<script src="{{ asset('js/lightbox.js') }}" type="text/javascript"></script>
+
+@stop
