@@ -14,106 +14,120 @@
 
             <div class="col-md-12">
                 @if (!Auth::user())
-                <div class="col-md-6">
                     {!! Form::open(array('url' => route('auth.login'), 'method' => 'POST')) !!}
-                            {!! Form::text('email', old('email'), array('class'=>'generic_input', 'placeholder'=>'Username:') ) !!}
+                            {!! Form::text('emaila', old('emaila'), array('class'=>'generic_input', 'placeholder'=>'Username:') ) !!}
                             {!! Form::password('password', array('class'=>'generic_input', 'placeholder' => 'Password:') , old('password')) !!}
                             {!! Form::submit('Click Me!', array('class'=>'generic_submit')) !!}
                     {!! Form::close() !!}
                     <p><a class="green_text" href="{{route('auth.password.reset')}}">{{trans('text.forgotten_password_question')}}</a></p>
-                </div>
 
-                <div class="col-md-6">
-                    <h2>{{trans('text.checkout_as_guest')}}</h2>
-                    <span>{{trans('text.email_used_to_confirm_order')}}</span>
-                        {!! Form::open(array('url' => route('auth.login'), 'method' => 'POST')) !!}
-                            {!! Form::text('email', old('email'), array('class'=>'generic_input', 'placeholder'=>'Username:') ) !!}
-                        {!! Form::close() !!}
-                </div>
+                @endif
                 <div class="col-md-6">
                     <a class="pull-left capitalize orange_button" href="">{{trans('text.back_to_cart')}}</a>
                 </div>
 
                 <div class="col-md-6">
                     <a class="pull-right capitalize green_button" href="">{{trans('text.next')}}</a>
+                </div> 
                 </div>
-                @endif
                 <div class="col-md-12 progress_circle_container">
                     <span style="height:40px;" class="progress_block"></span>
                     <span class="progress_circle"></span>
                     <h1 class="capital center">{{trans('text.address')}}</h1>
                     <span style="height:40px;" class="progress_block"></span>
                 </div>
+                <div class="col-md-12">
+                    
+                    @if( $errors->all() )
+                        @foreach ($errors->all() as $error)
+                            <div class="alert alert-danger" role="alert">
+                              <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                              <span class="sr-only">Error:</span>
+                                {{ $error }}
+                            </div>
+                        @endforeach
+                    @endif
+                </div>
                 {!! Form::open(array('url' => route('checkout'), 'method' => 'POST', 'id' => 'payment-form')) !!}
-                        <span>{!! Form::text('name', old('name'), array(
-                            'class'         => 'generic_input input_half', 
-                            'placeholder'   => trans('text.first_name'),
-                            'id'            => 'row1_input'
-                            )) !!}
-                        </span>
 
-                        <span>
-                        {!! Form::text('surname', old('surname'), array(
-                            'class'         => 'generic_input input_half', 
-                            'placeholder'   => trans('text.last_name'),
-                            'id'            => 'row2_input'
-                            )) !!}
-                        </span>
+                    @if (!Auth::user())
+                    <span>
+                        <h1>{{trans('text.checkout_as_guest')}}</h1>
+                        <p>{{trans('text.checkout_as_guest_subtext')}}</p>
 
-                        <span>
-                        {!! Form::text('address_1', old('address_1'), array(
-                            'class'         => 'generic_input', 
-                            'placeholder'   => trans('text.address_1'),
-                            'id'            => 'row3_input'
-                            )) !!}
-                        </span>
+                        {!! Form::text('email', old('email'), array('class'=>'generic_input', 'placeholder'=>trans("text.email")) ) !!}
+                    </span>
+                    @endif
 
-                        <span>
-                        {!! Form::text('address_2', old('address_2'), array(
-                            'class'         => 'generic_input', 
-                            'placeholder'   => trans('text.address_2'),
-                            'id'            => 'row4_input'
-                            )) !!}
-                        </span>
+                    <span>{!! Form::text('name', old('name'), array(
+                        'class'         => 'generic_input input_half', 
+                        'placeholder'   => trans('text.first_name'),
+                        'id'            => 'row1_input'
+                        )) !!}
+                    </span>
 
-                        <span>
-                        {!! Form::text('city', old('city'), array(
-                            'class'         => 'generic_input input_half', 
-                            'placeholder'   => trans('text.city'),
-                            'id'            => 'row5_input'
-                            )) !!}
-                        </span>
-                       
-                        <span>
-                        {!! Form::text('post_code', old('post_code'), array(
-                            'class'         => 'generic_input input_half', 
-                            'placeholder'   => trans('text.post_code'),
-                            'id'            => 'row7_input'
-                            )) !!}
-                        </span>
+                    <span>
+                    {!! Form::text('surname', old('surname'), array(
+                        'class'         => 'generic_input input_half', 
+                        'placeholder'   => trans('text.last_name'),
+                        'id'            => 'row2_input'
+                        )) !!}
+                    </span>
 
-                        <span>
-                        {!! Form::text('phone', old('phone'), array(
-                            'class'         => 'generic_input input_half', 
-                            'placeholder'   => trans('text.phone'),
-                            'id'            => 'row8_input'
-                            )) !!}
-                        </span>
-                        
-                        <span>
-                        {!! Form::select('country', array(
-                            "AF" => "Afghanistan",
-                            "AG" => "Antigua and Barbuda",
-                            "AR" => "Argentina",
-                            "AM" => "Armenia",
-                            "BO" => "Bolivia, Plurinational State of",
-                            "NO" => "Norway",
-                            "OM" => "Oman",
+                    <span>
+                    {!! Form::text('address_1', old('address_1'), array(
+                        'class'         => 'generic_input', 
+                        'placeholder'   => trans('text.address_1'),
+                        'id'            => 'row3_input'
+                        )) !!}
+                    </span>
 
-                            ), 'NO', ['placeholder' => trans('text.country'),
-                                        'class'     => 'generic_input input_half'
-                            ]) !!}
-                        </span>
+                    <span>
+                    {!! Form::text('address_2', old('address_2'), array(
+                        'class'         => 'generic_input', 
+                        'placeholder'   => trans('text.address_2'),
+                        'id'            => 'row4_input'
+                        )) !!}
+                    </span>
+
+                    <span>
+                    {!! Form::text('city', old('city'), array(
+                        'class'         => 'generic_input input_half', 
+                        'placeholder'   => trans('text.city'),
+                        'id'            => 'row5_input'
+                        )) !!}
+                    </span>
+                   
+                    <span>
+                    {!! Form::text('post_code', old('post_code'), array(
+                        'class'         => 'generic_input input_half', 
+                        'placeholder'   => trans('text.post_code'),
+                        'id'            => 'row7_input'
+                        )) !!}
+                    </span>
+
+                    <span>
+                    {!! Form::text('phone', old('phone'), array(
+                        'class'         => 'generic_input input_half', 
+                        'placeholder'   => trans('text.phone'),
+                        'id'            => 'row8_input'
+                        )) !!}
+                    </span>
+                    
+                    <span>
+                    {!! Form::select('country', array(
+                        "AF" => "Afghanistan",
+                        "AG" => "Antigua and Barbuda",
+                        "AR" => "Argentina",
+                        "AM" => "Armenia",
+                        "BO" => "Bolivia, Plurinational State of",
+                        "NO" => "Norway",
+                        "OM" => "Oman",
+
+                        ), 'NO', ['placeholder' => trans('text.country'),
+                                    'class'     => 'generic_input input_half'
+                        ]) !!}
+                    </span>
 
       
                     <div class="progress_circle_container">

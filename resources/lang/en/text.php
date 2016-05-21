@@ -17,6 +17,7 @@ return [
     'about_you'     => 'Tell us a little bit about your shop. What range of products do you sell? Where are you located?',
     'company_name'  => 'Company name',
     'website'       => 'Website',
+    'checkout_as_guest_subtext' => 'your email will be used to confirm your order',
     'checkout_as_guest'=> 'Checkout as guest',
     'become_stockist'=> 'Become a stockist',
     'welcome'       => 'welcome',
