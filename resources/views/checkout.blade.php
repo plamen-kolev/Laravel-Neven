@@ -44,385 +44,136 @@
                     <h1 class="capital center">{{trans('text.address')}}</h1>
                     <span style="height:40px;" class="progress_block"></span>
                 </div>
-                <div class="col-md-12">
-                    {!! Form::open(array('url' => route('auth.login'), 'method' => 'POST')) !!}
-                            <span>{!! Form::text('name', old('name'), array(
-                                'class'         => 'generic_input input_half', 
-                                'placeholder'   => trans('text.first_name'),
-                                'id'            => 'row1_input'
-                                )) !!}
-                            </span>
+                {!! Form::open(array('url' => route('checkout'), 'method' => 'POST', 'id' => 'payment-form')) !!}
+                        <span>{!! Form::text('name', old('name'), array(
+                            'class'         => 'generic_input input_half', 
+                            'placeholder'   => trans('text.first_name'),
+                            'id'            => 'row1_input'
+                            )) !!}
+                        </span>
 
-                            <span>
-                            {!! Form::text('surname', old('surname'), array(
-                                'class'         => 'generic_input input_half', 
-                                'placeholder'   => trans('text.last_name'),
-                                'id'            => 'row2_input'
-                                )) !!}
-                            </span>
+                        <span>
+                        {!! Form::text('surname', old('surname'), array(
+                            'class'         => 'generic_input input_half', 
+                            'placeholder'   => trans('text.last_name'),
+                            'id'            => 'row2_input'
+                            )) !!}
+                        </span>
 
-                            <span>
-                            {!! Form::text('address_1', old('address_1'), array(
-                                'class'         => 'generic_input', 
-                                'placeholder'   => trans('text.address_1'),
-                                'id'            => 'row3_input'
-                                )) !!}
-                            </span>
+                        <span>
+                        {!! Form::text('address_1', old('address_1'), array(
+                            'class'         => 'generic_input', 
+                            'placeholder'   => trans('text.address_1'),
+                            'id'            => 'row3_input'
+                            )) !!}
+                        </span>
 
-                            <span>
-                            {!! Form::text('address_2', old('address_2'), array(
-                                'class'         => 'generic_input', 
-                                'placeholder'   => trans('text.address_2'),
-                                'id'            => 'row4_input'
-                                )) !!}
-                            </span>
+                        <span>
+                        {!! Form::text('address_2', old('address_2'), array(
+                            'class'         => 'generic_input', 
+                            'placeholder'   => trans('text.address_2'),
+                            'id'            => 'row4_input'
+                            )) !!}
+                        </span>
 
-                            <span>
-                            {!! Form::text('city', old('city'), array(
-                                'class'         => 'generic_input input_half', 
-                                'placeholder'   => trans('text.city'),
-                                'id'            => 'row5_input'
-                                )) !!}
-                            </span>
-                           
-                            <span>
-                            {!! Form::text('post_code', old('post_code'), array(
-                                'class'         => 'generic_input input_half', 
-                                'placeholder'   => trans('text.post_code'),
-                                'id'            => 'row7_input'
-                                )) !!}
-                            </span>
+                        <span>
+                        {!! Form::text('city', old('city'), array(
+                            'class'         => 'generic_input input_half', 
+                            'placeholder'   => trans('text.city'),
+                            'id'            => 'row5_input'
+                            )) !!}
+                        </span>
+                       
+                        <span>
+                        {!! Form::text('post_code', old('post_code'), array(
+                            'class'         => 'generic_input input_half', 
+                            'placeholder'   => trans('text.post_code'),
+                            'id'            => 'row7_input'
+                            )) !!}
+                        </span>
 
-                            <span>
-                            {!! Form::text('phone', old('phone'), array(
-                                'class'         => 'generic_input input_half', 
-                                'placeholder'   => trans('text.phone'),
-                                'id'            => 'row8_input'
-                                )) !!}
-                            </span>
-                            
-                            <span>
-                            {!! Form::select('country', array(
-                                "AF" => "Afghanistan",
-                                "AX" => "Åland Islands",
-                                "AL" => "Albania",
-                                "DZ" => "Algeria",
-                                "AS" => "American Samoa",
-                                "AD" => "Andorra",
-                                "AO" => "Angola",
-                                "AI" => "Anguilla",
-                                "AQ" => "Antarctica",
-                                "AG" => "Antigua and Barbuda",
-                                "AR" => "Argentina",
-                                "AM" => "Armenia",
-                                "AW" => "Aruba",
-                                "AU" => "Australia",
-                                "AT" => "Austria",
-                                "AZ" => "Azerbaijan",
-                                "BS" => "Bahamas",
-                                "BH" => "Bahrain",
-                                "BD" => "Bangladesh",
-                                "BB" => "Barbados",
-                                "BY" => "Belarus",
-                                "BE" => "Belgium",
-                                "BZ" => "Belize",
-                                "BJ" => "Benin",
-                                "BM" => "Bermuda",
-                                "BT" => "Bhutan",
-                                "BO" => "Bolivia, Plurinational State of",
-                                "BQ" => "Bonaire, Sint Eustatius and Saba",
-                                "BA" => "Bosnia and Herzegovina",
-                                "BW" => "Botswana",
-                                "BV" => "Bouvet Island",
-                                "BR" => "Brazil",
-                                "IO" => "British Indian Ocean Territory",
-                                "BN" => "Brunei Darussalam",
-                                "BG" => "Bulgaria",
-                                "BF" => "Burkina Faso",
-                                "BI" => "Burundi",
-                                "KH" => "Cambodia",
-                                "CM" => "Cameroon",
-                                "CA" => "Canada",
-                                "CV" => "Cape Verde",
-                                "KY" => "Cayman Islands",
-                                "CF" => "Central African Republic",
-                                "TD" => "Chad",
-                                "CL" => "Chile",
-                                "CN" => "China",
-                                "CX" => "Christmas Island",
-                                "CC" => "Cocos (Keeling) Islands",
-                                "CO" => "Colombia",
-                                "KM" => "Comoros",
-                                "CG" => "Congo",
-                                "CD" => "Congo, the Democratic Republic of the",
-                                "CK" => "Cook Islands",
-                                "CR" => "Costa Rica",
-                                "CI" => "Côte d'Ivoire",
-                                "HR" => "Croatia",
-                                "CU" => "Cuba",
-                                "CW" => "Curaçao",
-                                "CY" => "Cyprus",
-                                "CZ" => "Czech Republic",
-                                "DK" => "Denmark",
-                                "DJ" => "Djibouti",
-                                "DM" => "Dominica",
-                                "DO" => "Dominican Republic",
-                                "EC" => "Ecuador",
-                                "EG" => "Egypt",
-                                "SV" => "El Salvador",
-                                "GQ" => "Equatorial Guinea",
-                                "ER" => "Eritrea",
-                                "EE" => "Estonia",
-                                "ET" => "Ethiopia",
-                                "FK" => "Falkland Islands (Malvinas)",
-                                "FO" => "Faroe Islands",
-                                "FJ" => "Fiji",
-                                "FI" => "Finland",
-                                "FR" => "France",
-                                "GF" => "French Guiana",
-                                "PF" => "French Polynesia",
-                                "TF" => "French Southern Territories",
-                                "GA" => "Gabon",
-                                "GM" => "Gambia",
-                                "GE" => "Georgia",
-                                "DE" => "Germany",
-                                "GH" => "Ghana",
-                                "GI" => "Gibraltar",
-                                "GR" => "Greece",
-                                "GL" => "Greenland",
-                                "GD" => "Grenada",
-                                "GP" => "Guadeloupe",
-                                "GU" => "Guam",
-                                "GT" => "Guatemala",
-                                "GG" => "Guernsey",
-                                "GN" => "Guinea",
-                                "GW" => "Guinea-Bissau",
-                                "GY" => "Guyana",
-                                "HT" => "Haiti",
-                                "HM" => "Heard Island and McDonald Islands",
-                                "VA" => "Holy See (Vatican City State)",
-                                "HN" => "Honduras",
-                                "HK" => "Hong Kong",
-                                "HU" => "Hungary",
-                                "IS" => "Iceland",
-                                "IN" => "India",
-                                "ID" => "Indonesia",
-                                "IR" => "Iran, Islamic Republic of",
-                                "IQ" => "Iraq",
-                                "IE" => "Ireland",
-                                "IM" => "Isle of Man",
-                                "IL" => "Israel",
-                                "IT" => "Italy",
-                                "JM" => "Jamaica",
-                                "JP" => "Japan",
-                                "JE" => "Jersey",
-                                "JO" => "Jordan",
-                                "KZ" => "Kazakhstan",
-                                "KE" => "Kenya",
-                                "KI" => "Kiribati",
-                                "KP" => "Korea, Democratic People's Republic of",
-                                "KR" => "Korea, Republic of",
-                                "KW" => "Kuwait",
-                                "KG" => "Kyrgyzstan",
-                                "LA" => "Lao People's Democratic Republic",
-                                "LV" => "Latvia",
-                                "LB" => "Lebanon",
-                                "LS" => "Lesotho",
-                                "LR" => "Liberia",
-                                "LY" => "Libya",
-                                "LI" => "Liechtenstein",
-                                "LT" => "Lithuania",
-                                "LU" => "Luxembourg",
-                                "MO" => "Macao",
-                                "MK" => "Macedonia, the former Yugoslav Republic of",
-                                "MG" => "Madagascar",
-                                "MW" => "Malawi",
-                                "MY" => "Malaysia",
-                                "MV" => "Maldives",
-                                "ML" => "Mali",
-                                "MT" => "Malta",
-                                "MH" => "Marshall Islands",
-                                "MQ" => "Martinique",
-                                "MR" => "Mauritania",
-                                "MU" => "Mauritius",
-                                "YT" => "Mayotte",
-                                "MX" => "Mexico",
-                                "FM" => "Micronesia, Federated States of",
-                                "MD" => "Moldova, Republic of",
-                                "MC" => "Monaco",
-                                "MN" => "Mongolia",
-                                "ME" => "Montenegro",
-                                "MS" => "Montserrat",
-                                "MA" => "Morocco",
-                                "MZ" => "Mozambique",
-                                "MM" => "Myanmar",
-                                "NA" => "Namibia",
-                                "NR" => "Nauru",
-                                "NP" => "Nepal",
-                                "NL" => "Netherlands",
-                                "NC" => "New Caledonia",
-                                "NZ" => "New Zealand",
-                                "NI" => "Nicaragua",
-                                "NE" => "Niger",
-                                "NG" => "Nigeria",
-                                "NU" => "Niue",
-                                "NF" => "Norfolk Island",
-                                "MP" => "Northern Mariana Islands",
-                                "NO" => "Norway",
-                                "OM" => "Oman",
-                                "PK" => "Pakistan",
-                                "PW" => "Palau",
-                                "PS" => "Palestinian Territory, Occupied",
-                                "PA" => "Panama",
-                                "PG" => "Papua New Guinea",
-                                "PY" => "Paraguay",
-                                "PE" => "Peru",
-                                "PH" => "Philippines",
-                                "PN" => "Pitcairn",
-                                "PL" => "Poland",
-                                "PT" => "Portugal",
-                                "PR" => "Puerto Rico",
-                                "QA" => "Qatar",
-                                "RE" => "Réunion",
-                                "RO" => "Romania",
-                                "RU" => "Russian Federation",
-                                "RW" => "Rwanda",
-                                "BL" => "Saint Barthélemy",
-                                "SH" => "Saint Helena, Ascension and Tristan da Cunha",
-                                "KN" => "Saint Kitts and Nevis",
-                                "LC" => "Saint Lucia",
-                                "MF" => "Saint Martin (French part)",
-                                "PM" => "Saint Pierre and Miquelon",
-                                "VC" => "Saint Vincent and the Grenadines",
-                                "WS" => "Samoa",
-                                "SM" => "San Marino",
-                                "ST" => "Sao Tome and Principe",
-                                "SA" => "Saudi Arabia",
-                                "SN" => "Senegal",
-                                "RS" => "Serbia",
-                                "SC" => "Seychelles",
-                                "SL" => "Sierra Leone",
-                                "SG" => "Singapore",
-                                "SX" => "Sint Maarten (Dutch part)",
-                                "SK" => "Slovakia",
-                                "SI" => "Slovenia",
-                                "SB" => "Solomon Islands",
-                                "SO" => "Somalia",
-                                "ZA" => "South Africa",
-                                "GS" => "South Georgia and the South Sandwich Islands",
-                                "SS" => "South Sudan",
-                                "ES" => "Spain",
-                                "LK" => "Sri Lanka",
-                                "SD" => "Sudan",
-                                "SR" => "Suriname",
-                                "SJ" => "Svalbard and Jan Mayen",
-                                "SZ" => "Swaziland",
-                                "SE" => "Sweden",
-                                "CH" => "Switzerland",
-                                "SY" => "Syrian Arab Republic",
-                                "TW" => "Taiwan, Province of China",
-                                "TJ" => "Tajikistan",
-                                "TZ" => "Tanzania, United Republic of",
-                                "TH" => "Thailand",
-                                "TL" => "Timor-Leste",
-                                "TG" => "Togo",
-                                "TK" => "Tokelau",
-                                "TO" => "Tonga",
-                                "TT" => "Trinidad and Tobago",
-                                "TN" => "Tunisia",
-                                "TR" => "Turkey",
-                                "TM" => "Turkmenistan",
-                                "TC" => "Turks and Caicos Islands",
-                                "TV" => "Tuvalu",
-                                "UG" => "Uganda",
-                                "UA" => "Ukraine",
-                                "AE" => "United Arab Emirates",
-                                "GB" => "United Kingdom",
-                                "US" => "United States",
-                                "UM" => "United States Minor Outlying Islands",
-                                "UY" => "Uruguay",
-                                "UZ" => "Uzbekistan",
-                                "VU" => "Vanuatu",
-                                "VE" => "Venezuela, Bolivarian Republic of",
-                                "VN" => "Viet Nam",
-                                "VG" => "Virgin Islands, British",
-                                "VI" => "Virgin Islands, U.S.",
-                                "WF" => "Wallis and Futuna",
-                                "EH" => "Western Sahara",
-                                "YE" => "Yemen",
-                                "ZM" => "Zambia",
-                                "ZW" => "Zimbabwe",
+                        <span>
+                        {!! Form::text('phone', old('phone'), array(
+                            'class'         => 'generic_input input_half', 
+                            'placeholder'   => trans('text.phone'),
+                            'id'            => 'row8_input'
+                            )) !!}
+                        </span>
+                        
+                        <span>
+                        {!! Form::select('country', array(
+                            "AF" => "Afghanistan",
+                            "AG" => "Antigua and Barbuda",
+                            "AR" => "Argentina",
+                            "AM" => "Armenia",
+                            "BO" => "Bolivia, Plurinational State of",
+                            "NO" => "Norway",
+                            "OM" => "Oman",
 
-                                ), 'NO', ['placeholder' => trans('text.country'),
-                                            'class'     => 'generic_input input_half'
-                                ]) !!}
-                            </span>
+                            ), 'NO', ['placeholder' => trans('text.country'),
+                                        'class'     => 'generic_input input_half'
+                            ]) !!}
+                        </span>
 
-                    <!-- {!! Form::close() !!} -->
-                </div>
       
-                <div class="col-md-12 progress_circle_container">
-                    <span style="height:40px;" class="progress_block"></span>
-                    <span class="progress_circle"></span>
-                    <h1 class="capital center">{{trans('text.shipping')}}</h1>
-                    <span style="height:40px;" class="progress_block"></span>
-                    <span id="shipping_calc"></span></p>
-                </div>
+                    <div class="progress_circle_container">
+                        <span style="height:40px;" class="progress_block"></span>
+                        <span class="progress_circle"></span>
+                        <h1 class="capital center">{{trans('text.shipping')}}</h1>
+                        <span style="height:40px;" class="progress_block"></span>
+                        <span id="shipping_calc"></span></p>
+                    </div>
 
-                <div class="col-md-12 progress_circle_container">
-                    <span style="height:40px;" class="progress_block"></span>
-                    <span class="progress_circle"></span>
-                    <h1 class="capital center">{{trans('text.payment')}}</h1>
-                    <span style="height:40px;" class="progress_block"></span>
-                </div>
-                <div class="col-md-12">
-                    
-                        <span>
-                            {!! Form::text('', '', array(
-                                'class'         => 'generic_input', 
-                                'placeholder'   => trans('text.card_number'),
-                                'id'            => 'card_number_input'
-                                )) !!}
-                        </span>
-                        <span>
-                            {!! Form::text('', '', array(
-                                'class'         => 'generic_input input_half', 
-                                'placeholder'   => trans('text.name_on_card'),
-                                'id'            => 'name_on_card'
-                                )) !!}
+                    <div class="progress_circle_container">
+                        <span style="height:40px;" class="progress_block"></span>
+                        <span class="progress_circle"></span>
+                        <h1 class="capital center">{{trans('text.payment')}}</h1>
+                        <span style="height:40px;" class="progress_block"></span>
+                    </div>
+                    <span class="payment-errors"></span>
+                    <span>
+                        {!! Form::text('', '', array(
+                            'class'         => 'generic_input', 
+                            'placeholder'   => trans('text.card_number'),
+                            'id'            => 'card_number_input',
+                            'data-stripe'   => "number"
+                            )) !!}
+                    </span>
+                    <span>
+                        {!! Form::text('', '', array(
+                            'class'         => 'generic_input input_half', 
+                            'placeholder'   => trans('text.name_on_card'),
+                            'id'            => 'name_on_card'
+                            )) !!}
 
-                            {{  Form::selectMonth('month','Expiration', ['data-stripe'=>'exp-month', 
-                                'id'    => 'exp_element',
-                                'class' => 'generic_input input_quarter'
-                                ])  }}
+                        {{  Form::selectMonth('month','Expiration', ['data-stripe'=>'exp-month', 
+                            'id'    => 'exp_element',
+                            'class' => 'generic_input input_quarter'
+                            ])  }}
 
-                            {{  Form::selectYear('year',date('Y'),date('Y') + 10, date('Y'), [
-                                'data-stripe'   =>'exp-year', 
-                                'id'            =>'exp_year',
-                                'class' => 'generic_input input_quarter'
+                        {{  Form::selectYear('year',date('Y'),date('Y') + 10, date('Y'), [
+                            'data-stripe'   =>'exp-year', 
+                            'id'            =>'exp_year',
+                            'class' => 'generic_input input_quarter'
 
-                            ] ) }}
+                        ] ) }}
 
-                            {!! Form::text('', '', array(
-                                'class'         => 'generic_input input_half', 
-                                'placeholder'   => trans('text.card_cvc'),
-                                'data-stripe'   => 'cvc',
-                                'id'            => 'cvc_number_input'
-                                )) !!}
+                        {!! Form::text('', '', array(
+                            'class'         => 'generic_input input_half', 
+                            'placeholder'   => trans('text.card_cvc'),
+                            'data-stripe'   => 'cvc',
+                            'id'            => 'cvc_number_input'
+                            )) !!}
 
-                        </span>
-                    {!! Form::close() !!}
-                </div>
-            </div>
+                    </span>
 
-            <h1>
-                {{ trans('text.total') }} 
-                {{\App\Http\Controllers\HelperController::getCurrencySymbol()}}
-                {{ number_format(Cart::total() * $rate, 2, '.', ',') }}
-            </h1>
+                    <h1>
+                        {{ trans('text.total') }} 
+                        {{\App\Http\Controllers\HelperController::getCurrencySymbol()}}
+                        {{ number_format(Cart::total() * $rate, 2, '.', ',') }}
+                    </h1>
 
-            <div class="bd-example" data-example-id="">
-                <!-- <button id="calculate">Calculate</button> -->
+                    <p>Shipping will be: <span id="shipping_calc"></span></p>
 
                     @if (Auth::user())
                         <fieldset class="form-group">
@@ -430,13 +181,14 @@
                             <input type="checkbox" id="remember_me_input" name="remember_me"/>
                         </fieldset>
                     @endif
-                    <input type="submit" class="btn btn-primary" id="submitform" value="{{trans('text.submit')}}" />
-                </form>
-            </div>
+            {!! Form::submit(trans('text.submit'), array('class' => 'generic_submit width_65 ', 'id' => 'submitform') )!!}
+                            
+
         </div>
         <div class="col-md-3"></div>
     </div>
 </div>
+
 <script src="https://checkout.stripe.com/checkout.js"></script>
 @stop
 
@@ -464,7 +216,7 @@
 
             $('#payment-form').submit(function(event) {
 //                event.preventDefault();
-                console.log('clicked');
+
                 var $form = $(this);
 
                 // Disable the submit button to prevent repeated clicks
@@ -483,6 +235,7 @@
             if (response.error) {
                 // Show the errors on the form
                 $form.find('.payment-errors').text(response.error.message);
+                console.log(response.error.message);
                 $form.find('button').prop('disabled', false);
             } else {
                 // response contains id and card, which contains additional card details
