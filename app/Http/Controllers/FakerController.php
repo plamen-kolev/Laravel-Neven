@@ -69,7 +69,9 @@ class FakerController extends Controller
             // CATEGORY
             $title = 'Category' . $index  . str_random(10);
             $category = new Category ([
-                'thumbnail' => $faker->imageUrl($width = 640, $height = 480),
+                'thumbnail_full'    => $faker->imageUrl($width = 1280, $height = 720),
+                'thumbnail_medium'  => $faker->imageUrl($width = 640, $height = 480),
+                'thumbnail_small'   => $faker->imageUrl($width = 150, $height = 70),
                 'slug'      =>  Str::slug($title)
             ]);
             $category->save();

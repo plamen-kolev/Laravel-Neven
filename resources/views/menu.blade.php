@@ -19,7 +19,7 @@
                         <ul class="dropdown-menu">
                         <li><a href="{{ route('product.index',[] ) }}">{{ trans('text.all_categories') }}</a></li>
                         @foreach ($categories as $category)           
-                            <li><a href="{{ route('category', [$category->slug]) }}">Debug: {{$category->id}} {{$category->title}}</a></li>
+                            <li><a href="{{ route('category.show', [$category->slug]) }}">Debug: {{$category->id}} {{$category->title}}</a></li>
                         @endforeach
                         </ul>
                     </li>

@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # WARNING THIS IS FOR DEVELOPMENT!!!
-sudo apt-get install php5-cli sqlite php5-sqlite php5-curl mysql-server php5-mysql phpunit php5-memcached memcached
+sudo apt-get install php-cli sqlite php-sqlite php-curl mysql-server php5-mysql phpunit php-memcached memcached php-gd
+
  mysql -u root -p
  create database neven;
  grant usage on neven.* to admin@localhost identified by 'admin';

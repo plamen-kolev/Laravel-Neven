@@ -24,7 +24,9 @@ class Initial extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->string('slug',255);
-            $table->string('thumbnail',255);
+            $table->string('thumbnail_full',255);
+            $table->string('thumbnail_medium',255);
+            $table->string('thumbnail_small',255);
             $table->timestamps();
         });
 

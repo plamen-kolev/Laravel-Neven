@@ -8,10 +8,35 @@ use Symfony\Component\Console\Helper\Helper;
 use View;
 use App\Http\Requests;
 use Swap;
+use File;
+use Image;
 use App\ShippingOption as ShippingOption;
 use Cart;
 class HelperController extends Controller
 {
+
+    public static function cropImage($image_input, $path, $name, $sizes){
+        $filename  = time() . $name . "." . $image_input->getClientOriginalExtension();
+
+        File::exists(storage_path('app/public/images/')) or File::makeDirectory(storage_path('app/public/images/'));
+        File::exists(storage_path("app/public/images/$path/")) or File::makeDirectory(storage_path("app/public/images/$path/"));
+        $image_locations = array();
+
+        $storage_path = storage_path("app/public/images/$path/full_$filename");
+        $image_tmp_path = $image_input->getRealPath();
+        Image::make($image_tmp_path)->save($storage_path);
+        array_push($image_locations, $storage_path);
+
+        foreach($sizes as $size){
+            $storage_path = storage_path("app/public/images/$path/" . $size .  "_$filename");
+            Image::make($image_tmp_path)->resize($size, null, function ($constraint) {
+                                                $constraint->aspectRatio();
+                                            })->save($storage_path);
+            array_push($image_locations, $storage_path);
+        }
+        return $image_locations;
+
+    }
 
     // usage $data=['product'=>productOBJ, 'option'=>optionObj, 'quantity'=>number]
     public static function addToCart($data){

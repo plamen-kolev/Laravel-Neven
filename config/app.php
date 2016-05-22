@@ -167,7 +167,8 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         Laravel\Cashier\CashierServiceProvider::class,
         Florianv\LaravelSwap\SwapServiceProvider::class,
-        Unisharp\Ckeditor\ServiceProvider::class
+        Unisharp\Ckeditor\ServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class
 
 
     ],
@@ -223,7 +224,8 @@ return [
         'Input' => Illuminate\Support\Facades\Input::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
-        'Socialize' => 'Laravel\Socialite\Facades\Socialite'
+        'Socialize' => 'Laravel\Socialite\Facades\Socialite',
+        'Image' => Intervention\Image\Facades\Image::class
     ],
 
 ];

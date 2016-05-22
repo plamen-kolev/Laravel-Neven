@@ -15,7 +15,8 @@
         "laravelcollective/html": "5.2.*",
         "florianv/laravel-swap": "^0.2.1",
         "laravel/socialite": "~2.0",
-        "unisharp/laravel-ckeditor": "^4.5"
+        "unisharp/laravel-ckeditor": "^4.5",
+        "intervention/image": "^2.3"
 
     },
     "require-dev": {
