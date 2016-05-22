@@ -21,7 +21,7 @@
                     <div class="thumbnail_item_inner" href="">
                         <img src="{{$product->thumbnail_small}}" />
                         <h2 class="thumbnail_title">
-                            <a id="product_link_{{$index}}" href="{!! route('product', [ $product->slug ]) !!}">{{$product->title}}</a>
+                            <a id="product_link_{{$index}}" href="{!! route('product.show', [ $product->slug ]) !!}">{{$product->title}}</a>
                         </h2>
                         <span class="underliner"></span>
                         <p class="price_label">
@@ -29,7 +29,7 @@
                         </p>
                         <div class="view_product">
                             <p>
-                                <a id="view_product_{{$index}}" href="{!! route('product', [ $product->slug ]) !!}">view product</a>
+                                <a id="view_product_{{$index}}" href="{!! route('product.show', [ $product->slug ]) !!}">view product</a>
 
                             </p>
                         </div>

@@ -38,13 +38,13 @@
                         
                         <img src="{{$product->thumbnail_small}}">
                         <h2 class="thumbnail_title">
-                            <a class="" href="{!! route('product', [ $product->slug ]) !!}"> {{$product->title}} </a>
+                            <a class="" href="{!! route('product.show', [ $product->slug ]) !!}"> {{$product->title}} </a>
                         </h2>
                         <span class="underliner"></span>
                         <p>{{$product->price()}}</p>
                         <div class="view_product">
                             <p>
-                                <a class="" href="{!! route('product', [ $product->slug ]) !!}">view product</a>
+                                <a class="" href="{!! route('product.show', [ $product->slug ]) !!}">view product</a>
                             </p>
                         </div>
                     </div>

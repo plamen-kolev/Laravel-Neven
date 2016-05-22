@@ -535,11 +535,6 @@ p, h1, h2{
     margin-right:10px;
 }
 
-.dropdown-menu li{
-    margin-right:0px;
-}
-
-
 #search_form{
     margin-top:-8px;
     display: inline-block;
@@ -757,6 +752,7 @@ a:hover{
     padding:0px;
 }
 
+
 .checkout_button1{
     background-color: #F0B79A;
     color: white;
@@ -853,4 +849,8 @@ a:hover{
     border: 0px;
     color: white;
     padding: 10px;
+}
+
+.dropdown-menu li{
+    margin:0px !important;
 }

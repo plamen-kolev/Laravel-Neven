@@ -37,17 +37,18 @@
             </p>
             <div class="col-sm-12 nopadding">
                 <div class="col-sm-6 nopadding">
-                    <form action="" class="inline_block" method="POST">
+                    <form action="" class="col-md-12" method="POST">
                         <input type="hidden" name="_token" value="{{csrf_token()}}"/>
-                        <select class="input_styler" name="option" onchange="this.form.submit()">
+                        <select class="col-md-6 input_styler" name="option" onchange="this.form.submit()">
                         @foreach($product->options as $opt)
                             <option 
                                 {{ ($opt->slug == $option->slug) ? 'selected' : "" }} value="{{$opt->slug}}">{{$opt->title}} 
                             </option>
                         @endforeach
                         </select>
+                        <input class="col-md-6 input_styler" type="number" name="quantity"  value="1"/>
                     </form>
-                    <input class="product_quantity input_styler" type="number" name="quantity" size="1" value="1"/>
+                    
 
                 </div>
                 
@@ -71,10 +72,11 @@
                     <div id="description" class="tab-pane fade in active">
                         <p>{{$product->description}}</p>
                     </div>
+
                     <div id="ingredients" class="tab-pane fade">
-                        <p>
+                        <div class="col-md-12">
                         @foreach($product->ingredients as $ingredient)
-                            <span id="{{$ingredient->slug}}" class="product_ingredient" style="background-color:#E4B7B7;">{{$ingredient->title}}</span>,
+                            <div id="{{$ingredient->slug}}" class="col-md-4 product_ingredient thumbnail" style="background-color:#E4B7B7;">{{$ingredient->title}}</div>,
                             <script>
                                 var data = render_ingredient('/ingredient/{{$ingredient->slug}}');
                                 var drop = new Drop({
@@ -85,7 +87,7 @@
                                 });
                             </script>
                         @endforeach
-                        </p>
+                        </div>
                     </div>
                     <div id="tipsforuse" class="tab-pane fade">
                         <p>{{$product->tips}}</p>
@@ -102,8 +104,9 @@
 <div class="col-md-12">
     <div class="wrapper">
         <div>
-            <h1 class="capital center">Write review</h1>
             @if(Auth::check())
+            <h1 class="capital center">Write review</h1>
+
                 <!-- if errors -->
                 @if( $errors->all() )
                     @foreach ($errors->all() as $error)
@@ -184,13 +187,13 @@
                         
                         <img src="{{$product->thumbnail_small}}">
                         <h2 class="thumbnail_title">
-                            <a class="" href="{!! route('product', [ $product->slug ]) !!}"> {{$product->title}} </a>
+                            <a class="" href="{!! route('product.show', [ $product->slug ]) !!}"> {{$product->title}} </a>
                         </h2>
                         <span class="underliner"></span>
                         <p>{{$product->price()}}</p>
                         <div class="view_product">
                             <p>
-                                <a class="" href="{!! route('product', [ $product->slug ]) !!}">view product</a>
+                                <a class="" href="{!! route('product.show', [ $product->slug ]) !!}">view product</a>
                             </p>
                         </div>
                     </div>

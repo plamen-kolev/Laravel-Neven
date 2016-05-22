@@ -3,7 +3,7 @@
     <div class="wrapper">
         <div class="menu">
             <div id="menu_logo_container">
-                <img src="/images/neven_logo.png"/>
+                <a href="{{route('index')}}"><img src="/images/neven_logo.png"/></a>
             </div>
         </div>
 
@@ -17,7 +17,7 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ trans('text.categories') }} <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                        <li><a href="{{ route('products',[] ) }}">{{ trans('text.all_categories') }}</a></li>
+                        <li><a href="{{ route('product.index',[] ) }}">{{ trans('text.all_categories') }}</a></li>
                         @foreach ($categories as $category)           
                             <li><a href="{{ route('category', [$category->slug]) }}">Debug: {{$category->id}} {{$category->title}}</a></li>
                         @endforeach

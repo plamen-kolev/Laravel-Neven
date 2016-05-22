@@ -30,9 +30,12 @@ use App\Product as Product;
 
         Route::get('category/{category}/',  array('language'=> 'en','as' => 'category', 'uses' => 'ProductController@category'));
 
+        // Route::get('admin')
         Route::get('search',                array('as' => 'search', 'uses' => 'ProductController@search'));
-        Route::get('products/',             array('as' => 'products', 'uses' => 'ProductController@all'));
-        Route::any('products/{product}/',   array('before' => 'csrf', 'as' => 'product', 'uses' => 'ProductController@product'));
+        
+        Route::resource('product', 'ProductController');
+        // Route::get('products/',             array('as' => 'products', 'uses' => 'ProductController@all'));
+        // Route::any('products/{product}/',   array('before' => 'csrf', 'as' => 'product', 'uses' => 'ProductController@product'));
 
         Route::post('review/add',           array('before' => 'csrf', 'as' => 'add_review', 'uses' => 'ReviewController@store'));
         Route::post('review/delete',        array('before' => 'csrf', 'as' => 'delete_review', 'uses' => 'ReviewController@destroy'));

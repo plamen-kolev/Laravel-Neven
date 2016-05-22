@@ -6,6 +6,7 @@ use App\Http\Controllers\HelperController;
 use Illuminate\Database\Eloquent\Model;
 use Cache;
 use App\ProductOption as ProductOption;
+use Carbon\Carbon;
 
 class Product extends Model
 {   
@@ -16,6 +17,7 @@ class Product extends Model
     public function price(){
         return $this->options()->first()->price * HelperController::getRate();
     }
+    
     // public function getCachedTranslation($language){
     //     $key = 'translation' + $this->id;
     //     if(Cache::has($key)){
