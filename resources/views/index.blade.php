@@ -1,4 +1,5 @@
 @extends('master_page')
+
 @section('content')
 
 <div class="col-md-12">

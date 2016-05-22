@@ -52,7 +52,7 @@ class PaymentController extends Controller
                 'phone'     => 'required|max:50'
             ];
             if(! Auth::user()){
-                $validation_rules['email'] = 'required|email|max:255';
+                $validation_rules['guest_email'] = 'required|email|max:255';
             }
 
             $validator = Validator::make($request->all(), $validation_rules);
@@ -100,7 +100,7 @@ class PaymentController extends Controller
             $last4 = $result->getLastResponse()->json['source']['last4'];
             # get email from input or from the current user
             $email="";
-            if($email = $request->input('email')  ) {}
+            if($email = $request->input('guest_email')  ) {}
             else {
               $email = $user->email;
             }

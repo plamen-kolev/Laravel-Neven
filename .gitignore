@@ -8,3 +8,4 @@ Homestead.json
 .env
 tests/_support/_generated/WebGuyActions.php
 tests/_output/*
+/nbproject/private/

@@ -3,6 +3,7 @@
 <div class="col-md-12">
     <div class="wrapper">
         <div class="col-md-3"></div>
+
         <div class="col-md-6 big_top_margin">
             <div class="col-md-12">
                 <div class="progress_circle_container">
@@ -12,182 +13,186 @@
                 </div>
             </div>
 
-            <div class="col-md-12">
                 @if (!Auth::user())
+                <div class="col-md-12">
                     {!! Form::open(array('url' => route('auth.login'), 'method' => 'POST')) !!}
-                            {!! Form::text('emaila', old('emaila'), array('class'=>'generic_input', 'placeholder'=>'Username:') ) !!}
+                            {!! Form::text('email', old('email'), array('class'=>'generic_input', 'placeholder'=>'Username:') ) !!}
                             {!! Form::password('password', array('class'=>'generic_input', 'placeholder' => 'Password:') , old('password')) !!}
-                            {!! Form::submit('Click Me!', array('class'=>'generic_submit')) !!}
+                            {!! Form::submit(trans('text.login'), array('class'=>'generic_submit capital')) !!}
                     {!! Form::close() !!}
                     <p><a class="green_text" href="{{route('auth.password.reset')}}">{{trans('text.forgotten_password_question')}}</a></p>
+                </div>
 
+                <div class="col-md-6">
+                    <a class="pull-left capital checkout_button1" href="">{{trans('text.back_to_cart')}}</a>
+                </div>
+
+                <div class="col-md-6">
+                    <a class="pull-right capital checkout_button2" href="">{{trans('text.next')}}</a>
+                </div>
                 @endif
-                <div class="col-md-6">
-                    <a class="pull-left capitalize orange_button" href="">{{trans('text.back_to_cart')}}</a>
-                </div>
-
-                <div class="col-md-6">
-                    <a class="pull-right capitalize green_button" href="">{{trans('text.next')}}</a>
-                </div> 
-                </div>
                 <div class="col-md-12 progress_circle_container">
                     <span style="height:40px;" class="progress_block"></span>
                     <span class="progress_circle"></span>
                     <h1 class="capital center">{{trans('text.address')}}</h1>
                     <span style="height:40px;" class="progress_block"></span>
                 </div>
+                
+                @if( $errors->all() )
                 <div class="col-md-12">
-                    
-                    @if( $errors->all() )
-                        @foreach ($errors->all() as $error)
-                            <div class="alert alert-danger" role="alert">
-                              <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                              <span class="sr-only">Error:</span>
-                                {{ $error }}
-                            </div>
-                        @endforeach
-                    @endif
+                    @foreach ($errors->all() as $error)
+                        <div class="alert alert-danger" role="alert">
+                          <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                          <span class="sr-only">Error:</span>
+                            {{ $error }}
+                        </div>
+                    @endforeach
                 </div>
-                {!! Form::open(array('url' => route('checkout'), 'method' => 'POST', 'id' => 'payment-form')) !!}
-
-                    @if (!Auth::user())
-                    <span>
-                        <h1>{{trans('text.checkout_as_guest')}}</h1>
-                        <p>{{trans('text.checkout_as_guest_subtext')}}</p>
-
-                        {!! Form::text('email', old('email'), array('class'=>'generic_input', 'placeholder'=>trans("text.email")) ) !!}
-                    </span>
+                @endif
+                
+                {!! Form::open(array('url' => route('checkout'), 'method' => 'POST', 'id' => 'payment-form', 'class' => 'checkout_form')) !!}
+                    @if(!Auth::user())
+                        <h2>{{trans('text.checkout_as_guest')}}</h2>
+                        <span>{{trans('text.email_used_to_confirm_order')}}</span>
+                        <div>
+                            {!! Form::text('guest_email', old('guest_email'), array('class'=>'generic_input', 'placeholder'=>trans('text.email')) ) !!}
+                        </div>
                     @endif
+                        <div class="col-md-6">{!! Form::text('name', old('name'), array(
+                            'class'         => 'generic_input', 
+                            'placeholder'   => trans('text.first_name'),
+                            'id'            => 'row1_input'
+                            )) !!}
+                        </div>
 
-                    <span>{!! Form::text('name', old('name'), array(
-                        'class'         => 'generic_input input_half', 
-                        'placeholder'   => trans('text.first_name'),
-                        'id'            => 'row1_input'
-                        )) !!}
-                    </span>
+                        <div class="col-md-6">
+                        {!! Form::text('surname', old('surname'), array(
+                            'class'         => 'generic_input', 
+                            'placeholder'   => trans('text.last_name'),
+                            'id'            => 'row2_input'
+                            )) !!}
+                        </div>
 
-                    <span>
-                    {!! Form::text('surname', old('surname'), array(
-                        'class'         => 'generic_input input_half', 
-                        'placeholder'   => trans('text.last_name'),
-                        'id'            => 'row2_input'
-                        )) !!}
-                    </span>
+                        <div class="col-md-6">
+                        {!! Form::text('address_1', old('address_1'), array(
+                            'class'         => 'generic_input', 
+                            'placeholder'   => trans('text.address_1'),
+                            'id'            => 'row3_input'
+                            )) !!}
+                        </div>
 
-                    <span>
-                    {!! Form::text('address_1', old('address_1'), array(
-                        'class'         => 'generic_input', 
-                        'placeholder'   => trans('text.address_1'),
-                        'id'            => 'row3_input'
-                        )) !!}
-                    </span>
+                        <div class="col-md-6">
+                        {!! Form::text('address_2', old('address_2'), array(
+                            'class'         => 'generic_input', 
+                            'placeholder'   => trans('text.address_2'),
+                            'id'            => 'row4_input'
+                            )) !!}
+                        </div>
 
-                    <span>
-                    {!! Form::text('address_2', old('address_2'), array(
-                        'class'         => 'generic_input', 
-                        'placeholder'   => trans('text.address_2'),
-                        'id'            => 'row4_input'
-                        )) !!}
-                    </span>
+                        <div class="col-md-6">
+                        {!! Form::text('city', old('city'), array(
+                            'class'         => 'generic_input', 
+                            'placeholder'   => trans('text.city'),
+                            'id'            => 'row5_input'
+                            )) !!}
+                        </div>
+                       
+                        <div class="col-md-6">
+                        {!! Form::text('post_code', old('post_code'), array(
+                            'class'         => 'generic_input', 
+                            'placeholder'   => trans('text.post_code'),
+                            'id'            => 'row7_input'
+                            )) !!}
+                        </div>
 
-                    <span>
-                    {!! Form::text('city', old('city'), array(
-                        'class'         => 'generic_input input_half', 
-                        'placeholder'   => trans('text.city'),
-                        'id'            => 'row5_input'
-                        )) !!}
-                    </span>
-                   
-                    <span>
-                    {!! Form::text('post_code', old('post_code'), array(
-                        'class'         => 'generic_input input_half', 
-                        'placeholder'   => trans('text.post_code'),
-                        'id'            => 'row7_input'
-                        )) !!}
-                    </span>
+                        <div class="col-md-6">
+                        {!! Form::text('phone', old('phone'), array(
+                            'class'         => 'generic_input', 
+                            'placeholder'   => trans('text.phone'),
+                            'id'            => 'row8_input'
+                            )) !!}
+                        </div>
+                        
+                        <div class="col-md-6">
+                        {!! Form::select('country', array(
+                            "AF" => "Afghanistan",
+                            "AG" => "Antigua and Barbuda",
+                            "AR" => "Argentina",
+                            "AM" => "Armenia",
+                            "BO" => "Bolivia, Plurinational State of",
+                            "NO" => "Norway",
+                            "OM" => "Oman",
 
-                    <span>
-                    {!! Form::text('phone', old('phone'), array(
-                        'class'         => 'generic_input input_half', 
-                        'placeholder'   => trans('text.phone'),
-                        'id'            => 'row8_input'
-                        )) !!}
-                    </span>
-                    
-                    <span>
-                    {!! Form::select('country', array(
-                        "AF" => "Afghanistan",
-                        "AG" => "Antigua and Barbuda",
-                        "AR" => "Argentina",
-                        "AM" => "Armenia",
-                        "BO" => "Bolivia, Plurinational State of",
-                        "NO" => "Norway",
-                        "OM" => "Oman",
+                            ), 'NO', ['placeholder' => trans('text.country'),
+                                        'class'     => 'generic_input'
+                            ]) !!}
+                        </div>
 
-                        ), 'NO', ['placeholder' => trans('text.country'),
-                                    'class'     => 'generic_input input_half'
-                        ]) !!}
-                    </span>
-
-      
-                    <div class="progress_circle_container">
-                        <span style="height:40px;" class="progress_block"></span>
-                        <span class="progress_circle"></span>
-                        <h1 class="capital center">{{trans('text.shipping')}}</h1>
-                        <span style="height:40px;" class="progress_block"></span>
-                        <span id="shipping_calc"></span></p>
+                    <div class="col-md-6">
+                        <a class="pull-left capital checkout_button1" href="">{{trans('text.back_to_cart')}}</a>
                     </div>
 
-                    <div class="progress_circle_container">
+                    <div class="col-md-6">
+                        <a class="pull-right capital checkout_button2" href="">{{trans('text.next')}}</a>
+                    </div>
+
+                    <div class="col-md-12 progress_circle_container">
                         <span style="height:40px;" class="progress_block"></span>
                         <span class="progress_circle"></span>
                         <h1 class="capital center">{{trans('text.payment')}}</h1>
                         <span style="height:40px;" class="progress_block"></span>
                     </div>
                     <span class="payment-errors"></span>
-                    <span>
+                    <div class="col-md-12">
                         {!! Form::text('', '', array(
                             'class'         => 'generic_input', 
                             'placeholder'   => trans('text.card_number'),
                             'id'            => 'card_number_input',
                             'data-stripe'   => "number"
                             )) !!}
-                    </span>
-                    <span>
+                    </div>
+
+
+                    <div class="col-md-6">
                         {!! Form::text('', '', array(
-                            'class'         => 'generic_input input_half', 
-                            'placeholder'   => trans('text.name_on_card'),
-                            'id'            => 'name_on_card'
-                            )) !!}
-
-                        {{  Form::selectMonth('month','Expiration', ['data-stripe'=>'exp-month', 
-                            'id'    => 'exp_element',
-                            'class' => 'generic_input input_quarter'
-                            ])  }}
-
-                        {{  Form::selectYear('year',date('Y'),date('Y') + 10, date('Y'), [
-                            'data-stripe'   =>'exp-year', 
-                            'id'            =>'exp_year',
-                            'class' => 'generic_input input_quarter'
-
-                        ] ) }}
-
-                        {!! Form::text('', '', array(
-                            'class'         => 'generic_input input_half', 
+                            'class'         => 'generic_input', 
                             'placeholder'   => trans('text.card_cvc'),
                             'data-stripe'   => 'cvc',
                             'id'            => 'cvc_number_input'
                             )) !!}
 
-                    </span>
+                    </div>
 
-                    <h1>
-                        {{ trans('text.total') }} 
-                        {{\App\Http\Controllers\HelperController::getCurrencySymbol()}}
-                        {{ number_format(Cart::total() * $rate, 2, '.', ',') }}
-                    </h1>
+                    <div class="col-md-3">
+                        {{  Form::selectMonth('month','Expiration', ['data-stripe'=>'exp-month', 
+                            'id'    => 'exp_element',
+                            'class' => 'generic_input'
+                            ])  }}
+                    </div>
 
-                    <p>Shipping will be: <span id="shipping_calc"></span></p>
+                    <div class="col-md-3">
+                        {{  Form::selectYear('year',date('Y'),date('Y') + 10, date('Y'), [
+                            'data-stripe'   =>'exp-year', 
+                            'id'            =>'exp_year',
+                            'class' => 'generic_input'
+
+                        ] ) }}
+                    </div>
+
+
+                    <div class="col-md-12">
+                        <h1>
+                            {{ trans('text.total') }} 
+                            {{\App\Http\Controllers\HelperController::getCurrencySymbol()}}
+                            {{ number_format(Cart::total() * $rate, 2, '.', ',') }}
+                        </h1> 
+                        <span id="shipping_calc"></span>
+
+                    </div>
+                    
+
+                    
+
 
                     @if (Auth::user())
                         <fieldset class="form-group">
@@ -195,7 +200,7 @@
                             <input type="checkbox" id="remember_me_input" name="remember_me"/>
                         </fieldset>
                     @endif
-            {!! Form::submit(trans('text.submit'), array('class' => 'generic_submit width_65 ', 'id' => 'submitform') )!!}
+                {!! Form::submit(trans('text.complete_checkout'), array('class' => 'generic_submit width_65 ', 'id' => 'submitform') )!!}
                             
 
         </div>

@@ -757,11 +757,33 @@ a:hover{
     padding:0px;
 }
 
+.checkout_button1{
+    background-color: #F0B79A;
+    color: white;
+    height: 30px;
+    width: 130px;
+    text-align: center;
+    padding-top: 5px;
+}
+
+.checkout_button2{
+    background-color: #07ab95;
+    color: white;
+    height: 30px;
+    width: 130px;
+    text-align: center;
+    padding-top: 5px;
+}
+
 .input_styler{
     height: 45px;
     background-color: #f2f2f2;
     border: 0px;
     color: #989898;
+}
+
+.checkout_form div{
+    padding:5px 15px 5px 15px;
 }
 
 .inline_block{
