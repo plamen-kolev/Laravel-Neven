@@ -14,10 +14,11 @@
 @endif
 
 <div class="col-md-12">
+    <h1 class="capital center">Create new Category</h1>
     {!! Form::model($category, array('route' => array('category.store'), 'files' => true ) ) !!}
         
         <div class="col-md-12">
-            {!! Form::file('thumbnail', Input::old('thumbnail'), array('placeholder' => 'Thumbnail', 'class' => 'generic_input' )); !!}
+            <p>Upload image here {!! Form::file('thumbnail', Input::old('thumbnail'), array('placeholder' => 'Thumbnail', 'class' => 'generic_input' )); !!}</p>
         </div>
 
         <div class="col-md-12">

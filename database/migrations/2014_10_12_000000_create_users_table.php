@@ -15,6 +15,7 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->string('name', 200);
+            $table->boolean('admin', 0);
             $table->string('email')->unique();
             // payment
             $table->string('stripe_id')->nullable();

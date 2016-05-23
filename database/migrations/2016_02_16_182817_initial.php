@@ -23,7 +23,7 @@ class Initial extends Migration
 
         Schema::create('categories', function (Blueprint $table) {
             $table->increments('id')->unsigned();
-            $table->string('slug',255);
+            $table->string('slug',255)->unique();
             $table->string('thumbnail_full',255);
             $table->string('thumbnail_medium',255);
             $table->string('thumbnail_small',255);
@@ -46,7 +46,7 @@ class Initial extends Migration
             $table->string('thumbnail_medium', 255);
             $table->string('thumbnail_small', 255);
             $table->boolean('featured')->default(0);
-            $table->string('slug',255);
+            $table->string('slug',255)->unique();
             $table->timestamps();
             $table->boolean('in_stock')->default(1);
             $table->integer('category_id')->unsigned();
@@ -57,7 +57,7 @@ class Initial extends Migration
         Schema::create('product_options', function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->string('title', 255);
-            $table->string('slug', 255);
+            $table->string('slug', 255)->unique();
             $table->integer('weight');
             // $table->boolean('in_stock');
             $table->decimal('price', 10, 2)->unsigned();
@@ -81,7 +81,7 @@ class Initial extends Migration
         Schema::create('tags', function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->string('title',255)->unique();
-            $table->string('slug', 255);
+            $table->string('slug', 255)->unique();
             $table->integer('product_id')->unsigned();
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->timestamps();
@@ -132,7 +132,7 @@ class Initial extends Migration
         Schema::create('articles', function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->string('title',600);
-            $table->string('slug');
+            $table->string('slug')->unique();
             $table->string('tags');
             $table->text('body');
 

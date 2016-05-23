@@ -46,8 +46,6 @@ class CategoryController extends Controller
     public function create(){
         $category = new Category;
         
-        
-
         $data = array(
             'category'  => $category
         );
@@ -80,7 +78,16 @@ class CategoryController extends Controller
             ]);
 
             $category->save();
-            return View::make('message')->with($data );
+            
+            $category->translateOrNew('en')->title          = $request->get('title_en');
+            $category->translateOrNew('en')->description    = $request->get('description_en');
+
+            $category->translateOrNew('nb')->title          = $request->get('title_nb');
+            $category->translateOrNew('nb')->description    = $request->get('description_nb');
+
+            $category->save();
+            
+            return View::make('message')->with($data);
         }
 
         return Response('File upload failed', 400);

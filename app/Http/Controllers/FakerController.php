@@ -36,8 +36,6 @@ class FakerController extends Controller
         'english'   => 'en'
     ];
 
-
-
     public function init($product_num=60, $category_num=5){
         $this->get_or_create_test_user( env('SELENIUM_TEST_USER') );
         $this->product_num = $product_num;
@@ -48,7 +46,7 @@ class FakerController extends Controller
 
         # create articles
         foreach(range(1,$this->articles) as $index){
-            $title = $faker->word;
+            $title = "$faker->word " . str_random(10);
             Article::create([
                 'title' => $title,
                 'slug'  => Str::slug($title),
@@ -144,7 +142,7 @@ class FakerController extends Controller
             // Options
             foreach(range(1,$this->options) as $index){
                 $option = new ProductOption([
-                    'title'  => $faker->word,
+                    'title'  => $faker->word . str_random(10),
                     'price'  => $faker->randomFloat($nbMaxDecimals = 2, $min = 1, $max = 100),
                     'weight' => 50
                 ]);
@@ -252,6 +250,15 @@ class FakerController extends Controller
             $user = User::create([
                 'name'      => $name,
                 'email'     => $name . '@neven.com',
+                'active'    => 1,
+                // bcrypt hash for password
+                'password'  => '$2a$10$AqQvOKVP0yHsGr/HnBAwueyna5J8skzTeNEXYYTdxD7RPWv99SHaG'
+            ]);
+            $user->admin = 1;
+            $user->save();
+            $user = User::create([
+                'name'      => 'user',
+                'email'     => 'user' . '@neven.com',
                 'active'    => 1,
                 // bcrypt hash for password
                 'password'  => '$2a$10$AqQvOKVP0yHsGr/HnBAwueyna5J8skzTeNEXYYTdxD7RPWv99SHaG'

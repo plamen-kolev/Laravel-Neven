@@ -13,9 +13,13 @@
 use App\Category as Category;
 use App\Product as Product;
     Route::get('init', "FakerController@init");
-    Route::get('xmlparse', "PageController@xmlparse");
 
-
+    Route::group(['middleware' => 'admin'], function () {
+        Route::resource('category', 'CategoryController', ['only' => ['create', 'store']] );
+        Route::resource('product', 'ProductController', ['only' => ['create', 'store' ]] );    
+    });
+    
+    
     Route::group(
     [
         'prefix' => LaravelLocalization::setLocale(),
@@ -29,12 +33,12 @@ use App\Product as Product;
         Route::get('/',                     array('as' => 'index', 'uses' => 'PageController@index'));
 
         // Route::get('category/{category}/',  array('language'=> 'en','as' => 'category', 'uses' => 'ProductController@category'));
-        Route::resource('category', 'CategoryController', ['only' => ['show', 'create', 'store']] );
+        Route::resource('category', 'CategoryController', ['only' => ['show']] );
 
         // Route::get('admin')
         Route::get('search',                array('as' => 'search', 'uses' => 'ProductController@search'));
         
-        Route::resource('product', 'ProductController', ['only' => ['index', 'show', 'create', 'store']] );
+        Route::resource('product', 'ProductController', ['only' => ['index', 'show', ]] );
 
         Route::post('review/add',           array('before' => 'csrf', 'as' => 'add_review', 'uses' => 'ReviewController@store'));
         Route::post('review/delete',        array('before' => 'csrf', 'as' => 'delete_review', 'uses' => 'ReviewController@destroy'));

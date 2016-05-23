@@ -116,11 +116,7 @@ class ProductController extends Controller
         );
         return View::make('product.edit')->with($data);
     }
-
     
-
-    
-
     public function search(Request $request){
 
         $term = $request->input('term');

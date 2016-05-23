@@ -8,7 +8,7 @@ class Category extends Model
 {
     use \Dimsav\Translatable\Translatable;
     public $translatedAttributes = ['title', 'description'];
-    protected $fillable = array('title', 'slug','description', 'thumbnail');
+    protected $fillable = array('title', 'slug','description', 'thumbnail_full', 'thumbnail_medium', 'thumbnail_small');
 
     public function products() {
         return $this->hasMany('App\Product');
