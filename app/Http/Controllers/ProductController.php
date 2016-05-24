@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 use View;
+use Illuminate\Support\Str as Str;
 use App;
 use Illuminate\Http\Request as Request;
+use App\Tag as Tag;
 use App\Product as Product;
 use App\Category as Category;
 use App\ProductTranslation as ProductTranslation;
@@ -82,7 +84,6 @@ class ProductController extends Controller
             $options = array_add($options, $category->id, $category->title);
         }
         
-
         $data = array(
             'options'    => $options,
             'product' => $product,
@@ -94,11 +95,70 @@ class ProductController extends Controller
 
         $this->validate($request, [
 
-            'title' => 'required|unique:posts|max:255',
-            'author.name' => 'required',
-            'author.description' => 'required',
+            'title_en'          => 'required|max:1000',
+            'title_nb'          => 'required|max:1000',
+            
+            'description_en'    => 'required',
+            'description_nb'    => 'required',
+
+            'tips_en'           => 'required',
+            'tips_nb'           => 'required',
+
+            'benefits_en'       => 'required',
+            'benefits_nb'       => 'required',
+
+            'thumbnail'         => 'required|max:10000|mimes:jpeg,jpg,png',
+            'category'          => 'required|Integer',
+            'tags'              => 'required',
+
         ]);
 
+        $paths = HelperController::cropImage(
+            $request->file('thumbnail'), 
+            'categories',
+            $request->input('title_en'), 
+            array(env('MEDIUM_THUMBNAIL'), 
+            env('SMALL_THUMBNAIL'))
+        );
+
+        # base product and thumbnails
+
+        $product = new Product([
+            'slug'              => Str::slug($request->get('title_en')),
+            'thumbnail_full'    => $paths[0], 
+            'thumbnail_medium'  => $paths[1],
+            'thumbnail_small'   => $paths[2],
+        ]);
+
+        
+        $product->in_stock = (bool) $request->get('in_stock');
+        
+        # category
+        
+        $category = Category::find((int) $request->get('category'));
+        $product->category()->associate($category);
+        $product->save();
+
+        # translations
+
+        $product->translateOrNew('en')->title           = $request->get('title_en');
+        $product->translateOrNew('en')->description     = $request->get('description_en');
+        $product->translateOrNew('en')->tips            = $request->get('tips');
+        $product->translateOrNew('en')->benefits        = $request->get('benefits');
+
+        $product->translateOrNew('nb')->title           = $request->get('title_nb');
+        $product->translateOrNew('nb')->description     = $request->get('description_nb');
+        $product->translateOrNew('nb')->tips            = $request->get('tips_nb');
+        $product->translateOrNew('nb')->benefits        = $request->get('benefits_nb');
+        
+        # tags
+
+        $product->tags = $request->get('tags');
+        if($request->get('hidden_tags')){
+            $product->hidden_tags = $request->get('hidden_tags');
+        }
+        
+        $product->save();
 
         $data = array(
             'alert_type'    => 'alert-success',

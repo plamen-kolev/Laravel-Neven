@@ -45,6 +45,9 @@ class Initial extends Migration
             $table->string('thumbnail_full', 255);
             $table->string('thumbnail_medium', 255);
             $table->string('thumbnail_small', 255);
+            $table->string('tags', 255);
+            $table->string('hidden_tags', 255);
+
             $table->boolean('featured')->default(0);
             $table->string('slug',255)->unique();
             $table->timestamps();
@@ -78,15 +81,6 @@ class Initial extends Migration
             $table->timestamps();
         });
 
-        Schema::create('tags', function (Blueprint $table) {
-            $table->increments('id')->unsigned();
-            $table->string('title',255)->unique();
-            $table->string('slug', 255)->unique();
-            $table->integer('product_id')->unsigned();
-            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
-            $table->timestamps();
-        });
-
 
         Schema::create('product_translations', function (Blueprint $table) {
             $table->increments('id')->unsigned();
@@ -94,9 +88,9 @@ class Initial extends Migration
             $table->string('locale')->index();
 
             $table->string('title',255);
-            $table->text('description');
-            $table->text('tips');
-            $table->text('benefits');
+            $table->text('description', 255);
+            $table->text('tips', 255);
+            $table->text('benefits', 255);
 
 
             $table->unique(['product_id','locale']);
@@ -132,8 +126,8 @@ class Initial extends Migration
         Schema::create('articles', function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->string('title',600);
+            $table->string('tags', 255);
             $table->string('slug')->unique();
-            $table->string('tags');
             $table->text('body');
 
             $table->timestamps();
@@ -235,7 +229,6 @@ class Initial extends Migration
         Schema::drop('product_options');
         Schema::drop('product_translations');
         Schema::drop('slides');
-        Schema::drop('tags');
         Schema::drop('product_related');
         Schema::drop('products');
         Schema::drop('ingredient_product');

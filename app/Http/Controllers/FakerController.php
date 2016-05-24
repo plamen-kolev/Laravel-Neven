@@ -9,7 +9,6 @@ use App\Category as Category;
 use App\Ingredient as Ingredient;
 use App\Slide as Slide;
 use App\Image as Image;
-use App\Tag as Tag;
 use App\Review as Review;
 use App\Article as Article;
 use App\Http\Requests;
@@ -178,15 +177,13 @@ class FakerController extends Controller
                 $image->save();
             }
             // Add tags
+            $tag = '';
             foreach(range(1, $this->tags) as $index){
-                $title = 'Tag ' . $index . $product  . str_random(10);
-                $tag = new Tag();
-                $tag->title = $title;
-                $tag->slug = Str::slug($title);
-
-                $tag->product()->associate($product);
-                $tag->save();
+                $tag .= 'Tag ' . $index . str_random(10) . ',';
+                
             }
+            $product->tags = $tag;
+            $product->save();
 
             // Add ingredients
             foreach(range(1, $this->ingredients_per_product) as $index){
@@ -194,7 +191,7 @@ class FakerController extends Controller
                     ->attach(Ingredient::find(
                         $faker->numberBetween($min=1, $max=$this->ingredient_num)
                     )
-                    );
+                );
             }
         }
 

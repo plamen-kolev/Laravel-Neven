@@ -14,11 +14,10 @@ use App\Category as Category;
 use App\Product as Product;
     Route::get('init', "FakerController@init");
 
-    Route::group(['middleware' => 'admin'], function () {
+    Route::group(['middleware' => ['web', 'admin'] ], function () {
         Route::resource('category', 'CategoryController', ['only' => ['create', 'store']] );
-        Route::resource('product', 'ProductController', ['only' => ['create', 'store' ]] );    
+        Route::resource('product', 'ProductController', ['only' => ['create', 'store' ]] );
     });
-    
     
     Route::group(
     [

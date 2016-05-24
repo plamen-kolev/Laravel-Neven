@@ -12,7 +12,7 @@ class Product extends Model
 {   
     use \Dimsav\Translatable\Translatable;
     public $translatedAttributes = ['title', 'description', 'tips', 'benefits'];
-    protected $fillable = array('featured', 'title', 'slug', 'description', 'thumbnail_full', 'thumbnail_small', 'thumbnail_medium', 'tips', 'benefits');
+    protected $fillable = array('featured', 'title', 'in_stock', 'slug', 'description', 'thumbnail_full', 'thumbnail_small', 'thumbnail_medium', 'tips', 'benefits', 'tags', 'hidden_tags');
 
     public function price(){
         return $this->options()->first()->price * HelperController::getRate();
@@ -55,10 +55,6 @@ class Product extends Model
 
     public function category(){
         return $this->belongsTo('App\Category');
-    }
-
-    public function tags(){
-        return $this->hasMany('App\Tag');
     }
 
     public function images(){

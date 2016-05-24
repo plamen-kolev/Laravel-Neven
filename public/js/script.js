@@ -1,5 +1,5 @@
 document.addEventListener( 'DOMContentLoaded', function () {
-
+    
 }, false );
 
 function render_ingredient(url){

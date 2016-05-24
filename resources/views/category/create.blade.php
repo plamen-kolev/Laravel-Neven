@@ -18,7 +18,7 @@
     {!! Form::model($category, array('route' => array('category.store'), 'files' => true ) ) !!}
         
         <div class="col-md-12">
-            <p>Upload image here {!! Form::file('thumbnail', Input::old('thumbnail'), array('placeholder' => 'Thumbnail', 'class' => 'generic_input' )); !!}</p>
+            {!! Form::file('thumbnail', Input::old('thumbnail'), array('placeholder' => 'Thumbnail', 'class' => 'generic_input' )); !!}
         </div>
 
         <div class="col-md-12">
