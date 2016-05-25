@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="col-md-12">
+<div class="col-md-12 nomargin nopadding">
     <div class="wrapper">
         <div class="rslides_container">
             <ul id="slider" class="rslides centered-btns centered-btns1">
@@ -27,7 +27,7 @@
 <div class="col-md-12 gallery_second">
     <div class="wrapper">
         <h1 class="index_h1_margin capital center">special offers</h1>
-        <div class="item_container col-md-12">
+        <div class="item_container col-md-12 row-fluid">
             @foreach ($featured_products->chunk(5) as $chunk)
             <div class="row">
                 <div class="col-md-1"></div>
@@ -66,28 +66,31 @@
 <div class="col-md-12 disclaimers">
     <div class="wrapper">
         <h1>product to be</h1>
-        <div class="align-center">
-            <div class="proud_to">
+        <div class="col-md-12 row-fluid">
+            <div class="col-md-1"></div>
+            <div class="col-md-2 proud_to">
                 <img src="images/proud_cold_processed.png" />
             </div>
 
-            <div class="proud_to">
+            <div class="col-md-2 proud_to">
                 <img src="images/proud_no_syntetic.png" />
             </div>
 
-            <div class="proud_to">
+            <div class="col-md-2 proud_to">
                 <img src="images/proud_no_fillers.png" />
             </div>
 
-            <div class="proud_to">
+            <div class="col-md-2 proud_to">
                 <img src="images/produd_vegan.png" />
             </div>
 
-            <div class="proud_to">
+            <div class="col-md-2 proud_to">
                 <img src="images/proud_cruelty_free.png" />
             </div>
-            <a class="green_link" href="">Learn more</a>
+            <div class="col-md-1"></div>
         </div>
+        
+        <a class="green_link" href="">Learn more</a>
         <h1>you can find our products in these stores as well</h1>
         <div class="align-center stockists">
             <div class="col-md-1"></div>

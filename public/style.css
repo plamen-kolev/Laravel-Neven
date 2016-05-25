@@ -4,8 +4,12 @@
     padding:5px;
 }
 
-p, h1, h2{
-    font-family: "Georgia";
+h1, h2{
+    font-family: 'Playfair Display', serif;
+}
+
+p{
+    font-family: 'PT Sans', sans-serif;
 }
 
 .generic_input{
@@ -14,6 +18,7 @@ p, h1, h2{
     border: none;
     margin-top: 15px;
     width: 100%;
+    
 }
 
 .width_65{
@@ -32,6 +37,7 @@ p, h1, h2{
     color:white;
     width: 100%;
     background-color: #07ab95 !important ;
+    text-transform: uppercase;
 }
 
 .shopping_item_row{
@@ -40,6 +46,10 @@ p, h1, h2{
 
 .col-md-12{
     clear:both;
+}
+
+.nomargin{
+    margin:0px;
 }
 
 .big_top_margin{
@@ -509,7 +519,7 @@ p, h1, h2{
 #landing_button_container a{
     height:50px;
     margin-top:40px;
-    font-family: 'Verdana';
+   font-family: 'PT Sans', sans-serif;
     width:200px;
     opacity: 0.7;
     padding-top: 16px;
@@ -543,7 +553,7 @@ p, h1, h2{
 
 .menu_links ul li { 
     display: inline; 
-    font-family: 'Verdana';
+    font-family: 'PT Sans', sans-serif;
     font-size:1.1em;
     margin-right:10px;
 }
@@ -560,7 +570,7 @@ p, h1, h2{
 .slide_item{
     height:400px;
     display:inline-block;
-    width:99%;
+    width:100%;
 
 }
 
@@ -568,6 +578,7 @@ p, h1, h2{
     margin-top:70px;
     color:white;
     margin-bottom:35px;
+    width: 80%;
 }
 
 .action_button{
@@ -583,6 +594,7 @@ p, h1, h2{
 
 .action_button img{
     margin-left:30px;
+    text-transform: uppercase;
 }
 
 .gallery{
@@ -724,9 +736,13 @@ a:hover{
 }
 
 .proud_to{
-    display:inline-block;
-    margin-right:25px;
-    margin-left:25px;
+/*    display:inline-block;*/
+    text-align: center;
+
+}
+
+.search-field{
+    display: inline-block;
 }
 
 .green_link{
@@ -862,6 +878,7 @@ a:hover{
     border: 0px;
     color: white;
     padding: 10px;
+    text-transform:capitalize;
 }
 
 .dropdown-menu li{
