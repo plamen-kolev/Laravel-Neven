@@ -87,7 +87,7 @@
                 </div>
                 
                 <div class="col-md-3">
-                    <h2>{{$row->name}}</h2>
+                    <h2>{{$row->name}} ({{$row->options->option->title}})</h2>
                 </div>
                 
                 <div class="col-md-2">
