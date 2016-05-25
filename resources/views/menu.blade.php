@@ -7,9 +7,9 @@
             </div>
         </div>
 
-        <div class="col-sm-12 main_menu">
+        <div class="col-sm-12 row-fluid main_menu">
             <div class="col-sm-1"></div>
-            <div class="col-sm-6 menu_links">
+            <div class="col-sm-6 row-fluid menu_links">
                 <ul>
 
                     <li class="active"><a href="{{ route('index', []) }}">{{ trans('text.home') }}</a></li>
@@ -32,15 +32,15 @@
             </div>
 
             <div class="col-sm-4">
-
+            <div class="form-inline">
   
-                <form  id="search_form" class="navbar-form navbar-left" role="search" method="GET" action="{{ route('search') }}">
-                    <div class="form-group"> 
-                        <input id="search_input" placeholder={{trans('text.search')}} size=10 type="text" name="term" class="form-control" placeholder="{{ trans('text.search') }}">
-                        <input src="/images/search_icon.png" id="search_submit" size=1 type="image" value="{{trans('text.search')}}" class="btn btn-default">
-                    </div> 
+                    <form  id="search_form" class="navbar-form navbar-left" role="search" method="GET" action="{{ route('search') }}">
+                        <div class="form-group"> 
+                            <input id="search_input" placeholder={{trans('text.search')}} size=10 type="text" name="term" class="form-control" placeholder="{{ trans('text.search') }}">
+                            <input src="/images/search_icon.png" id="search_submit" size=1 type="image" value="{{trans('text.search')}}" class="btn btn-default">
+                        </div> 
                 </form>
-
+                </div>
                 <div class="menu_links">
                     <ul>
                         <li class="dropdown">

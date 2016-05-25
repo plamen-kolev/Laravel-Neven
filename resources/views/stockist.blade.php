@@ -1,6 +1,6 @@
 @extends('master_page')
 @section('content')
-<div class="col-md-12">
+<div class="col-md-12 nomargin nopadding">
     <h1 class="capital center">{{trans('text.become_stockist')}}</h1>
     <div id="bg_image_1">
         <div class="wrapper">
