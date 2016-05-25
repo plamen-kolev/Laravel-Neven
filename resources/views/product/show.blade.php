@@ -46,7 +46,7 @@
                             </option>
                         @endforeach
                         </select>
-                        <input class="col-md-6 input_styler" type="number" name="quantity"  value="1"/>
+                        <input class="col-md-6 input_styler" id="product_quantity" type="number" name="quantity"  value="1"/>
                     </form>
                     
 
