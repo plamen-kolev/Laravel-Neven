@@ -41,7 +41,9 @@
                             <a class="" href="{!! route('product.show', [ $product->slug ]) !!}"> {{$product->title}} </a>
                         </h2>
                         <span class="underliner"></span>
-                        <p>{{$product->price()}}</p>
+                        <p>
+                            {{\App\Http\Controllers\HelperController::getCurrencySymbol()}} {{ $product->price()  }}
+                        </p>
                         <div class="view_product">
                             <p>
                                 <a class="" href="{!! route('product.show', [ $product->slug ]) !!}">view product</a>

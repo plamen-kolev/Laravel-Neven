@@ -34,6 +34,10 @@ p, h1, h2{
     background-color: #07ab95 !important ;
 }
 
+.shopping_item_row{
+    margin-top:10px;
+}
+
 .col-md-12{
     clear:both;
 }
@@ -44,6 +48,15 @@ p, h1, h2{
 
 .progress_circle_container{
     text-align: center;
+}
+
+.gray_line{
+    width:100%;
+    height:10px;
+    background-color: #ebebeb;
+    display:block;
+    margin-top:10px;
+    margin-bottom:50px;
 }
 
 .progress_circle_container h1{

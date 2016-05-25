@@ -68,15 +68,44 @@
 
 <div class="col-md-12">
     <div class="wrapper">
+        <div class="col-md-1"></div>
+
+        <div class="col-md-2">{{trans('text.product')}}</div>
+        <div class="col-md-3">{{trans('text.title')}}</div>
+        <div class="col-md-2">{{trans('text.grams')}}</div>
+        <div class="col-md-2">{{trans('text.quantity')}}</div>
+        <div class="col-md-1">{{trans('text.price')}}</div>
+
+        <div class="col-md-1"></div>
+        <div class="col-md-12"><span class="gray_line"></span></div>
+
         @foreach($cart as $row)
-            <div>
-                <div class="col-md-3">
+            <div class="col-md-12 shopping_item_row">
+                <div class="col-md-1"></div>
+                <div class="col-md-2">
                     <img src="{{$row->options->thumbnail_small}}" />
                 </div>
+                
                 <div class="col-md-3">
-                    <h2></h2>
+                    <h2>{{$row->name}}</h2>
                 </div>
+                
+                <div class="col-md-2">
+                    <h2>{{$row->options->weight}}</h2>
+                </div>
+                
+                <div class="col-md-2">
+                    <h2>{{$row->qty}}</h2>
+                </div>
+
+                <div class="col-md-1">
+                    
+                    <h2>{{\App\Http\Controllers\HelperController::getCurrencySymbol()}}
+                    {{ number_format($row->price * $rate, 2, '.', ',') }}</h2>
+                </div>
+                <div class="col-md-1"></div>
             </div>
+
         @endforeach
     </div>
     

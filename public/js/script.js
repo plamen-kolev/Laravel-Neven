@@ -35,7 +35,7 @@ function add_to_cart($product_slug, $option_slug, $url, $csrf_token){
       data: {
         'product_slug' : $product_slug, 
         'option_slug'  : $option_slug, 
-        'quantity'     : $('.product_quantity').val(),
+        'quantity'     : $('#product_quantity').val(),
         'csrftoken'    : $csrf_token
       },
       success: function(){

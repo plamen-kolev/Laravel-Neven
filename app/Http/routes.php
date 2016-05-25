@@ -31,13 +31,18 @@ use App\Product as Product;
 
         Route::get('/',                     array('as' => 'index', 'uses' => 'PageController@index'));
 
-        // Route::get('category/{category}/',  array('language'=> 'en','as' => 'category', 'uses' => 'ProductController@category'));
-        Route::resource('category', 'CategoryController', ['only' => ['show']] );
+        Route::get('category/', array('as' => 'category.index', 'uses' => 'CategoryController@index'));
+        Route::get('category/{category}', array('as' => 'category.show', 'uses' => 'CategoryController@show')) ; 
+        // Route::resource('category', 'CategoryController', ['only' => ['show']] );
 
         // Route::get('admin')
         Route::get('search',                array('as' => 'search', 'uses' => 'ProductController@search'));
         
-        Route::resource('product', 'ProductController', ['only' => ['index', 'show', ]] );
+        // Route::resource('product', 'ProductController', ['only' => ['index', 'show', ]] );
+        Route::get('product/', array('as' => 'product.index', 'uses' => 'ProductController@index'));
+        Route::get('product/{product}', array('as' => 'product.show', 'uses' => 'ProductController@show')) ; 
+
+        # 'ProductController', ['only' => ['index', 'show', ]] );
 
         Route::post('review/add',           array('before' => 'csrf', 'as' => 'add_review', 'uses' => 'ReviewController@store'));
         Route::post('review/delete',        array('before' => 'csrf', 'as' => 'delete_review', 'uses' => 'ReviewController@destroy'));
