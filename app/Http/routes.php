@@ -52,6 +52,8 @@ use App\Product as Product;
         Route::match( array('GET', 'POST'),'stockist',
                       array('as' => 'stockist', 'uses' => 'PageController@stockist'));
 
+        Route::post('subscribe', ['before' => 'csrf','as' => 'subscribe', 'uses' => 'PageController@subscribe']);
+
         // CartController
         Route::post('cart/add_to_cart/',    array('before' => 'csrf', 'as' => 'add_to_cart', 'uses' => 'CartController@add_to_cart'));
         Route::match(                       array('GET', 'POST'),'cart/show_cart/',

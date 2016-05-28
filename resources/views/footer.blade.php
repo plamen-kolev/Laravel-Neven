@@ -31,8 +31,19 @@
 
         <div class="col-sm-3">
             <p>Never miss out our update :)</p>
-            <form class="footer_email_form" method="POST" action="">
-                <input placeholder="{{trans('text.email')}}" name="email" type="email" id="footer_email_input" />
+            @if( $errors->subscribe_email->first('subscribe_email') )
+                <div class="col-md-12">
+                    <div class="alert alert-danger" role="alert">
+                      <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                      <span class="sr-only">Error:</span>
+                        {{$errors->subscribe_email->first('subscribe_email') }}
+                    </div>
+                </div>
+            @endif
+
+            <form class="footer_email_form" method="POST" action="{{route('subscribe')}}">
+                {{ csrf_field() }}
+                <input value="{{old('subscribe_email')}}" placeholder="{{trans('text.email')}}" name="subscribe_email" type="email" id="footer_email_input" />
                 <input class="green_button" type="submit" value="{{trans('text.subscribe')}}" />
             </form>
             <ul style="padding:0px;margin-top:20px;">

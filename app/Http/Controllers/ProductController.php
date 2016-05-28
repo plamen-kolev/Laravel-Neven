@@ -143,8 +143,8 @@ class ProductController extends Controller
 
         $product->translateOrNew('en')->title           = $request->get('title_en');
         $product->translateOrNew('en')->description     = $request->get('description_en');
-        $product->translateOrNew('en')->tips            = $request->get('tips');
-        $product->translateOrNew('en')->benefits        = $request->get('benefits');
+        $product->translateOrNew('en')->tips            = $request->get('tips_en');
+        $product->translateOrNew('en')->benefits        = $request->get('benefits_en');
 
         $product->translateOrNew('nb')->title           = $request->get('title_nb');
         $product->translateOrNew('nb')->description     = $request->get('description_nb');
@@ -166,7 +166,7 @@ class ProductController extends Controller
             'message'       => 'Creation successful'
         );
 
-        return View::make('message')->with($data);
+        return View::make('product.edit')->with($data);
     }
 
     public function edit(Request $request, $product_slug){

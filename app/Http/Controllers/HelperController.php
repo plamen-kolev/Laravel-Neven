@@ -71,9 +71,9 @@ class HelperController extends Controller
 
     public static function getCurrencySymbol(){
         if( Config::get('app.locale') == 'en' ){
-            return 'eur';
+            return '&euro;';
         } else {
-            return 'kr';
+            return 'kr ';
         }
     }
 

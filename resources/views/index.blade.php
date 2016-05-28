@@ -42,7 +42,7 @@
                         </h2>
                         <span class="underliner"></span>
                         <p>
-                            {{\App\Http\Controllers\HelperController::getCurrencySymbol()}} {{ $product->price()  }}
+                            {{\App\Http\Controllers\HelperController::getCurrencySymbol()}} {{ number_format($product->price(), 2, '.', ',') }}
                         </p>
                         <div class="view_product">
                             <p>

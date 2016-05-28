@@ -9,6 +9,7 @@ use Input;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App;
+use Validator;
 use App\Article as Article;
 use Session;
 use App\Ingredient as Ingredient;
@@ -19,6 +20,7 @@ use App\CategoryTranslation;
 use App\ProductOption as ProductOption;
 use App\IngredientTranslation as IngredientTranslation;
 use Auth;
+use App\Subscriber as Subscriber;
 use App\Tag as Tag;
 use App\Image as Image;
 class PageController extends Controller
@@ -153,6 +155,26 @@ class PageController extends Controller
         }
 
         return 1;
+    }
+
+    public function subscribe(Request $request){
+        $this->validate($request, [
+
+        ]);
+
+        $validator = Validator::make($request->all(), [
+            'subscribe_email'    => 'unique:subscribers,email|required|max:255|email',
+
+        ]);
+        if ($validator->fails()) {
+            return back()
+                ->withErrors($validator, 'subscribe_email')
+                ->withInput();
+        } else {
+            Subscriber::create(['email' => $request->get('subscribe_email')]);
+        }
+
+        return Response("Email " . $request->get('subscribe_email') . " subscribed succesfully !", 200);
     }
 
     public function stockist(Request $request){

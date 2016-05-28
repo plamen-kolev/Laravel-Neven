@@ -195,7 +195,7 @@ class Initial extends Migration
 
         Schema::create('reviews', function (Blueprint $table){
             $table->increments('id')->unsigned();
-            $table->text('body', 3);
+            $table->string('body', 3);
             $table->tinyInteger('rating')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->integer('product_id')->unsigned();
@@ -204,9 +204,15 @@ class Initial extends Migration
             $table->foreign('product_id')->references('id')->on('products');
 
             $table->timestamps();
-
         });
 
+        Schema::create('subscribers', function (Blueprint $table){
+            $table->increments('id')->unsigned();
+            $table->string('email', 100)->unique();
+            $table->boolean('send')->default(1);
+
+            $table->timestamps();
+        });
 
     }
 
@@ -217,6 +223,7 @@ class Initial extends Migration
      */
     public function down()
     {
+        Schema::drop('subscribers');
         Schema::drop('reviews');
         Schema::drop('order_product');
         Schema::drop('orders');
