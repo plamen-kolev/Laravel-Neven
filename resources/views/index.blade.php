@@ -36,7 +36,10 @@
                 <div class="col-md-2 thumbnail_item">
                     <div class="thumbnail_item_inner">
                         
-                        <img src="{{$product->thumbnail_small}}">
+                        <a class="" href="{!! route('product.show', [ $product->slug ]) !!}">
+                            <img src="{{$product->thumbnail_small}}">
+                        </a>
+                        
                         <h2 class="thumbnail_title">
                             <a class="" href="{!! route('product.show', [ $product->slug ]) !!}"> {{$product->title}} </a>
                         </h2>

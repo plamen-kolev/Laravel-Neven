@@ -26,7 +26,7 @@
                     <li><a href="{{route('stockist')}}">become stockist</a></li>
                     <li><a href="#">{{ trans('text.about_us') }}</a></li>
                     <li><a href="#">{{ trans('text.contact_us') }}</a></li>
-                    <li><a href="{{route('blog')}}">{{ trans('text.blog') }}</a></li>
+                    <li><a href="{{route('blog.index')}}">{{ trans('text.blog') }}</a></li>
 
                 </ul>    
             </div>
@@ -39,7 +39,11 @@
             </div>
             <div class="col-md-3 menu_links">
                 <ul>
-                    <li><a href="">lele</a></li>
+                    @if(App::isLocale('en'))
+                        <li><a href="{{LaravelLocalization::getLocalizedURL('nb') }}"><img src="/images/no.png"></a></li>
+                    @else
+                        <li><a href="{{LaravelLocalization::getLocalizedURL('en') }}"><img src="/images/en_gb.png"></a></li>
+                    @endif
                     <!-- <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ trans('text.languages') }} <span class="caret"></span></a>
                         <ul class="dropdown-menu">

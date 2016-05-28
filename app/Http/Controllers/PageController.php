@@ -206,19 +206,10 @@ class PageController extends Controller
         return View::make('stockist');
     }
 
-    public function get(){
-        $data = [
-            'articles' => Article::paginate( env('PAGINATION') )
-        ];
-        return View::make('blog')->with($data);
-    }
 
-    public function article($slug){
-        $data = [
-            'articles' => Article::where('slug', $slug)->paginate( env('PAGINATION') )
-        ];
 
-        return View::make('blog')->with($data);
+    public function admin(){
+        return View::make('admin');
     }
 
 }

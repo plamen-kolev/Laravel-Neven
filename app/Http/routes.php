@@ -12,11 +12,19 @@
 */
 use App\Category as Category;
 use App\Product as Product;
-    Route::get('init', "FakerController@init");
+    
+    if (App::environment('development')){
+        Route::get('init', "FakerController@init");
+    }
 
     Route::group(['middleware' => ['web', 'admin'] ], function () {
+        Route::get('admin', array('as' => 'admin', 'uses' => 'PageController@admin'));
+
         Route::resource('category', 'CategoryController', ['only' => ['create', 'store']] );
         Route::resource('product', 'ProductController', ['only' => ['create', 'store' ]] );
+        
+        Route::resource('blog', 'ArticleController', ['only' => ['create', 'store' ,'destroy']] );
+
     });
     
     Route::group(
@@ -47,8 +55,9 @@ use App\Product as Product;
         Route::post('review/add',           array('before' => 'csrf', 'as' => 'add_review', 'uses' => 'ReviewController@store'));
         Route::post('review/delete',        array('before' => 'csrf', 'as' => 'delete_review', 'uses' => 'ReviewController@destroy'));
 
-        Route::get('blog', ['as' => 'blog', 'uses' => 'PageController@get']);
-        Route::get('blog/{slug}', ['as' => 'article', 'uses' => 'PageController@article']);
+        Route::get('blog', ['as' => 'blog.index', 'uses' => 'ArticleController@index']);
+        Route::get('blog/{slug}', ['as' => 'blog.show', 'uses' => 'ArticleController@show']);
+
         Route::match( array('GET', 'POST'),'stockist',
                       array('as' => 'stockist', 'uses' => 'PageController@stockist'));
 
