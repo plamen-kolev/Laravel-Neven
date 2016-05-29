@@ -9,28 +9,46 @@
         </div>
     @endforeach
 </div>
-<div class="col-md-12">
+<div class="col-md-12 create_page">
     <h1 class="capital center">Create new Product</h1>
-    <div class="col-md-12"><a class="generic_submit" target="_blank" href="{{route('category.create')}}">Create category(refresh when done)</a></div>
+    <a class=" generic_submit inline_block" style="width:350px; margin-bottom:20px;" target="_blank" href="{{route('category.create')}}">Create category(refresh when done)</a>
 
     {!! Form::model($product, array('route' => array('product.store') , 'files' => true)  ) !!}
-        
-        
-        <div class="col-md-12">
-            {{ Form::select('category', $options, Input::old('category'), array('placeholder' => 'Category', 'class' => 'generic_input' )) }}
-            
+
+        <div class="col-md-3">
+            {{ Form::label('category', 'Category') }}
+            {{ Form::select('category', $category_options, Input::old('category'), array('placeholder' => 'Category', 'class' => 'generic_input' )) }}
         </div>
+        <div class="col-md-9"></div>
         
         <div class="col-md-12">
+            {{ Form::label('thumbnail', 'Main image') }}
             {!! Form::file('thumbnail', Input::old('thumbnail'), array('placeholder' => 'Thumbnail', 'class' => 'generic_input' )); !!}
         </div>
-        
+
         <div class="col-md-6">
+            {{ Form::label('title_en', 'Title in English') }}
             {!! Form::text('title_en', Input::old('title_en'), array('placeholder' => 'Product title in English', 'class' => 'generic_input' )); !!}
         </div>
 
         <div class="col-md-6">
+            {{ Form::label('title_nb', 'Title in Norwegian') }}
             {!! Form::text('title_nb', Input::old('title_nb'), array('placeholder' => 'Product title in Norwegian', 'class' => 'generic_input' )); !!}
+        </div>
+
+        <div class="col-md-4">
+            {{ Form::label('weight', 'Item weight') }}
+            {!! Form::text('weight', Input::old('weight'), array('placeholder' => 'Product weight', 'class' => 'generic_input' )); !!}
+        </div>
+
+        <div class="col-md-4">
+            {{ Form::label('price', 'Item price') }}
+            {!! Form::text('price', Input::old('price'), array('placeholder' => 'Price in krona', 'class' => 'generic_input' )); !!}
+        </div>
+
+        <div class="col-md-4">
+            {{ Form::label('option_title', 'Option tile') }}
+            {!! Form::text('option_title', Input::old('price'), array('placeholder' => 'Like 50g, or different shape', 'class' => 'generic_input' )); !!}
         </div>
 
         <div class="col-md-12">
@@ -57,7 +75,8 @@
                     array(
                         'placeholder' => 'Description in Norwegian',
                         'maxlength'=>'5000',
-                        'class' => 'generic_input'
+                        'class' => 'generic_input',
+
                     ) 
                 ); 
             !!}
@@ -120,7 +139,15 @@
             {!! Form::text('hidden_tags', Input::old('hidden_tags'), array('placeholder' => 'Hidden tags', 'class' => 'generic_input' )); !!}
         </div>
 
+        <div class="col-md-12">
+            {{ Form::label('related_products[]', 'Related products') }}
+            {{ Form::select('related_products[]', $product_options, Input::old('related_products'), array(
+                'placeholder' => 'Related products(control+click to assign',
+                'class' => 'generic_input more_height',
+                'multiple'  => 'multiple',
 
+            )) }}
+        </div>
 
         <div class="col-md-12">
             {!! Form::submit('Add product', array('class' => 'generic_submit') )!!}

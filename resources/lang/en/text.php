@@ -38,8 +38,21 @@ return [
     'last_name'     => 'Last name',
     'card_number'   => 'Card number',
     'card_cvc'      => 'CVC Number',
-
-    // inputs
+    'become_stockist' => 'become stockist',
+    'log_in' => 'log in',
+    'sign_up' => 'sign up',
+    'log_out' => 'log out',
+    'view_product' => 'view product',
+    'special_offers' => 'special offers',
+    'view_all_products' => 'View all products',
+    'proud_to_be' => 'proud to be',
+    'learn_more' => 'Learn more',
+    'find_our_products_in_these_stores_as_well' => 'find our products in these stores as well',
+    'never_miss_out_our_update' => 'Never miss out our update',
+    'featured_products' => 'featured products',
+    'our_friends' => 'our friends',
+    'find_us_on' => 'find us on',
+            // inputs
     'search'        => 'search',
     'subscribe'     => 'subscribe',
 

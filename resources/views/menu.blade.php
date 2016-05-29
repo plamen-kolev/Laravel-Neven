@@ -19,11 +19,11 @@
                         <ul class="dropdown-menu">
                         <li><a href="{{ route('product.index',[] ) }}">{{ trans('text.all_categories') }}</a></li>
                         @foreach ($categories as $category)           
-                            <li><a href="{{ route('category.show', [$category->slug]) }}">Debug: {{$category->id}} {{$category->title}}</a></li>
+                            <li><a href="{{ route('category.show', [$category->slug]) }}"> {{$category->id}} {{$category->title}}</a></li>
                         @endforeach
                         </ul>
                     </li>
-                    <li><a href="{{route('stockist')}}">become stockist</a></li>
+                    <li><a href="{{route('stockist')}}">{{ trans('text.become_stockist')}}</a></li>
                     <li><a href="#">{{ trans('text.about_us') }}</a></li>
                     <li><a href="#">{{ trans('text.contact_us') }}</a></li>
                     <li><a href="{{route('blog.index')}}">{{ trans('text.blog') }}</a></li>
@@ -57,11 +57,11 @@
                         </ul>
                     </li> -->
                     @if(!Auth::check())
-                    <li><a href="{{ route('auth.login') }}">log in</a></li>
-                    <li><a href="{{ route('auth.register') }}">sign up</a></li>
+                    <li><a href="{{ route('auth.login') }}">{{ trans('text.log_in')}}</a></li>
+                    <li><a href="{{ route('auth.register') }}">{{ trans('text.sign_up')}}</a></li>
 
                     @else
-                    <li><a href="{{ route('auth.logout') }}">log out</a></li>
+                    <li><a href="{{ route('auth.logout') }}">{{ trans('text.log_out')}}</a></li>
                     <li>{{ Auth::user()->name }}</li>
                     @endif
                     <li>

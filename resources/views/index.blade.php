@@ -12,7 +12,7 @@
                         <div class="col-md-2"></div>
                         <div class="col-md-10">
                             <h1>{{$slide->description}}</h1>
-                            <a class="action_button" href="{{$slide->url}}">View product <img src="images/right_arrow.png"/> </a>
+                            <a class="action_button" href="{{$slide->url}}">{{ trans('text.view_product')}} <img src="images/right_arrow.png"/> </a>
                         </div>
                     </div>
                 </li>
@@ -20,13 +20,12 @@
             </ul>
         </div>
 
-        
     </div>
 </div>
 
 <div class="col-md-12 gallery_second">
     <div class="wrapper">
-        <h1 class="index_h1_margin capital center">special offers</h1>
+        <h1 class="index_h1_margin capital center">{{ trans('text.special_offers')}}</h1>
         <div class="item_container col-md-12 row-fluid">
             @foreach ($featured_products->chunk(5) as $chunk)
             <div class="row">
@@ -49,7 +48,7 @@
                         </p>
                         <div class="view_product">
                             <p>
-                                <a class="" href="{!! route('product.show', [ $product->slug ]) !!}">view product</a>
+                                <a class="" href="{!! route('product.show', [ $product->slug ]) !!}">{{ trans('text.view_product')}}</a>
                             </p>
                         </div>
                     </div>
@@ -61,14 +60,14 @@
             @endforeach
 
             
-            <a class="green_link" href="">View all products</a>
+            <a class="green_link" href="">{{ trans('text.fview_all_products')}}</a>
         </div>
     </div>
 </div>
 
 <div class="col-md-12 disclaimers">
     <div class="wrapper">
-        <h1>product to be</h1>
+        <h1>{{ trans('text.proud_to_be')}}</h1>
         <div class="col-md-12 row-fluid">
             <div class="col-md-1"></div>
             <div class="col-md-2 proud_to">
@@ -93,8 +92,8 @@
             <div class="col-md-1"></div>
         </div>
         
-        <a class="green_link" href="">Learn more</a>
-        <h1>you can find our products in these stores as well</h1>
+        <a class="green_link" href="">{{ trans('text.learn_more')}}</a>
+        <h1>{{ trans('text.find_our_products_in_these_stores_as_well')}}</h1>
         <div class="align-center stockists">
             <div class="col-md-1"></div>
             <div class="col-md-2"></div>

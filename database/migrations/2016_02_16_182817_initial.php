@@ -19,6 +19,7 @@ class Initial extends Migration
             $table->string('url', 255);
             $table->text('description');
             $table->timestamps();
+
         });
 
         Schema::create('categories', function (Blueprint $table) {
@@ -60,7 +61,7 @@ class Initial extends Migration
         Schema::create('product_options', function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->string('title', 255);
-            $table->string('slug', 255)->unique();
+            $table->string('slug', 255);
             $table->integer('weight');
             // $table->boolean('in_stock');
             $table->decimal('price', 10, 2)->unsigned();

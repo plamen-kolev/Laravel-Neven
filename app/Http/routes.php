@@ -12,7 +12,6 @@
 */
 use App\Category as Category;
 use App\Product as Product;
-    
     if (App::environment('development')){
         Route::get('init', "FakerController@init");
     }
@@ -21,9 +20,9 @@ use App\Product as Product;
         Route::get('admin', array('as' => 'admin', 'uses' => 'PageController@admin'));
 
         Route::resource('category', 'CategoryController', ['only' => ['create', 'store']] );
-        Route::resource('product', 'ProductController', ['only' => ['create', 'store' ]] );
-        
-        Route::resource('blog', 'ArticleController', ['only' => ['create', 'store' ,'destroy']] );
+        Route::resource('product', 'ProductController', ['only' => ['create', 'store', 'destroy', 'edit', 'update' ]] );
+
+        Route::resource('blog', 'ArticleController', ['only' => ['create', 'store' ,'destroy', 'edit']] );
 
     });
     
@@ -49,6 +48,7 @@ use App\Product as Product;
         // Route::resource('product', 'ProductController', ['only' => ['index', 'show', ]] );
         Route::get('product/', array('as' => 'product.index', 'uses' => 'ProductController@index'));
         Route::get('product/{product}', array('as' => 'product.show', 'uses' => 'ProductController@show')) ; 
+        Route::post('product/{product}', array('as' => 'product.show', 'uses' => 'ProductController@show')) ;
 
         # 'ProductController', ['only' => ['index', 'show', ]] );
 

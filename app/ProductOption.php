@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class ProductOption extends Model
 {
-    protected $fillable = array('title', 'in_stock', 'price', 'slug', 'weight');
+    protected $fillable = array('title', 'price', 'slug', 'weight', 'product_id');
+    // protected $fillable = array('price', 'weight');
     public $timestamps = false;
 
     public function product(){

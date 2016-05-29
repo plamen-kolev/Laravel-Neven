@@ -10,6 +10,9 @@
 
 <div class="col-md-12 gallery_second">
     <div class="wrapper">
+        @if(Auth::user() && Auth::user()->admin)
+            <a class="generic_submit" href="{{route('product.create')}}">Create a product</a>
+        @endif
 
         <div class="item_container col-md-12">
             @foreach ($products->chunk(5) as $chunk)
@@ -18,6 +21,13 @@
                 
                 @foreach ($chunk as $index=>$product)
                 <div class="col-md-2 thumbnail_item">
+                    @if(Auth::user() && Auth::user()->admin)
+                        {!! Form::model($product, array('route' => array('product.destroy', $product->slug), 'method'=>'delete'  )) !!}
+                        {!! Form::submit('delete', array('class' => '') )!!}
+                        {!! Form::close() !!}
+
+                        <a href="{{route('product.edit', $product->slug)}}">Edit</a>
+                    @endif
                     <div class="thumbnail_item_inner" href="">
                         <img src="{{$product->thumbnail_small}}" />
                         <h2 class="thumbnail_title">

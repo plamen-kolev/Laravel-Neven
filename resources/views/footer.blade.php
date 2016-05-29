@@ -11,7 +11,7 @@
 
         <div class="col-sm-3">
             <ul>
-                <p>our friends</p>
+                <p>{{ trans('text.our_friends')}}</p>
                 <li><a href="">foo</a></li>
                 <li><a href="">bar</a></li>
                 <li><a href="">baz</a></li>
@@ -21,7 +21,7 @@
 
         <div class="col-sm-3">
             <ul>
-                <p>find us on</p>
+                <p>{{ trans('text.find_us_on')}}</p>
                 <li><a href="">facebook</a></li>
                 <li><a href="">instagram</a></li>
                 <li><a href="">twitter</a></li>
@@ -30,7 +30,7 @@
         </div>
 
         <div class="col-sm-3">
-            <p>Never miss out our update :)</p>
+            <p>{{ trans('text.never_miss_out_our_update')}}</p>
             @if( $errors->subscribe_email->first('subscribe_email') )
                 <div class="col-md-12">
                     <div class="alert alert-danger" role="alert">
@@ -47,8 +47,8 @@
                 <input class="green_button" type="submit" value="{{trans('text.subscribe')}}" />
             </form>
             <ul style="padding:0px;margin-top:20px;">
-                <li><a href="">log in</a></li>
-                <li><a href="">feature products</a></li>
+                <li><a href="">{{ trans('text.log_in')}}</a></li>
+                <li><a href="">{{ trans('text.featured_products')}}</a></li>
             </ul>
         </div>
 
