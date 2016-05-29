@@ -12,7 +12,6 @@
     <div class="col-md-12">
         <h1 class="capital center">Update Product</h1>
 
-        {!! Form::model($product, array('route' => array('product.update', $product->slug ), 'files' => true, 'method'=>'PUT')) !!}
 
         <h2>Add images</h2>
         <h2>Add options</h2>

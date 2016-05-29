@@ -77,24 +77,11 @@ class ProductController extends Controller
 
     public function create(){
         $product = new Product();
-        $categories = Category::all();
-        $products = Product::all();
-
-        $category_options = array();
-        $product_options = array();
-
-        foreach ($categories as $category) {
-            $category_options = array_add($category_options, $category->id, $category->title);
-        }
-
-        foreach ($products as $product) {
-            $product_options = array_add($product_options, $product->id, $product->title);
-        }
 
         $data = array(
-            'category_options'    => $category_options,
-            'product' => $product,
-            'product_options' => $product_options
+            'category_options'      => HelperController::object_to_dropdown( Category::all() ),
+            'product_options'       => HelperController::object_to_dropdown( Product::all() ), # all related products
+            'product'               => $product
         );
         return View::make('product.create')->with($data);
     }
@@ -108,8 +95,9 @@ class ProductController extends Controller
             'description_en'    => 'required',
             'description_nb'    => 'required',
 
-            'weight'            => 'required|',
-            'price'             => 'required',
+            'weight'            => 'required|numeric',
+            'price'             => 'required|numeric',
+
 
             'tips_en'           => 'required',
             'tips_nb'           => 'required',
@@ -123,7 +111,7 @@ class ProductController extends Controller
 
         ]);
 
-        $paths = HelperController::cropImage(
+        $paths = HelperController::crop_image(
             $request->file('thumbnail'),
             'categories',
             $request->input('title_en'),
@@ -151,6 +139,8 @@ class ProductController extends Controller
         # product price
         $dropdown_option = ProductOption::create([
             'weight' => $request->get('weight'),
+            'title' => $request->get('option_title'),
+            'slug'  => Str::slug($request->get('option_title')),
             'price' => $request->get('price'),
             'product_id' => $product->id
         ]);
@@ -176,35 +166,26 @@ class ProductController extends Controller
 
         # related products
         $related = $request->get('related_products');
-        if($related){
+
+        if(empty($related)){
             foreach($related as $rel){
-                $product->related()->attach(Product::find($rel)->first());
+                $r = Product::find($rel);
+                $r->related()->attach($product);
+                $r->save();
             }
-            $product->save();
+            
         }
 
-
-        $data = array(
-            'alert_type'    => 'alert-success',
-            'alert_text'    => 'woo',
-            'message'       => 'Creation successful'
-        );
-
-        return View::make('product.edit')->with($data);
+        $product->save();
+        return redirect()->route('product.edit', $product->slug);
     }
 
     public function edit(Request $request, $product_slug){
         $product = Product::where('slug', $product_slug)->first();
-        $categories = Category::all();
-        $category_options = array();
-
-        foreach ($categories as $category) {
-            $category_options = array_add($category_options, $category->id, $category->title);
-        }
 
         $data = array(
             'product'   => $product,
-            'category_options'  => $category_options,
+            'category_options'  => HelperController::object_to_dropdown( Category::all() ),
             'en_translation'    => ProductTranslation::where('product_id', $product->id)
                                                     ->where('locale','en')
                                                     ->first(),
@@ -225,13 +206,29 @@ class ProductController extends Controller
         $term = $request->input('term');
         $products = Product::whereHas('translations', function ($query) use ($term){
             $query->where('title', 'LIKE', '%'.$term.'%');
-        })->paginate($paginate_count);
+        })->paginate( env('PAGINATION') );
 
         $data = array(
             'products'  => $products,
             'title'     => trans('text.searching_for') . " \"$term\""
         );
         return View::make('product.index')->with($data);
+    }
+
+    public function destroy($slug){
+        $article = Product::where('slug', $slug)->first();
+        if (!$article){
+            return abort(404, "Product $slug not found");
+        };
+        $article->delete();
+
+        $data = array(
+            'alert_type'    => 'alert-success',
+            'alert_text'    => 'Product added successful',
+            'message'       => 'Deleting ' . $article->title . ' successful'
+        );
+
+        return View::make('message')->with($data);
     }
 
 }

@@ -34,7 +34,7 @@ class CartController extends Controller
         $this->validate($request, [
             'product_slug' => 'required|max:255',
             'option_slug'  => 'required|max:255',
-            'quantity'     => 'required|integer|min:0'
+            'quantity'     => 'required|integer|min:1'
         ]);
 
         $product_slug   = $request->input('product_slug');
@@ -42,7 +42,7 @@ class CartController extends Controller
         $quantity       = (int) $request->input('quantity');
 
         $product = Product::where('slug', $product_slug)->first();
-        $option = $product->getOption($option_slug);
+        $option = $product->get_option($option_slug);
 
 
         HelperController::addToCart($data = [

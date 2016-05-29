@@ -52,6 +52,20 @@ return [
     'featured_products' => 'featured products',
     'our_friends' => 'our friends',
     'find_us_on' => 'find us on',
+    'ingredients' => 'Ingredients',
+    'description' => 'Description',
+    'tips_for_use' => 'Tips for use',
+    'benefits' => 'Benefits',
+    'write_review' => 'Write review',
+    'reviews' => 'Reviews',
+    'view' => 'View',
+    'view_all_products' => 'View all products',
+    'username'=> 'username',
+    'error' => 'error',
+
+
+
+
             // inputs
     'search'        => 'search',
     'subscribe'     => 'subscribe',
@@ -72,6 +86,15 @@ return [
     'card_expiration'=> 'Expiration date',
     'delete_cart_items'=> 'Delete cart items',
     'checkout_form' => 'Checkout',
+    'tell_us' => 'tell us',
+    'rate_the_product' => 'Rate the product',
+    'product' => 'product',
+    'qty' => 'Qty',
+    'weight' => 'weight',
+    'item_price' => 'Item price',
+    'remove_item' => 'remove_item',
+
+
 
     // controls and buttons
     'next'          => 'next',

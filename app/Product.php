@@ -33,7 +33,7 @@ class Product extends Model
         return $this->belongsToMany('App\Order', 'order_product')->withPivot('quantity');;
     }
 
-    public function getOption($slug){
+    public function get_option($slug){
         return ProductOption::where('product_id', $this->id)
                             ->where('slug',$slug)
                             ->first();

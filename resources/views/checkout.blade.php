@@ -16,8 +16,8 @@
                 @if (!Auth::user())
                 <div class="col-md-12">
                     {!! Form::open(array('url' => route('auth.login'), 'method' => 'POST')) !!}
-                            {!! Form::text('email', old('email'), array('class'=>'generic_input', 'placeholder'=>'Username:') ) !!}
-                            {!! Form::password('password', array('class'=>'generic_input', 'placeholder' => 'Password:') , old('password')) !!}
+                            {!! Form::text('email', old('email'), array('class'=>'generic_input', 'placeholder'=>trans('text.username')) ) !!}
+                            {!! Form::password('password', array('class'=>'generic_input', 'placeholder' => trans(text.'password')) , old('password')) !!}
                             {!! Form::submit(trans('text.login'), array('class'=>'generic_submit capital')) !!}
                     {!! Form::close() !!}
                     <p><a class="green_text" href="{{route('auth.password.reset')}}">{{trans('text.forgotten_password_question')}}</a></p>
@@ -43,7 +43,7 @@
                     @foreach ($errors->all() as $error)
                         <div class="alert alert-danger" role="alert">
                           <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                          <span class="sr-only">Error:</span>
+                          <span class="sr-only">{{trans('text.error')}}</span>
                             {{ $error }}
                         </div>
                     @endforeach

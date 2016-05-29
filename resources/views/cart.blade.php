@@ -28,10 +28,10 @@
     <table>
         <thead>
             <tr>
-                <th>Product</th>
-                <th>Qty</th>
-                <th>Weight</th>
-                <th>Item Price</th>
+                <th>{{ trans('text.product')}}</th>
+                <th>{{ trans('text.qty')}}</th>
+                <th>{{ trans('text.weight')}}</th>
+                <th>{{ trans('text.item_price')}}</th>
                 <th>Subtotal</th>
             </tr>
         </thead>
@@ -53,7 +53,7 @@
                     {{ number_format($row->subtotal * $rate, 2, '.', ',') }}
                 </td>
 
-                <td><a href="{{ route('remove_cart_item', $row->rowid) }}" class="btn btn-danger">Remove item</a></td>
+                <td><a href="{{ route('remove_cart_item', $row->rowid) }}" class="btn btn-danger">{{ trans('text.remove_item')}}</a></td>
             </tr>
             @endforeach
         </tbody>

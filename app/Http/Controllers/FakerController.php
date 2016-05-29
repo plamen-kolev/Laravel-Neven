@@ -19,26 +19,26 @@ use App\ProductOption as ProductOption;
 use App\ShippingOption as ShippingOption;
 class FakerController extends Controller
 {
-    protected $category_num = 5;
-    protected $ingredient_num = 10;
-    protected $product_num = 60;
-    protected $ingredients_per_product = 3;
-    protected $related_images = 10;
+    protected $category_num = 2;
+    protected $ingredient_num = 2;
+    protected $product_num = 5;
+    protected $ingredients_per_product = 2;
+    protected $related_images = 2;
     protected $tags = 5;
     protected $slide_images = 5;
     protected $articles = 20;
-    protected $options = 3;
-    protected $reviews = 3;
+    protected $options = 2;
+    protected $reviews = 1;
 
     protected $languages = [
         'norwegian' => 'nb',
         'english'   => 'en'
     ];
 
-    public function init($product_num=60, $category_num=5){
+    public function init(){
         $this->get_or_create_test_user( env('SELENIUM_TEST_USER') );
-        $this->product_num = $product_num;
-        $this->category_num = $category_num;
+        $this->product_num = $this->product_num;
+        $this->category_num = $this->category_num;
 
         $languages = array_keys(LaravelLocalization::getSupportedLocales());
         $faker = Faker::create();

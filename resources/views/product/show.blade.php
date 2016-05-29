@@ -61,10 +61,10 @@
 
                <div class="col-sm-12 product_nav nopadding">
                     <ul class="nav nav-tabs">
-                        <li class="active"><a data-toggle="tab" href="#description" class="capital" href="#">Description</a></li>
-                        <li><a class="capital" data-toggle="tab" href="#ingredients" href="#">Ingredients</a></li>
-                        <li><a class="capital" data-toggle="tab" href="#tipsforuse" href="#">Tips for use</a></li>
-                        <li><a class="capital" data-toggle="tab" href="#benefits" href="#">Benefits</a></li>
+                        <li class="active"><a data-toggle="tab" href="#description" class="capital" href="#">{{ trans('text.description')}}</a></li>
+                        <li><a class="capital" data-toggle="tab" href="#ingredients" href="#">{{ trans('text.ingredients')}}</a></li>
+                        <li><a class="capital" data-toggle="tab" href="#tipsforuse" href="#">{{ trans('text.tips_for_use')}}</a></li>
+                        <li><a class="capital" data-toggle="tab" href="#benefits" href="#">{{ trans('text.benefits')}}</a></li>
                     </ul>
                </div>
 
@@ -105,7 +105,7 @@
     <div class="wrapper">
         <div>
             @if(Auth::check())
-            <h1 class="capital center">Write review</h1>
+            <h1 class="capital center">{{ trans('text.write_review')}}</h1>
 
                 <!-- if errors -->
                 @if( $errors->all() )
@@ -124,7 +124,7 @@
                 <p>
                     {!! Form::hidden('product', $product->slug) !!}
                     {!! Form::textarea('body', Input::old('body') ,array(
-                                        'placeholder'   => 'Tell us:', 
+                                        'placeholder'   => trans('text.tell_us'),
                                         'maxlength'     => '5000',
                                         'id'            => 'review_textbox'
                                         )
@@ -141,7 +141,7 @@
                                 '2' => '2', 
                                 '1' => '1'
                             ),
-                            Input::old('rating'), ['placeholder' => 'Rate the product...', 'name'=>'rating']
+                            Input::old('rating'), ['placeholder' => trans('text.rate_the_product'), 'name'=>'rating']
                         ) 
                     !!}
                 </p>
@@ -151,7 +151,7 @@
             @endif
         </div>
         <div>
-            <h1 class="capital center">Reviews</h1>
+            <h1 class="capital center">{{ trans('text.reviews')}}</h1>
             @foreach ($reviews as $review)
             <div class="well">
                 <p>
@@ -193,7 +193,7 @@
                         <p>{{$product->price()}}</p>
                         <div class="view_product">
                             <p>
-                                <a class="" href="{!! route('product.show', [ $product->slug ]) !!}">view product</a>
+                                <a class="" href="{!! route('product.show', [ $product->slug ]) !!}">{{ trans('text.view')}} product</a>
                             </p>
                         </div>
                     </div>
@@ -203,7 +203,7 @@
                 <div class="col-md-1"></div>
             </div>
             @endforeach
-            <a class="green_link" href="">View all products</a>
+            <a class="green_link" href="">{{ trans('text.view_all_products')}}</a>
     </div>
 </div>
 

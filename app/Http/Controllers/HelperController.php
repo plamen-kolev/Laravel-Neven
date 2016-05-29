@@ -15,27 +15,36 @@ use Cart;
 class HelperController extends Controller
 {
 
-    public static function cropImage($image_input, $path, $name, $sizes){
+    public static function crop_image($image_input, $path, $name, $sizes){
         $filename  = time() . $name . "." . $image_input->getClientOriginalExtension();
-
-        File::exists(storage_path('app/public/images/')) or File::makeDirectory(storage_path('app/public/images/'));
-        File::exists(storage_path("app/public/images/$path/")) or File::makeDirectory(storage_path("app/public/images/$path/"));
+        File::exists(public_path('media')) or File::makeDirectory(public_path('media'));
+        File::exists(public_path("media/$path/")) or File::makeDirectory(public_path("media/$path/"));
         $image_locations = array();
 
-        $storage_path = storage_path("app/public/images/$path/full_$filename");
+        $storage_path = public_path("media/$path/full_$filename");
         $image_tmp_path = $image_input->getRealPath();
         Image::make($image_tmp_path)->save($storage_path);
         array_push($image_locations, $storage_path);
 
         foreach($sizes as $size){
-            $storage_path = storage_path("app/public/images/$path/" . $size .  "_$filename");
+            $relative_storage_path = "media/$path/" . $size .  "_$filename";
+            $storage_path = public_path($relative_storage_path);
             Image::make($image_tmp_path)->resize($size, null, function ($constraint) {
                                                 $constraint->aspectRatio();
                                             })->save($storage_path);
-            array_push($image_locations, $storage_path);
+            array_push($image_locations, $relative_storage_path);
         }
         return $image_locations;
 
+    }
+
+    public static function object_to_dropdown($objects){
+        $options = array();
+        foreach ($objects as $object) {
+            $options = array_add($options, $object->id, $object->title);
+        }
+
+        return $options;
     }
 
     // usage $data=['product'=>productOBJ, 'option'=>optionObj, 'quantity'=>number]
