@@ -78,7 +78,7 @@
                         @foreach($product->ingredients as $ingredient)
                             <div id="{{$ingredient->slug}}" class="col-md-4 product_ingredient thumbnail" style="background-color:#E4B7B7;">{{$ingredient->title}}</div>,
                             <script>
-                                var data = render_ingredient('/ingredient/{{$ingredient->slug}}');
+                                var data = render_ingredient("{{route('ingredient.show', $ingredient->slug)}}");
                                 var drop = new Drop({
                                     target: document.querySelector('#{{$ingredient->slug}}'),
                                     content: data,

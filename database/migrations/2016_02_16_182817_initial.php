@@ -147,8 +147,8 @@ class Initial extends Migration
             $table->integer('product_id')->unsigned();
             $table->integer('related_id')->unsigned();
 
-            $table->foreign('product_id')->references('id')->on('products');
-            $table->foreign('related_id')->references('id')->on('products');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+            $table->foreign('related_id')->references('id')->on('products')->onDelete('cascade');
         });
 
         Schema::create('orders', function (Blueprint $table) {
@@ -201,8 +201,8 @@ class Initial extends Migration
             $table->integer('user_id')->unsigned();
             $table->integer('product_id')->unsigned();
 
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('product_id')->references('id')->on('products');
+            $table->foreign('user_id')->references('id')->on('users')->on('products')->onDelete('cascade');
+            $table->foreign('product_id')->references('id')->on('products')->on('products')->onDelete('cascade');
 
             $table->timestamps();
         });

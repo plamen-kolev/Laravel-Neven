@@ -78,10 +78,27 @@ class ProductController extends Controller
     public function create(){
         $product = new Product();
 
+        $category_options = DB::table('categories')
+            ->join('category_translations', 'categories.id', '=', 'category_translations.category_id')
+            ->where('category_translations.locale', 'en')
+            ->lists('category_translations.title', 'categories.id');
+
+        $related_products = DB::table('products')
+            ->join('product_translations', 'products.id', '=', 'product_translations.product_id')
+            ->where('product_translations.locale', 'en')
+            ->lists('product_translations.title', 'products.id');
+
+        $all_ingredients = DB::table('ingredients')
+            ->join('ingredient_translations', 'ingredients.id', '=', 'ingredient_translations.ingredient_id')
+            ->where('ingredient_translations.locale', 'en')
+            ->lists('ingredient_translations.title', 'ingredients.id');
+
         $data = array(
-            'category_options'      => HelperController::object_to_dropdown( Category::all() ),
-            'product_options'       => HelperController::object_to_dropdown( Product::all() ), # all related products
+            'category_options'      => $category_options,
+            'all_products'          => $related_products, # all related products
+            'all_ingredients'       => $all_ingredients,
             'product'               => $product
+
         );
         return View::make('product.create')->with($data);
     }
@@ -90,14 +107,13 @@ class ProductController extends Controller
         $this->validate($request, [
 
             'title_en'          => 'unique:product_translations,title|required|max:1000',
-            'title_nb'          => 'required|max:1000',
+            'title_nb'          => 'unique:product_translations,title|required|max:1000',
 
             'description_en'    => 'required',
             'description_nb'    => 'required',
 
             'weight'            => 'required|numeric',
             'price'             => 'required|numeric',
-
 
             'tips_en'           => 'required',
             'tips_nb'           => 'required',
@@ -167,11 +183,29 @@ class ProductController extends Controller
         # related products
         $related = $request->get('related_products');
 
-        if(empty($related)){
+        if(! empty($related)){
             foreach($related as $rel){
-                $r = Product::find($rel);
-                $r->related()->attach($product);
-                $r->save();
+                $p_object = Product::find($rel);
+                # do it only if the object exists
+                if($p_object){
+                    $product->related()->attach( $p_object );
+                    $product->save();    
+                }
+            }
+            
+        }
+
+        # ingredients
+
+        $ingredients = $request->get('ingredients');
+
+        if(! empty($ingredients)){
+            foreach($ingredients as $ing){
+                $i_object = Ingredient::find($ing);
+                if($i_object){
+                    $product->ingredients()->attach( $i_object );
+                    $product->save();                    
+                }
             }
             
         }
@@ -180,18 +214,39 @@ class ProductController extends Controller
         return redirect()->route('product.edit', $product->slug);
     }
 
-    public function edit(Request $request, $product_slug){
+    public function edit($product_slug){
         $product = Product::where('slug', $product_slug)->first();
+
+        $category_options = DB::table('categories')
+            ->join('category_translations', 'categories.id', '=', 'category_translations.category_id')
+            ->where('category_translations.locale', 'en')
+            ->lists('category_translations.title', 'categories.id');
+
+        $all_products = DB::table('products')
+            ->join('product_translations', 'products.id', '=', 'product_translations.product_id')
+            ->where('product_translations.locale', 'en')
+            ->lists('product_translations.title', 'products.id');
+
+        $related_products = DB::table('product_related')
+            ->where('product_related.product_id', $product->id)
+            ->join('products', 'products.id', '=', 'product_related.related_id')
+            ->join('product_translations', 'product_translations.product_id', '=', 'products.id')
+            ->where('product_translations.locale', 'en')
+            ->lists('product_related.related_id');
+
+//        $related_products = array(10,3);
 
         $data = array(
             'product'   => $product,
-            'category_options'  => HelperController::object_to_dropdown( Category::all() ),
+            'category_options'  => $category_options,
             'en_translation'    => ProductTranslation::where('product_id', $product->id)
                                                     ->where('locale','en')
                                                     ->first(),
             'nb_translation'    => ProductTranslation::where('product_id', $product->id)
                                                     ->where('locale','en')
-                                                    ->first()
+                                                    ->first(),
+            'all_products'       => $all_products,
+            'related_products' => $related_products
         );
 
         return View::make('product.edit')->with($data);

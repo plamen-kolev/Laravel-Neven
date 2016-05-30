@@ -38,15 +38,6 @@ class HelperController extends Controller
 
     }
 
-    public static function object_to_dropdown($objects){
-        $options = array();
-        foreach ($objects as $object) {
-            $options = array_add($options, $object->id, $object->title);
-        }
-
-        return $options;
-    }
-
     // usage $data=['product'=>productOBJ, 'option'=>optionObj, 'quantity'=>number]
     public static function addToCart($data){
         // calculate weight

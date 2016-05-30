@@ -1,4 +1,5 @@
 /vendor
+public/media
 output.html
 /node_modules
 /public/storage

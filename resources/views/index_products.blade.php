@@ -4,20 +4,28 @@
             <div class="col-md-1"></div>
 
             @foreach ($chunk as $index=>$product)
+
                 <div class="col-md-2 thumbnail_item">
+                    
+                    {!! Form::model($product, ['method' => 'DELETE', 'route' => array('product.destroy', $product->slug) ] ) !!}
+                        {!! Form::submit('delete', array('class' => 'generic_submit') )!!}
+                    {{ Form::close() }}
+
+                    {!! Form::model($product, ['method' => 'UPDATE', 'route' => array('product.update', $product->slug) ] ) !!}
+                        {!! Form::submit('edit', array('class' => 'generic_submit') )!!}
+                    {{ Form::close() }}
+
                     <div class="thumbnail_item_inner">
 
                         <a class="" href="{!! route('product.show', [ $product->slug ]) !!}">
-                            {{--<img src="{{$product->thumbnail_small}}">--}}
                             <img src="{{ $product->thumbnail_small }}">
-
                         </a>
 
                         <h2 class="thumbnail_title">
                             <a class="" href="{!! route('product.show', [ $product->slug ]) !!}"> {{$product->title}} </a>
                         </h2>
                         <span class="underliner"></span>
-                        <p>
+                        <p class="product_price">
                             {{\App\Http\Controllers\HelperController::getCurrencySymbol()}} {{ number_format($product->price(), 2, '.', ',') }}
                         </p>
                         <div class="view_product">

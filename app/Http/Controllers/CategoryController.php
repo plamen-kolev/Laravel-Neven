@@ -54,8 +54,8 @@ class CategoryController extends Controller
 
     public function store(Request $request){
         $this->validate($request, [
-            'title_en'          => 'required|max:255',
-            'title_nb'          => 'required|max:255',
+            'title_en'          => 'unique:category_translations,title|required|max:255',
+            'title_nb'          => 'unique:category_translations,title|required|max:255',
             'description_en'    => 'required|max:255',
             'description_nb'    => 'required|max:255',
             'thumbnail'         => 'required|max:10000|mimes:jpeg,jpg,png'
@@ -64,11 +64,11 @@ class CategoryController extends Controller
         if ($request->file('thumbnail')->isValid()) {
             $data = array(
                 'alert_type'    => 'alert-success',
-                'alert_text'    => 'woo',
+                'alert_text'    => 'Category created successfully',
                 'message'       => 'Creation successful'
             );
 
-            $paths = HelperController::cropImage(
+            $paths = HelperController::crop_image(
                 $request->file('thumbnail'), 
                 'categories', 
                 $request->input('title_en'), 

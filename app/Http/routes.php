@@ -22,6 +22,8 @@ use App\Product as Product;
         Route::resource('category', 'CategoryController', ['only' => ['create', 'store']] );
         Route::resource('product', 'ProductController', ['only' => ['create', 'store', 'destroy', 'edit', 'update' ]] );
 
+        Route::resource('ingredient', 'IngredientController', ['only' => ['create','store'] ]);
+
         Route::resource('blog', 'ArticleController', ['only' => ['create', 'store' ,'destroy', 'edit']] );
 
     });
@@ -97,9 +99,8 @@ use App\Product as Product;
         Route::post('password/reset/', ['as' => 'auth.password.reset', 'uses' => 'Auth\PasswordController@reset']
         );
 
-
-        # api and json requests
-        Route::get('ingredient/{slug}/', ['as' => 'get_ingredient', 'uses' => 'ApiController@get_ingredient']
+        # ingredients
+        Route::get('ingredient/{slug}/', ['as' => 'ingredient.show', 'uses' => 'IngredientController@show']
         );
 
         Route::get('stockists/', ['as' => 'stockists', 

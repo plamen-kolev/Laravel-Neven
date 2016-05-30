@@ -45,6 +45,10 @@ p{
     width:100%;
 }
 
+.thumbnail_item_inner:hover .product_price{
+    display:none;
+}
+
 .generic_submit{
     padding: 10px;
     background-color: #f2f2f2;

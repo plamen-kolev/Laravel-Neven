@@ -17,6 +17,8 @@
         <h2>Add options</h2>
         <h3>Add related products</h3>
 
+        {!! Form::model($product, array('route' => array('product.update', $product->slug) , 'files' => true)  ) !!}
+
         <div class="col-md-12">
             {{ Form::select('category', $category_options, Input::old('category', $product->category), array( 'class' => 'generic_input' )) }}
 
@@ -49,7 +51,7 @@
                         'maxlength'=>'5000',
                         'class' => 'generic_input',
                     ) 
-                ); 
+                )
             !!}
         </div>
 
@@ -61,10 +63,9 @@
                         'maxlength'=>'5000',
                         'class' => 'generic_input'
                     ) 
-                ); 
+                )
             !!}
         </div>
-
 
         <div class="col-md-6">
             <p>Benefits in English</p>
@@ -74,7 +75,7 @@
                         'maxlength'=>'5000',
                         'class' => 'generic_input'
                     ) 
-                ); 
+                )
             !!}
         </div>
 
@@ -86,7 +87,7 @@
                         'maxlength'=>'5000',
                         'class' => 'generic_input'
                     ) 
-                ); 
+                )
             !!}
         </div>
 
@@ -98,7 +99,7 @@
                         'maxlength'=>'5000',
                         'class' => 'generic_input'
                     ) 
-                ); 
+                )
             !!}
         </div>
 
@@ -110,7 +111,7 @@
                         'maxlength'=>'5000',
                         'class' => 'generic_input'
                     ) 
-                ); 
+                )
             !!}
         </div>
 
@@ -122,7 +123,16 @@
             {!! Form::text('hidden_tags', Input::old('hidden_tags'), array('placeholder' => 'Hidden tags', 'class' => 'generic_input' )); !!}
         </div>
 
+        <div class="col-md-12">
+            {{ Form::label('related_products[]', 'Related products') }}
 
+            {{ Form::select('related_products[]', $all_products, $related_products, array(
+                'placeholder' => 'Related products(control+click to assign',
+                'class' => 'generic_input more_height',
+                'multiple'  => 'multiple',
+
+            )) }}
+        </div>
 
         <div class="col-md-12">
             {!! Form::submit('Add product', array('class' => 'generic_submit') )!!}

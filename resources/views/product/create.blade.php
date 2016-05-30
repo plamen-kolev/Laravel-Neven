@@ -37,6 +37,11 @@
         </div>
 
         <div class="col-md-4">
+            {{ Form::label('option_title', 'Option tile') }}
+            {!! Form::text('option_title', Input::old('price'), array('placeholder' => 'Like 50g, or different shape', 'class' => 'generic_input' )); !!}
+        </div>
+
+        <div class="col-md-4">
             {{ Form::label('weight', 'Item weight') }}
             {!! Form::text('weight', Input::old('weight'), array('placeholder' => 'Product weight', 'class' => 'generic_input' )); !!}
         </div>
@@ -46,10 +51,7 @@
             {!! Form::text('price', Input::old('price'), array('placeholder' => 'Price in krona', 'class' => 'generic_input' )); !!}
         </div>
 
-        <div class="col-md-4">
-            {{ Form::label('option_title', 'Option tile') }}
-            {!! Form::text('option_title', Input::old('price'), array('placeholder' => 'Like 50g, or different shape', 'class' => 'generic_input' )); !!}
-        </div>
+
 
         <div class="col-md-12">
             <!-- <input type="checkbox" name="vehicle" value="Bike"> -->
@@ -78,10 +80,9 @@
                         'class' => 'generic_input',
 
                     ) 
-                ); 
+                )
             !!}
         </div>
-
 
         <div class="col-md-6">
             <p>Benefits in English</p>
@@ -91,7 +92,7 @@
                         'maxlength'=>'5000',
                         'class' => 'generic_input'
                     ) 
-                ); 
+                )
             !!}
         </div>
 
@@ -103,7 +104,7 @@
                         'maxlength'=>'5000',
                         'class' => 'generic_input'
                     ) 
-                ); 
+                );
             !!}
         </div>
 
@@ -115,7 +116,7 @@
                         'maxlength'=>'5000',
                         'class' => 'generic_input'
                     ) 
-                ); 
+                )
             !!}
         </div>
 
@@ -127,8 +128,20 @@
                         'maxlength'=>'5000',
                         'class' => 'generic_input'
                     ) 
-                ); 
+                )
             !!}
+        </div>
+
+        <div class="col-md-12">
+            {{ Form::label('ingredients[]', 'Ingredients') }}
+            <p><a target="_blank" class="generic_submit" href="{{route('ingredient.create')}}">Create ingredient, refresh when done</a></p>
+
+            {{ Form::select('ingredients[]', $all_ingredients , Input::old('ingredients[]'), array(
+                'placeholder' => 'Ingredients(control+click to assign',
+                'class' => 'generic_input more_height',
+                'multiple'  => 'multiple',
+
+            )) }}
         </div>
 
         <div class="col-md-6">
@@ -141,7 +154,7 @@
 
         <div class="col-md-12">
             {{ Form::label('related_products[]', 'Related products') }}
-            {{ Form::select('related_products[]', $product_options, Input::old('related_products'), array(
+            {{ Form::select('related_products[]', $all_products , Input::old('related_products[]'), array(
                 'placeholder' => 'Related products(control+click to assign',
                 'class' => 'generic_input more_height',
                 'multiple'  => 'multiple',
