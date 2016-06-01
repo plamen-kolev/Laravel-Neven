@@ -35,6 +35,7 @@
             
             <div class="col-md-3 menu_links">
                 <ul class="menu_links_ul">
+                    language
                     @if(App::isLocale('en'))
                         <li><a href="{{LaravelLocalization::getLocalizedURL('nb') }}"><img src="/images/no.png"></a></li>
                     @else

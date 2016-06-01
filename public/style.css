@@ -183,17 +183,20 @@ p{
 
 #search_input{
     border: 0px;
+    height: 33px;
     border-bottom: 2px solid #07ab95;
     border-radius: 0px;
+    width:80%;
 }
 
 #search_submit{
-    height: 25px;
-    width: 25px;
+    margin-bottom: -13px;
+    height: 35px;
+    width: 35px;
     border-radius: 0px;
     background-color: #07ab95;
     border: 0px;
-    padding:10px;
+    padding: 10px;
 }
 
 #stockist_container{
@@ -618,10 +621,6 @@ p{
     font-family: 'PT Sans', sans-serif;
     font-size:1.1em;
     margin-right:10px;
-}
-
-#search_input{
-    width: 85%;
 }
 
 #search_form{
