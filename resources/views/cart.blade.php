@@ -80,35 +80,44 @@
 
         <div class="col-md-1"></div>
         <div class="col-md-12"><span class="gray_line"></span></div>
-
-        @foreach($cart as $row)
-            <div class="col-md-12 shopping_item_row">
-                <div class="col-md-1"></div>
-                <div class="col-md-2">
-                    <img src="{{$row->options->thumbnail_small}}" />
-                </div>
-                
-                <div class="col-md-3">
-                    <h2>{{$row->name}} ({{$row->options->option->title}})</h2>
-                </div>
-                
-                <div class="col-md-2">
-                    <h2>{{$row->options->weight}}</h2>
-                </div>
-                
-                <div class="col-md-2">
-                    <h2>{{$row->qty}}</h2>
-                </div>
-
-                <div class="col-md-1">
+        <form method="POST" action="{{ route('show_cart') }}">
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            @foreach($cart as $row)
+                <div class="col-md-12 shopping_item_row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-2">
+                        <img src="{{$row->options->thumbnail_small}}" />
+                    </div>
                     
-                    <h2>{{\App\Http\Controllers\HelperController::getCurrencySymbol()}}
-                    {{ number_format($row->price * $rate, 2, '.', ',') }}</h2>
-                </div>
-                <div class="col-md-1"></div>
-            </div>
+                    <div class="col-md-3">
+                        <h2>{{$row->name}} ({{$row->options->option->title}})</h2>
+                    </div>
+                    
+                    <div class="col-md-2">
+                        <h2>{{$row->options->weight}}</h2>
+                    </div>
+                    
+                    <div class="col-md-2">
+                        <h2><input style="width:100%;" name="{{$row->rowid}}" class="input_generic" type="number" value="{{$row->qty}}"/></h2>
+                    </div>
 
-        @endforeach
+                    <div class="col-md-1">
+                        
+                        <h2>{{\App\Http\Controllers\HelperController::getCurrencySymbol()}}
+                        {{ number_format($row->price * $rate, 2, '.', ',') }}</h2>
+                    </div>
+                    <div class="col-md-1">
+                        <a href="{{ route('remove_cart_item', $row->rowid) }}" class="glyphicon glyphicon-remove close_button"></a>
+                    </div>
+                </div>
+
+            @endforeach
+
+            <div class="col-md-12">
+                <input class="generic_submit" type="submit" value="{{ trans('text.update') }}" />    
+            </div>
+            
+        </form>
     </div>
     
 </div>

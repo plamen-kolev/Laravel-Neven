@@ -10,6 +10,7 @@ return [
     'categories'    => 'categories',
     'blog'          => 'blog',
     'about_us'      => 'about us',
+    'update'        => 'update',
     'contact_us'    => 'contact us',
     'all_categories'=> 'All',
     'successful_order'=> 'Order has been successful',

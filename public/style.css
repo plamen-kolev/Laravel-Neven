@@ -9,6 +9,12 @@
     font-size:1.6em;
 }
 
+.close_button{
+    margin-top: 26px;
+    color: #e2001e;
+    font-size: 1.4em;
+}
+
 .hamburger_toggle:hover, .hamburger_toggle:active{
     text-decoration: none;
 }
