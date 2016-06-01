@@ -11,7 +11,7 @@
                         {!! Form::submit('delete', array('class' => 'generic_submit') )!!}
                     {{ Form::close() }}
 
-                    {!! Form::model($product, ['method' => 'UPDATE', 'route' => array('product.update', $product->slug) ] ) !!}
+                    {!! Form::model($product, ['method' => 'GET', 'route' => array('product.edit', $product->slug)] ) !!}
                         {!! Form::submit('edit', array('class' => 'generic_submit') )!!}
                     {{ Form::close() }}
 

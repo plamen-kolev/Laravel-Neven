@@ -24,14 +24,14 @@
 </div>
 
 <div class="col-md-12 gallery_second">
-    <div class="wrapper">
+    <div class="wrapper ">
         <h1 class="index_h1_margin capital center">{{ trans('text.special_offers')}}</h1>
         @include('index_products')
     </div>
 </div>
 
 <div class="col-md-12 disclaimers">
-    <div class="wrapper">
+    <div class="wrapper proud">
         <h1>{{ trans('text.proud_to_be')}}</h1>
         <div class="col-md-12 row-fluid">
             <div class="col-md-1"></div>
@@ -56,7 +56,8 @@
             </div>
             <div class="col-md-1"></div>
         </div>
-        
+    </div> 
+    <div class="col md-12">
         <a class="green_link" href="">{{ trans('text.learn_more')}}</a>
         <h1>{{ trans('text.find_our_products_in_these_stores_as_well')}}</h1>
         <div class="align-center stockists">
@@ -74,8 +75,8 @@
             <div class="col-md-2"></div>
             <div class="col-md-1"></div>
         </div>
-        
-    </div>
+    </div> 
+    
 </div>
 
 <script type="text/javascript">
