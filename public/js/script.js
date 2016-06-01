@@ -1,6 +1,10 @@
-document.addEventListener( 'DOMContentLoaded', function () {
-    
-}, false );
+jQuery(document).ready(function() {
+    $('.toggle-nav').click(function(e) {
+        $(this).toggleClass('active');
+        $('.menu_links_ul').toggleClass('active');
+        e.preventDefault();
+    });
+});
 
 function render_ingredient(url){
     var data;

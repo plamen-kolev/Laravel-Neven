@@ -1,3 +1,51 @@
+/* ============== Responsive menu css here ================ */
+.toggle-nav{
+    display: none;
+}
+
+.hamburger_toggle{
+    text-decoration: none;
+    color:gray;
+    font-size:1.6em;
+}
+
+.hamburger_toggle:hover, .hamburger_toggle:active{
+    text-decoration: none;
+}
+
+@media screen and (max-width: 1240px) {
+    .menu_links_ul > li {
+        display:block !important;
+    }
+
+    #search_form{
+        margin-top:50px !important;
+    }
+
+    .menu_links{
+        width:100%;
+    }
+
+    .menu_links ul li {
+        border-bottom: 1px solid #e2e2e2;
+        padding:10px;
+        font-size:1.4em;
+    }
+
+    .toggle-nav{
+        display: block;
+    }
+
+    .menu_links_ul{
+        display: none
+    }
+
+    .active{
+        display: block;
+    }
+}
+
+
 
 .product_thumbnail{
     border:1px solid #eee;
@@ -190,6 +238,8 @@ p{
     margin-top:10px;
 }
 
+
+
 .product > .bs-example{
     padding:0px;
 }
@@ -336,19 +386,12 @@ p{
 
 #slider{
     margin:auto;
+    background:black;
 }
 
 .main_footer{
     margin-top:100px;
 }
-
-
-
-
-
-
-
-
 
 #landing_page{
     height:473px;
@@ -568,7 +611,6 @@ p{
     margin: 0;
     padding: 0;
     list-style-type: none;
-    margin-bottom:70px;
 }
 
 .menu_links ul li { 
@@ -578,8 +620,15 @@ p{
     margin-right:10px;
 }
 
+#search_input{
+    width: 85%;
+}
+
 #search_form{
+    width:100%;
+    min-width:200px;
     margin-top:-8px;
+    margin-bottom:50px;
     display: inline-block;
 }
 
@@ -591,6 +640,7 @@ p{
     height:400px;
     display:inline-block;
     width:100%;
+    padding-bottom:100px;
 
 }
 
@@ -622,6 +672,7 @@ p{
 }
 
 .gallery div > h1{
+
     text-transform: uppercase;
     text-align: center;
     margin-top:90px;
