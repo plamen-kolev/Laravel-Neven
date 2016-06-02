@@ -3,26 +3,27 @@
 {{ Auth::user() }}
 @if (Auth::user())
     @if (!Auth::user()->active)
-        <div class="col-md-12 alert alert-danger" role="alert">
-            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-            <span class="sr-only">Error:</span>
-
-            {!! trans('text.send_activation_email_message', ['url' => Auth::user()->confirmation_code ] ) !!}
-<!--             Your account is not activated, click <a href="{{ route('account_activation', [Auth::user()->confirmation_code])  }}">here</a> to receive another email.
-            You must activate your account before a purchace can be placed -->
+        <div class="col-md-12 " role="alert">
+            <div class="wrapper alert alert-danger">
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                <span class="sr-only">Error:</span>
+                {!! trans('text.send_activation_email_message', ['url' => Auth::user()->confirmation_code ] ) !!}    
+            </div>
+            
         </div>
     @endif
 
-{{--@else--}}
-    {{--<div class="col-md-12 alert alert-danger" role="alert">--}}
-        {{--<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>--}}
-        {{--<span class="sr-only">{{trans('text.error')}}:</span>--}}
+@else
+    <div class="col-md-12" role="alert">
+        <div class="wrapper alert alert-danger">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">{{trans('text.error')}}:</span>
+            {{trans('text.create_account_to_checkout')}}    
+        </div>
 
-        {{--{{trans('text.create_account_to_checkout')}}--}}
-
-    {{--</div>--}}
+    </div>
 @endif
-
+<!-- 
 <div class="col-md-12">
     <form method="POST" action="{{ route('show_cart') }}">
     <table>
@@ -66,7 +67,7 @@
     <a href="{{ route('destroy_cart') }}"> {{trans('text.delete_cart_items') }} </a>
     <a id="checkout_button" href="{{ route('checkout') }}">{{  trans('text.checkout_form') }}</a>
 </div>
-<div><p>fresh code here</p></div>
+ -->
 
 <div class="col-md-12">
     <div class="wrapper">
