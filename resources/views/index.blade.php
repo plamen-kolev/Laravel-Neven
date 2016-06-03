@@ -31,34 +31,37 @@
 </div>
 
 <div class="col-md-12 disclaimers">
-    <div class="wrapper proud">
-        <h1>{{ trans('text.proud_to_be')}}</h1>
-        <div class="col-md-12 row-fluid">
-            <div class="col-md-1"></div>
-            <div class="col-md-2 proud_to">
-                <img src="images/proud_cold_processed.png" />
-            </div>
+    <div class="wrapper ">
+        <div class="proud">
+            <h1 class="white">{{ trans('text.proud_to_be')}}</h1>
+            <div class="col-md-12 row-fluid icons">
+                <div class="col-md-1"></div>
+                <div class="col-md-2 proud_to">
+                    <img src="images/proud_cold_processed.png" />
+                </div>
 
-            <div class="col-md-2 proud_to">
-                <img src="images/proud_no_syntetic.png" />
-            </div>
+                <div class="col-md-2 proud_to">
+                    <img src="images/proud_no_syntetic.png" />
+                </div>
 
-            <div class="col-md-2 proud_to">
-                <img src="images/proud_no_fillers.png" />
-            </div>
+                <div class="col-md-2 proud_to">
+                    <img src="images/proud_no_fillers.png" />
+                </div>
 
-            <div class="col-md-2 proud_to">
-                <img src="images/produd_vegan.png" />
-            </div>
+                <div class="col-md-2 proud_to">
+                    <img src="images/produd_vegan.png" />
+                </div>
 
-            <div class="col-md-2 proud_to">
-                <img src="images/proud_cruelty_free.png" />
+                <div class="col-md-2 proud_to">
+                    <img src="images/proud_cruelty_free.png" />
+                </div>
+                <div class="col-md-1"></div>
             </div>
-            <div class="col-md-1"></div>
+            <a class="green_link white" href="">{{ trans('text.learn_more')}}</a>
         </div>
     </div> 
-    <div class="col md-12">
-        <a class="green_link" href="">{{ trans('text.learn_more')}}</a>
+    <div class="col md-12 shops">
+        
         <h1>{{ trans('text.find_our_products_in_these_stores_as_well')}}</h1>
         <div class="align-center stockists">
             <div class="col-md-1"></div>

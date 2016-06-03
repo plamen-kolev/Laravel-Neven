@@ -66,6 +66,10 @@ p{
     font-family: 'PT Sans', sans-serif;
 }
 
+.align_right{
+    text-align: right
+}
+
 .inline_block{
     display: inline-block;
 }
@@ -121,6 +125,11 @@ p{
     color:white;
     background-color: #07ab95 !important ;
     text-transform: uppercase;
+}
+
+.item_container{
+    margin-bottom: 0px;
+    padding-bottom: 40px;
 }
 
 .shopping_item_row{
@@ -514,9 +523,9 @@ p{
     width: 38px;
   }
 
-.large-btns_nav:active {
-    opacity: 1.0;
-  }
+
+
+
 
 .large-btns_nav.next {
     left: auto;
@@ -783,9 +792,11 @@ a:hover{
 
 .gallery_second{
     background-color:#f3f3f3;
-    padding:30px 0px 30px 0px;
+    padding:40px 0px 0px 0px;
+    margin-top: 40px;
 
 }
+
 
 
 .gallery_second .thumbnail_item_inner{
@@ -816,8 +827,12 @@ a:hover{
 .disclaimers h1{
     text-transform: uppercase;
     text-align: center;
-    margin-top:90px;
-    margin-bottom:90px;
+    margin-top:0px;
+    margin-bottom:40px;
+}
+
+.disclaimers{
+padding: 0px;
 }
 
 .proud_to{
@@ -828,6 +843,9 @@ a:hover{
 
 .proud{
     background-color: #ffd1c4;
+    margin-top: 0px;
+    padding-top: 40px;
+    padding-bottom: 40px;
 }
 
 .search-field{
@@ -840,6 +858,20 @@ a:hover{
     color:#07ab95;
     text-align: center;
     margin-top:40px;
+}
+
+.white{
+    color: white;
+}
+
+.icons{
+    margin-bottom: 30px;
+}
+
+.shops{
+padding-top: 40px;
+padding-bottom: 40px;
+
 }
 
 .stockists{
@@ -921,6 +953,10 @@ a:hover{
     margin-bottom:40px;
 } 
 
+.large-btns_nav:active {
+    opacity: 1.0;
+  }
+  
 .center{
     text-align: center;
 }

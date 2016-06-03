@@ -42,5 +42,5 @@
     @endforeach
 
 
-    <a class="green_link" href="">{{ trans('text.fview_all_products')}}</a>
+    <a class="green_link" href="">{{ trans('text.view_all_products')}}</a>
 </div>
