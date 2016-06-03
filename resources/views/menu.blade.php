@@ -34,8 +34,14 @@
 
             
             <div class="col-md-3 menu_links">
-                <ul class="menu_links_ul">
-                    language
+                <ul class="menu_links_ul align_right">
+                    <li>
+                        <a href="{{ route('show_cart', []) }}">
+                            <img class="cart_icon" src="/images/cart.png"/>
+                            <span class="cart_count"> {{Cart::count()}} </span>
+                        </a>
+
+                    </li>
                     @if(App::isLocale('en'))
                         <li><a href="{{LaravelLocalization::getLocalizedURL('nb') }}"><img src="/images/no.png"></a></li>
                     @else
@@ -50,13 +56,7 @@
                     <li><a href="{{ route('auth.logout') }}">{{ trans('text.log_out')}}</a></li>
                     <li>{{ Auth::user()->name }}</li>
                     @endif
-                    <li>
-                        <a href="{{ route('show_cart', []) }}">
-                            <img class="cart_icon" src="/images/cart.png"/>
-                            <span class="cart_count"> {{Cart::count()}} </span>
-                        </a>
-
-                    </li>
+                    
                 </ul>        
     
             </div>
