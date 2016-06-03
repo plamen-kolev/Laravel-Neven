@@ -39,19 +39,19 @@
                 <div class="col-sm-6 nopadding">
                     <form action="" class="col-md-12" method="POST">
                         <input type="hidden" name="_token" value="{{csrf_token()}}"/>
-                        <select class="col-md-6 input_styler" name="option" onchange="this.form.submit()">
+                        <select class="col-md-5 input_styler" name="option" onchange="this.form.submit()">
                         @foreach($product->options as $opt)
                             <option 
                                 {{ ($opt->slug == $option->slug) ? 'selected' : "" }} value="{{$opt->slug}}">{{$opt->title}} 
                             </option>
                         @endforeach
                         </select>
-                        <input class="col-md-6 input_styler" id="product_quantity" type="number" name="quantity"  value="1"/>
+                        <div class="col-md-1"></div>
+                        <input class="col-md-5 input_styler" id="product_quantity" type="number" name="quantity"  value="1"/>
                     </form>
                     
-
                 </div>
-                
+                <div>Item added</div>
                 <div class="col-sm-6 nopadding">
                     <button class="input_styler btn btn-success add_to_cart"
                             onclick="add_to_cart('{{$product->slug}}', '{{$option->slug}}', '{!! route('add_to_cart') !!}')">

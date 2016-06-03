@@ -103,6 +103,12 @@ p{
     width:100%;
 }
 
+.product_price{
+    position: relative;
+    bottom: -19px;
+    font-size:1.3em;
+}
+
 .thumbnail_item_inner:hover .product_price{
     display:none;
 }
@@ -634,8 +640,8 @@ p{
 .menu_links ul li { 
     display: inline; 
     font-family: 'PT Sans', sans-serif;
-    font-size:1.1em;
-    margin-right:10px;
+    font-size:1.3em;
+    margin-right:14px;
 }
 
 #search_form{

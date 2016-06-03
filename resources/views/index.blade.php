@@ -96,5 +96,4 @@
 
 @section('links')
     <script src="{{ asset('responsiveslides/responsiveslides.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('js/script.js') }}" type="text/javascript"></script>
 @stop
