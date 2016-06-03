@@ -209,11 +209,24 @@ class Initial extends Migration
 
         Schema::create('subscribers', function (Blueprint $table){
             $table->increments('id')->unsigned();
-            $table->string('email', 100)->unique();
+            $table->string('email', 300)->unique();
             $table->boolean('send')->default(1);
 
             $table->timestamps();
         });
+
+        Schema::create('stockists', function (Blueprint $table){
+            $table->increments('id')->unsigned();
+            $table->string('slug', 500)->unique();
+            $table->string('title', 500);
+            $table->string('x', 500);
+            $table->string('y', 500);
+
+            $table->string('thumbnail_full',255);
+
+            $table->timestamps();
+        });
+
 
     }
 
@@ -224,6 +237,7 @@ class Initial extends Migration
      */
     public function down()
     {
+        Schema::drop('stockists');
         Schema::drop('subscribers');
         Schema::drop('reviews');
         Schema::drop('order_product');

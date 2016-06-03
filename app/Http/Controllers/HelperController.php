@@ -15,6 +15,19 @@ use Cart;
 class HelperController extends Controller
 {
 
+    public static function upload_image($imate_input, $path, $name){
+        $filename  = time() . $name . "." . $image_input->getClientOriginalExtension();
+        File::exists(public_path('media')) or File::makeDirectory(public_path('media'));
+        File::exists(public_path("media/$path/")) or File::makeDirectory(public_path("media/$path/"));
+        $image_locations = array();
+
+        $storage_path = public_path("media/$path/full_$filename");
+        $image_tmp_path = $image_input->getRealPath();
+        Image::make($image_tmp_path)->save($storage_path);
+        return $storage_path;
+
+    }
+
     public static function crop_image($image_input, $path, $name, $sizes){
         $filename  = time() . $name . "." . $image_input->getClientOriginalExtension();
         File::exists(public_path('media')) or File::makeDirectory(public_path('media'));

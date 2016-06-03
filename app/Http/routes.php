@@ -23,7 +23,10 @@ use App\Product as Product;
         Route::resource('product', 'ProductController', ['only' => ['create', 'store', 'destroy', 'edit', 'update' ]] );
 
         Route::resource('ingredient', 'IngredientController', ['only' => ['create','store'] ]);
-
+        
+        Route::get('stockist_create/', array('as' => 'stockist.create', 'uses' => 'StockistController@create'));
+        Route::post('stockist_store/', array('as' => 'stockist.store', 'uses' => 'StockistController@store'));
+        Route::resource('stockist', 'StockistController', ['only' => ['edit', 'update'] ]);
         Route::resource('blog', 'ArticleController', ['only' => ['create', 'store' ,'destroy', 'edit']] );
 
     });
