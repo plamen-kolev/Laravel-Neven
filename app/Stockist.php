@@ -11,18 +11,16 @@ class Stockist extends Model
     protected $fillable = ['title', 'slug', 'x', 'y', 'thumbnail_full'];
     public $errors = '';
     private $rules = array(
-        'title' => 'required|min:1',
-        'size'  => 'required',
-        'x'     => 'required',
-        'y'     => 'required',
-
+        'title'      => 'unique:stockists,title|required|String|min:1',
+        'thumbnail'  => 'required|max:10000|mimes:jpeg,jpg,png',
+        'longitude'  => 'required|Numeric',
+        'latitude'   => 'required|Numeric',
     );
 
     public function validate($data){
         $validator = Validator::make($data, $this->rules);
         if($validator->fails()){
-            dd($validator->errors);
-            $this->errors;
+            $this->errors = $validator->errors();
             return false;
         } 
         return true;

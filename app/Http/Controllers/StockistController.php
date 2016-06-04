@@ -23,11 +23,22 @@ class StockistController extends Controller
     public function store(Request $request){
 
         $stockist = new Stockist();
-        if($validation = $stockist->validate($request->all())){
-            dd("I am valid");
+        if( $stockist->validate($request->all()) ){
+            $slug = Str::slug($request->get('title'));
+            $stockist->thumbnail_full = HelperController::upload_image($request->get('thumbnail'), 'stockists', $slug);
+            $stockist->title = $request->get('title');
+            $stockist->slug = $slug;
+            $stockist->x = $request->get('x');
+            $stockist->y = $request->get('y');
+
+            $stockist->save();
+            return "Done";
         } else {
-            dd($stockist->errors);
+            return redirect()->route('stockist.create')
+                ->withErrors($stockist->errors)
+                ->withInput();
         }
+        
     }
 
 
