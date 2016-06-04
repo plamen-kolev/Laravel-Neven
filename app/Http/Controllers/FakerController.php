@@ -17,6 +17,7 @@ use LaravelLocalization;
 use Illuminate\Support\Str as Str;
 use App\ProductOption as ProductOption;
 use App\ShippingOption as ShippingOption;
+use App\Stockist as Stockist;
 class FakerController extends Controller
 {
     protected $category_num = 2;
@@ -29,6 +30,7 @@ class FakerController extends Controller
     protected $articles = 20;
     protected $options = 2;
     protected $reviews = 1;
+    protected $stockists = 4;
 
     protected $languages = [
         'norwegian' => 'nb',
@@ -42,6 +44,20 @@ class FakerController extends Controller
 
         $languages = array_keys(LaravelLocalization::getSupportedLocales());
         $faker = Faker::create();
+
+        # create stockists
+        foreach(range(1,$this->stockists) as $index){
+            $title = "$faker->word " . str_random(10);
+            Stockist::create([
+                'title' => $title,
+                'address'   => $faker->address,
+                'slug'  => Str::slug($title),
+                'thumbnail_full' => $faker->imageUrl($width = 150, $height = 150),
+                'lat' => $faker->randomFloat($nbMaxDecimals = 6, $min = 40, $max = 41) ,
+                'lng'  => $faker->randomFloat($nbMaxDecimals = 6, $min = 0, $max = 1),
+                'body'  => $faker->text,
+            ]);
+        }
 
         # create articles
         foreach(range(1,$this->articles) as $index){

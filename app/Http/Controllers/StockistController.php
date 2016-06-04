@@ -10,6 +10,17 @@ use App\Stockist as Stockist;
 
 class StockistController extends Controller
 {
+
+    public function index(){
+        $stockists = Stockist::all();
+
+        $data = array(
+            'stockists'  => $stockists
+        );
+
+        return View::make('stockist.index')->with($data);
+    }
+
     public function create(){
         $stockist = new Stockist();
 

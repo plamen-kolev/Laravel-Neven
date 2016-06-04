@@ -19,6 +19,7 @@ use Illuminate\Support\Str as Str;
 use App\CategoryTranslation;
 use App\ProductOption as ProductOption;
 use App\IngredientTranslation as IngredientTranslation;
+use App\Stockist as Stockist;
 use Auth;
 use App\Subscriber as Subscriber;
 use App\Tag as Tag;
@@ -30,18 +31,16 @@ class PageController extends Controller
 
         $slides = Slide::all();
         $featured_products = Product::where('featured', true)->get();
-
+        $stockists = Stockist::all();
         return View::make('index', [
-                'slides' => $slides, 
-                'products' => $featured_products
+            'slides' => $slides, 
+            'products' => $featured_products,
+            'stockists' => $stockists
         ]);
 
     }
 
     public function subscribe(Request $request){
-        $this->validate($request, [
-
-        ]);
 
         $validator = Validator::make($request->all(), [
             'subscribe_email'    => 'unique:subscribers,email|required|max:255|email',

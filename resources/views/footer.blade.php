@@ -31,7 +31,7 @@
 
         <div class="col-sm-3">
             <p>{{ trans('text.never_miss_out_our_update')}}</p>
-            @if( $errors->subscribe_email->first('subscribe_email') )
+            @if( $errors && $errors->subscribe_email->first('subscribe_email') )
                 <div class="col-md-12">
                     <div class="alert alert-danger" role="alert">
                       <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>

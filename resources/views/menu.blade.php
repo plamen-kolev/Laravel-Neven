@@ -16,15 +16,21 @@
                     <li class="active"><a href="{{ route('index', []) }}">{{ trans('text.home') }}</a></li>
 
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ trans('text.categories') }} <span class="caret"></span></a>
+                        <a href="{{route('product.index')}}" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">{{ trans('text.categories') }} <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                        <li><a href="{{ route('product.index',[] ) }}">{{ trans('text.all_categories') }}</a></li>
                         @foreach ($categories as $category)           
-                            <li><a href="{{ route('category.show', [$category->slug]) }}"> {{$category->id}} {{$category->title}}</a></li>
+                            <li><a href="{{ route('category.show', [$category->slug]) }}"> {{$category->title}}</a></li>
                         @endforeach
                         </ul>
                     </li>
-                    <li><a href="{{route('stockist')}}">{{ trans('text.become_stockist')}}</a></li>
+                    <li class="dropdown">
+                        <a href="{{route('stockist.index')}}" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">{{ trans('text.stockists') }} <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{route('stockist.index')}}">{{ trans('text.view_stockists')}}</a></li>
+                            <li><a href="{{route('stockist')}}">{{ trans('text.become_stockist')}}</a></li>
+                        </ul>
+                        
+                    </li>
                     <li><a href="#">{{ trans('text.about_us') }}</a></li>
                     <li><a href="#">{{ trans('text.contact_us') }}</a></li>
                     <li><a href="{{route('blog.index')}}">{{ trans('text.blog') }}</a></li>

@@ -219,8 +219,9 @@ class Initial extends Migration
             $table->increments('id')->unsigned();
             $table->string('slug', 500)->unique();
             $table->string('title', 500);
-            $table->string('x', 500);
-            $table->string('y', 500);
+            $table->string('address', 500);
+            $table->string('lat', 500);
+            $table->string('lng', 500);
 
             $table->string('thumbnail_full',255);
 

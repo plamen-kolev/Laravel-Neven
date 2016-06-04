@@ -64,19 +64,20 @@
         
         <h1>{{ trans('text.find_our_products_in_these_stores_as_well')}}</h1>
         <div class="align-center stockists">
-            <div class="col-md-1"></div>
-            <div class="col-md-2"></div>
-            <div class="col-md-2">
-                <img src="images/stockist_1.png" />
-            </div>
-            <div class="col-md-2">
-                <img src="images/stockist_2.png" />
-            </div>
-            <div class="col-md-2">
-                <img src="images/stockist_3.png" />
-            </div>    
-            <div class="col-md-2"></div>
-            <div class="col-md-1"></div>
+             @foreach ($stockists->chunk(4) as $chunk)
+                <div class="col-md-12">
+                    <div class="col-md-2"></div>
+                    
+                    @foreach($chunk as $stockist)
+                        <div class="col-md-2">
+                            <img width=150 src="{{$stockist->thumbnail_full}}" />
+                        </div>
+                    @endforeach
+                    
+                    <div class="col-md-2"></div>
+                </div>
+             @endforeach
+            
         </div>
     </div> 
     
