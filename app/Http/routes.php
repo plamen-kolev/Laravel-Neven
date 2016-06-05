@@ -19,7 +19,7 @@ use App\Product as Product;
     Route::group(['middleware' => ['web', 'admin'] ], function () {
         Route::get('admin', array('as' => 'admin', 'uses' => 'PageController@admin'));
 
-        Route::resource('category', 'CategoryController', ['only' => ['create', 'store']] );
+        Route::resource('category', 'CategoryController', ['only' => ['create', 'store', 'destroy', 'edit', 'update']] );
         Route::resource('product', 'ProductController', ['only' => ['create', 'store', 'destroy', 'edit', 'update' ]] );
 
         Route::resource('ingredient', 'IngredientController', ['only' => ['create','store'] ]);

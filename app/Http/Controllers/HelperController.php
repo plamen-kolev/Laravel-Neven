@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Symfony\Component\Console\Helper\Helper;
 use View;
 use App\Http\Requests;
+use Illuminate\Support\Str as Str;
 use Swap;
 use File;
 use Image;
@@ -29,7 +30,7 @@ class HelperController extends Controller
     }
 
     public static function crop_image($image_input, $path, $name, $sizes){
-        $filename  = time() . $name . "." . $image_input->getClientOriginalExtension();
+        $filename  = time() . Str::slug($name) . "." . $image_input->getClientOriginalExtension();
         File::exists(public_path('media')) or File::makeDirectory(public_path('media'));
         File::exists(public_path("media/$path/")) or File::makeDirectory(public_path("media/$path/"));
         $image_locations = array();

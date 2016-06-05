@@ -60,5 +60,15 @@
     {!! Form::close() !!}
 </div>
 
+    <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
+    <script src="/vendor/unisharp/laravel-ckeditor/adapters/jquery.js"></script>
+    <script>
+
+        $( document ).ready(function() {
+
+            $('textarea').ckeditor({toolbar : 'simple', customConfig : 'config.js',});
+        });
+
+    </script>
 
 @stop

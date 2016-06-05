@@ -7,14 +7,15 @@
 
                 <div class="col-md-2 thumbnail_item">
                     
-                    {!! Form::model($product, ['method' => 'DELETE', 'route' => array('product.destroy', $product->slug) ] ) !!}
-                        {!! Form::submit('delete', array('class' => 'generic_submit') )!!}
-                    {{ Form::close() }}
+                    @if(Auth::user() && Auth::user()->admin)
+                        {!! Form::model($product, ['method' => 'DELETE', 'route' => array('product.destroy', $product->slug) ] ) !!}
+                            {!! Form::submit('delete', array('class' => 'generic_submit') )!!}
+                        {{ Form::close() }}
 
-                    {!! Form::model($product, ['method' => 'GET', 'route' => array('product.edit', $product->slug)] ) !!}
-                        {!! Form::submit('edit', array('class' => 'generic_submit') )!!}
-                    {{ Form::close() }}
-
+                        {!! Form::model($product, ['method' => 'GET', 'route' => array('product.edit', $product->slug)] ) !!}
+                            {!! Form::submit('edit', array('class' => 'generic_submit') )!!}
+                        {{ Form::close() }}
+                    @endif
                     <div class="thumbnail_item_inner">
 
                         <a class="" href="{!! route('product.show', [ $product->slug ]) !!}">

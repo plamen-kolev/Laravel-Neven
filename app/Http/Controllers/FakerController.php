@@ -80,11 +80,11 @@ class FakerController extends Controller
 
         foreach(range(1,$this->category_num) as $index){
             // CATEGORY
-            $title = 'Category' . $index  . str_random(10);
+            $title = 'Category' . $index . " " . str_random(10);
             $category = new Category ([
                 'thumbnail_full'    => $faker->imageUrl($width = 1280, $height = 720),
                 'thumbnail_medium'  => $faker->imageUrl($width = 640, $height = 480),
-                'thumbnail_small'   => $faker->imageUrl($width = 150, $height = 70),
+                'thumbnail_small'   => $faker->imageUrl($width = 150, $height = 150),
                 'slug'      =>  Str::slug($title)
             ]);
             $category->save();

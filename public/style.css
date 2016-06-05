@@ -113,9 +113,13 @@ p{
 }
 
 .product_price{
-    position: relative;
-    bottom: -19px;
-    font-size:1.3em;
+    position: absolute;
+    bottom: 0px;
+    font-size: 1.3em;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
 }
 
 .thumbnail_item_inner:hover .product_price{
@@ -722,7 +726,10 @@ p{
 }
 
 .thumbnail_item h2{
-    margin-top:10px;
+    max-width: 150px;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 3px;
 }
 
 .underliner{
@@ -752,6 +759,11 @@ a:hover{
 .thumbnail_item_inner{
     padding:20px 0px 0px 0px;
 }
+
+.category_item{
+    min-height: 245px;
+}
+
 
 .pagination>.active>span{
     background-color:#07ab95;

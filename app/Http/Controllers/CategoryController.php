@@ -98,4 +98,58 @@ class CategoryController extends Controller
 
         return Response('File upload failed', 400);
     }
+
+    public function edit($product_slug){
+        $product = Product::where('slug', $product_slug)->first();
+
+        $category_options = DB::table('categories')
+            ->join('category_translations', 'categories.id', '=', 'category_translations.category_id')
+            ->where('category_translations.locale', 'en')
+            ->lists('category_translations.title', 'categories.id');
+
+        $all_products = DB::table('products')
+            ->join('product_translations', 'products.id', '=', 'product_translations.product_id')
+            ->where('product_translations.locale', 'en')
+            ->lists('product_translations.title', 'products.id');
+
+        $related_products = DB::table('product_related')
+            ->where('product_related.product_id', $product->id)
+            ->join('products', 'products.id', '=', 'product_related.related_id')
+            ->join('product_translations', 'product_translations.product_id', '=', 'products.id')
+            ->where('product_translations.locale', 'en')
+            ->lists('product_related.related_id');
+
+//        $related_products = array(10,3);
+
+        $data = array(
+            'product'   => $product,
+            'category_options'  => $category_options,
+            'en_translation'    => ProductTranslation::where('product_id', $product->id)
+                                                    ->where('locale','en')
+                                                    ->first(),
+            'nb_translation'    => ProductTranslation::where('product_id', $product->id)
+                                                    ->where('locale','en')
+                                                    ->first(),
+            'all_products'       => $all_products,
+            'related_products' => $related_products
+        );
+
+        return View::make('product.edit')->with($data);
+    }
+
+    public function destroy($slug){
+        $category = Category::where('slug', $slug)->first();
+        if (!$category){
+            return abort(404, "Category $slug not found");
+        };
+        $category->delete();
+
+        $data = array(
+            'alert_type'    => 'alert-success',
+            'alert_text'    => 'Product added successful',
+            'message'       => 'Deleting ' . $category->title . ' successful'
+        );
+
+        return View::make('message')->with($data);
+    }
 }
