@@ -22,10 +22,11 @@ class HelperController extends Controller
         File::exists(public_path("media/$path/")) or File::makeDirectory(public_path("media/$path/"));
         $image_locations = array();
 
-        $storage_path = public_path("media/$path/full_$filename");
+        $relative_storage_path = "media/$path/full_$filename";
+        $storage_path = public_path($relative_storage_path);
         $image_tmp_path = $image_input->getRealPath();
         Image::make($image_tmp_path)->save($storage_path);
-        return $storage_path;
+        return $relative_storage_path;
 
     }
 
@@ -35,13 +36,14 @@ class HelperController extends Controller
         File::exists(public_path("media/$path/")) or File::makeDirectory(public_path("media/$path/"));
         $image_locations = array();
 
-        $storage_path = public_path("media/$path/full_$filename");
+        $relative_storage_path = "/media/$path/full_$filename";
+        $storage_path = public_path($relative_storage_path);
         $image_tmp_path = $image_input->getRealPath();
         Image::make($image_tmp_path)->save($storage_path);
-        array_push($image_locations, $storage_path);
+        array_push($image_locations, $relative_storage_path);
 
         foreach($sizes as $size){
-            $relative_storage_path = "media/$path/" . $size .  "_$filename";
+            $relative_storage_path = "/media/$path/" . $size .  "_$filename";
             $storage_path = public_path($relative_storage_path);
             Image::make($image_tmp_path)->resize($size, null, function ($constraint) {
                                                 $constraint->aspectRatio();

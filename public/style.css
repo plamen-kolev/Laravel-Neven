@@ -982,15 +982,21 @@ padding-bottom: 40px;
     text-align: center;
 }
 
-.add_to_cart:hover{
-    background-color:#315959;
-}
-
 .add_to_cart{
     border-radius: 0px;
     width: 100%;
     background-color: #07ab95;
     color:white;
+}
+
+.add_to_cart:hover{
+    background-color:#315959;
+}
+
+
+
+.add_to_cart:active, .add_to_cart:focus{
+    background-color: black !important;
 }
 
 .green_text{

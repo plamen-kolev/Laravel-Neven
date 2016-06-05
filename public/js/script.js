@@ -1,10 +1,11 @@
 jQuery(document).ready(function() {
 
-    $('.toggle-nav').click(function(e) {
+    $('.hamburger_toggle').click(function(e) {
         console.log("trigger");
         $(this).toggleClass('active');
         $('.menu_links_ul').toggleClass('active');
         e.preventDefault();
+        return false;
     });
 });
 

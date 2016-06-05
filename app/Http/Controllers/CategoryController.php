@@ -7,6 +7,8 @@ use Illuminate\Support\Str as Str;
 use App\Http\Requests;
 use App\Category as Category;
 use View;
+use DB;
+use App\CategoryTranslation as CategoryTranslation;
 use App\Http\Controllers\HelperController as HelperController ;
 class CategoryController extends Controller
 {
@@ -99,42 +101,24 @@ class CategoryController extends Controller
         return Response('File upload failed', 400);
     }
 
-    public function edit($product_slug){
-        $product = Product::where('slug', $product_slug)->first();
+    public function edit($slug){
+        $category = Category::where('slug', $slug)->first();
 
-        $category_options = DB::table('categories')
-            ->join('category_translations', 'categories.id', '=', 'category_translations.category_id')
-            ->where('category_translations.locale', 'en')
-            ->lists('category_translations.title', 'categories.id');
-
-        $all_products = DB::table('products')
-            ->join('product_translations', 'products.id', '=', 'product_translations.product_id')
-            ->where('product_translations.locale', 'en')
-            ->lists('product_translations.title', 'products.id');
-
-        $related_products = DB::table('product_related')
-            ->where('product_related.product_id', $product->id)
-            ->join('products', 'products.id', '=', 'product_related.related_id')
-            ->join('product_translations', 'product_translations.product_id', '=', 'products.id')
-            ->where('product_translations.locale', 'en')
-            ->lists('product_related.related_id');
-
-//        $related_products = array(10,3);
+        if (!$category){
+            return abort(404, "Category $slug not found");
+        };
 
         $data = array(
-            'product'   => $product,
-            'category_options'  => $category_options,
-            'en_translation'    => ProductTranslation::where('product_id', $product->id)
+            'category'   => $category,
+            'en_translation'    => CategoryTranslation::where('category_id', $category->id)
                                                     ->where('locale','en')
                                                     ->first(),
-            'nb_translation'    => ProductTranslation::where('product_id', $product->id)
+            'nb_translation'    => CategoryTranslation::where('category_id', $category->id)
                                                     ->where('locale','en')
                                                     ->first(),
-            'all_products'       => $all_products,
-            'related_products' => $related_products
         );
 
-        return View::make('product.edit')->with($data);
+        return View::make('category.edit')->with($data);
     }
 
     public function destroy($slug){

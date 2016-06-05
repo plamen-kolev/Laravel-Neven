@@ -222,8 +222,8 @@ class ProductController extends Controller
         return View::make('message')->with($data);
     }
 
-    public function edit($product_slug){
-
+    public function edit($slug){
+        $product = Product::where('slug', $slug)->first();
         $category_options = DB::table('categories')
             ->join('category_translations', 'categories.id', '=', 'category_translations.category_id')
             ->where('category_translations.locale', 'en')

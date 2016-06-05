@@ -1,7 +1,6 @@
 @extends('master_page')
 
 @section('links')
-    <script src="{{ asset('js/script.js') }}" type="text/javascript"></script>
     <link href="{{ asset('css/lightbox.css') }}" rel="stylesheet">
 
 
@@ -15,7 +14,7 @@
 <div class="col-sm-12">
     <div class="wrapper">
         <div class="col-sm-5">
-            <a href="{{$product->thumbnail_full}}" data-lightbox="image-1" data-title="My caption">
+            <a href="/{{$product->thumbnail_full}}" data-lightbox="image-1" data-title="My caption">
                 <img width=100% id="item-display" src="{{$product->thumbnail_medium}}" alt="{{$product->title}}"/>
             </a>
             <div class="col-sm-12 nopadding">
@@ -51,7 +50,6 @@
                     </form>
                     
                 </div>
-                <div>Item added</div>
                 <div class="col-sm-6 nopadding">
                     <button class="input_styler btn btn-success add_to_cart"
                             onclick="add_to_cart('{{$product->slug}}', '{{$option->slug}}', '{!! route('add_to_cart') !!}')">
@@ -214,11 +212,12 @@
     
 </div>
 
-<script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
-<script>
-    CKEDITOR.replace( 'review_textbox' );
-</script>
+@if(Auth::user())
+    <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace( 'review_textbox' );
+    </script>
 
-<script src="{{ asset('js/lightbox.js') }}" type="text/javascript"></script>
-
+    <script src="{{ asset('js/lightbox.js') }}" type="text/javascript"></script>
+@endif
 @stop
