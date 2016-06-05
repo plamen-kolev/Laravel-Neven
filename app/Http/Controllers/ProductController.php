@@ -8,8 +8,6 @@ use Illuminate\Http\Request as Request;
 use App\Tag as Tag;
 use App\Product as Product;
 use App\Category as Category;
-use App\ProductTranslation as ProductTranslation;
-use App\CategoryTranslation as CategoryTranslation;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\ProductOption as ProductOption;
@@ -27,22 +25,8 @@ class ProductController extends Controller
 
     public function index(){
         $paginate_count = (int) env('PAGINATION');
-//        $products = DB::table('product_translations')
-//            ->select('product_translations.title as title',
-//                'product_options.price as price',
-//                'products.*',
-//                'product_translations.description'
-//            )
-//            ->join('products', 'product_translations.product_id', '=', 'products.id')
-//            ->join('product_options', 'product_options.product_id', '=', 'products.id')
-//            ->where('product_translations.locale', '=', Config::get('app.locale')  )
-//            ->groupBy('product_options.price')
-//            ->paginate($paginate_count);
-        $products = Product::whereHas('translations', function ($query) {
-            $query->where('locale',  Config::get('app.locale')  );
-        })->paginate($paginate_count);
-//        dd($products);
-//        $products = Product::paginate($paginate_count);
+        $products = Product::paginate($paginate_count);
+
         $data = array(
             'products'  => $products,
             'categories'=> Category::all(),
@@ -80,20 +64,14 @@ class ProductController extends Controller
     public function create(){
         $product = new Product();
 
-        $category_options = DB::table('categories')
-            ->join('category_translations', 'categories.id', '=', 'category_translations.category_id')
-            ->where('category_translations.locale', 'en')
-            ->lists('category_translations.title', 'categories.id');
+        $category_options = Category::all()
+            ->lists('title_en', 'id');
 
-        $related_products = DB::table('products')
-            ->join('product_translations', 'products.id', '=', 'product_translations.product_id')
-            ->where('product_translations.locale', 'en')
-            ->lists('product_translations.title', 'products.id');
+        $related_products = Product::all()
+            ->lists('title_en', 'id');
 
-        $all_ingredients = DB::table('ingredients')
-            ->join('ingredient_translations', 'ingredients.id', '=', 'ingredient_translations.ingredient_id')
-            ->where('ingredient_translations.locale', 'en')
-            ->lists('ingredient_translations.title', 'ingredients.id');
+        $all_ingredients = Ingredient::all()
+            ->lists('title_en','id');
 
         $data = array(
             'category_options'      => $category_options,
@@ -134,14 +112,23 @@ class ProductController extends Controller
                 'thumbnail_full'    => $paths[0],
                 'thumbnail_medium'  => $paths[1],
                 'thumbnail_small'   => $paths[2],
+
+                'category_id'       => Category::find((int) $request->get('category'))->id,
+                'in_stock'        => (bool) $request->get('in_stock'),
+
+                'featured'        => (bool) $request->get('featured'),
+
+                'title_en'           => $request->get('title_en'),
+                'description_en'     => $request->get('description_en'),
+                'tips_en'            => $request->get('tips_en'),
+                'benefits_en'        => $request->get('benefits_en'),
+
+                'title_nb'           => $request->get('title_nb'),
+                'description_nb'     => $request->get('description_nb'),
+                'tips_nb'            => $request->get('tips_nb'),
+                'benefits_nb'        => $request->get('benefits_nb'),
             ]);
 
-            $product->in_stock = (bool) $request->get('in_stock');
-
-            # category
-
-            $category = Category::find((int) $request->get('category'));
-            $product->category()->associate($category);
             $product->save();
 
             for ($i=0; $i < count($opt_titles); $i++) {
@@ -155,17 +142,6 @@ class ProductController extends Controller
                  ]);
             }
 
-            # translations
-
-            $product->translateOrNew('en')->title           = $request->get('title_en');
-            $product->translateOrNew('en')->description     = $request->get('description_en');
-            $product->translateOrNew('en')->tips            = $request->get('tips_en');
-            $product->translateOrNew('en')->benefits        = $request->get('benefits_en');
-
-            $product->translateOrNew('nb')->title           = $request->get('title_nb');
-            $product->translateOrNew('nb')->description     = $request->get('description_nb');
-            $product->translateOrNew('nb')->tips            = $request->get('tips_nb');
-            $product->translateOrNew('nb')->benefits        = $request->get('benefits_nb');
 
             # tags
 
@@ -212,11 +188,10 @@ class ProductController extends Controller
         }
 
 
-
         $data = array(
             'alert_type'    => 'alert-success',
             'alert_text'    => 'Product added successful',
-            'message'       => 'Deleting ' . $request->get('title_en') . ' successful'
+            'message'       => 'Creating ' . $request->get('title_en') . ' was successful'
         );
 
         return View::make('message')->with($data);

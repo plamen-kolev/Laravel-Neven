@@ -69,8 +69,8 @@
 <hr>
 
         <div class="col-md-12">
-            <!-- <input type="checkbox" name="vehicle" value="Bike"> -->
             <p>In stock: {{ Form::checkbox('in_stock', 1, true) }}</p>
+            <p>Featured: {{ Form::checkbox('featured', 0, false) }}</p>
             
         </div>
 

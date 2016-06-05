@@ -31,7 +31,7 @@
 
                         <div class="thumbnail_item_inner category_item">
                             <h2 class="thumbnail_title">
-                                <a class="" href="{!! route('category.show', [ $category->slug ]) !!}"> {{$category->title}} </a>
+                                <a class="" href="{!! route('category.show', [ $category->slug ]) !!}"> {{$category->title()}} </a>
                             </h2>
                             <span class="underliner"></span>
 

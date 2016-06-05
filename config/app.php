@@ -160,7 +160,6 @@ return [
 
         // external classes
 
-        Dimsav\Translatable\TranslatableServiceProvider::class,
         Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider::class,
         'Clockwork\Support\Laravel\ClockworkServiceProvider',
         'Gloudemans\Shoppingcart\ShoppingcartServiceProvider',

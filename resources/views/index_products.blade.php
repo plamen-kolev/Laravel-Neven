@@ -23,7 +23,7 @@
                         </a>
 
                         <h2 class="thumbnail_title">
-                            <a class="" href="{!! route('product.show', [ $product->slug ]) !!}"> {{$product->title}} </a>
+                            <a class="" href="{!! route('product.show', [ $product->slug ]) !!}"> {{$product->title()}} </a>
                         </h2>
                         <span class="underliner"></span>
                         <p class="product_price">

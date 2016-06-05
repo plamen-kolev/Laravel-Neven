@@ -15,13 +15,13 @@
     <div class="wrapper">
         <div class="col-sm-5">
             <a href="/{{$product->thumbnail_full}}" data-lightbox="image-1" data-title="My caption">
-                <img width=100% id="item-display" src="{{$product->thumbnail_medium}}" alt="{{$product->title}}"/>
+                <img width=100% id="item-display" src="{{$product->thumbnail_medium}}" alt="{{$product->title()}}"/>
             </a>
             <div class="col-sm-12 nopadding">
                 @foreach($product->images as $index => $image)
                 <div class="col-sm-3">
-                    <a href="{{$image->thumbnail_full}}" data-lightbox="image-1" data-title="Related image for {{$product->title}}">
-                        <img style="margin:10px;width:100%;" src="{{$image->thumbnail_small}}" alt="Related image for {{$product->title}}"/>
+                    <a href="{{$image->thumbnail_full}}" data-lightbox="image-1" data-title="Related image for {{$product->title()}}">
+                        <img style="margin:10px;width:100%;" src="{{$image->thumbnail_small}}" alt="Related image for {{$product->title()}}"/>
                     </a>
                 </div>
                 @endforeach
@@ -29,7 +29,7 @@
         </div>
         <div class="col-sm-1"></div>
         <div class="col-sm-5">
-            <h1>{{$product->title}}</h1>
+            <h1>{{$product->title()}}</h1>
             <p class="green_text inline_block">
                 {{\App\Http\Controllers\HelperController::getCurrencySymbol()}}
                 {{ number_format($option->price * $rate, 2, '.', ',') }}
@@ -68,7 +68,7 @@
 
                <div class="tab-content">
                     <div id="description" class="tab-pane fade in active">
-                        <p>{{$product->description}}</p>
+                        <p>{{$product->description()}}</p>
                     </div>
 
                     <div id="ingredients" class="tab-pane fade">
@@ -88,10 +88,10 @@
                         </div>
                     </div>
                     <div id="tipsforuse" class="tab-pane fade">
-                        <p>{{$product->tips}}</p>
+                        <p>{{$product->tips()}}</p>
                     </div>
                     <div id="benefits" class="tab-pane fade">
-                        <p>{{$product->benefits}}</p>
+                        <p>{{$product->benefits()}}</p>
                     </div>
                 </div>
             </div>
@@ -185,7 +185,7 @@
                         
                         <img src="{{$product->thumbnail_small}}">
                         <h2 class="thumbnail_title">
-                            <a class="" href="{!! route('product.show', [ $product->slug ]) !!}"> {{$product->title}} </a>
+                            <a class="" href="{!! route('product.show', [ $product->slug ]) !!}"> {{$product->title()}} </a>
                         </h2>
                         <span class="underliner"></span>
                         <p>{{$product->price()}}</p>

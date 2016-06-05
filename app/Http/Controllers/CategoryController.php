@@ -8,38 +8,18 @@ use App\Http\Requests;
 use App\Category as Category;
 use View;
 use DB;
-use App\CategoryTranslation as CategoryTranslation;
 use App\Http\Controllers\HelperController as HelperController ;
+
 class CategoryController extends Controller
 {
-    public function show($category_slug){
+    public function show($slug){
         $paginate_count = (int) env('PAGINATION');
-//        == OPTIMIZED ===
-//        $products = DB::table('product_translations')
-//            ->select('product_translations.title as title',
-//                'product_options.price as price',
-//                'products.id as id',
-//                'products.category_id',
-//                'products.slug',
-//                'products.thumbnail',
-//                'products.in_stock',
-//                'product_translations.description'
-//            )
-//            ->join('products', 'product_translations.product_id', '=', 'products.id')
-//            ->join('categories', 'products.category_id', "=", 'categories.id')
-//            ->join('product_options', 'product_options.product_id', '=', 'products.id')
-//            ->where('product_translations.locale', '=', Config::get('app.locale')  )
-//            ->where('categories.slug', $category_slug)
-//            ->groupBy('product_options.price')
-//            ->paginate($paginate_count);
-
-//      == unoptimized ==
-        $category = Category::where('slug', $category_slug)->first();
+        $category = Category::where('slug', $slug)->first();
         $products = $category->products()->paginate($paginate_count);
 
         $data = array(
             'products'  => $products,
-            'title'     => "Category " . $category->title
+            'title'     => "Category " . $category->title()
         );
 //      == END ==
         return View::make('product.index')->with($data);

@@ -5,15 +5,16 @@ namespace App;
 use App\Http\Controllers\HelperController;
 use Illuminate\Database\Eloquent\Model;
 use Cache;
+use Config;
 use App\ProductOption as ProductOption;
 use Validator;
 
 class Product extends Model
 {   
-    use \Dimsav\Translatable\Translatable;
-    public $translatedAttributes = ['title', 'description', 'tips', 'benefits'];
-    protected $fillable = array('featured', 'title', 'in_stock', 'slug', 'description', 'thumbnail_full', 'thumbnail_small', 'thumbnail_medium', 'tips', 'benefits', 'tags', 'hidden_tags');
     public $errors = '';
+    protected $fillable = array('featured', 'title_en', 'title_nb', 'description_en', 'benefits_en', 'benefits_nb' , 'tips_en','tips_nb','description_nb', 'in_stock', 'slug', 'thumbnail_full', 'thumbnail_small', 'thumbnail_medium', 'tips', 'benefits', 'tags', 'hidden_tags', 'category_id');
+    
+
     public function price(){
         $option = $this->options()->first();
         if(! $option){
@@ -33,6 +34,22 @@ class Product extends Model
     //     Cache::put($key, $translation, env('CACHE_TIMEOUT', 60));
     //     return $translation;
     // }
+
+    public function title(){
+        return ( strcmp(Config::get('app.locale'), 'en') ? $this->title_nb : $this->title_en);
+    }
+
+    public function description(){
+        return ( strcmp(Config::get('app.locale'), 'en') ? $this->description_nb : $this->description_nb);
+    }
+
+    public function tips(){
+        return ( strcmp(Config::get('app.locale'), 'en') ? $this->tips_nb : $this->tips_en);
+    }
+
+    public function benefits(){
+        return ( strcmp(Config::get('app.locale'), 'en') ? $this->benefits_nb : $this->benefits_en);
+    }
 
     public function orders(){
         return $this->belongsToMany('App\Order', 'order_product')->withPivot('quantity');;
@@ -73,8 +90,10 @@ class Product extends Model
     // validations
 
     private $store_rules = array(
-            'title_en'          => 'unique:product_translations,title|required|max:1000',
-            'title_nb'          => 'unique:product_translations,title|required|max:1000',
+            'category'          => 'required|Integer',
+
+            'title_en'          => 'unique:products,title_en|required|max:1000',
+            'title_nb'          => 'unique:products,title_en|required|max:1000',
 
             'description_en'    => 'required',
             'description_nb'    => 'required',
@@ -86,7 +105,7 @@ class Product extends Model
             'benefits_nb'       => 'required',
 
             'thumbnail'         => 'required|max:10000|mimes:jpeg,jpg,png',
-            'category'          => 'required|Integer',
+            
             'tags'              => 'required',
     );
 

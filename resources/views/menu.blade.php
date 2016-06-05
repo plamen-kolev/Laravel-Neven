@@ -19,7 +19,7 @@
                         <a href="{{route('product.index')}}" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">{{ trans('text.categories') }} <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                         @foreach ($categories as $category)           
-                            <li><a href="{{ route('category.show', [$category->slug]) }}"> {{$category->title}}</a></li>
+                            <li><a href="{{ route('category.show', [$category->slug]) }}"> {{$category->title()}}</a></li>
                         @endforeach
                         </ul>
                     </li>
