@@ -241,9 +241,9 @@ class ProductController extends Controller
     public function search(Request $request){
 
         $term = $request->input('term');
-        $products = Product::whereHas('translations', function ($query) use ($term){
-            $query->where('title', 'LIKE', '%'.$term.'%');
-        })->paginate( env('PAGINATION') );
+        $products = Product::where('title_en', 'LIKE', '%'.$term.'%')
+            ->orWhere('title_nb', 'LIKE', '%'.$term.'%')
+            ->paginate( env('PAGINATION') );
 
         $data = array(
             'products'  => $products,

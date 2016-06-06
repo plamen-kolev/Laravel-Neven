@@ -14,7 +14,7 @@
 <div class="col-sm-12">
     <div class="wrapper">
         <div class="col-sm-5">
-            <a href="/{{$product->thumbnail_full}}" data-lightbox="image-1" data-title="My caption">
+            <a href="{{$product->thumbnail_full}}" data-lightbox="image-1" data-title="My caption">
                 <img width=100% id="item-display" src="{{$product->thumbnail_medium}}" alt="{{$product->title()}}"/>
             </a>
             <div class="col-sm-12 nopadding">
@@ -68,13 +68,13 @@
 
                <div class="tab-content">
                     <div id="description" class="tab-pane fade in active">
-                        <p>{{$product->description()}}</p>
+                        <p>{!!$product->description() !!}</p>
                     </div>
 
                     <div id="ingredients" class="tab-pane fade">
                         <div class="col-md-12">
                         @foreach($product->ingredients as $ingredient)
-                            <div id="{{$ingredient->slug}}" class="col-md-4 product_ingredient thumbnail" style="background-color:#E4B7B7;">{{$ingredient->title}}</div>,
+                            <div id="{{$ingredient->slug}}" class="col-md-4 product_ingredient thumbnail" style="background-color:#E4B7B7;">{{$ingredient->title()}}</div>,
                             <script>
                                 var data = render_ingredient("{{route('ingredient.show', $ingredient->slug)}}");
                                 var drop = new Drop({
@@ -88,10 +88,10 @@
                         </div>
                     </div>
                     <div id="tipsforuse" class="tab-pane fade">
-                        <p>{{$product->tips()}}</p>
+                        <p>{!!$product->tips()!!}</p>
                     </div>
                     <div id="benefits" class="tab-pane fade">
-                        <p>{{$product->benefits()}}</p>
+                        <p>{!!$product->benefits()!!}</p>
                     </div>
                 </div>
             </div>

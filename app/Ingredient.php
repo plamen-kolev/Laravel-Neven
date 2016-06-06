@@ -1,7 +1,7 @@
 <?php
 
 namespace App;
-
+use Config;
 use Illuminate\Database\Eloquent\Model;
 
 class Ingredient extends Model
@@ -11,6 +11,14 @@ class Ingredient extends Model
 
     public function products(){
         return $this->belongsToMany('App\Product', 'order_product');
+    }
+
+    public function title(){
+        return ( strcmp(Config::get('app.locale'), 'en') ? $this->title_nb : $this->title_en);
+    }
+
+    public function description(){
+        return ( strcmp(Config::get('app.locale'), 'en') ? $this->description_nb : $this->description_en);
     }
         
 }
