@@ -14,23 +14,28 @@
 @endif
 
 <div class="col-md-12">
-    <h1 class="capital center">Create new Category</h1>
+    <h1 class="capital center">Edit category</h1>
     {!! Form::model($category, array('route' => array('category.store'), 'files' => true ) ) !!}
         
         <div class="col-md-12">
-            {!! Form::file('thumbnail', Input::old('thumbnail'), array('placeholder' => 'Thumbnail', 'class' => 'generic_input' )); !!}
+            {{ Form::label('thumbnail', 'Thumbnail') }}
+
+            {!! Form::file('thumbnail', Input::old('thumbnail', $category->thumbnail), array('placeholder' => 'Thumbnail', 'class' => 'generic_input' )); !!}
+            <div><img src="{{$category->thumbnail_small}}" alt=""/></div>
         </div>
 
         <div class="col-md-12">
-            {!! Form::text('title_en', Input::old('title_en'), array('placeholder' => 'Category title in English', 'class' => 'generic_input' )); !!}
+            {{ Form::label('title_en', 'Title in English') }}
+            {!! Form::text('title_en', Input::old('title_en', $en_translation->title), array('placeholder' => 'Category title in English', 'class' => 'generic_input' )); !!}
         </div>
 
         <div class="col-md-12">
-            {!! Form::text('title_nb', Input::old('title_nb'), array('placeholder' => 'Category title in Norwegian', 'class' => 'generic_input' )); !!}
+            {!! Form::text('title_nb', Input::old('title_nb', $nb_translation->title), array('placeholder' => 'Category title in Norwegian', 'class' => 'generic_input' )); !!}
         </div>
 
         <div class="col-md-12">
-            {!! Form::textarea('description_en', Input::old('description_en'), 
+            {{ Form::label('description_en', 'Description in english') }}
+            {!! Form::textarea('description_en', Input::old('description_en', $en_translation->description), 
                     array(
                         'placeholder' => 'Description in English',
                         'maxlength'=>'5000',
@@ -41,7 +46,8 @@
         </div>
 
         <div class="col-md-12">
-            {!! Form::textarea('description_nb', Input::old('description_nb'), 
+            {{ Form::label('description_nb', 'Description in norwegian') }}
+            {!! Form::textarea('description_nb', Input::old('description_nb', $nb_translation->description), 
                     array(
                         'placeholder' => 'Description in Norwegian',
                         'maxlength'=>'5000',
@@ -54,7 +60,7 @@
 
 
         <div class="col-md-12">
-            {!! Form::submit('Add product', array('class' => 'generic_submit') )!!}
+            {!! Form::submit('Update category', array('class' => 'generic_submit') )!!}
         </div>
 
     {!! Form::close() !!}

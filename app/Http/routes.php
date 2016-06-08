@@ -19,11 +19,16 @@ use App\Product as Product;
     Route::group(['middleware' => ['web', 'admin'] ], function () {
         Route::get('admin', array('as' => 'admin', 'uses' => 'PageController@admin'));
 
-        Route::resource('category', 'CategoryController', ['only' => ['create', 'store']] );
+        Route::resource('category', 'CategoryController', ['only' => ['create', 'store', 'destroy', 'edit', 'update']] );
         Route::resource('product', 'ProductController', ['only' => ['create', 'store', 'destroy', 'edit', 'update' ]] );
 
         Route::resource('ingredient', 'IngredientController', ['only' => ['create','store'] ]);
+        
+        Route::get('stockist_create/', array('as' => 'stockist.create', 'uses' => 'StockistController@create'));
+        Route::post('stockist_store/', array('as' => 'stockist.store', 'uses' => 'StockistController@store'));
+        
 
+        Route::resource('stockist', 'StockistController', ['only' => ['edit', 'update'] ]);
         Route::resource('blog', 'ArticleController', ['only' => ['create', 'store' ,'destroy', 'edit']] );
 
     });
@@ -110,6 +115,9 @@ use App\Product as Product;
         Route::get('stockists/become', ['as' => 'become_stockist', 
             'uses' => 'ProductController@become_stockist']
         );
+
+        Route::get('stockist_all/', array('as' => 'stockist.index', 'uses' => 'StockistController@index'));
+        
 
 
     });

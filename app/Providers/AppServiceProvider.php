@@ -5,8 +5,6 @@ use App\Category as Category;
 use Illuminate\Support\ServiceProvider;
 use Cache;
 use Config;
-use DB;
-use App\CategoryTranslation as CategoryTranslation;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -20,10 +18,7 @@ class AppServiceProvider extends ServiceProvider
     {
         view()->composer('master_page', function($view){
 
-        $categories = DB::table('category_translations')
-            ->join('categories', 'category_translations.category_id', '=', 'categories.id')
-            ->where('category_translations.locale', '=', Config::get('app.locale')  )
-            ->get();
+        $categories = Category::all();
 
         $view->with('categories', $categories);
             

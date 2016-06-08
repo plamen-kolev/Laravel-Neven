@@ -28,6 +28,13 @@ class Initial extends Migration
             $table->string('thumbnail_full',255);
             $table->string('thumbnail_medium',255);
             $table->string('thumbnail_small',255);
+
+            $table->string('title_en',255);
+            $table->string('title_nb',255);
+
+            $table->text('description_en');
+            $table->text('description_nb');
+
             $table->timestamps();
         });
 
@@ -36,6 +43,13 @@ class Initial extends Migration
             $table->string('thumbnail_full',255);
             $table->string('thumbnail_medium',255);
             $table->string('thumbnail_small',255);
+
+            $table->string('title_en',255);
+            $table->string('title_nb',255);
+
+            $table->text('description_en');
+            $table->text('description_nb');
+
             $table->string('slug', 255)->unique();
             $table->timestamps();
 
@@ -48,6 +62,20 @@ class Initial extends Migration
             $table->string('thumbnail_small', 255);
             $table->string('tags', 255);
             $table->string('hidden_tags', 255);
+
+            $table->string('title_en',255);
+            $table->string('title_nb',255);
+
+            $table->text('description_en', 255);
+            $table->text('description_nb', 255);
+
+            $table->text('tips_en', 255);
+            $table->text('tips_nb', 255);
+
+
+            $table->text('benefits_en', 255);
+            $table->text('benefits_nb', 255);
+
 
             $table->boolean('featured')->default(0);
             $table->string('slug',255)->unique();
@@ -80,47 +108,6 @@ class Initial extends Migration
             $table->integer('product_id')->unsigned();
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->timestamps();
-        });
-
-
-        Schema::create('product_translations', function (Blueprint $table) {
-            $table->increments('id')->unsigned();
-            $table->integer('product_id')->unsigned();
-            $table->string('locale')->index();
-
-            $table->string('title',255);
-            $table->text('description', 255);
-            $table->text('tips', 255);
-            $table->text('benefits', 255);
-
-
-            $table->unique(['product_id','locale']);
-            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
-        });
-
-        Schema::create('category_translations', function (Blueprint $table) {
-            $table->increments('id')->unsigned();
-            $table->integer('category_id')->unsigned();
-            $table->string('locale')->index();
-
-            $table->string('title',255);
-            $table->text('description');
-
-            $table->unique(['category_id','locale']);
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
-        });
-
-        Schema::create('ingredient_translations', function (Blueprint $table) {
-            $table->increments('id')->unsigned();
-            $table->integer('ingredient_id')->unsigned();
-            $table->string('locale')->index();
-
-            $table->string('title',255);
-
-            $table->text('description');
-
-            $table->unique(['ingredient_id','locale']);
-            $table->foreign('ingredient_id')->references('id')->on('ingredients')->onDelete('cascade');
         });
 
         // Blog schema
@@ -209,11 +196,25 @@ class Initial extends Migration
 
         Schema::create('subscribers', function (Blueprint $table){
             $table->increments('id')->unsigned();
-            $table->string('email', 100)->unique();
+            $table->string('email', 300)->unique();
             $table->boolean('send')->default(1);
 
             $table->timestamps();
         });
+
+        Schema::create('stockists', function (Blueprint $table){
+            $table->increments('id')->unsigned();
+            $table->string('slug', 500)->unique();
+            $table->string('title', 500);
+            $table->string('address', 500);
+            $table->string('lat', 500);
+            $table->string('lng', 500);
+
+            $table->string('thumbnail_full',255);
+
+            $table->timestamps();
+        });
+
 
     }
 
@@ -224,18 +225,16 @@ class Initial extends Migration
      */
     public function down()
     {
+        Schema::drop('stockists');
         Schema::drop('subscribers');
         Schema::drop('reviews');
         Schema::drop('order_product');
         Schema::drop('orders');
         Schema::drop('shipping_options');
         Schema::drop('articles');
-        Schema::drop('category_translations');
-        Schema::drop('ingredient_translations');
         Schema::drop('ingredients');
         Schema::drop('images');
         Schema::drop('product_options');
-        Schema::drop('product_translations');
         Schema::drop('slides');
         Schema::drop('product_related');
         Schema::drop('products');

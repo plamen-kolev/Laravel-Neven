@@ -36,26 +36,41 @@
             {!! Form::text('title_nb', Input::old('title_nb'), array('placeholder' => 'Product title in Norwegian', 'class' => 'generic_input' )); !!}
         </div>
 
-        <div class="col-md-4">
-            {{ Form::label('option_title', 'Option tile') }}
-            {!! Form::text('option_title', Input::old('price'), array('placeholder' => 'Like 50g, or different shape', 'class' => 'generic_input' )); !!}
+        <div class="col-md-12">
+            <h2 class="center capital">Product variety <strong>(please enter at least one)</strong></h2>    
         </div>
+        
+<table class="multiform" style="width:100%">
+  <tr>
+    <th>Option title, like 50g or square 50 gr</th>
+    <th>Weight in grames</th>
+    <th>Price in krona</th>
+  </tr>
+  <tr class="replication_protocol">
+    <td>
+        <input class="generic_input" type="text" name="option_title[]" placeholder="Like 50g, or different shape"/>
+    </td>
+    <td>
+        <input class="generic_input" type="text" name="option_weight[]" placeholder="Product weight"/>
+    </td> 
+    <td>
+        <input class="generic_input" type="text" name="option_price[]" placeholder="Price in krona"/>
+    </td>
+  </tr>
 
-        <div class="col-md-4">
-            {{ Form::label('weight', 'Item weight') }}
-            {!! Form::text('weight', Input::old('weight'), array('placeholder' => 'Product weight', 'class' => 'generic_input' )); !!}
-        </div>
+</table>
 
-        <div class="col-md-4">
-            {{ Form::label('price', 'Item price') }}
-            {!! Form::text('price', Input::old('price'), array('placeholder' => 'Price in krona', 'class' => 'generic_input' )); !!}
-        </div>
-
-
+<span class="replication_protocol_trigger">Add extra option</span>
+<script type="text/javascript">
+    $('.replication_protocol_trigger').click(function(){
+        $( ".replication_protocol" ).last().clone().appendTo( ".multiform" );
+    });
+</script>
+<hr>
 
         <div class="col-md-12">
-            <!-- <input type="checkbox" name="vehicle" value="Bike"> -->
             <p>In stock: {{ Form::checkbox('in_stock', 1, true) }}</p>
+            <p>Featured: {{ Form::checkbox('featured', 0, false) }}</p>
             
         </div>
 

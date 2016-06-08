@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Symfony\Component\Console\Helper\Helper;
 use View;
 use App\Http\Requests;
+use Illuminate\Support\Str as Str;
 use Swap;
 use File;
 use Image;
@@ -15,19 +16,34 @@ use Cart;
 class HelperController extends Controller
 {
 
-    public static function crop_image($image_input, $path, $name, $sizes){
+    public static function upload_image($imate_input, $path, $name){
         $filename  = time() . $name . "." . $image_input->getClientOriginalExtension();
         File::exists(public_path('media')) or File::makeDirectory(public_path('media'));
         File::exists(public_path("media/$path/")) or File::makeDirectory(public_path("media/$path/"));
         $image_locations = array();
 
-        $storage_path = public_path("media/$path/full_$filename");
+        $relative_storage_path = "media/$path/full_$filename";
+        $storage_path = public_path($relative_storage_path);
         $image_tmp_path = $image_input->getRealPath();
         Image::make($image_tmp_path)->save($storage_path);
-        array_push($image_locations, $storage_path);
+        return $relative_storage_path;
+
+    }
+
+    public static function crop_image($image_input, $path, $name, $sizes){
+        $filename  = time() . Str::slug($name) . "." . $image_input->getClientOriginalExtension();
+        File::exists(public_path('media')) or File::makeDirectory(public_path('media'));
+        File::exists(public_path("media/$path/")) or File::makeDirectory(public_path("media/$path/"));
+        $image_locations = array();
+
+        $relative_storage_path = "/media/$path/full_$filename";
+        $storage_path = public_path($relative_storage_path);
+        $image_tmp_path = $image_input->getRealPath();
+        Image::make($image_tmp_path)->save($storage_path);
+        array_push($image_locations, $relative_storage_path);
 
         foreach($sizes as $size){
-            $relative_storage_path = "media/$path/" . $size .  "_$filename";
+            $relative_storage_path = "/media/$path/" . $size .  "_$filename";
             $storage_path = public_path($relative_storage_path);
             Image::make($image_tmp_path)->resize($size, null, function ($constraint) {
                                                 $constraint->aspectRatio();

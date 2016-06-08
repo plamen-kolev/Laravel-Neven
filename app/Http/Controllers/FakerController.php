@@ -17,6 +17,7 @@ use LaravelLocalization;
 use Illuminate\Support\Str as Str;
 use App\ProductOption as ProductOption;
 use App\ShippingOption as ShippingOption;
+use App\Stockist as Stockist;
 class FakerController extends Controller
 {
     protected $category_num = 2;
@@ -29,11 +30,8 @@ class FakerController extends Controller
     protected $articles = 20;
     protected $options = 2;
     protected $reviews = 1;
+    protected $stockists = 4;
 
-    protected $languages = [
-        'norwegian' => 'nb',
-        'english'   => 'en'
-    ];
 
     public function init(){
         $this->get_or_create_test_user( env('SELENIUM_TEST_USER') );
@@ -42,6 +40,20 @@ class FakerController extends Controller
 
         $languages = array_keys(LaravelLocalization::getSupportedLocales());
         $faker = Faker::create();
+
+        # create stockists
+        foreach(range(1,$this->stockists) as $index){
+            $title = "$faker->word " . str_random(10);
+            Stockist::create([
+                'title' => $title,
+                'address'   => $faker->address,
+                'slug'  => Str::slug($title),
+                'thumbnail_full' => $faker->imageUrl($width = 150, $height = 150),
+                'lat' => $faker->randomFloat($nbMaxDecimals = 6, $min = 40, $max = 41) ,
+                'lng'  => $faker->randomFloat($nbMaxDecimals = 6, $min = 0, $max = 1),
+                'body'  => $faker->text,
+            ]);
+        }
 
         # create articles
         foreach(range(1,$this->articles) as $index){
@@ -64,21 +76,20 @@ class FakerController extends Controller
 
         foreach(range(1,$this->category_num) as $index){
             // CATEGORY
-            $title = 'Category' . $index  . str_random(10);
+            $title = 'Category' . $index . " " . str_random(10);
             $category = new Category ([
                 'thumbnail_full'    => $faker->imageUrl($width = 1280, $height = 720),
                 'thumbnail_medium'  => $faker->imageUrl($width = 640, $height = 480),
-                'thumbnail_small'   => $faker->imageUrl($width = 150, $height = 70),
-                'slug'      =>  Str::slug($title)
+                'thumbnail_small'   => $faker->imageUrl($width = 150, $height = 150),
+                'slug'      =>  Str::slug($title),
+                
+                'title_en'  => $title,
+                'title_nb'  => 'Norwegian ' . $title,
+
+                'description_en' => 'Desc ' . $faker->text,
+                'description_en' => 'Norwegian Desc ' . $faker->text,
+
             ]);
-            $category->save();
-            // CATEGORY LOCALIZATION
-            $category->translateOrNew($this->languages['english'])->title = "{$title}";
-            $category->translateOrNew($this->languages['english'])->description = "descr {$faker->text}";
-
-            $category->translateOrNew($this->languages['norwegian'])->title = "Norwegian {$title}";
-            $category->translateOrNew($this->languages['norwegian'])->description = "Norwegian {$faker->text}";
-
             $category->save();
 
         }
@@ -90,24 +101,23 @@ class FakerController extends Controller
                 'thumbnail_full'    => $faker->imageUrl($width = 1280, $height = 720),
                 'thumbnail_medium'  => $faker->imageUrl($width = 640, $height = 480),
                 'thumbnail_small'   => $faker->imageUrl($width = 150, $height = 70),
-                'slug'       =>  Str::slug($title)
+                'slug'              =>  Str::slug($title),
+                
+                'title_en'          => "{$title}",
+                'title_nb'          => "Norwegian {$title}",
+
+                'description_en'    => "{$faker->text}",
+                'description_nb'    => "Norwegian {$faker->text}"
             ]);
-            $ingredient->save();
-            // INGREDIENT LOCALIZATION
-
-            $ingredient->translateOrNew($this->languages['english'])->title = "{$title}";
-            $ingredient->translateOrNew($this->languages['english'])->description = "{$faker->text}";
-
-            $ingredient->translateOrNew($this->languages['norwegian'])->title = "Norwegian {$title}";
-            $ingredient->translateOrNew($this->languages['norwegian'])->description = "Norwegian {$faker->text}";
 
             $ingredient->save();
+            
 
         }
 
         // Create product
         foreach(range(1,$this->product_num) as $index){
-            $category = Category::find($faker->numberBetween($min = 1, $max = $this->category_num));
+            
 
             // Add products
             $title = "Title{$faker->word} en " . str_random(10);
@@ -117,12 +127,20 @@ class FakerController extends Controller
                 'thumbnail_small'   => $faker->imageUrl($width = 150, $height = 150),
                 'in_stock'  => $faker->boolean(50),
                 'featured'  => $faker->boolean(10),
-                'slug'      => Str::slug($title)
-                
+                'slug'      => Str::slug($title),
+                'title_en'          => $title,
+                'description_en'    => "descr {$faker->text}",
+                'tips_en'           => "tip {$faker->text}",
+                'benefits_en'       => "benefit {$faker->text}",
+
+                'title_nb'          => "Norwegian {$title}",
+                'description_nb'    => "Norwegian descr {$faker->text}",
+                'tips_nb'           => "Norwegian tip {$faker->text}",
+                'benefits_nb'       => "Norwegian benefit {$faker->text}",
+                'category_id'       => Category::find($faker->numberBetween($min = 1, $max = $this->category_num))->id
             ]);
 
             // ADD Category
-            $product->category()->associate($category);
             $product->save();
 
             // reviews
@@ -151,17 +169,6 @@ class FakerController extends Controller
 
             }
             // add product language texsts
-
-
-            $product->translateOrNew($this->languages['english'])->title = $title;
-            $product->translateOrNew($this->languages['english'])->description = "descr {$faker->text}";
-            $product->translateOrNew($this->languages['english'])->tips = "tip {$faker->text}";
-            $product->translateOrNew($this->languages['english'])->benefits = "benefit {$faker->text}";
-
-            $product->translateOrNew($this->languages['norwegian'])->title = "Norwegian {$title}";
-            $product->translateOrNew($this->languages['norwegian'])->description = "Norwegian descr {$faker->text}";
-            $product->translateOrNew($this->languages['norwegian'])->tips = "Norwegian tip {$faker->text}";
-            $product->translateOrNew($this->languages['norwegian'])->benefits = "Norwegian benefit {$faker->text}";
 
             $product->save();
 

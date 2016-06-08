@@ -1,7 +1,6 @@
 @extends('master_page')
 
 @section('links')
-    <script src="{{ asset('js/script.js') }}" type="text/javascript"></script>
     <link href="{{ asset('css/lightbox.css') }}" rel="stylesheet">
 
 
@@ -16,13 +15,13 @@
     <div class="wrapper">
         <div class="col-sm-5">
             <a href="{{$product->thumbnail_full}}" data-lightbox="image-1" data-title="My caption">
-                <img width=100% id="item-display" src="{{$product->thumbnail_medium}}" alt="{{$product->title}}"/>
+                <img width=100% id="item-display" src="{{$product->thumbnail_medium}}" alt="{{$product->title()}}"/>
             </a>
             <div class="col-sm-12 nopadding">
                 @foreach($product->images as $index => $image)
                 <div class="col-sm-3">
-                    <a href="{{$image->thumbnail_full}}" data-lightbox="image-1" data-title="Related image for {{$product->title}}">
-                        <img style="margin:10px;width:100%;" src="{{$image->thumbnail_small}}" alt="Related image for {{$product->title}}"/>
+                    <a href="{{$image->thumbnail_full}}" data-lightbox="image-1" data-title="Related image for {{$product->title()}}">
+                        <img style="margin:10px;width:100%;" src="{{$image->thumbnail_small}}" alt="Related image for {{$product->title()}}"/>
                     </a>
                 </div>
                 @endforeach
@@ -30,7 +29,7 @@
         </div>
         <div class="col-sm-1"></div>
         <div class="col-sm-5">
-            <h1>{{$product->title}}</h1>
+            <h1>{{$product->title()}}</h1>
             <p class="green_text inline_block">
                 {{\App\Http\Controllers\HelperController::getCurrencySymbol()}}
                 {{ number_format($option->price * $rate, 2, '.', ',') }}
@@ -51,7 +50,6 @@
                     </form>
                     
                 </div>
-                <div>Item added</div>
                 <div class="col-sm-6 nopadding">
                     <button class="input_styler btn btn-success add_to_cart"
                             onclick="add_to_cart('{{$product->slug}}', '{{$option->slug}}', '{!! route('add_to_cart') !!}')">
@@ -70,13 +68,13 @@
 
                <div class="tab-content">
                     <div id="description" class="tab-pane fade in active">
-                        <p>{{$product->description}}</p>
+                        <p>{!!$product->description() !!}</p>
                     </div>
 
                     <div id="ingredients" class="tab-pane fade">
                         <div class="col-md-12">
                         @foreach($product->ingredients as $ingredient)
-                            <div id="{{$ingredient->slug}}" class="col-md-4 product_ingredient thumbnail" style="background-color:#E4B7B7;">{{$ingredient->title}}</div>,
+                            <div id="{{$ingredient->slug}}" class="col-md-4 product_ingredient thumbnail" style="background-color:#E4B7B7;">{{$ingredient->title()}}</div>,
                             <script>
                                 var data = render_ingredient("{{route('ingredient.show', $ingredient->slug)}}");
                                 var drop = new Drop({
@@ -90,10 +88,10 @@
                         </div>
                     </div>
                     <div id="tipsforuse" class="tab-pane fade">
-                        <p>{{$product->tips}}</p>
+                        <p>{!!$product->tips()!!}</p>
                     </div>
                     <div id="benefits" class="tab-pane fade">
-                        <p>{{$product->benefits}}</p>
+                        <p>{!!$product->benefits()!!}</p>
                     </div>
                 </div>
             </div>
@@ -187,7 +185,7 @@
                         
                         <img src="{{$product->thumbnail_small}}">
                         <h2 class="thumbnail_title">
-                            <a class="" href="{!! route('product.show', [ $product->slug ]) !!}"> {{$product->title}} </a>
+                            <a class="" href="{!! route('product.show', [ $product->slug ]) !!}"> {{$product->title()}} </a>
                         </h2>
                         <span class="underliner"></span>
                         <p>{{$product->price()}}</p>
@@ -214,11 +212,12 @@
     
 </div>
 
-<script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
-<script>
-    CKEDITOR.replace( 'review_textbox' );
-</script>
+@if(Auth::user())
+    <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace( 'review_textbox' );
+    </script>
 
-<script src="{{ asset('js/lightbox.js') }}" type="text/javascript"></script>
-
+    <script src="{{ asset('js/lightbox.js') }}" type="text/javascript"></script>
+@endif
 @stop

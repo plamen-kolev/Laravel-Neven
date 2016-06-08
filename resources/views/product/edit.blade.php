@@ -17,7 +17,7 @@
         <h2>Add options</h2>
         <h3>Add related products</h3>
 
-        {!! Form::model($product, array('route' => array('product.update', $product->slug) , 'files' => true)  ) !!}
+        {!! Form::model($product, array('route' => array('product.update', $product->slug) , 'files' => true, 'METHOD'=>'UPDATE')  ) !!}
 
         <div class="col-md-12">
             {{ Form::select('category', $category_options, Input::old('category', $product->category), array( 'class' => 'generic_input' )) }}
