@@ -66,13 +66,13 @@
         <div class="align-center stockists">
             <div class="col-md-1"></div>
             <div class="col-md-2"></div>
-            <div class="col-md-2">
+            <div class="col-md-2 stockist_logo">
                 <img src="images/stockist_1.png" />
             </div>
-            <div class="col-md-2">
+            <div class="col-md-2 stockist_logo">
                 <img src="images/stockist_2.png" />
             </div>
-            <div class="col-md-2">
+            <div class="col-md-2 stockist_logo">
                 <img src="images/stockist_3.png" />
             </div>    
             <div class="col-md-2"></div>

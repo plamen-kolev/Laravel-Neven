@@ -1,4 +1,16 @@
 <div class="col-sm-12 footer">
+    <div class="col-sm-12 footer_flowers"> 
+        <div class="col-sm-1"></div>
+        <div class="col-sm-2">
+            <img src="images/neven2.png" />
+        </div>
+        <div class="col-sm-6"></div>
+        <div class="col-sm-2">
+            <img src="images/neven1.png" />
+        </div>
+        <div class="col-sm-1"></div>
+
+    </div>
     <div class="wrapper">
         <div class="col-sm-3">
             <ul>
