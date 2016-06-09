@@ -2,11 +2,11 @@
     <div class="col-sm-12 footer_flowers"> 
         <div class="col-sm-1"></div>
         <div class="col-sm-2">
-            <img src="images/neven2.png" />
+            <img src="/images/neven2.png" />
         </div>
         <div class="col-sm-6"></div>
-        <div class="col-sm-2">
-            <img src="images/neven1.png" />
+        <div class="col-sm-2 hidden_flower">
+            <img src="/images/neven1.png" />
         </div>
         <div class="col-sm-1"></div>
 
@@ -55,7 +55,7 @@
 
             <form class="footer_email_form" method="POST" action="{{route('subscribe')}}">
                 {{ csrf_field() }}
-                <input value="{{old('subscribe_email')}}" placeholder="{{trans('text.email')}}" name="subscribe_email" type="email" id="footer_email_input" />
+                <input class="generic_input" value="{{old('subscribe_email')}}" placeholder="{{trans('text.email')}}" name="subscribe_email" type="email" id="footer_email_input" />
                 <input class="green_button" type="submit" value="{{trans('text.subscribe')}}" />
             </form>
             <ul style="padding:0px;margin-top:20px;">

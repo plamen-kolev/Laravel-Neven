@@ -69,7 +69,7 @@
                     <div class="col-md-2"></div>
                     
                     @foreach($chunk as $stockist)
-                        <div class="col-md-2">
+                        <div class="col-md-2 stockist_icon">
                             <img width=150 src="{{$stockist->thumbnail_full}}" />
                         </div>
                     @endforeach
