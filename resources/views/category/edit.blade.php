@@ -15,7 +15,7 @@
 
 <div class="col-md-12">
     <h1 class="capital center">Edit category</h1>
-    {!! Form::model($category, array('route' => array('category.store'), 'files' => true ) ) !!}
+    {!! Form::model($category, array('route' => array('category.store'), 'method' => 'PUT', 'files' => true ) ) !!}
         
         <div class="col-md-12">
             {{ Form::label('thumbnail', 'Thumbnail') }}

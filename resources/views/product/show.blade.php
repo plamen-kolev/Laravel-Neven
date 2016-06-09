@@ -38,26 +38,32 @@
                 <div class="col-sm-6 nopadding">
                     <form action="" class="col-md-12" method="POST">
                         <input type="hidden" name="_token" value="{{csrf_token()}}"/>
-                        <select class="col-md-5 input_styler" name="option" onchange="this.form.submit()">
-                        @foreach($product->options as $opt)
-                            <option 
-                                {{ ($opt->slug == $option->slug) ? 'selected' : "" }} value="{{$opt->slug}}">{{$opt->title}} 
-                            </option>
-                        @endforeach
-                        </select>
+                        <div class="col-md-5">
+                            <select class="generic_input" name="option" onchange="this.form.submit()">
+                            @foreach($product->options as $opt)
+                                <option 
+                                    {{ ($opt->slug == $option->slug) ? 'selected' : "" }} value="{{$opt->slug}}">{{$opt->title}} 
+                                </option>
+                            @endforeach
+                            </select>    
+                        </div>
+                        
                         <div class="col-md-1"></div>
-                        <input class="col-md-5 input_styler" id="product_quantity" type="number" name="quantity"  value="1"/>
+                        <div class="col-md-5">
+                            <input class="generic_input" id="product_quantity" type="number" name="quantity"  value="1"/>    
+                        </div>
+                        
                     </form>
                     
                 </div>
                 <div class="col-sm-6 nopadding">
-                    <button class="input_styler btn btn-success add_to_cart"
+                    <button class="generic_submit btn btn-success add_to_cart"
                             onclick="add_to_cart('{{$product->slug}}', '{{$option->slug}}', '{!! route('add_to_cart') !!}')">
                                 + {{ trans('text.add_to_cart') }}
                     </button>    
                 </div>
 
-               <div class="col-sm-12 product_nav nopadding">
+               <div class="col-lg-12 product_nav nopadding">
                     <ul class="nav nav-tabs">
                         <li class="active"><a data-toggle="tab" href="#description" class="capital" href="#">{{ trans('text.description')}}</a></li>
                         <li><a class="capital" data-toggle="tab" href="#ingredients" href="#">{{ trans('text.ingredients')}}</a></li>
@@ -66,7 +72,7 @@
                     </ul>
                </div>
 
-               <div class="tab-content">
+               <div class="col-sm-12 tab-content">
                     <div id="description" class="tab-pane fade in active">
                         <p>{!!$product->description() !!}</p>
                     </div>
@@ -74,7 +80,7 @@
                     <div id="ingredients" class="tab-pane fade">
                         <div class="col-md-12">
                         @foreach($product->ingredients as $ingredient)
-                            <div id="{{$ingredient->slug}}" class="col-md-4 product_ingredient thumbnail" style="background-color:#E4B7B7;">{{$ingredient->title()}}</div>,
+                            <div id="{{$ingredient->slug}}" class="col-md-4 product_ingredient thumbnail" style="background-color:#E4B7B7;">{{$ingredient->title()}}</div>
                             <script>
                                 var data = render_ingredient("{{route('ingredient.show', $ingredient->slug)}}");
                                 var drop = new Drop({

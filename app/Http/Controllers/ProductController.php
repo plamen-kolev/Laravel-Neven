@@ -67,7 +67,7 @@ class ProductController extends Controller
         $category_options = Category::all()
             ->lists('title_en', 'id');
 
-        $related_products = Product::all()
+        $all_products = Product::all()
             ->lists('title_en', 'id');
 
         $all_ingredients = Ingredient::all()
@@ -75,7 +75,7 @@ class ProductController extends Controller
 
         $data = array(
             'category_options'      => $category_options,
-            'all_products'          => $related_products, # all related products
+            'all_products'          => $all_products, # all related products
             'all_ingredients'       => $all_ingredients,
             'product'               => $product
 
@@ -177,7 +177,6 @@ class ProductController extends Controller
                         $product->save();                    
                     }
                 }
-                
             }
 
             $product->save();
@@ -198,38 +197,40 @@ class ProductController extends Controller
     }
 
     public function edit($slug){
+
         $product = Product::where('slug', $slug)->first();
         $category_options = DB::table('categories')
-            ->join('category_translations', 'categories.id', '=', 'category_translations.category_id')
-            ->where('category_translations.locale', 'en')
-            ->lists('category_translations.title', 'categories.id');
+            ->lists('categories.title_en', 'categories.id');
+
+        $all_ingredients = DB::table('ingredients')
+            ->lists('title_en','id');
 
         $all_products = DB::table('products')
-            ->join('product_translations', 'products.id', '=', 'product_translations.product_id')
-            ->where('product_translations.locale', 'en')
-            ->lists('product_translations.title', 'products.id');
+            ->lists('products.title_en', 'products.id');
+
+        $related_ingredients = DB::table('ingredient_product')
+            ->where('ingredient_product.product_id', $product->id)
+            ->lists('ingredient_product.ingredient_id');
 
         $related_products = DB::table('product_related')
-            ->where('product_related.product_id', 'product->id')
-            ->join('products', 'products.id', '=', 'product_related.related_id')
-            ->join('product_translations', 'product_translations.product_id', '=', 'products.id')
-            ->where('product_translations.locale', 'en')
+            ->where('product_related.product_id', $product->id)
             ->lists('product_related.related_id');
 
-//        $related_products = array(10,3);
+        $selected_category = $product->category()->first()->id;
+        
+        $options = $product->options()->get();
 
         $data = array(
             'product'   => $product,
             'category_options'  => $category_options,
-            'en_translation'    => ProductTranslation::where('product_id', $product->id)
-                                                    ->where('locale','en')
-                                                    ->first(),
-            'nb_translation'    => ProductTranslation::where('product_id', $product->id)
-                                                    ->where('locale','en')
-                                                    ->first(),
+            'all_ingredients'   => $all_ingredients,
+            'options'           => $options,
+            'related_ingredients' => $related_ingredients,
+            'selected_category' => $selected_category,
             'all_products'       => $all_products,
             'related_products' => $related_products
         );
+
 
         return View::make('product.edit')->with($data);
     }
