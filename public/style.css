@@ -1057,6 +1057,7 @@ padding-left: 0px;
     text-transform:capitalize;
 }
 
+
 .dropdown-menu li{
     margin:0px !important;
 }
@@ -1085,6 +1086,19 @@ padding-left: 0px;
     margin-top: 21px;
 }
 
+.ingredient_tip{
+    float:left;
+    margin-top: 20px;
+}
+
+.ingredients_bg{
+    height: 30px;
+    background-color: #f0b79b;
+    margin-top: 20px;
+    width: 50%;
+}
+
+
 /* mobile version css goes here */
 @media screen and (max-width: 1240px) {
 
@@ -1095,9 +1109,15 @@ padding-left: 0px;
         display: inline;
     }
 
+.mobieicon_align{
+    padding-left: 0px;
+}
+
+
 .glyphicon-menu-hamburger{
     margin-bottom: 20px;
 }
+
     .menu_links_ul > li {
         display:block !important;
     }
@@ -1110,7 +1130,7 @@ padding-left: 0px;
         width:100%;
     }
     .menu_icon{
-        margin-right: 10px;
+        margin-right: 30px;
     }
 
     .menu_links ul li {
