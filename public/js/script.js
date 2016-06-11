@@ -7,6 +7,11 @@ jQuery(document).ready(function() {
         e.preventDefault();
         return false;
     });
+
+    $(".noclick").click(function (obj){
+        obj.preventDefault();
+    });
+
 });
 
 function render_ingredient(url){

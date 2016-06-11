@@ -11,34 +11,34 @@
 @stop
 
 @section('content')
-<div class="col-sm-12">
+<div class="col-md-12">
     <div class="wrapper">
-        <div class="col-sm-5">
-            <a href="{{$product->thumbnail_full}}" data-lightbox="image-1" data-title="My caption">
+        <div class="col-md-5">
+            <a href="{{$product->thumbnail_full}}" data-lightbox="image-1" data-title="{{$product->title()}}">
                 <img width=100% id="item-display" src="{{$product->thumbnail_medium}}" alt="{{$product->title()}}"/>
             </a>
-            <div class="col-sm-12 nopadding">
+            <div class="col-md-12 nopadding">
                 @foreach($product->images as $index => $image)
-                <div class="col-sm-3">
+                <div class="col-md-3 nopadding pull-left" style="padding:5px; max-width:150px; overflow:hidden;display:inline-block">
                     <a href="{{$image->thumbnail_full}}" data-lightbox="image-1" data-title="Related image for {{$product->title()}}">
-                        <img style="margin:10px;width:100%;" src="{{$image->thumbnail_small}}" alt="Related image for {{$product->title()}}"/>
+                        <img style="width:100%;" src="{{$image->thumbnail_small}}" alt="Related image for {{$product->title()}}"/>    
                     </a>
                 </div>
                 @endforeach
             </div>
         </div>
-        <div class="col-sm-1"></div>
-        <div class="col-sm-5">
+        <div class="col-md-2"></div>
+        <div class="col-md-5">
             <h1>{{$product->title()}}</h1>
             <p class="green_text inline_block">
                 {{\App\Http\Controllers\HelperController::getCurrencySymbol()}}
                 {{ number_format($option->price * $rate, 2, '.', ',') }}
             </p>
-            <div class="col-sm-12 nopadding">
-                <div class="col-sm-6 nopadding">
-                    <form action="" class="col-md-12" method="POST">
+            <div class="col-md-12 nopadding">
+                <div class="col-md-6 nopadding">
+                    <form action="" class="col-md-12 nopadding" method="POST">
                         <input type="hidden" name="_token" value="{{csrf_token()}}"/>
-                        <div class="col-md-5">
+                        <div class="col-md-8 nopadding_left">
                             <select class="generic_input" name="option" onchange="this.form.submit()">
                             @foreach($product->options as $opt)
                                 <option 
@@ -48,15 +48,15 @@
                             </select>    
                         </div>
                         
-                        <div class="col-md-1"></div>
-                        <div class="col-md-5">
+                        
+                        <div class="col-md-4 nopadding_right">
                             <input class="generic_input" id="product_quantity" type="number" name="quantity"  value="1"/>    
                         </div>
                         
                     </form>
                     
                 </div>
-                <div class="col-sm-6 nopadding">
+                <div class="col-md-6 nopadding">
                     <button class="generic_submit btn btn-success add_to_cart"
                             onclick="add_to_cart('{{$product->slug}}', '{{$option->slug}}', '{!! route('add_to_cart') !!}')">
                                 + {{ trans('text.add_to_cart') }}
@@ -72,7 +72,7 @@
                     </ul>
                </div>
 
-               <div class="col-sm-12 tab-content">
+               <div class="col-md-12 tab-content">
                     <div id="description" class="tab-pane fade in active">
                         <p>{!!$product->description() !!}</p>
                     </div>
@@ -87,6 +87,7 @@
                                     target: document.querySelector('#{{$ingredient->slug}}'),
                                     content: data,
                                     position: 'bottom left',
+                                    openOn: 'click',
                                     openOn: 'hover'
                                 });
                             </script>
@@ -224,6 +225,9 @@
         CKEDITOR.replace( 'review_textbox' );
     </script>
 
-    <script src="{{ asset('js/lightbox.js') }}" type="text/javascript"></script>
+    
 @endif
+
+<script src="{{ asset('js/lightbox.js') }}" type="text/javascript"></script>
+
 @stop

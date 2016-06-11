@@ -44,18 +44,19 @@ class CartController extends Controller
         $product = Product::where('slug', $product_slug)->first();
         $option = $product->get_option($option_slug);
 
-
-        HelperController::addToCart($data = [
+        HelperController::add_to_cart($data = [
             'product'   => $product,
             'option'    => $option,
             'qty'  => $quantity
         ]);
-        return \Response::make("Item {$product->title} ({$option->title}) added", 200);
+
+        return \Response::make("Item {$product->title()} ({$option->title}) added", 200);
     }
 
     function remove_cart_item(Request $request, $rowid){
         Cart::remove($rowid);
-        return \Response::make("Cart item removed", 200);
+        return back();
+        // return \Response::make("Cart item removed", 200);
     }
 
     function destroy_cart(Request $request){

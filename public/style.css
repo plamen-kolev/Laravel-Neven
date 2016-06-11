@@ -739,6 +739,10 @@ margin-top: 20px;
     margin-bottom: 3px;
 }
 
+.width_150px{
+    width:150px;
+}
+
 .underliner{
     width:100px;
     height:3px;
@@ -941,6 +945,18 @@ padding-left: 0px;
     padding:0px;
 }
 
+.nopadding_left{
+    padding-left:0px;
+}
+
+.nopadding_right{
+    padding-left:0px;
+}
+
+.replication_protocol_trigger{
+    cursor: pointer;
+}
+
 
 .checkout_button1{
     background-color: #F0B79A;
@@ -1141,4 +1157,48 @@ padding-left: 0px;
     .hidden_flower{
         display: none;
     }
+}
+
+/* Paralax by https://davidwalsh.name/parallax */
+
+[class*="bg__"] {
+    height: 90vh;
+    /*text-indent: -9999px;*/
+
+    /* fix background */
+    background-attachment: fixed;
+
+    /* center it */
+    background-position: center center;
+
+    /* Scale it nicely to the element */
+    background-size: cover;
+
+    /* just make it look a bit better ;) */
+    &:nth-child(2n) {
+        box-shadow: inset 0 0 1em #111;
+    }
+}
+
+
+.bg__rose_1{
+    background-image: url('../images/rose-top.png');  
+    height: 30vh;
+}
+
+.bg__rose_2{
+    background-image: url('../images/rose-top.png');  
+    height: 60vh;
+}
+
+.bg__rose_blur{
+    background-image: url('../images/back-rose.png');     
+    height: 30vh;
+}
+
+#stockist_form{
+    position: absolute;
+    top: 100px;
+    width: 100%;
+    z-index: 9;
 }

@@ -68,8 +68,9 @@
             </div>
             <div class="col-md-2 menu_links">
                     <form  id="search_form" class="" role="search" method="GET" action="{{ route('search') }}">
-                        <input id="search_input" placeholder={{trans('text.search')}} size=10 type="text" name="term" class="" placeholder="{{ trans('text.search') }}">
-                        <input src="/images/search_icon.png" id="search_submit" size=1 type="image" value="{{trans('text.search')}}" class="btn-default">
+                        <input id="search_input" placeholder={{trans('text.search')}} size=10 type="text" name="term" class="" placeholder="{{ trans('text.search') }}">    
+                        <input src="/images/search_icon.png" id="search_submit" size=1 type="image" value="{{trans('text.search')}}" class="btn-default pull-right">
+                        
                     </form>
             </div>
 

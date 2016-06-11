@@ -18,6 +18,7 @@ use Cache;
 use Config;
 use Validator;
 use Swap;
+use App\Image as Image;
 use Input;
 class ProductController extends Controller
 
@@ -25,8 +26,9 @@ class ProductController extends Controller
 
     public function index(){
         $paginate_count = (int) env('PAGINATION');
-        $products = Product::paginate($paginate_count);
-
+        // $products = Product::paginate($paginate_count);
+        $products = DB::table('products')->orderBy('created_at', 'desc')->paginate($paginate_count);
+        dd($products[0]);
         $data = array(
             'products'  => $products,
             'categories'=> Category::all(),
@@ -131,17 +133,37 @@ class ProductController extends Controller
 
             $product->save();
 
-            for ($i=0; $i < count($opt_titles); $i++) {
+            if($request->file('images')){
 
-                $dropdown_option = ProductOption::create([
-                     'weight' => $opt_weights[$i],
-                     'title' => $opt_titles[$i],
-                     'slug'  => Str::slug($opt_titles[$i]),
-                     'price' => $opt_prices[$i],
-                     'product_id' => $product->id
-                 ]);
+                foreach($request->file('images') as $image){
+                    $paths = HelperController::crop_image(
+                        $image,
+                        'products',
+                        '',
+                        array(env('MEDIUM_THUMBNAIL'),
+                        env('SMALL_THUMBNAIL'))
+                    );
+
+                    Image::create([
+                        'thumbnail_full'    => $paths[0],
+                        'thumbnail_medium'  => $paths[1],
+                        'thumbnail_small'   => $paths[2],
+                        'product_id'        => $product->id
+                    ]);
+
+                }
             }
 
+            for ($i=0; $i < count($opt_titles); $i++) {
+
+                ProductOption::create([
+                    'weight' => $opt_weights[$i],
+                    'title' => $opt_titles[$i],
+                    'slug'  => Str::slug($opt_titles[$i]),
+                    'price' => $opt_prices[$i],
+                    'product_id' => $product->id
+                ]);
+            }
 
             # tags
 

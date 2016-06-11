@@ -17,7 +17,7 @@
                 <div class="col-md-12">
                     {!! Form::open(array('url' => route('auth.login'), 'method' => 'POST')) !!}
                             {!! Form::text('email', old('email'), array('class'=>'generic_input', 'placeholder'=>trans('text.username')) ) !!}
-                            {!! Form::password('password', array('class'=>'generic_input', 'placeholder' => trans(text.'password')) , old('password')) !!}
+                            {!! Form::password('password', array('class'=>'generic_input', 'placeholder' => trans('text.password')) , old('password')) !!}
                             {!! Form::submit(trans('text.login'), array('class'=>'generic_submit capital')) !!}
                     {!! Form::close() !!}
                     <p><a class="green_text" href="{{route('auth.password.reset')}}">{{trans('text.forgotten_password_question')}}</a></p>

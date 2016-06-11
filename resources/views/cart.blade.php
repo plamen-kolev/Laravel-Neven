@@ -13,61 +13,8 @@
         </div>
     @endif
 
-@else
-    <div class="col-md-12" role="alert">
-        <div class="wrapper alert alert-danger">
-            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-            <span class="sr-only">{{trans('text.error')}}:</span>
-            {{trans('text.create_account_to_checkout')}}    
-        </div>
 
-    </div>
 @endif
-<!-- 
-<div class="col-md-12">
-    <form method="POST" action="{{ route('show_cart') }}">
-    <table>
-        <thead>
-            <tr>
-                <th>{{ trans('text.product')}}</th>
-                <th>{{ trans('text.qty')}}</th>
-                <th>{{ trans('text.weight')}}</th>
-                <th>{{ trans('text.item_price')}}</th>
-                <th>Subtotal</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($cart as $row)
-            <tr>
-                <td>
-                    <p><strong>{{$row->name}} ({{$row->options->option->title}})</strong></p>
-                </td>
-                <td><input name="{{$row->rowid}}" type="number" value="{{$row->qty}}"></td>
-                <td>{{$row->options->option->weight}}</td>
-                <td>
-                    {{\App\Http\Controllers\HelperController::getCurrencySymbol()}}
-                    {{ number_format($row->price * $rate, 2, '.', ',') }}
-                </td>
-                <td>
-                    {{\App\Http\Controllers\HelperController::getCurrencySymbol()}}
-
-                    {{ number_format($row->subtotal * $rate, 2, '.', ',') }}
-                </td>
-
-                <td><a href="{{ route('remove_cart_item', $row->rowid) }}" class="btn btn-danger">{{ trans('text.remove_item')}}</a></td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
-
-        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-        <input type="submit" value="{{ trans('text.submit') }}" />
-    </form>
-
-    <a href="{{ route('destroy_cart') }}"> {{trans('text.delete_cart_items') }} </a>
-    <a id="checkout_button" href="{{ route('checkout') }}">{{  trans('text.checkout_form') }}</a>
-</div>
- -->
 
 <div class="col-md-12">
     <div class="wrapper">
@@ -116,6 +63,7 @@
 
             <div class="col-md-12">
                 <input class="generic_submit" type="submit" value="{{ trans('text.update') }}" />    
+                <a class="generic_submit" href="{{ route('checkout') }}"> {{ trans('text.checkout') }} </a>
             </div>
             
         </form>

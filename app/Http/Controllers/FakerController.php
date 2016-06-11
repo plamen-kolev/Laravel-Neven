@@ -18,6 +18,8 @@ use Illuminate\Support\Str as Str;
 use App\ProductOption as ProductOption;
 use App\ShippingOption as ShippingOption;
 use App\Stockist as Stockist;
+use File;
+
 class FakerController extends Controller
 {
     protected $category_num = 2;
@@ -34,6 +36,15 @@ class FakerController extends Controller
 
 
     public function init(){
+
+        File::exists(public_path('media')) or File::makeDirectory(public_path('media'));
+        File::exists(public_path('media/stockists')) or File::makeDirectory(public_path('media/stockists'));
+        File::exists(public_path('media/slides')) or File::makeDirectory(public_path('media/slides'));
+        File::exists(public_path('media/products')) or File::makeDirectory(public_path('media/products'));
+        File::exists(public_path('media/categories')) or File::makeDirectory(public_path('media/categories'));
+        File::exists(public_path('media/images')) or File::makeDirectory(public_path('media/images'));
+        File::exists(public_path('media/ingredients')) or File::makeDirectory(public_path('media/ingredients'));
+
         $this->get_or_create_test_user( env('SELENIUM_TEST_USER') );
         $this->product_num = $this->product_num;
         $this->category_num = $this->category_num;
@@ -48,7 +59,7 @@ class FakerController extends Controller
                 'title' => $title,
                 'address'   => $faker->address,
                 'slug'  => Str::slug($title),
-                'thumbnail_full' => $faker->imageUrl($width = 150, $height = 150),
+                'thumbnail_full' => $faker->image(public_path("media/stockists") ,$width = 150, $height = 150),
                 'lat' => $faker->randomFloat($nbMaxDecimals = 6, $min = 40, $max = 41) ,
                 'lng'  => $faker->randomFloat($nbMaxDecimals = 6, $min = 0, $max = 1),
                 'body'  => $faker->text,

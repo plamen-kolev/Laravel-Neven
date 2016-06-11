@@ -55,7 +55,7 @@ class HelperController extends Controller
     }
 
     // usage $data=['product'=>productOBJ, 'option'=>optionObj, 'quantity'=>number]
-    public static function addToCart($data){
+    public static function add_to_cart($data){
         // calculate weight
         $product = $data['product'];
         $option  = $data['option'];
@@ -66,11 +66,12 @@ class HelperController extends Controller
         }
         $found = Cart::search(   array('id' => $product->id)    );
         if($found){
+
             Cart::update($found[0], $data['qty']);
         } else {
             Cart::add(array(
                     'id'        => $product->id,
-                    'name'      => $product->title,
+                    'name'      => $product->title(),
                     'qty'       => $data['qty'],
                     'price'     => $option->price,
                     'options'=> array(

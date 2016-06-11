@@ -15,6 +15,7 @@
 
     {!! Form::model($product, array('route' => array('product.store') , 'files' => true)  ) !!}
 
+
         <div class="col-md-3">
             {{ Form::label('category', 'Category') }}
             {{ Form::select('category', $category_options, Input::old('category'), array('placeholder' => 'Category', 'class' => 'generic_input' )) }}
@@ -24,6 +25,12 @@
         <div class="col-md-12">
             {{ Form::label('thumbnail', 'Main image') }}
             {!! Form::file('thumbnail', Input::old('thumbnail'), array('placeholder' => 'Thumbnail', 'class' => 'generic_input' )); !!}
+        </div>
+
+        <div class="col-md-12">
+            {{ Form::label('images[]', 'More images') }}
+            <!-- <input type="file" name="thumbnail_more[]" value="{{Input::old('thumbnail')}}" placeholder="Thumbnail" multiple=""/> -->
+            {!! Form::file('images[]', array('multiple'=>true)) !!}
         </div>
 
         <div class="col-md-6">
@@ -60,7 +67,7 @@
 
 </table>
 
-<span class="replication_protocol_trigger">Add extra option</span>
+<span class="generic_submit replication_protocol_trigger">Add extra option</span>
 <script type="text/javascript">
     $('.replication_protocol_trigger').click(function(){
         $( ".replication_protocol" ).last().clone().appendTo( ".multiform" );
@@ -170,7 +177,6 @@
         <div class="col-md-12">
             {{ Form::label('related_products[]', 'Related products') }}
             {{ Form::select('related_products[]', $all_products , Input::old('related_products[]'), array(
-                'placeholder' => 'Related products(control+click to assign',
                 'class' => 'generic_input more_height',
                 'multiple'  => 'multiple',
 
