@@ -27,8 +27,8 @@ class ProductController extends Controller
     public function index(){
         $paginate_count = (int) env('PAGINATION');
         // $products = Product::paginate($paginate_count);
-        $products = DB::table('products')->orderBy('created_at', 'desc')->paginate($paginate_count);
-        dd($products[0]);
+        // $products = DB::table('products')->orderBy('created_at', 'desc')->paginate($paginate_count);
+        $products = Product::orderBy("created_at", 'desc')->paginate($paginate_count);
         $data = array(
             'products'  => $products,
             'categories'=> Category::all(),

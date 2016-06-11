@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str as Str;
 use App\Http\Requests;
 use App\Category as Category;
+use App\Product as Product;
 use View;
 use DB;
 use App\Http\Controllers\HelperController as HelperController ;
@@ -15,8 +16,8 @@ class CategoryController extends Controller
     public function show($slug){
         $paginate_count = (int) env('PAGINATION');
         $category = Category::where('slug', $slug)->first();
-        $products = $category->products()->paginate($paginate_count);
-
+        // $products = $category->products()->paginate($paginate_count);
+        $products = Product::where('category_id', $category->id)->orderBy("created_at", 'desc')->paginate($paginate_count);
         $data = array(
             'products'  => $products,
             'title'     => "Category " . $category->title()
