@@ -80,7 +80,9 @@
                     <div id="ingredients" class="tab-pane fade">
                         <div class="col-md-12">
                         @foreach($product->ingredients as $ingredient)
-                            <div id="{{$ingredient->slug}}" class="col-md-4 product_ingredient thumbnail" style="background-color:#E4B7B7;">{{$ingredient->title()}}</div>
+                            <div class="col-md-12 ">
+                                <span class="ingredient_tip"><img src="/images/ingredients-tip.svg"/></span><div class="ingredients_bg" id="{{$ingredient->slug}}" class="col-md-4 product_ingredient thumbnail" >{{$ingredient->title()}}</div>
+                            </div>
                             <script>
                                 var data = render_ingredient("{{route('ingredient.show', $ingredient->slug)}}");
                                 var drop = new Drop({
