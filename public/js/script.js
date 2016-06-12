@@ -18,7 +18,7 @@ function drop_ingredient(data, slug){
     var drop = new Drop({
         target: document.querySelector('#'+ slug +''),
         content: data,
-        position: 'bottom left',
+        position: 'bottom center',
     });
 
     drop.toggle();

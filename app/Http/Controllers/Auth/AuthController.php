@@ -65,14 +65,17 @@ class AuthController extends Controller
 
     protected function create(array $data){
         $activation_code = str_random(60);
-        EmailController::send_confirmation_email($data['email'], $data['name'], $activation_code);
 
-        return User::create([
+        $user = User::create([
             'name'              => $data['name'],
             'email'             => $data['email'],
             'password'          => bcrypt($data['password']),
             'activation_code'   => $activation_code
         ]);
+
+        EmailController::send_confirmation_email($data['email']);
+
+        return $user;
 
     }
 

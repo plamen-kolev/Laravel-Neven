@@ -29,10 +29,9 @@
         </div>
         <div class="col-md-2 clearfix"></div>
         <div class="col-md-5">
-            <h1>{{$product->title()}}</h1>
+            <h1 class='product_title'>{{$product->title()}}</h1>
             <p class="green_text inline_block">
-                {{\App\Http\Controllers\HelperController::getCurrencySymbol()}}
-                {{ number_format($option->price * $rate, 2, '.', ',') }}
+                {{\App\Http\Controllers\HelperController::getCurrencySymbol()}}<span id="option_price">{{ number_format($option->price * $rate, 2, '.', ',') }}</span>
             </p>
             <div class="col-md-12 nopadding">
                 <div class="col-md-6 nopadding">
@@ -64,11 +63,11 @@
                 </div>
 
                <div class="col-lg-12 product_nav nopadding">
-                    <ul class="nav nav-tabs">
-                        <li class="active"><a data-toggle="tab" href="#description" class="capital" href="#">{{ trans('text.description')}}</a></li>
-                        <li><a class="capital" data-toggle="tab" href="#ingredients" href="#">{{ trans('text.ingredients')}}</a></li>
-                        <li><a class="capital" data-toggle="tab" href="#tipsforuse" href="#">{{ trans('text.tips_for_use')}}</a></li>
-                        <li><a class="capital" data-toggle="tab" href="#benefits" href="#">{{ trans('text.benefits')}}</a></li>
+                    <ul class="nav nav-tabs" id="product_information">
+                        <li class="active"><a id="description_toggle" data-toggle="tab" href="#description" class="capital" href="#">{{ trans('text.description')}}</a></li>
+                        <li><a id="ingredient_toggle" class="capital" data-toggle="tab" href="#ingredients" href="#">{{ trans('text.ingredients')}}</a></li>
+                        <li><a id="tips_toggle" class="capital" data-toggle="tab" href="#tipsforuse" href="#">{{ trans('text.tips_for_use')}}</a></li>
+                        <li><a id="benefits_toggle" class="capital" data-toggle="tab" href="#benefits" href="#">{{ trans('text.benefits')}}</a></li>
                     </ul>
                </div>
 
