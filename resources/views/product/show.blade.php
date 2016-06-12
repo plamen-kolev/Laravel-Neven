@@ -108,7 +108,7 @@
     </div>
 
 </div>
-<div class="col-md-12">
+<div class="col-md-12 review_component">
     <div class="wrapper">
         <div>
             @if(Auth::check())
