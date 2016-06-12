@@ -27,15 +27,12 @@ class UserAuthCest
 
     }
 
-    // TODO Try accessing checkout with active account, should not see  Error: Activate your account to proceed to checkout
-    public function activeAccountNotSeeAlertInCheckoutTest($I){
+
+    public function inactiveAccountSeeAlertInCheckoutTest($I){
         $I->am('user');
         $I->wantTo('get activate account notification, forbidden access to checkout');
 
         $user = common_login($I, $this->name, $this->email);
-        $user->active = 0;
-        $user->save();
-
 
         $I->amOnPage( route('show_cart') );
         $I->see( 'Error: ' + trans('text.send_activation_email_message', ['url' => route('send_activation_email', $user->email) ] ) );
@@ -61,8 +58,7 @@ class UserAuthCest
         // TODO check if text.activate_account message is gone and checkout is allowed
 
     }
-//
-//
+
 //    // try logging in wrong password
     public function loggingWithWrongPasswordTest(FunctionalTester $I){
         common_login($I, $this->name, $this->email);
@@ -72,67 +68,18 @@ class UserAuthCest
         $I->click( trans('text.login') );
         $I->see( trans('auth.failed') );
     }
-//
-//    // try logging in nonexistent username (email)
-//    public function testLogingWithNonexistentEmail(){
-//        $this->common_login();
-//        $this->type('n@foo.com', 'email');
-//        $this->type('wrong_password', 'password');
-//        $this->press( trans('text.login')  );
-//        $this->see('These credentials do not match our records.');
-//    }
-//
-//    // login with blank password
-//    public function testLoginBlankPassword(){
-//        $this->assertTrue(false);
-//    }
-//
-//    // login with blank username
-//    public function testLoginBlankUsername(){
-//        $this->assertTrue(false);
-//    }
-//
-//    // go to checkout page with inactive account, try checking out
-//    public function testCheckoutPageInactiveAccount(){
-//        $this->create_account($this->name, $this->email);
-//        $user =  \App\User::where('email',$this->email)->first();
-//        $active = (bool) $user->active;
-//        $this->assertFalse($active);
-//        $this->visit('/checkout');
-//        $message = trans('text.activate_account_message');
-//
-//        $this->see($message);
-//    }
-//
-//    // go to cart page without having an account, try checking out
-//    public function testCheckingOutWithoutAccount(){
-//        $this->visit('cart/show_cart');
-//        $this->see( trans('text.create_account_to_checkout') );
-//        $this->click('#checkout_button');
-//        $this->see( trans('text.create_account') );
-//    }
-//
-//    // go to cart page with inactive account, see alert, try activating acount from there
-//    public function testActivateAccountFromCartPage(){
-//
-//        $user = $this->create_account($this->name, $this->email);
-//
-//        $this->visit('cart/show_cart');
-//        $this->see('Your account is not activated, click');
-//        $this->click('here');
-//        $this->assertTrue(false);
-//    }
-//
-//    // go to cart page without account, see alert
-//    public function testVisitCartPageWithoutAccountSeeAlert(){
-//        $this->assertTrue(false);
-//    }
-//
-//
+
 //    // enter activation code twice
-//    public function testVisitActivationUrlTwice(){
-//        $this->assertTrue(false);
-//    }
+    public function visitActivationUrlTwiceTest(FunctionalTester $I){
+        $user = common_login($I, $this->name, $this->email);
+
+
+        $I->amOnPage( route('account_activation', $user->activation_code ));
+        $I->see( trans('text.activation_successful') );
+        $I->amOnPage( route('account_activation', $user->activation_code) );
+        $I->see( trans('text.activate_user_not_found') );
+
+    }
 //
 //    public function testUserSignsUpSuccessful()
 //    {
