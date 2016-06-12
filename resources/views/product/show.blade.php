@@ -27,7 +27,7 @@
                 @endforeach
             </div>
         </div>
-        <div class="col-md-2"></div>
+        <div class="col-md-2 clearfix"></div>
         <div class="col-md-5">
             <h1>{{$product->title()}}</h1>
             <p class="green_text inline_block">
@@ -80,18 +80,22 @@
                     <div id="ingredients" class="tab-pane fade">
                         <div class="col-md-12">
                         @foreach($product->ingredients as $ingredient)
-                            <div class="col-md-12 ">
-                                <span class="ingredient_tip"><img src="/images/ingredients-tip.svg"/></span><div class="ingredients_bg" id="{{$ingredient->slug}}" class="col-md-4 product_ingredient thumbnail" >{{$ingredient->title()}}</div>
+                            <div class="col-sm-6 ingredient_label_container" id="{{$ingredient->slug}}">
+                                <span class="ingredient_tip">
+                                    <img src="/images/ingredients-tip.svg"/>
+                                </span>
+                                <div class="ingredients_bg" id="{{$ingredient->slug}}" class="col-md-4 product_ingredient thumbnail" >
+                                    {{ str_limit($ingredient->title(), $limit = 17, $end = '') }}
+                                </div>
                             </div>
                             <script>
-                                var data = render_ingredient("{{route('ingredient.show', $ingredient->slug)}}");
-                                var drop = new Drop({
-                                    target: document.querySelector('#{{$ingredient->slug}}'),
-                                    content: data,
-                                    position: 'bottom left',
-                                    openOn: 'click',
-                                    openOn: 'hover'
+                                var loaded_ingredients = {};
+
+                                $('#{{$ingredient->slug}}').bind('click', { slug: '{{$ingredient->slug}}' }, function(event) {
+                                    var slug = event.data.slug;
+                                    render_ingredient("{{route('ingredient.show', $ingredient->slug)}} ", slug);
                                 });
+
                             </script>
                         @endforeach
                         </div>

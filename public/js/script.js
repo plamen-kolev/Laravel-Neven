@@ -14,22 +14,46 @@ jQuery(document).ready(function() {
 
 });
 
-function render_ingredient(url){
-    var data;
-    jQuery.ajaxSetup({async:false});
-    $.ajax({
-        type: "GET",
-        url: url,
-        success: function(response){
-            console.log("success");
-            data = response
-        },
-        error: function(xhr, ajaxOptions, thrownError){
-            console.log("error");
-            alert(xhr.status);
-            alert(xhr.responseText);
-        },
+function drop_ingredient(data, slug){
+    var drop = new Drop({
+        target: document.querySelector('#'+ slug +''),
+        content: data,
+        position: 'bottom left',
     });
+
+    drop.toggle();
+
+}
+
+function render_ingredient(url, slug){
+    var data;
+    if(loaded_ingredients[slug]){
+        data = loaded_ingredients[slug];
+        drop_ingredient(data, slug)
+    } else {
+
+        $.ajax({
+            type: "GET",
+            url: url,
+            success: function(response){
+                data = response
+            },
+            error: function(xhr, ajaxOptions, thrownError){
+                console.log("error");
+                alert(xhr.status);
+                alert(xhr.responseText);
+            },
+        }).done(function(){
+            drop_ingredient(data, slug)
+
+        });
+
+        loaded_ingredients[slug] = data;
+    }
+
+
+
+
     return data;
 }
 

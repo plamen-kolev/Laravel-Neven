@@ -48,6 +48,11 @@
     margin-bottom: 100px;
 }
 
+.ingredient_label_container{
+    cursor:pointer;
+    margin-top:10px;
+}
+
 .extra_padding_50{
     padding:0px 50px 0px 50px;
 }
@@ -1135,14 +1140,15 @@ padding-left: 0px;
 
 .ingredient_tip{
     float:left;
-    margin-top: 20px;
+    margin-left: -15px;
 }
 
 .ingredients_bg{
     height: 30px;
     background-color: #d6c8dc;
-    margin-top: 20px;
-    width: 50%;
+    padding-top: 5px;
+    padding-left: 8px;
+    color:white;
 }
 
 
@@ -1157,14 +1163,18 @@ padding-left: 0px;
         display: inline;
     }
 
-.mobieicon_align{
-    padding-left: 0px;
-}
+    .mobieicon_align{
+        padding-left: 0px;
+    }
 
 
-.glyphicon-menu-hamburger{
-    margin-bottom: 20px;
-}
+    .glyphicon-menu-hamburger{
+        margin-bottom: 20px;
+    }
+
+    .nav-tabs>li{
+        width:100%;
+    }
 
     .menu_links_ul > li {
         display:block !important;
@@ -1209,6 +1219,7 @@ padding-left: 0px;
     .hidden_flower{
         display: none;
     }
+
 }
 
 /* Paralax by https://davidwalsh.name/parallax */
