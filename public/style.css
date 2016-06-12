@@ -29,9 +29,9 @@
 
 
 .stockist_item{
-    -webkit-box-shadow: 0px 0px 5px -1px rgba(0,0,0,0.75);
+    /*-webkit-box-shadow: 0px 0px 5px -1px rgba(0,0,0,0.75); */
     -moz-box-shadow: 0px 0px 5px -1px rgba(0,0,0,0.75);
-    box-shadow: 0px 0px 5px -1px rgba(0,0,0,0.75);
+   /* box-shadow: 0px 0px 5px -1px rgba(0,0,0,0.75); */
     min-height: 160px;
     cursor: pointer;
 }
@@ -145,8 +145,21 @@ margin-top: 20px;
     border: none;
     margin-top: 15px;
     color:white;
-    background-color: #12cab2 !important ;
+    background-color: #a0d6d2;
     text-transform: uppercase;
+    width: 130px;
+    height: 40px;
+    text-align: center;
+}
+
+.purple{
+background-color: #d6c8dc;
+}
+
+.big_btn{
+    width: 290px;
+    height: 60px;
+    text-align: center;
 }
 
 .item_container{
@@ -189,7 +202,8 @@ margin-top: 20px;
 }
 
 .progress_block{
-    background-color: #f9d0bb;
+    background-color: #e0dce3;
+    background: -webkit-linear-gradient(white, #e0dce3, white);
     width: 5px;
     /*display: inline-block;*/
     display: inherit;
@@ -213,7 +227,7 @@ margin-top: 20px;
 }
 
 .progress_circle{
-    background-color: #f9d0bb;
+    background-color: #e0dce3;
     height: 50px;
     width: 50px;
     display: inline-block;
@@ -227,10 +241,15 @@ margin-top: 20px;
 
 }
 
+.total_info{
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
 #search_input{
     border: 0px;
     height: 33px;
-    border-bottom: 2px solid #12cab2;
+    border-bottom: 2px solid #a0d6d2;
     border-radius: 0px;
     width:80%;
 }
@@ -240,7 +259,7 @@ margin-top: 20px;
     height: 35px;
     width: 35px;
     border-radius: 0px;
-    background-color: #12cab2;
+    background-color: #a0d6d2;
     border: 0px;
     padding: 10px;
 }
@@ -255,7 +274,7 @@ margin-top: 20px;
     width: 56% !important;
     margin-bottom: 9px;
 
-    background-color: #12cab2 !important ;
+    background-color: #a0d6d2 !important ;
 }
 
 #stockist_container > form{
@@ -601,7 +620,7 @@ margin-top: 20px;
 .transparent-btns_here a,
 .large-btns_here a {
     background: #222;
-    background-color:#12cab2;
+    background-color: #a0d6d2;
   }
 
 
@@ -697,7 +716,7 @@ margin-top: 20px;
 }
 
 .action_button{
-    background-color: #12cab2;
+    background-color: #a0d6d2;
     display: inline-block;
     color: white;
     width: 170px;
@@ -781,8 +800,8 @@ a:hover{
 
 
 .pagination>.active>span{
-    background-color:#12cab2;
-    border-color:#12cab2;
+    background-color:#a0d6d2;
+    border-color:#a0d6d2;
 }
 
 .product_nav{
@@ -792,7 +811,7 @@ a:hover{
 
 .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{
     border:none;
-    border-bottom: 3px solid #12cab2;
+    border-bottom: 3px solid #a0d6d2;
     border-bottom-color: solid;
 }
 
@@ -828,7 +847,7 @@ a:hover{
 
 .gallery_second{
     background-color:#f3f3f3;
-    padding:40px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
     margin-top: 40px;
 
 }
@@ -841,7 +860,7 @@ a:hover{
 }
 
 .view_product{
-    background-color:#12cab2;
+    background-color: #a0d6d2;
     color:white;
     text-transform: uppercase;
     padding-top:10px;
@@ -879,7 +898,7 @@ padding: 0px;
 }
 
 .proud{
-    background-color: #ffd1c4;
+    background-color: #c7b7ce;
     margin-top: 0px;
     padding-top: 40px;
     padding-bottom: 40px;
@@ -892,7 +911,7 @@ padding: 0px;
 .green_link{
     text-decoration:underline;
     display: block;
-    color:#12cab2;
+    color:#a0d6d2;
     text-align: center;
     margin-top:40px;
 }
@@ -915,6 +934,11 @@ padding-bottom: 40px;
     margin-top:60px;
 }
 
+.review_component{
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
 .footer_flowers{
 background-color: white;
 margin-bottom: 40px;
@@ -924,7 +948,7 @@ padding-left: 0px;
 }
 
 .footer{
-    background-color: #ebebeb;
+    background-color: #e9e7eb;
     padding-top:0px;
     margin-top:0px;
     padding-bottom:70px;
@@ -963,7 +987,7 @@ padding-left: 0px;
 
 
 .checkout_button1{
-    background-color: #F0B79A;
+    background-color: #c7b7ce;
     color: white;
     height: 30px;
     width: 130px;
@@ -972,7 +996,7 @@ padding-left: 0px;
 }
 
 .checkout_button2{
-    background-color: #12cab2;
+    background-color: #a0d6d2;
     color: white;
     height: 30px;
     width: 130px;
@@ -1023,7 +1047,7 @@ padding-left: 0px;
 .add_to_cart{
     border-radius: 0px;
     width: 100%;
-    background-color: #12cab2;
+    background-color: #a0d6d2;
     color:white;
 }
 
@@ -1039,7 +1063,7 @@ padding-left: 0px;
 
 .green_text{
     font-size:1.7em;
-    color:#12cab2;
+    color:#a0d6d2;
     border-top: 4px solid #f4f4f4;
 }
 
@@ -1056,25 +1080,25 @@ padding-left: 0px;
 }
 
 .footer_email_form input[name='email']{
-    border:2px solid #12cab2;
+    border:2px solid #a0d6d2;
     padding: 10px;
     margin-bottom:30px;
 }
 
 .language_icon{
-    color: #12cab2;
+    color: #a0d6d2;
     font-weight: bold;
 }
 
 .green_button{
-    background-color: #12cab2;
+    background-color: #a0d6d2;
     padding:3px;
     margin-bottom:30px;
     margin-top: 20px;
     border: 0px;
     color: white;
     padding: 10px;
-    text-transform:capitalize;
+    text-transform: capitalize;
 }
 
 
@@ -1087,23 +1111,26 @@ padding-left: 0px;
 }
 
 .counter_number{
-    margin-left: 5px;
+    margin-left: 6px;
+    float: left;
+    font-size: 0.8em;
 }
 
 .cart_count{
     z-index: 1;
     display: inline-block;
-    margin-left: -25px;
+    margin-left: -12px;
     color: white;
     width: 20px;
-    background: #12cab2;
+    background: #a0d6d2;
     width: 22px;
     height: 22px;
     border-radius: 50px;
 }
 
+
 .cart_icon{
-    margin-top: 21px;
+    margin-top: 0px;
 }
 
 .ingredient_tip{
@@ -1113,10 +1140,11 @@ padding-left: 0px;
 
 .ingredients_bg{
     height: 30px;
-    background-color: #f0b79b;
+    background-color: #d6c8dc;
     margin-top: 20px;
     width: 50%;
 }
+
 
 
 /* mobile version css goes here */

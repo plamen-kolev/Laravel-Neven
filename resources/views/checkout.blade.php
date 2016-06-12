@@ -20,15 +20,15 @@
                             {!! Form::password('password', array('class'=>'generic_input', 'placeholder' => trans('text.password')) , old('password')) !!}
                             {!! Form::submit(trans('text.login'), array('class'=>'generic_submit capital')) !!}
                     {!! Form::close() !!}
-                    <p><a class="green_text" href="{{route('auth.password.reset')}}">{{trans('text.forgotten_password_question')}}</a></p>
+                    <p><a class="green_link" href="{{route('auth.password.reset')}}">{{trans('text.forgotten_password_question')}}</a></p>
                 </div>
 
                 <div class="col-md-6">
-                    <a class="pull-left capital checkout_button1" href="">{{trans('text.back_to_cart')}}</a>
+                    <a class="pull-left capital generic_submit purple" href="">{{trans('text.back_to_cart')}}</a>
                 </div>
 
                 <div class="col-md-6">
-                    <a class="pull-right capital checkout_button2" href="">{{trans('text.next')}}</a>
+                    <a class="pull-right capital generic_submit" href="">{{trans('text.next')}}</a>
                 </div>
                 @endif
                 <div class="col-md-12 progress_circle_container">
@@ -128,13 +128,20 @@
                             ]) !!}
                         </div>
 
-                    <div class="col-md-6">
-                        <a class="pull-left capital checkout_button1" href="">{{trans('text.back_to_cart')}}</a>
+                    <div class="col-md-12">
+                        <div class="col-md-6">
+                            <a class="pull-left capital generic_submit purple" href=""> {{trans('text.backc')}}</a>
+                            
+                        </div>
+
+                        <div class="col-md-6">
+                            <a class="pull-right capital generic_submit" href="">{{trans('text.next')}}</a>
+                        </div>
                     </div>
 
-                    <div class="col-md-6">
-                        <a class="pull-right capital checkout_button2" href="">{{trans('text.next')}}</a>
-                    </div>
+                    
+                        
+                    
 
                     <div class="col-md-12 progress_circle_container">
                         <span style="height:40px;" class="progress_block"></span>
@@ -180,7 +187,7 @@
                     </div>
 
 
-                    <div class="col-md-12">
+                    <div class="col-md-12 total_info">
                         <h1>
                             {{ trans('text.total') }} 
                             {{\App\Http\Controllers\HelperController::getCurrencySymbol()}}
@@ -200,8 +207,9 @@
                             <input type="checkbox" id="remember_me_input" name="remember_me"/>
                         </fieldset>
                     @endif
-                {!! Form::submit(trans('text.complete_checkout'), array('class' => 'generic_submit width_65 ', 'id' => 'submitform') )!!}
-                            
+                <div class="col-md-12 progress_circle_container">
+                    {!! Form::submit(trans('text.complete_checkout'), array('class' => 'generic_submit big_btn ', 'id' => 'submitform') )!!}    
+                </div>
 
         </div>
         <div class="col-md-3"></div>
