@@ -103,6 +103,11 @@
                         <p>{!!$product->benefits()!!}</p>
                     </div>
                 </div>
+
+                <div class="col-md-12">
+                    <div>{{$product->tags}}    </div>
+                    <div>Hidden:  {{$product->hidden_tags}}    </div>
+                </div>
             </div>
         </div>
     </div>

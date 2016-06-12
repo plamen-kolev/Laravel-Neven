@@ -19,7 +19,7 @@
                     <div class="thumbnail_item_inner">
 
                         <a class="" href="{!! route('product.show', [ $product->slug ]) !!}">
-                            <img src="{{ $product->thumbnail_small }}">
+                            <img src="{{ $product->thumbnail_small }}" alt="{{ $product->title() }}">
                         </a>
 
                         <h2 class="thumbnail_title">

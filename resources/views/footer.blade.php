@@ -2,11 +2,11 @@
     <div class="col-sm-12 footer_flowers"> 
         <div class="col-sm-1"></div>
         <div class="col-sm-2">
-            <img src="/images/neven2.png" />
+            <img src="/images/neven2.png" alt="Side image above the footer"/>
         </div>
         <div class="col-sm-6"></div>
         <div class="col-sm-2 hidden_flower">
-            <img src="/images/neven1.png" />
+            <img src="/images/neven1.png" alt="Side image above the footer"/>
         </div>
         <div class="col-sm-1"></div>
 
@@ -22,8 +22,8 @@
         </div>
 
         <div class="col-sm-3">
+            <p>{{ trans('text.our_friends')}}</p>
             <ul>
-                <p>{{ trans('text.our_friends')}}</p>
                 <li><a href="">foo</a></li>
                 <li><a href="">bar</a></li>
                 <li><a href="">baz</a></li>
@@ -32,8 +32,8 @@
         </div>
 
         <div class="col-sm-3">
+            <p>{{ trans('text.find_us_on')}}</p>
             <ul>
-                <p>{{ trans('text.find_us_on')}}</p>
                 <li><a href="">facebook</a></li>
                 <li><a href="">instagram</a></li>
                 <li><a href="">twitter</a></li>

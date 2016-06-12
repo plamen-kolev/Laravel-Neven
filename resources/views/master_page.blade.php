@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('bootstrap/css/bootstrap.min.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('style.css') }}"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link rel="shortcut icon" href="{{ asset('favicon.png') }}" type="/image/png"/>
+    <link rel="shortcut icon" href="{{ asset('favicon.png') }}" />
 
     <title>Neven</title>
 </head>

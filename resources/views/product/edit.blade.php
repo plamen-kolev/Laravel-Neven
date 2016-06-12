@@ -41,7 +41,7 @@
             <h2 class="center capital">Product variety <strong>(please enter at least one)</strong></h2>    
         </div>
         
-<table class="multiform" style="width:100%">
+<table class="multiform product_option" style="width:100%">
   <tr>
     <th>Option title, like 50g or square 50 gr</th>
     <th>Weight in grames</th>

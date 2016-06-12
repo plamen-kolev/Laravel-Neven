@@ -12,7 +12,7 @@
                         <div class="col-md-2"></div>
                         <div class="col-md-10">
                             <h1>{{$slide->description}}</h1>
-                            <a class="action_button" href="{{$slide->url}}">{{ trans('text.view_product')}} <img src="images/right_arrow.png"/> </a>
+                            <a class="action_button" href="{{$slide->url}}">{{ trans('text.view_product')}} <img alt="Right arrow" src="images/right_arrow.png"/> </a>
                         </div>
                     </div>
                 </li>
@@ -37,23 +37,23 @@
             <div class="col-md-12 row-fluid icons">
                 <div class="col-md-1"></div>
                 <div class="col-md-2 proud_to">
-                    <img src="images/proud_cold_processed.png" />
+                    <img src="images/proud_cold_processed.png" alt="Cold processed" />
                 </div>
 
                 <div class="col-md-2 proud_to">
-                    <img src="images/proud_no_syntetic.png" />
+                    <img src="images/proud_no_syntetic.png" alt="No syntetic ingredients" />
                 </div>
 
                 <div class="col-md-2 proud_to">
-                    <img src="images/proud_no_fillers.png" />
+                    <img src="images/proud_no_fillers.png" alt="no fillers" />
                 </div>
 
                 <div class="col-md-2 proud_to">
-                    <img src="images/produd_vegan.png" />
+                    <img src="images/produd_vegan.png" alt="Vegan" />
                 </div>
 
                 <div class="col-md-2 proud_to">
-                    <img src="images/proud_cruelty_free.png" />
+                    <img src="images/proud_cruelty_free.png" alt="cruelty free" />
                 </div>
 	                <div class="col-md-1"></div>
             </div>
@@ -70,7 +70,7 @@
                     
                     @foreach($chunk as $stockist)
                         <div class="col-md-2 stockist_icon">
-                            <img width=150 src="{{$stockist->thumbnail_full}}" />
+                            <img width=150 src="{{$stockist->thumbnail_full}}" alt="{{$stockist->title}}" />
                         </div>
                     @endforeach
                     

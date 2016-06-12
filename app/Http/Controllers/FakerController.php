@@ -59,7 +59,7 @@ class FakerController extends Controller
                 'title' => $title,
                 'address'   => $faker->address,
                 'slug'  => Str::slug($title),
-                'thumbnail_full' => $faker->image(public_path("media/stockists") ,$width = 150, $height = 150),
+                'thumbnail_full' => $faker->imageUrl($width = 150, $height = 150),
                 'lat' => $faker->randomFloat($nbMaxDecimals = 6, $min = 40, $max = 41) ,
                 'lng'  => $faker->randomFloat($nbMaxDecimals = 6, $min = 0, $max = 1),
                 'body'  => $faker->text,

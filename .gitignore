@@ -12,3 +12,6 @@ tests/_support/_generated/WebGuyActions.php
 tests/_output/*
 /nbproject/private/
 /nbproject
+
+tests/_output/*
+tests/_output/*

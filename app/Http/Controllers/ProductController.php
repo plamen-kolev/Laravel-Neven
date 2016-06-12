@@ -257,8 +257,18 @@ class ProductController extends Controller
         return View::make('product.edit')->with($data);
     }
 
-    public function update(Request $request){
-        dd(Input::all());
+    public function update(Request $request, $slug){
+        
+        $product = Product::where('slug', $slug)->first();
+        $product->update($request->all());
+        // if( $product->validate_edit($request->all()) ){
+
+        // } else {
+            // return redirect()->back()
+                // ->withErrors($product->errors)
+                // ->withInput();
+        // }
+        
     }
 
     public function search(Request $request){

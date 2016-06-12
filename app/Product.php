@@ -109,8 +109,24 @@ class Product extends Model
             'tags'              => 'required',
     );
 
+    private $update_rules = array(
+            'category'          => 'Integer',
+
+            'thumbnail'         => 'max:10000|mimes:jpeg,jpg,png',
+    );
+
     public function validate_store($data){
         $validator = Validator::make($data, $this->store_rules);
+        
+        if($validator->fails()){
+            $this->errors = $validator->errors();
+            return false;
+        } 
+        return true;
+    }
+
+    public function validate_edit($data){
+        $validator = Validator::make($data, $this->update_rules);
         
         if($validator->fails()){
             $this->errors = $validator->errors();
