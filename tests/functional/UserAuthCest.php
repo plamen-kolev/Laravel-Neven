@@ -2,7 +2,7 @@
 
 use App\Product as Product;
 use App\Http\Controllers\HelperController as HelperController;
-
+use App\User as User;
 class UserAuthCest
 {
     public function _before(FunctionalTester $I)
@@ -40,6 +40,8 @@ class UserAuthCest
         $I->click( trans('text.checkout') );
         $I->see('Error: ' + trans('text.empty_cart_error'));
 
+//      Add item to cart to avoid empty cart error
+
         $product = Product::all()->first();
 
         HelperController::add_to_cart($data = [
@@ -59,7 +61,7 @@ class UserAuthCest
 
     }
 
-//    // try logging in wrong password
+   // try logging in wrong password
     public function loggingWithWrongPasswordTest(FunctionalTester $I){
         common_login($I, $this->name, $this->email);
         logout($I);
@@ -69,43 +71,69 @@ class UserAuthCest
         $I->see( trans('auth.failed') );
     }
 
-//    // enter activation code twice
-    public function visitActivationUrlTwiceTest(FunctionalTester $I){
+   // enter activation code twice as logged in user
+    public function visitActivationUrlTwiceAsLoggedUserTest(FunctionalTester $I){
         $user = common_login($I, $this->name, $this->email);
-
+        $I->assertFalse( (bool) $user->active);
+        $I->see($this->name, '.logged_user');
 
         $I->amOnPage( route('account_activation', $user->activation_code ));
         $I->see( trans('text.activation_successful') );
         $I->amOnPage( route('account_activation', $user->activation_code) );
         $I->see( trans('text.activate_user_not_found') );
 
+        $I->assertTrue( (bool) User::find($user->id)->active);
+
     }
-//
-//    public function testUserSignsUpSuccessful()
-//    {
-//        $username = "neven";
-//        $email = "neven@email.com";
-//
-//        $user = $this->create_account($username, $email);
-//
-//        $activation_code = $user->activation_code;
-//        $activation_url = "register/verify/{$activation_code}";
-//
-//        $this->visit("/register/verify/{$activation_code}");
-//        dd($this);
-//        $this->visit('/');
-//        $this->see($username);
-//        $this->dontSee('Register');
-//        $this->dontSee('Login');
-//
-//        $active = (bool) \App\User::where('email',$email)->first()->active;
-//        $this->assertTrue( $active);
-//        $this->visit('/cart/show_cart');
-//        $this->dontSee('Your account is not activated');
-//    }
-//
-//
-//
+
+    // enter activation code twice as logged in user
+    public function visitActivationUrlTwiceAsGuestTest(FunctionalTester $I){
+        $user = common_login($I, $this->name, $this->email);
+        $I->assertFalse( (bool) $user->active);
+        logout($I);
+        $I->see( trans( 'text.log_in' ) , '.login_button');
+        $I->amOnPage( route('account_activation', $user->activation_code ));
+        $I->see( trans('text.activation_successful') );
+        $I->amOnPage( route('account_activation', $user->activation_code) );
+        $I->see( trans('text.activate_user_not_found') );
+
+        $I->assertTrue( (bool) User::find($user->id)->active);
+    }
+
+   public function userSignsUpSuccessful(FunctionalTester $I){
+
+        $log_path = storage_path('logs/laravel.log');
+        
+        $user = create_account($I, $this->name, $this->email);
+        $activation_code = $user->activation_code;
+        $activation_url = "register/verify/{$activation_code}";
+
+        $I->amOnPage(route('account_activation', $activation_code));
+        $I->see( trans('text.activation_successful') );
+
+        $I->amOnPage( route('index') );
+        $I->see($this->name, '.logged_user');
+        $I->dontSee('Register');
+        $I->dontSee('Login');
+
+        #Now parse the logs for the email
+
+        $match = preg_grep( "/$activation_code/" , file($log_path));
+        # assert single entry was found
+        $I->assertTrue( count($match) == 1 );
+
+        # extract activation url
+        $match_string = reset($match);
+        preg_match('#href="(/\w+/\w+\/\w+)"#', $match_string, $url);
+        $url = $url[1];
+        
+        $active = (bool) \App\User::where('email',$this->email)->first()->active;
+        $I->assertTrue( $active );
+        $I->amOnPage( route('show_cart') );
+
+        $I->dontSee(trans('text.activate_account_message'));
+   }
+
 //    public function registeringExistingAccount(){
 //        $email = 'neven@email.com';
 //        $name = 'neven';
@@ -199,8 +227,6 @@ function logout($I){
 }
 
 function create_account($I, $username, $email){
-//        dd($email);
-    // sanity checks
     $I->amOnPage( route('auth.register') );
     $I->fillField('name', $username);
     $I->fillField('email', $email);

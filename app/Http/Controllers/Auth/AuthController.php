@@ -83,6 +83,7 @@ class AuthController extends Controller
         if( ! $activation_code){
             return Response('Missing activation code', 400);
         }
+        
         $user = User::where('activation_code', $activation_code)->first();
 
         if ( ! $user){
