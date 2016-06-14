@@ -20,6 +20,7 @@ class PaymentController extends Controller
 {
 
     public function check_cart_user_active(){
+
         if(! Cart::count() ){
             return HelperController::render_message(
                 trans('text.empty_cart_error'), 'alert-danger', trans('text.error')

@@ -13,17 +13,16 @@ use Cart;
 
 class EmailController extends Controller
 {
-    public static function send_confirmation_email($recipient_email, $recipient_name = '', $activation_code = ''){
+    public static function send_confirmation_email($recipient_email){
         if(! $recipient_email){
             return \Response::make('Specify email address', 400);
         }
 
-        if (! $recipient_name && ! $activation_code){
-            $user = User::where('email', $recipient_email)->first();
-            $activation_code = $user->activation_code;
-            $recipient_email = $recipient_email;
-            $recipient_name = $user->name;
-        }
+        $user = User::where('email', $recipient_email)->first();
+
+        $activation_code = $user->activation_code;
+        $recipient_email = $recipient_email;
+        $recipient_name = $user->name;
 
         $data = [
             'verify_email_text' => trans('text.verify_email_address'),

@@ -1,13 +1,13 @@
 @extends('master_page')
 @section('content')
-{{ Auth::user() }}
+
 @if (Auth::user())
     @if (!Auth::user()->active)
         <div class="col-md-12 " role="alert">
             <div class="wrapper alert alert-danger">
                 <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                 <span class="sr-only">Error:</span>
-                {!! trans('text.send_activation_email_message', ['url' => Auth::user()->confirmation_code ] ) !!}    
+                {!! trans('text.send_activation_email_message', ['url' => route('send_activation_email', Auth::user()->email) ] ) !!}
             </div>
             
         </div>

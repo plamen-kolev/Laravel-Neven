@@ -90,7 +90,7 @@ class HelperController extends Controller
         if( Config::get('app.locale') == 'en' ){
             return '&euro;';
         } else {
-            return 'kr ';
+            return 'kr';
         }
     }
 

@@ -38,7 +38,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest', ['except' => 'logout']);
+        $this->middleware('guest', ['except' => ['logout', 'account_activation']]);
     }
 
     /**
@@ -65,14 +65,17 @@ class AuthController extends Controller
 
     protected function create(array $data){
         $activation_code = str_random(60);
-        EmailController::send_confirmation_email($data['email'], $data['name'], $activation_code);
 
-        return User::create([
+        $user = User::create([
             'name'              => $data['name'],
             'email'             => $data['email'],
             'password'          => bcrypt($data['password']),
             'activation_code'   => $activation_code
         ]);
+
+        EmailController::send_confirmation_email($data['email']);
+
+        return $user;
 
     }
 
@@ -80,6 +83,7 @@ class AuthController extends Controller
         if( ! $activation_code){
             return Response('Missing activation code', 400);
         }
+        
         $user = User::where('activation_code', $activation_code)->first();
 
         if ( ! $user){

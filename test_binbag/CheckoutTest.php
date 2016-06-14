@@ -26,6 +26,14 @@ class PaymentTest extends TestCase
         $this->assertTrue(false);
     }
 
+    //    // go to cart page without having an account, try checking out
+//    public function testCheckingOutWithoutAccount(){
+//        $this->visit('cart/show_cart');
+//        $this->see( trans('text.create_account_to_checkout') );
+//        $this->click('#checkout_button');
+//        $this->see( trans('text.create_account') );
+//    }
+
     // 4242424242424242    Visa
     public function testVisaSuccessful(){
         $this->assertTrue(false);

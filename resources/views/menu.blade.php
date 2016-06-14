@@ -54,12 +54,13 @@
                     @endif
                     
                     @if(!Auth::check())
-                    <li class="mobieicon_align"><a href="{{ route('auth.login') }}"><span class="menu_icon mobile_only" ><img src="/images/sign-in.svg"/></span>{{ trans('text.log_in')}}</a></li>
-                    <li class="mobieicon_align"><a href="{{ route('auth.register') }}"><span class="menu_icon mobile_only" ><img src="/images/sign-up.svg"/></span>{{ trans('text.sign_up')}}</a></li>
+
+                        <li class="mobieicon_align"><a class="login_button" href="{{ route('auth.login') }}"><span class="menu_icon mobile_only" ><img src="/images/sign-in.svg"/></span>{{ trans('text.log_in')}}</a></li>
+                        <li class="mobieicon_align"><a href="{{ route('auth.register') }}"><span class="menu_icon mobile_only" ><img src="/images/sign-up.svg"/></span>{{ trans('text.sign_up')}}</a></li>
 
                     @else
                     <li><a href="{{ route('auth.logout') }}">{{ trans('text.log_out')}}</a></li>
-                    <li>{{ Auth::user()->name }}</li>
+                    <li class="logged_user">{{ Auth::user()->name }}</li>
                     @endif
                     
                 </ul>        

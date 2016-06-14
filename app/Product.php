@@ -40,7 +40,7 @@ class Product extends Model
     }
 
     public function description(){
-        return ( strcmp(Config::get('app.locale'), 'en') ? $this->description_nb : $this->description_nb);
+        return ( strcmp(Config::get('app.locale'), 'en') ? $this->description_nb : $this->description_en);
     }
 
     public function tips(){
@@ -104,15 +104,14 @@ class Product extends Model
             'benefits_en'       => 'required',
             'benefits_nb'       => 'required',
 
-            'thumbnail'         => 'required|max:10000|mimes:jpeg,jpg,png',
+//            'thumbnail'         => 'required|max:10000|mimes:jpeg,jpg,png',
             
             'tags'              => 'required',
     );
 
     private $update_rules = array(
             'category'          => 'Integer',
-
-            'thumbnail'         => 'max:10000|mimes:jpeg,jpg,png',
+            'thumbnail'         => 'max:100000|mimes:jpeg,jpg,png',
     );
 
     public function validate_store($data){
