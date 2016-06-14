@@ -4,8 +4,9 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">{{trans('text.login')}}</div>
+        <h1 class="capital center">{{trans('text.log_in')}}</h1>
+            <div class="panel register_container">
+                
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{!! route('auth.login') !!}">
                         {!! csrf_field() !!}
@@ -14,7 +15,7 @@
                             <label class="col-md-4 control-label">{{trans('text.email_address')}}</label>
 
                             <div class="col-md-6">
-                                <input type="email" id="login_email_field" class="form-control" name="email" value="{{ old('email') }}">
+                                <input class="generic_input" type="email" id="login_email_field" class="form-control" name="email" value="{{ old('email') }}">
 
                                 @if ($errors->has('email'))
                                     <span class="help-block">
@@ -28,7 +29,7 @@
                             <label class="col-md-4 control-label">{{trans('text.password')}}</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password">
+                                <input class="generic_input"  id="password" type="password" class="form-control" name="password">
 
                                 @if ($errors->has('password'))
                                     <span class="help-block">
@@ -50,8 +51,8 @@
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                <button id="login_button" name="login_button" type="submit" class="btn btn-primary">
-                                    <i class="fa fa-btn fa-sign-in"></i>{{trans('text.login')}}
+                                <button class="generic_submit" id="login_button" name="login_button" type="submit" class="btn btn-primary">
+                                    <i class="fa fa-btn fa-sign-in"></i>{{trans('text.log_in')}}
                                 </button>
                                 <a class="btn btn-link" href="{!! route('auth.password.reset') !!}">{{trans('text.forgotten_password_question')}}</a>
                             </div>

@@ -35,9 +35,14 @@
     min-height: 160px;
     cursor: pointer;
 }
+.stock_hover : hover{
+    border:5px solid #eee;
+
+}
 
 .stockist_item h2{
     font-size:1.3em;
+
 }
 
 .green{
@@ -102,7 +107,7 @@ p{
 }
 
 .stockist_logo{
-margin-top: 20px;
+    margin-top: 20px;
 }
 
 .generic_input{
@@ -112,6 +117,18 @@ margin-top: 20px;
     margin-top: 15px;
     width: 100%;
     
+}
+
+.checkout_input{
+    padding: 10px;
+    background-color: #f2f2f2;
+    border: none;
+    width: 50%;
+    margin-top: -10px;
+}
+
+.x{
+    margin-top: 20px;
 }
 
 .more_height{
@@ -158,7 +175,7 @@ margin-top: 20px;
 }
 
 .purple{
-background-color: #d6c8dc;
+    background-color: #d6c8dc;
 }
 
 .big_btn{
@@ -167,9 +184,19 @@ background-color: #d6c8dc;
     text-align: center;
 }
 
+.checkout_btn{
+    display: inline-block;
+    float: right;
+}
+
+.check_btns{
+    margin-top: 40px;
+}
+
 .item_container{
     margin-bottom: 0px;
     padding-bottom: 40px;
+    padding-top: 40px;
 }
 
 .shopping_item_row{
@@ -287,6 +314,14 @@ background-color: #d6c8dc;
     border:3px solid #e6e6e6;
     padding:10px;
     background-color:#fff;
+}
+
+.register_container{
+    border-style: solid;
+    border-width: 3px;
+    border-color: #f3f0f0;
+    text-align: center;
+    margin-top: 40px;
 }
 
 /*#stockist_container > form input, #stockist_container > form textarea{
@@ -633,13 +668,43 @@ background-color: #d6c8dc;
 
 .wrapper{
     margin:auto;
-    max-width:1560px;
+    /*max-width:1560px;*/
+}
+.center{
+   text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
+.tag{
+    margin-top: 40px;
+    color: #d6c8dc;
+}
+
+.ingredients_map{
+    background-color: #a0d6d2;
+    display: block;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    
+}
+
+.ingredients_world_list{
+    color: white;
+    display: inline-block;
+    margin-top: 40px;
+}
+
+.map{
+    max-width: 960px;
+}
 
 #landing_logo{
     margin-top:40px;
 }
+
+
 
 #landing_text_container{
     max-width:520px;
@@ -852,8 +917,8 @@ a:hover{
 
 .gallery_second{
     background-color:#f3f3f3;
-    padding: 0px 0px 0px 0px;
-    margin-top: 40px;
+    padding: 40px 0px 40px 0px;
+    
 
 }
 
@@ -892,7 +957,7 @@ a:hover{
 }
 
 .disclaimers{
-padding: 0px;
+    padding: 0px;
 }
 
 .proud_to{
@@ -930,9 +995,9 @@ padding: 0px;
 }
 
 .shops{
-padding-top: 40px;
-padding-bottom: 40px;
-
+    padding-top: 40px;
+    padding-bottom: 40px;
+    margin-bottom: 40px;
 }
 
 .stockists{
@@ -941,15 +1006,24 @@ padding-bottom: 40px;
 
 .review_component{
     margin-top: 40px;
-    margin-bottom: 40px;
+    border:none;
+    background-color: #e0dce3;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-bottom: 40px;
+
 }
 
+.reviews{
+    padding-left: 40px;
+    padding-right: 40px;
+}
 .footer_flowers{
-background-color: white;
-margin-bottom: 40px;
-padding-top: 40px;
-padding-right: 0px;
-padding-left: 0px;
+    background-color: white;
+    margin-bottom: 40px;
+    padding-top: 40px;
+    padding-right: 0px;
+    padding-left: 0px;
 }
 
 .footer{
@@ -1047,6 +1121,7 @@ padding-left: 0px;
   
 .center{
     text-align: center;
+    padding-top: 30px;
 }
 
 .add_to_cart{
@@ -1107,8 +1182,14 @@ padding-left: 0px;
 }
 
 
+.dropdown-menu{
+    border: none;
+    box-shadow: none;
+}
+
 .dropdown-menu li{
     margin:0px !important;
+    border: none;
 }
 
 .mobile_only{
@@ -1116,9 +1197,10 @@ padding-left: 0px;
 }
 
 .counter_number{
-    margin-left: 6px;
+    margin-left: 7px;
+    margin-top: 3px;
     float: left;
-    font-size: 0.8em;
+    font-size: 0.6em;
 }
 
 .cart_count{
@@ -1131,6 +1213,7 @@ padding-left: 0px;
     width: 22px;
     height: 22px;
     border-radius: 50px;
+
 }
 
 
@@ -1149,9 +1232,23 @@ padding-left: 0px;
     padding-top: 5px;
     padding-left: 8px;
     color:white;
+    text-align: right;
+    padding-right: 15px;
 }
 
+.ingr-pop{
+    background-color: white;
+    width: 100%;
+    padding: 15px 15px 15px 15px;
+    border-style: solid;
+    border-width: 5px;
+    border-color: #f4f4f4;
+}
 
+.ingr_pop_img{
+    display: block;
+    margin: auto;
+}
 
 /* mobile version css goes here */
 @media screen and (max-width: 1240px) {

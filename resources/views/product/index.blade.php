@@ -39,7 +39,6 @@
                                 <img src="{{ $category->thumbnail_small }}">
                             </a>
 
-                            
                            
                         </div>
                     </div>

@@ -1,12 +1,9 @@
 
-<div width="100" class="white_background">
+<div class="ingr-pop">
+	<img class="ingr_pop_img" src="{{$ingredient->thumbnail_small}}" alt="{{$ingredient->title()}}" >
     <h1>{{$ingredient->title()}}</h1>
-    <img src="{{$ingredient->thumbnail_small}}" alt="{{$ingredient->title()}}">
+    
     <p>{{$ingredient->description()}}</p>
+
 </div>
 
-<style>
-    .white_background{
-        background-color:white;
-    }
-</style>
