@@ -9,8 +9,10 @@ modules:
     enabled:
         - \Helper\Functional
         - Asserts
+        - \Helper\Acceptance
         - Laravel5:
             environment_file: .env.testing
+            
         - Db:
             dsn: 'mysql:host=localhost;dbname=test'
             user: 'root'

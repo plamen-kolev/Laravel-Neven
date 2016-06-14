@@ -80,7 +80,6 @@ return [
     'logout'        => 'Logout',
     'forgotten_password_question' => 'Forgotten password?',
     'remember_me'   => 'Remember me',
-    'register'      => 'Register',
     'send_password_reset_link' => 'Send password reset link',
     'name'          => 'Name',
     'confirm_password'  => 'Confirm Password',

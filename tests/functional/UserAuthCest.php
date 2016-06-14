@@ -3,10 +3,11 @@
 use App\Product as Product;
 use App\Http\Controllers\HelperController as HelperController;
 use App\User as User;
-class UserAuthCest
-{
-    public function _before(FunctionalTester $I)
-    {
+use Illuminate\Translation\TranslationServiceProvider;
+
+class UserAuthCest{
+
+    public function _before(FunctionalTester $I){
     }
 
     public function _after(FunctionalTester $I)
@@ -24,40 +25,6 @@ class UserAuthCest
         $I->lookForwardTo('getting registered successfully');
 
         common_login($I, $this->name, $this->email);
-
-    }
-
-
-    public function inactiveAccountSeeAlertInCheckoutTest($I){
-        $I->am('user');
-        $I->wantTo('get activate account notification, forbidden access to checkout');
-
-        $user = common_login($I, $this->name, $this->email);
-
-        $I->amOnPage( route('show_cart') );
-        $I->see( 'Error: ' + trans('text.send_activation_email_message', ['url' => route('send_activation_email', $user->email) ] ) );
-
-        $I->click( trans('text.checkout') );
-        $I->see('Error: ' + trans('text.empty_cart_error'));
-
-//      Add item to cart to avoid empty cart error
-
-        $product = Product::all()->first();
-
-        HelperController::add_to_cart($data = [
-            'product'   => $product,
-            'option'    => $product->options()->first(),
-            'qty'  => 1
-        ]);
-
-        $I->amOnPage( route('checkout') );
-
-        $I->see(trans('text.activate_account_message'));
-
-        // TODO follow activation link
-        // TODO check log for email
-        // TODO follow email activation link
-        // TODO check if text.activate_account message is gone and checkout is allowed
 
     }
 
@@ -100,7 +67,7 @@ class UserAuthCest
         $I->assertTrue( (bool) User::find($user->id)->active);
     }
 
-   public function userSignsUpSuccessful(FunctionalTester $I){
+    public function userSignsUpSuccessful(FunctionalTester $I){
 
         $log_path = storage_path('logs/laravel.log');
         
@@ -113,8 +80,8 @@ class UserAuthCest
 
         $I->amOnPage( route('index') );
         $I->see($this->name, '.logged_user');
-        $I->dontSee('Register');
-        $I->dontSee('Login');
+        $I->dontSee( trans('auth.register') );
+        $I->dontSee('text.log_in');
 
         #Now parse the logs for the email
 
@@ -134,45 +101,58 @@ class UserAuthCest
         $I->dontSee(trans('text.activate_account_message'));
    }
 
-//    public function registeringExistingAccount(){
-//        $email = 'neven@email.com';
-//        $name = 'neven';
-//
-//        $this->visit('/')->see('Login')->see('Register');
-//        $this->click('Register');
-//
-//        $this->type($name, 'name');
-//        $this->type($email, 'email');
-//        $this->type('password', 'password');
-//        $this->type('password', 'password_confirmation');
-//
-//        ($this->press('Register'));
-//        $this->seePageIs('/register');
-//        $this->see('The email has already been taken.');
-//    }
-//
-//    public function testBlankFields(){
-//        $this->check_common();
-//        $this->press('Register');
-//        $this->see('The name field is required.')->see('The email field is required.')->see('The password field is required.');
-//
-//        $this->type('plamen', 'name');
-//        $this->press('Register');
-//        $this->see('The email field is required.')->see('The password field is required.');
-//
-//        $this->type('plamen@email.com', 'email');
-//        $this->press('Register');
-//        $this->see('The password field is required.');
-//
-//        $this->type('password', 'password');
-//        $this->press('Register');
-//        $this->see('The password confirmation does not match');
-//
-//        $this->type('password', 'password');
-//        $this->type('notpassword', 'password_confirmation');
-//        $this->press('Register');
-//        $this->see('The password confirmation does not match.');
-//    }
+   public function registeringExistingAccountTest(FunctionalTester $I){
+
+        # legitimate login
+        
+        $I->amOnPage( route('auth.register') );
+
+        $I->fillField('name', $this->name);
+        $I->fillField('email', $this->email);
+        $I->fillField('password', 'password');
+        $I->fillField('password_confirmation', 'password');
+
+        $I->click('#user_register_button');
+        sleep(1);
+        $I->click('#log_out_button');
+        $I->amOnPage( route('auth.register') );
+
+        # Repeat it, should complain
+        
+        $I->fillField('name', $this->name);
+        $I->fillField('email', $this->email);
+        $I->fillField('password', 'password');
+        $I->fillField('password_confirmation', 'password');
+
+        $I->click( '#user_register_button' );
+        $I->see( trans('validation.unique', [ 'attribute' => 'email']));
+   }
+
+   public function blankFieldsTest(FunctionalTester $I){
+        $I->amOnPage( route('auth.register') );
+        $I->click('#user_register_button');
+        $I->see( trans( 'validation.filled', ['attribute'=>'name']) );
+        $I->see( trans( 'validation.filled', ['attribute'=>'email']) );
+        $I->see( trans( 'validation.filled', ['attribute'=>'password']) );
+
+        $I->fillField('name', 'plamen');
+        $I->click('#user_register_button');
+        $I->see( trans( 'validation.filled', ['attribute'=>'email']) );
+        $I->see( trans( 'validation.filled', ['attribute'=>'password']) );
+
+        $I->fillField('email', 'plamen@email.com');
+        $I->click('#user_register_button');
+        $I->see( trans( 'validation.filled', ['attribute'=>'password']) );
+
+        $I->fillField('password', 'password');
+        $I->click('#user_register_button');
+        $I->see( trans('validation.confirmed', ['attribute'=> 'password']));
+
+        $I->fillField('password', 'password');
+        $I->fillField('password_confirmation', 'notpassword');
+        $I->click('#user_register_button');
+        $I->see('The password confirmation does not match.');
+   }
 //
 //    // tests that a user can change password
 //    public function testChangePassword(){
@@ -186,17 +166,17 @@ class UserAuthCest
 //
 //    public function testInvalidData(){
 //        $short_password = '12345';
-//        $this->visit('/')->see('Login')->see('Register');
-//        $this->click('Register');
+//        $this->visit('/')->see('text.log_in')->see('text.sign_up');
+//        $this->click('#user_register_button');
 //
 //        $this->type('fakemail.com', 'email');
-//        $this->press('Register');
+//        $this->press('#user_register_button');
 //        $this->see('The email must be a valid email address.');
 //
 //        $this->type('foo@mail.com', 'email');
 //        $this->type($short_password, 'password');
 //        $this->type($short_password, 'password_confirmation');
-//        $this->press('Register');
+//        $this->press('#user_register_button');
 //        $this->see('The password must be at least 6 characters.');
 //    }
 
@@ -233,7 +213,7 @@ function create_account($I, $username, $email){
     $I->fillField('password', 'password');
     $I->fillField('password_confirmation', 'password');
 
-    $I->click('Register');
+    $I->click('#user_register_button');
 
     $I->seeRecord('users', ['email' => $email]);
     $user =  \App\User::where('email',$email)->first();

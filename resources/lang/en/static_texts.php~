@@ -1,7 +1,0 @@
-<?php
-
-return [
-    'home' => 'home in norwegian',
-    'categories' => 'categories in norwegian',
-    'blog' => 'blog in norwegian'
-];

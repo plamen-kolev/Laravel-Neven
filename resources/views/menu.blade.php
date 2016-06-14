@@ -59,7 +59,7 @@
                         <li class="mobieicon_align"><a href="{{ route('auth.register') }}"><span class="menu_icon mobile_only" ><img src="/images/sign-up.svg"/></span>{{ trans('text.sign_up')}}</a></li>
 
                     @else
-                    <li><a href="{{ route('auth.logout') }}">{{ trans('text.log_out')}}</a></li>
+                    <li><a id="log_out_button" href="{{ route('auth.logout') }}">{{ trans('text.log_out')}}</a></li>
                     <li class="logged_user">{{ Auth::user()->name }}</li>
                     @endif
                     
