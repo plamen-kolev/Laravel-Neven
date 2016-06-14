@@ -10,7 +10,7 @@
             @foreach ($stockists->chunk(4) as $chunk)
                 <div class="col-md-12 stockist_chunk_wrapper">
                     @foreach($chunk as $stockist)
-                        <div class="col-md-3">
+                        <div class="col-md-3 stock_hover">
                             <div class="stockist_item" id="{{$stockist->slug}}">
 
                                 <div class="stockist_tumbnail col-md-5">

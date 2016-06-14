@@ -46,7 +46,7 @@
                     </div>
                     
                     <div class="col-md-2">
-                        <h2><input style="width:100%;" name="{{$row->rowid}}" class="input_generic" type="number" value="{{$row->qty}}"/></h2>
+                        <h2><input style="width:100%;" name="{{$row->rowid}}" class="checkout_input" type="number" value="{{$row->qty}}"/></h2>
                     </div>
 
                     <div class="col-md-1">
@@ -54,16 +54,16 @@
                         <h2>{{\App\Http\Controllers\HelperController::getCurrencySymbol()}}
                         {{ number_format($row->price * $rate, 2, '.', ',') }}</h2>
                     </div>
-                    <div class="col-md-1">
-                        <a href="{{ route('remove_cart_item', $row->rowid) }}" class="glyphicon glyphicon-remove close_button"></a>
+                    <div class="col-md-1 x">
+                        <a href="{{ route('remove_cart_item', $row->rowid) }}" > <img src="/images/x.svg"> </a>
                     </div>
                 </div>
 
             @endforeach
 
-            <div class="col-md-12">
+            <div class="col-md-12 check_btns">
                 <input class="generic_submit" type="submit" value="{{ trans('text.update') }}" />    
-                <a class="generic_submit" href="{{ route('checkout') }}"> {{ trans('text.checkout') }} </a>
+                <a class="generic_submit checkout_btn" href="{{ route('checkout') }}"> {{ trans('text.checkout') }} </a>
             </div>
             
         </form>

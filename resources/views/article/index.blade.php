@@ -17,8 +17,6 @@
                     @endif
                     <h1><a href="{{ route('blog.show', $article->slug) }}">{{$article->title}}</a></h1>
 
-
-
                     <p>{!! $article->body !!}</p>
                     <p>{{$article->updated_at}}</p>
                     <p>Tags: {{$article->tags}}</p>

@@ -19,7 +19,7 @@ return [
     'company_name'  => 'Company name',
     'website'       => 'Website',
     'checkout_as_guest'=> 'Checkout as guest',
-    'become_stockist'=> 'Become a stockist',
+    'become_stockist'=> 'become a stockist',
     'view_stockists'=> 'stockists',
     'stockists'     => 'stockists',
     'welcome'       => 'welcome',
@@ -64,6 +64,7 @@ return [
     'view_all_products' => 'View all products',
     'username'=> 'username',
     'error' => 'error',
+    'origin_of_our_ingredients' => 'origin of our ingredients', 
 
 
 
@@ -125,7 +126,7 @@ return [
     'products'          => 'Products',
     'quantity'          => 'quantity',
     'category'          => 'category',
-    'price'             => 'Price',
+    'price'             => 'price',
     'languages'         => 'languages',
     'verify_email_address' => 'Verify your email address',
     'email_message_subject' => ':name, Welcome to Neven website',

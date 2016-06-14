@@ -81,7 +81,7 @@
                         @foreach($product->ingredients as $ingredient)
                             <div class="col-sm-6 ingredient_label_container" id="{{$ingredient->slug}}">
                                 <span class="ingredient_tip">
-                                    <img src="/images/ingredients-tip.svg"/>
+                                    <img src="/images/ingr-tip.svg"/>
                                 </span>
                                 <div class="ingredients_bg" id="{{$ingredient->slug}}" class="col-md-4 product_ingredient thumbnail" >
                                     {{ str_limit($ingredient->title(), $limit = 17, $end = '') }}
@@ -108,7 +108,7 @@
                 </div>
 
                 <div class="col-md-12">
-                    <div>{{$product->tags}}    </div>
+                    <div class="tag">{{$product->tags}}    </div>
                     <div>Hidden:  {{$product->hidden_tags}}    </div>
                 </div>
             </div>
@@ -168,7 +168,7 @@
         <div>
             <h1 class="capital center">{{ trans('text.reviews')}}</h1>
             @foreach ($reviews as $review)
-            <div class="well">
+            <div class="reviews">
                 <p>
                     @if(Auth::user() == $review->user)
                         {!! Form::open(array('url' => route("delete_review")  )) !!}
