@@ -7,7 +7,8 @@
             @endif
 
             @foreach($articles as $article)
-                <div class="well">
+            
+                <div class="col-md-2 article_thumbnail">
                     @if(Auth::user() && Auth::user()->admin)
                         {!! Form::model($article, array('route' => array('blog.destroy', $article->slug), 'method'=>'delete'  )) !!}
                             {!! Form::submit('delete', array('class' => '') )!!}
@@ -16,7 +17,7 @@
                         <a href="{{route('blog.edit', $article->slug)}}">Edit</a>
                     @endif
                     <h1><a href="{{ route('blog.show', $article->slug) }}">{{$article->title}}</a></h1>
-
+                    
                     <p>{!! $article->body !!}</p>
                     <p>{{$article->updated_at}}</p>
                     <p>Tags: {{$article->tags}}</p>

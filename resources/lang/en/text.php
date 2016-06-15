@@ -64,7 +64,11 @@ return [
     'view_all_products' => 'View all products',
     'username'=> 'username',
     'error' => 'error',
-    'origin_of_our_ingredients' => 'origin of our ingredients', 
+    'origin_of_our_ingredients' => 'origin of our ingredients',
+    'shops_distributing_our_products' => 'shops distributing our products',
+    'buy_local' => 'buy local',
+    'title' => 'title',
+    'grams' => 'grams',
 
 
     'about_page_intro' => 'We are Veli and Mila - the people behind Neven. Based in Oslo, we create junk-free, cold-processed soaps and shampoo bars, as well as other natural body products such as salves and lip balms. We have always been enthusiastic about handcrafted and luxurious, yet simple products that are free of harmful substances and good for people and the environment. Therefore, we make our own just like that. ',

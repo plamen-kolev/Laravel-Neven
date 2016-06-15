@@ -31,14 +31,14 @@
             </ul>
         </div>
 
-        <div class="col-sm-3">
+        <div class="col-sm-3 ">
             <p>{{ trans('text.find_us_on')}}</p>
-            <ul>
-                <li><a href="">facebook</a></li>
-                <li><a href="">instagram</a></li>
-                <li><a href="">twitter</a></li>
-                <li><a href="">pinterest</a></li>
-            </ul>
+            
+                <a class="soc_icons" href=""><img src="/images/facebook-icon.svg" /></a>
+                <a class="soc_icons" href=""><img src="/images/insta-icon.svg" /></a>
+                <a class="soc_icons" href=""><img src="/images/pin-icon.svg" /></a>
+                <a class="soc_icons" href=""><img src="/images/google-icon.svg" /></a>
+            
         </div>
 
         <div class="col-sm-3">

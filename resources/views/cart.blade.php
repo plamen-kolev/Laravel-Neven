@@ -20,11 +20,11 @@
     <div class="wrapper">
         <div class="col-md-1"></div>
 
-        <div class="col-md-2">{{trans('text.product')}}</div>
-        <div class="col-md-3">{{trans('text.title')}}</div>
-        <div class="col-md-2">{{trans('text.grams')}}</div>
-        <div class="col-md-2">{{trans('text.quantity')}}</div>
-        <div class="col-md-1">{{trans('text.price')}}</div>
+        <div class="col-md-2 green">{{trans('text.product')}}</div>
+        <div class="col-md-3 green">{{trans('text.title')}}</div>
+        <div class="col-md-2 green">{{trans('text.grams')}}</div>
+        <div class="col-md-2 green">{{trans('text.quantity')}}</div>
+        <div class="col-md-1 green">{{trans('text.price')}}</div>
 
         <div class="col-md-1"></div>
         <div class="col-md-12"><span class="gray_line"></span></div>
@@ -51,7 +51,7 @@
 
                     <div class="col-md-1">
                         
-                        <h2>{{\App\Http\Controllers\HelperController::getCurrencySymbol()}}
+                        <h2 class="green">{{\App\Http\Controllers\HelperController::getCurrencySymbol()}}
                         {{ number_format($row->price * $rate, 2, '.', ',') }}</h2>
                     </div>
                     <div class="col-md-1 x">
