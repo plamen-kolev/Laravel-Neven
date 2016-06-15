@@ -32,13 +32,11 @@ class UserController extends Controller
             $user->password = Hash::make($request->get('password'));
             $user->save();
 
-            $data = array(
-                'alert_type'    => 'alert-success',
-                'alert_text'    => 'Password change successful',
-                'message'       => trans('text.password_changed')
-            );
+            $data = [
+                'message' => trans('text.password_reset_email_body')
+            ];
 
-            EmailController::send_message($data);
+            EmailController::send_message($data, trans('text.password_reset_email_title') );
 
             return View::make('message')->with($data);
             

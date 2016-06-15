@@ -42,18 +42,12 @@ class EmailController extends Controller
         return View::make('order_confirmation', $data);
     }
 
-    public static function send_message($data){
-        
-        $data = array(
-            'alert_type'    => 'alert-success',
-            'alert_text'    => 'Password change successful',
-            'message'       => trans('text.password_changed')
-        );
+    public static function send_message($data, $title){
 
-        $response = Mail::send('message', $data, function($message) use($data){
+        $response = Mail::send('message', $data, function($message){
             $message->to( Auth::user()->email , Auth::user()->name )
                 ->from( env('MAIL_USERNAME') )
-                ->subject( $data['alert_text'] );
+                ->subject( $title );
         });
     }
 
