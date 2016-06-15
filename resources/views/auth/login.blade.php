@@ -51,7 +51,7 @@
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                <button class="generic_submit" id="login_button" name="login_button" type="submit" class="btn btn-primary">
+                                <button class="generic_submit" id="login_form_button" name="login_button" type="submit" class="btn btn-primary">
                                     <i class="fa fa-btn fa-sign-in"></i>{{trans('text.log_in')}}
                                 </button>
                                 <a class="btn btn-link" href="{!! route('auth.password.reset') !!}">{{trans('text.forgotten_password_question')}}</a>

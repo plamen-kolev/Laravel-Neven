@@ -88,6 +88,9 @@ use App\Product as Product;
         Route::post('login/', ['as' => 'auth.login', 'uses' => 'Auth\AuthController@login']);
         Route::get('logout/', ['as' => 'auth.logout', 'uses' => 'Auth\AuthController@logout']);
 
+        Route::match(array('GET', 'POST'), 'password/change', ['before' => 'csrf', 'as' => 'change_password', 'uses' => 'UserController@change_password']);
+
+
         // Mail activation routes
         Route::get('register/verify/{confirmationCode}/', [
             'as' => 'account_activation',

@@ -10,6 +10,7 @@ use App\User;
 use App\Http\Requests;
 use Exception;
 use Cart;
+use Auth;
 
 class EmailController extends Controller
 {
@@ -39,6 +40,21 @@ class EmailController extends Controller
 
     public static function send_order_email($data){
         return View::make('order_confirmation', $data);
+    }
+
+    public static function send_message($data){
+        
+        $data = array(
+            'alert_type'    => 'alert-success',
+            'alert_text'    => 'Password change successful',
+            'message'       => trans('text.password_changed')
+        );
+
+        $response = Mail::send('message', $data, function($message) use($data){
+            $message->to( Auth::user()->email , Auth::user()->name )
+                ->from( env('MAIL_USERNAME') )
+                ->subject( $data['alert_text'] );
+        });
     }
 
     public static function send_stockist_email($first_name,$last_name,$email,$website,$company,$about){

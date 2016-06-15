@@ -73,11 +73,11 @@ return [
     'search'        => 'search',
     'subscribe'     => 'subscribe',
 
+    'password_changed' => 'Your password has been successfully changed.',
     // forms
     'reset_password'=> 'Reset password',
     'email_address' => 'Email address',
     'password'      => 'Password',
-    'login'         => 'Login',
     'logout'        => 'Logout',
     'forgotten_password_question' => 'Forgotten password?',
     'remember_me'   => 'Remember me',
