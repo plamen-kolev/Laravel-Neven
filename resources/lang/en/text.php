@@ -64,7 +64,11 @@ return [
     'view_all_products' => 'View all products',
     'username'=> 'username',
     'error' => 'error',
-    'origin_of_our_ingredients' => 'origin of our ingredients', 
+    'origin_of_our_ingredients' => 'origin of our ingredients',
+    'shops_distributing_our_products' => 'shops distributing our products',
+    'buy_local' => 'buy local',
+    'title' => 'title',
+    'grams' => 'grams',
 
 
 

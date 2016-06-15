@@ -90,7 +90,7 @@
         
             <h1 class="white align-center capital">{{ trans('text.origin_of_our_ingredients')}}</h1>
         
-        <div class="col-md-12 center">
+        <div class="col-md-12 center_map">
             <img class="full map" src="/images/world-map.svg"/>    
         </div>
         
