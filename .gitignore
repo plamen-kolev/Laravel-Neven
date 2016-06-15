@@ -7,7 +7,6 @@ output.html
 Homestead.yaml
 Homestead.json
 .idea
-.env
 tests/_support/_generated/WebGuyActions.php
 tests/_output/*
 /nbproject/private/

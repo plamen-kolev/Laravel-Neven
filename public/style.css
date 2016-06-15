@@ -314,7 +314,7 @@ p{
     background-color: #a0d6d2 !important ;
 }
 
-#stockist_container > form{
+#stockist_container form{
 
     border:3px solid #e6e6e6;
     padding:10px;
@@ -1149,7 +1149,7 @@ a:hover{
 .green_text{
     font-size:1.7em;
     color:#a0d6d2;
-    border-top: 4px solid #f4f4f4;
+    /*border-top: 4px solid #f4f4f4;*/
 }
 
 .icons_and_trade{
@@ -1256,9 +1256,33 @@ a:hover{
     border-color: #f4f4f4;
 }
 
+.headline_container{
+    max-width:1000px;
+    margin:auto;
+    text-align: center;
+    line-height: 1.6;
+}
+
+.margin_top_60{
+    margin-top:60px;
+}
+
+.margin-top_35{
+    margin-top: 35px;
+}
+
+.margin_bottom_60{
+    margin-bottom:60px;
+}
+
 .ingr_pop_img{
     display: block;
     margin: auto;
+}
+
+.no_top_spacing{
+    margin-top:0px;
+    padding-top:0px;
 }
 
 /* mobile version css goes here */

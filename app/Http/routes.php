@@ -44,6 +44,10 @@ use App\Product as Product;
         /** ADD ALL LOCALIZED ROUTES INSIDE THIS GROUP **/
 
         Route::get('/',                     array('as' => 'index', 'uses' => 'PageController@index'));
+        Route::get('about/',                     array('as' => 'about', 'uses' => 'PageController@about'));
+        
+        Route::match( array('GET', 'POST'),'contact',
+                      array('before' => 'csrf', 'as' => 'contact', 'uses' => 'PageController@contact'));
 
         Route::get('category/', array('as' => 'category.index', 'uses' => 'CategoryController@index'));
         Route::get('category/{category}', array('as' => 'category.show', 'uses' => 'CategoryController@show')) ; 
@@ -87,6 +91,9 @@ use App\Product as Product;
         Route::get('login/',  ['as' => 'auth.login', 'uses' => 'Auth\AuthController@showLoginForm']);
         Route::post('login/', ['as' => 'auth.login', 'uses' => 'Auth\AuthController@login']);
         Route::get('logout/', ['as' => 'auth.logout', 'uses' => 'Auth\AuthController@logout']);
+
+        Route::match(array('GET', 'POST'), 'password/change', ['before' => 'csrf', 'as' => 'change_password', 'uses' => 'UserController@change_password']);
+
 
         // Mail activation routes
         Route::get('register/verify/{confirmationCode}/', [
