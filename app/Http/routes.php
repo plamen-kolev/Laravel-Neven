@@ -45,6 +45,9 @@ use App\Product as Product;
 
         Route::get('/',                     array('as' => 'index', 'uses' => 'PageController@index'));
         Route::get('about/',                     array('as' => 'about', 'uses' => 'PageController@about'));
+        
+        Route::match( array('GET', 'POST'),'contact',
+                      array('before' => 'csrf', 'as' => 'contact', 'uses' => 'PageController@contact'));
 
         Route::get('category/', array('as' => 'category.index', 'uses' => 'CategoryController@index'));
         Route::get('category/{category}', array('as' => 'category.show', 'uses' => 'CategoryController@show')) ; 

@@ -57,17 +57,9 @@ class EmailController extends Controller
         });
     }
 
-    public static function send_stockist_email($first_name,$last_name,$email,$website,$company,$about){
-        $data = [
-            'first_name'    => $first_name,
-            'last_name'     => $last_name,
-            'email'         => $email,
-            'website'       => $website,
-            'company'       => $company,
-            'about'         => $about
-        ];
+    public static function send_contact_email($data){
 
-        $response = Mail::send('stockist_email', $data, function($message){
+        $response = Mail::send('contact_email', $data, function($message){
             $message->to( env('MAIL_USERNAME') , env('MAIL_NAME') )
                 ->from( env('MAIL_USERNAME') )
                 ->subject( 'New stockist received' );

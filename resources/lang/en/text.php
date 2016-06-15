@@ -74,7 +74,7 @@ return [
     'about_page_intro_part_2' => 'We believe that anything in frequent contact with our skin must not be harmful to our body. It should not contain synthetic preservatives, fragrances, colorants or other well known junk ingredients that go into the average commercial soap. We believe soap is simple and it must remain so. The result of naturally occurring chemical reaction, it should simply clean and disinfect our bodies, but it could also nourish and hydrate the skin by supplying it with fatty acids, phytochemicals, and minerals. 
 
     We believe that soap and other cosmetic products should not be tested on animals, nor contain animal fat. They should also not pose a threat to anybody\'s well-being or the environment. We believe people deserve a choice. We deserve better, natural body products that benefit us in the long run.',
-
+    'hearing_from_you' => 'we would love to hear from you',
 
 
 

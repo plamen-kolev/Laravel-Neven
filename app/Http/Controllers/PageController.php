@@ -42,6 +42,23 @@ class PageController extends Controller
         return View::make('about');
     }
 
+    public function contact(Request $request){
+        if($request->isMethod('POST')){
+            $this->validate($request, [
+                'first_name'    => 'required|max:255|string',
+                'last_name'     => 'required|max:255|string',
+                'email'         => 'required|max:255|email',
+                'telephone'     => 'required|numeric',
+                'about'       => 'required|max:5000|'
+            ]);
+
+            EmailController::send_contact_email($request->all());
+        }
+
+        return View::make('contact');
+    }
+
+
     public function subscribe(Request $request){
 
         $validator = Validator::make($request->all(), [
@@ -70,14 +87,7 @@ class PageController extends Controller
                 'about_you'     => 'required|max:5000|'
 
             ]);
-            EmailController::send_stockist_email(
-                Input::get('first_name'),
-                Input::get('last_name'),
-                Input::get('email'),
-                Input::get('website'),
-                Input::get('company'),
-                Input::get('about_you')
-            );
+            EmailController::send_contact_email( $request->all() );
             $our_response = [
                 'alert_text' => 'Thank you !', 
                 'alert_type' =>'success',
@@ -87,8 +97,6 @@ class PageController extends Controller
         }
         return View::make('stockist');
     }
-
-
 
     public function admin(){
         return View::make('admin');

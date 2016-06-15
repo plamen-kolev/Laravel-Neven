@@ -31,7 +31,7 @@
                         
                     </li>
                     <li class="mobieicon_align"><a href="{{ route('about') }}"><span class="menu_icon mobile_only" ><img alt="{{ trans('text.about_us') }}" src="/images/about.svg"/></span>{{ trans('text.about_us') }}</a></li>
-                    <li class="mobieicon_align"><a href="#"><span class="menu_icon mobile_only" ><img alt="Contact page" src="/images/contact.svg"/></span>{{ trans('text.contact_us') }}</a></li>
+                    <li class="mobieicon_align"><a href="{{ route('contact') }}"><span class="menu_icon mobile_only" ><img alt=" {{trans('text.contact')}} " src="/images/contact.svg"/></span>{{ trans('text.contact_us') }}</a></li>
                     <li class="mobieicon_align"><a href="{{route('blog.index')}}"><span class="menu_icon mobile_only" ><img alt="Blog" src="/images/blog.svg"/></span>{{ trans('text.blog') }}</a></li>
 
                 </ul>    
