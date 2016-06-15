@@ -44,6 +44,7 @@ use App\Product as Product;
         /** ADD ALL LOCALIZED ROUTES INSIDE THIS GROUP **/
 
         Route::get('/',                     array('as' => 'index', 'uses' => 'PageController@index'));
+        Route::get('about/',                     array('as' => 'about', 'uses' => 'PageController@about'));
 
         Route::get('category/', array('as' => 'category.index', 'uses' => 'CategoryController@index'));
         Route::get('category/{category}', array('as' => 'category.show', 'uses' => 'CategoryController@show')) ; 

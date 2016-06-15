@@ -38,6 +38,10 @@ class PageController extends Controller
 
     }
 
+    public function about(){
+        return View::make('about');
+    }
+
     public function subscribe(Request $request){
 
         $validator = Validator::make($request->all(), [

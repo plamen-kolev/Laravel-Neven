@@ -64,7 +64,7 @@ return [
             'engine'    => null,
         ],
 
-        'testing' => [
+        'test' => [
             'driver'    => 'mysql',
             'host'      => env('DB_HOST', 'localhost'),
             'database'  => 'test',
