@@ -70,7 +70,6 @@ class UserAuthCest{
 
     public function userSignsUpSuccessful(FunctionalTester $I){
 
-        $log_path = storage_path('logs/laravel.log');
         
         $user = create_account($I, $this->name, $this->email, $this->password);
         $activation_code = $user->activation_code;
@@ -86,6 +85,7 @@ class UserAuthCest{
 
         #Now parse the logs for the email
 
+        $log_path = storage_path('logs/laravel.log');
         $match = preg_grep( "/$activation_code/" , file($log_path));
         # assert single entry was found
         $I->assertTrue( count($match) == 1 );
@@ -209,47 +209,101 @@ class UserAuthCest{
         $I->fillField('password_confirmation', $this->new_password);
         $I->click('#change_password_button');
 
-
-
-        
         # check that no change accoured
-        $I->see( trans('text.password_changed') );
+        $I->see( trans('text.password_change_email_body', ['name' => Auth::user()->name]) );
 
         $I->assertTrue( Hash::check( $this->new_password , User::find($user->id)->password ));
+
         # Test email confirmation
 
+        $log_path = storage_path('logs/laravel.log');
         
+        $date = date('Y-m-d G:i:s') . '.*\n.*\n.*\n.*\n.*\n.*\n.*\n.*\n\n.*';
+        $match = preg_grep( "/$date/" , file($log_path));
+        
+        # assert single entry was found
 
-        $I->assertTrue(false);
+        $cmd = "tail " . storage_path('logs/laravel.log') ." | grep 'Hello, " . $this->name . ", your password has been'";
+        $output = system($cmd);
+        $I->assertEquals( trans('text.password_change_email_body', ['name' => $this->name]), $output );
     }
 
     public function passwordLongerThan120CharsTest(FunctionalTester $I){
-        $I->assertTrue(false);
+        $user = common_login($I, $this->name, $this->email, $this->password);
+        $I->amOnPage( route('change_password') );
+        
+        $out_of_bound_password = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';
+
+        $I->fillField('current_password', $this->password);
+        $I->fillField('password', $out_of_bound_password);
+        $I->fillField('password_confirmation', $out_of_bound_password);
+        $I->click('#change_password_button');
+
+        $I->see( trans('validation.max.string', ['attribute' => 'password', 'max' => 120]) );
+
     }
 
-   //
-//
-//    // test forgotten password email
-//    public function testForgottenpassword(){
-//        $this->assertTrue();
-//    }
-//
-//    public function testInvalidData(){
-//        $short_password = '12345';
-//        $this->visit('/')->see('text.log_in')->see('text.sign_up');
-//        $this->click('#user_register_button');
-//
-//        $this->type('fakemail.com', 'email');
-//        $this->press('#user_register_button');
-//        $this->see('The email must be a valid email address.');
-//
-//        $this->type('foo@mail.com', 'email');
-//        $this->type($short_password, 'password');
-//        $this->type($short_password, 'password_confirmation');
-//        $this->press('#user_register_button');
-//        $this->see('The password must be at least 6 characters.');
-//    }
+    // test forgotten password email
+    public function forgottenpasswordTest(FunctionalTester $I){
+        $user = common_login($I, $this->name, $this->email, $this->password);
+        logout($I);
+        $I->amOnPage( route('auth.password.reset') );
+        $I->fillField('.email_form', 'nonregistered email');
+        $I->click( trans('text.send_password_reset_link') );
+        $I->see( 'The email must be a valid email address.' );
 
+        $I->fillField('.email_form', 'some@gibberish.com');
+        $I->click( trans('text.send_password_reset_link') );
+        $I->see( trans('passwords.user') );
+
+        $I->fillField('.email_form', $this->email);
+        $I->click( trans('text.send_password_reset_link') );
+        $I->see( trans('passwords.sent') );
+
+        # check email
+        $token = DB::table('password_resets')->where('email', $this->email)->first()->token;
+        $log_path = storage_path('logs/laravel.log');
+        $match = preg_grep( "/$token/" , file($log_path));
+        $match = implode('|', $match);
+
+        preg_match('#href="(.*)"#', $match, $url);
+        $url = $url[1];
+        $I->comment($url);
+        # follow email
+        $I->amOnPage($url);
+
+        $I->see( trans('text.reset_password') );
+        $I->click( '.reset_password_button' );
+        $I->see( trans('validation.filled', ['attribute' => 'password']) );
+        $I->fillField('password', $this->new_password);
+        $I->click( '.reset_password_button' );
+        $I->see( trans('validation.confirmed', ['attribute' => 'password']) );
+        
+        # change password
+        $I->fillField('password', $this->new_password);
+        $I->fillField('password_confirmation', $this->new_password);
+        $I->click( '.reset_password_button' );
+
+        # see index page
+        
+        $I->click('.logged_user');
+    }
+
+    public function invalidDataTest(FunctionalTester $I){
+        $short_password = '12345';
+        $I->amOnPage( route('auth.register') );
+        $I->click('#user_register_button');
+
+        $I->fillField('email', 'fakemail.com');
+        $I->click('#user_register_button');
+        $I->see('The email must be a valid email address.');
+
+        $I->fillField('email', 'foo@mail.com');
+        $I->fillField('password', $short_password);
+        $I->fillField('password_confirmation', $short_password);
+        $I->click('#user_register_button');
+        $I->see('The password must be at least 6 characters.');
+    }
 }
 
 //  ============   HELPER CONTROLLER
@@ -278,7 +332,7 @@ function logout($I){
 
 function create_account($I, $username, $email, $password){
     $I->amOnPage( route('auth.register') );
-    $I->fillField('name', $username);
+    $I->fillField('.input_name', $username);
     $I->fillField('email', $email);
     $I->fillField('password', $password);
     $I->fillField('password_confirmation', $password);

@@ -15,7 +15,7 @@
                             <label class="col-md-4 control-label">{{trans('text.name')}}</label>
 
                             <div class="col-md-6">
-                                <input type="text" class="generic_input" name="name" value="{{ old('name') }}">
+                                <input type="text" class="generic_input input_name" name="name" value="{{ old('name') }}">
 
                                 @if ($errors->has('name'))
                                     <span class="help-block">

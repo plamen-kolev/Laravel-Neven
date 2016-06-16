@@ -42,13 +42,16 @@ class EmailController extends Controller
         return View::make('order_confirmation', $data);
     }
 
-    public static function send_message($data, $title){
+    public static function password_change(){
+        $response = Mail::send('password_change_email', 
+            ['password_change_message' => trans('text.password_change_email_body', ['name' => Auth::user()->name] )], 
 
-        $response = Mail::send('message', $data, function($message){
-            $message->to( Auth::user()->email , Auth::user()->name )
-                ->from( env('MAIL_USERNAME') )
-                ->subject( $title );
-        });
+            function($message){
+                $message->to( Auth::user()->email , Auth::user()->name )
+                    ->from( env('MAIL_USERNAME') )
+                    ->subject( trans('text.password_change_email_title') );
+                }
+        );
     }
 
     public static function send_contact_email($data){

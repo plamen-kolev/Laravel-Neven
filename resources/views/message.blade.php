@@ -15,8 +15,5 @@
         </p>
     @endif
 
-
-    
-
 </div>
 @stop

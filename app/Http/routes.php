@@ -105,11 +105,19 @@ use App\Product as Product;
         Route::get('register/', ['as' => 'auth.register', 'uses' => 'Auth\AuthController@showRegistrationForm']);
         Route::post('register/', ['as' => 'auth.register', 'uses' => 'Auth\AuthController@register']);
 
-        // Password Reset Routes...
-        Route::get('password/reset/{token?}/', ['as' => 'auth.password.reset', 'uses' => 'Auth\PasswordController@showResetForm']);
-        Route::post('password/email/', ['as' => 'auth.password.email', 'uses' => 'Auth\PasswordController@sendResetLinkEmail']);
-        Route::post('password/reset/', ['as' => 'auth.password.reset', 'uses' => 'Auth\PasswordController@reset']
-        );
+        // Password reset link request routes...
+        Route::get('password/email', ['as' => 'auth.password.reset', 'uses' => 'Auth\PasswordController@getEmail']);
+        Route::post('password/email', ['as' => 'auth.password.email', 'uses' => 'Auth\PasswordController@postEmail']);
+
+        // Password reset routes...
+        Route::get('password/reset/{token}', ['as' => 'auth.password.getRest', 'uses' => 'Auth\PasswordController@getReset']);
+        Route::post('password/reset', [ 'as' => 'auth.password.postReset', 'uses' => 'Auth\PasswordController@postReset']);
+
+        // // // Password Reset Routes...
+        // Route::get('password/reset/{token?}/', ['as' => 'auth.password.reset', 'uses' => 'Auth\PasswordController@showResetForm']);
+        // Route::post('password/email/', ['as' => 'auth.password.email', 'uses' => 'Auth\PasswordController@sendResetLinkEmail']);
+
+        // Route::post('password/reset/', ['as' => 'auth.password.reset', 'uses' => 'Auth\PasswordController@reset']);
 
         # ingredients
         Route::get('ingredient/{slug}/', ['as' => 'ingredient.show', 'uses' => 'IngredientController@show']

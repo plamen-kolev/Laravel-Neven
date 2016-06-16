@@ -21,7 +21,7 @@
                             <label class="col-md-4 control-label">{{trans('text.email_address')}}</label>
 
                             <div class="col-md-6">
-                                <input type="email" class="form-control" name="email" value="{{ old('email') }}">
+                                <input type="email" class="form-control email_form" name="email" value="{{ old('email') }}">
 
                                 @if ($errors->has('email'))
                                     <span class="help-block">
@@ -33,8 +33,8 @@
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="fa fa-btn fa-envelope"></i>{{trans('text.send_password_reset_link')}}
+                                <button type="submit" class="btn btn-primary reset_password_button">
+                                    <i class="fa fa-btn fa-envelope "></i>{{trans('text.send_password_reset_link')}}
                                 </button>
                             </div>
                         </div>

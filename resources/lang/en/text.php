@@ -86,7 +86,7 @@ return [
     'search'        => 'search',
     'subscribe'     => 'subscribe',
 
-    'password_changed' => 'Your password has been successfully changed.',
+    'password_change_email_body' => 'Hello, :name, your password has been successfully changed.',
     // forms
     'reset_password'=> 'Reset password',
     'email_address' => 'Email address',

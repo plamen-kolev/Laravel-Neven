@@ -33,10 +33,10 @@ class UserController extends Controller
             $user->save();
 
             $data = [
-                'message' => trans('text.password_reset_email_body')
+                'message' => trans('text.password_change_email_body', ['name' => Auth::user()->name] )
             ];
 
-            EmailController::send_message($data, trans('text.password_reset_email_title') );
+            EmailController::password_change();
 
             return View::make('message')->with($data);
             

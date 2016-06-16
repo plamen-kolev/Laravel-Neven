@@ -15,7 +15,6 @@ use App\ShippingOption as ShippingOption;
 use Cart;
 class HelperController extends Controller
 {
-
     public static function upload_image($imate_input, $path, $name){
         $filename  = time() . $name . "." . $image_input->getClientOriginalExtension();
         File::exists(public_path('media')) or File::makeDirectory(public_path('media'));
