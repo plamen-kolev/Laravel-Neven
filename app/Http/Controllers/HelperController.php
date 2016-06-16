@@ -107,6 +107,10 @@ class HelperController extends Controller
 
     }
 
+    public static function get_price($price){
+        return round(HelperController::getRate() * $price, 2);
+    }
+
     // will see how much the cart weights and where it is send to, returning a price according to the Shipment options object
     public static function calculate_shipping_cost($country_code){
         # get total weight
@@ -130,14 +134,14 @@ class HelperController extends Controller
         $product_cost = Cart::total();
         $total = $shipping_cost + $product_cost;
         $costs = [
-            'shipping_lowest'  => $option->price* 100,
-            'product_lowest'   => Cart::total()*100,
+            'shipping_lowest'  => HelperController::get_price($option->price) * 100,
+            'product_lowest'   => HelperController::get_price(Cart::total())*100,
             
-            'shipping'         => $option->price,
-            'product'          => Cart::total(),
+            'shipping'         => HelperController::get_price($option->price),
+            'product'          => HelperController::get_price(Cart::total()),
 
-            'total_lowest'     => $total * 100,
-            'total'            => $total,
+            'total_lowest'     => HelperController::get_price($total) * 100,
+            'total'            => HelperController::get_price($total),
             
         ];
         return $costs;
@@ -155,7 +159,7 @@ class HelperController extends Controller
 
     public static function hangon(){
         print "Press any key to continue";
-        fgets(STDIN);
+        fgets('STDIN');
     }
 
 
@@ -165,15 +169,24 @@ class HelperController extends Controller
         $I->fillField('#cvc_number_input', '123');
         $I->selectOption("#exp_element", 'December');
         $I->click('#submitform');
-        sleep(2);
+        // sleep(2);
     }
 
     public static function iterate_and_fill_form($I, $input_id, $text, $expected_errors){
         $I->fillField($input_id, $text );
         HelperController::fill_valid_bank_details_and_submit($I);
-        sleep( 1 );
-        $error_count = $I->grabMultiple('.error_label');
-        $I->assertEquals( $expected_errors, count($error_count) );
+        
+        $counter = 5;
+        while($counter){
+            $error_count = $I->grabMultiple('.alert-danger');
+            if($expected_errors == count($error_count)){
+                $I->assertTrue($expected_errors == count($error_count));
+                return 1;
+            }
+            sleep(1);
+            $counter--;
+        }
+        
     }
 
     public static function fill_valid_address($I){

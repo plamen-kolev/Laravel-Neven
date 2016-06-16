@@ -172,7 +172,7 @@ class Initial extends Migration
 
         Schema::create('shipping_options', function (Blueprint $table){
             $table->increments('id');
-
+            $table->string('country', 100);
             $table->string('country_code', 3);
             $table->integer('weight')->unsigned();
             $table->float('price')->unsigned();

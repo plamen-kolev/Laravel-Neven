@@ -8,6 +8,7 @@ class_name: AcceptanceTester
 modules:
     enabled:
         - WebDriver
+        - Asserts
         # - PhpBrowser:
             # url: http://localhost/myapp
         - \Helper\Acceptance

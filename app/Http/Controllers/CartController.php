@@ -31,8 +31,6 @@ class CartController extends Controller
     }
 
     public function add_to_cart(Request $request){
-        
-
         $this->validate($request, [
             'product_slug' => 'required|max:255',
             'option_slug'  => 'required|max:255',

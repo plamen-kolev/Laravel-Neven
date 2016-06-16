@@ -114,16 +114,7 @@
                         </div>
                         
                         <div class="col-md-6">
-                        {!! Form::select('country', array(
-                            "AF" => "Afghanistan",
-                            "AG" => "Antigua and Barbuda",
-                            "AR" => "Argentina",
-                            "AM" => "Armenia",
-                            "BO" => "Bolivia, Plurinational State of",
-                            "NO" => "Norway",
-                            "OM" => "Oman",
-
-                            ), 'NO', ['placeholder' => trans('text.country'),
+                        {!! Form::select('country', $shipping_countries, 'NO', ['placeholder' => trans('text.country'),
                                         'class'     => 'generic_input'
                             ]) !!}
                         </div>
@@ -225,14 +216,19 @@
         // This identifies your website in the createToken call below
         Stripe.setPublishableKey("{{ env('STRIPE_KEY') }}");
         get_total_price();
+        $('select[name="country"').change(function(){
+            get_total_price()
+        });
+        
         $('#row6_input').change( function(){get_total_price()} );
 
         function get_total_price(){
-            var country_code = $('#row6_input').find(":selected").val();
+            var country_code = $('select[name="country"]').find(":selected").val();
             $.ajax({
                 dataType: "json",
                 url: '/cart/calculate_shipping_cost/' + country_code,
                 success: function(cost){
+                    console.log(cost);
                     $('#shipping_calc').html("Shipping: {{\App\Http\Controllers\HelperController::getCurrencySymbol()}}<span id='shipping_cost'>"+ cost.shipping + "</span> Product cost: {{\App\Http\Controllers\HelperController::getCurrencySymbol()}}" + cost.product + " Total: {{\App\Http\Controllers\HelperController::getCurrencySymbol()}}" + cost.total);
                 }
             });

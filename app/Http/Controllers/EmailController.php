@@ -39,6 +39,19 @@ class EmailController extends Controller
     }
 
     public static function send_order_email($data){
+        $response = Mail::send('order_confirmation', $data, function($message) use($data){
+            $message->to( $data['order']->email )
+                ->from( env('MAIL_USERNAME') )
+                ->subject( trans('text.password_change_email_title') );
+            }
+        );
+        $response = Mail::send('order_confirmation', $data, function($message){
+            $message->to( env('MAIL_USERNAME') , env('MAIL_NAME') )
+                ->from( env('MAIL_USERNAME') )
+                ->subject( trans('text.password_change_email_title') );
+            }
+        );
+
         return View::make('order_confirmation', $data);
     }
 

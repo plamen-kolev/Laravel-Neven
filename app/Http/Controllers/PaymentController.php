@@ -12,6 +12,7 @@ use App\Http\Requests;
 use Cart;
 use Auth;
 use App\User as User;
+use DB;
 use Redirect;
 use App\Http\Controllers\EmailController as EmailController;
 use App\Http\Controllers\HelperController as HelperController;
@@ -140,8 +141,14 @@ class PaymentController extends Controller
 
         }
         
+        $shipping_countries = DB::table('shipping_options')->distinct()->lists('shipping_options.country', 'shipping_options.country_code');
         $rate = HelperController::getRate();
 
-        return View::make('checkout')->with('cart', Cart::total())->with('rate', $rate);
+        $data = [
+            'rate' => $rate, 
+            'shipping_countries' => $shipping_countries,
+            'cart' => Cart::total()
+        ];
+        return View::make('checkout')->with($data);
     }
 }

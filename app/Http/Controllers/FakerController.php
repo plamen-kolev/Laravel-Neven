@@ -232,18 +232,21 @@ class FakerController extends Controller
         // create shipping options
         ShippingOption::create([
             'country_code' => 'NO',
+            'country'       => 'Norway',
             'weight'       => 300,
             'price'        => 10
         ]);
 
         ShippingOption::create([
             'country_code' => 'NO',
+            'country'       => 'Norway',
             'weight'       => 500,
             'price'        => 30
         ]);
 
         ShippingOption::create([
             'country_code' => 'GB',
+            'country'       => 'Great Britain',
             'weight'       => 300,
             'price'        => 30
         ]);
@@ -251,6 +254,7 @@ class FakerController extends Controller
 
         ShippingOption::create([
             'country_code' => 'ALL',
+            'country'       => 'Other',
             'weight'       => 300,
             'price'        => 300
         ]);
