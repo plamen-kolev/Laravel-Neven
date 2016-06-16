@@ -31,6 +31,8 @@ class CartController extends Controller
     }
 
     public function add_to_cart(Request $request){
+        
+
         $this->validate($request, [
             'product_slug' => 'required|max:255',
             'option_slug'  => 'required|max:255',
@@ -50,7 +52,7 @@ class CartController extends Controller
             'qty'  => $quantity
         ]);
 
-        return \Response::make("Item {$product->title()} ({$option->title}) added", 200);
+        return response()->json(['item' => $product->title(), 'option' => $option->title, 'total_items' => Cart::count()]);
     }
 
     function remove_cart_item(Request $request, $rowid){

@@ -184,7 +184,6 @@ class ProductController extends Controller
                         $product->save();    
                     }
                 }
-                
             }
 
             # ingredients
@@ -207,7 +206,6 @@ class ProductController extends Controller
                 ->withErrors($product->errors)
                 ->withInput();
         }
-
 
         $data = array(
             'alert_type'    => 'alert-success',

@@ -51,38 +51,48 @@ function render_ingredient(url, slug){
         loaded_ingredients[slug] = data;
     }
 
-
-
-
     return data;
 }
 
-function add_to_cart($product_slug, $option_slug, $url, $csrf_token){
-    $url_path = '/' + $url.split("/").slice(3).join("/");
-    // console.log($('input[name="_token"]').val());
-    console.log($url_path);
+function add_to_cart(product_slug, option_slug, url, csrf_token){
+    var url_path = '/' + url.split("/").slice(3).join("/");
+    var quantity = parseInt($('#product_quantity').val());
+    if(!quantity){
+        console.log("positive numbers please :/");
+        return;
+    }
     $.ajaxSetup({
         headers: { 'X-CSRF-Token': $('input[name="_token"]').val() }
     });
 
     $.ajax({
-      type: "POST",
-      url: $url_path,
-      data: {
-        'product_slug' : $product_slug, 
-        'option_slug'  : $option_slug, 
-        'quantity'     : $('#product_quantity').val(),
-        'csrftoken'    : $csrf_token
-      },
-      success: function(){
-        console.log("success");
-      },
-      error: function(xhr, ajaxOptions, thrownError){
-        
+        type: "POST",
+        url: url_path,
+        data: {
+            'product_slug' : product_slug, 
+            'option_slug'  : option_slug, 
+            'quantity'     : quantity,
+            'csrftoken'    : csrf_token
+        }, success: function(response){
+            // get current count items
+            $('.counter_number').html(response.total_items);
+
+
+            
+            $('.cart_count').css('background', 'black');
+            
+            setTimeout(function(){  
+                $('.cart_count').css('background', '#a0d6d2');
+            }, 1000);
+
+            // $('.counter_number').parent().css('background', '#a0d6d2');
+        }, error: function(xhr, ajaxOptions, thrownError){
             alert(xhr.status);
             alert(xhr.responseText);
-      },
-      dataType: "json"
+        }, dataType: "json"
+    
+    }).done(function(){
+
     });
 }
 
