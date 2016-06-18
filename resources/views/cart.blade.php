@@ -30,8 +30,8 @@
         <div class="col-md-12"><span class="gray_line"></span></div>
         <form method="POST" action="{{ route('show_cart') }}">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-            @foreach($cart as $row)
-                <div class="col-md-12 shopping_item_row">
+            @foreach($cart as $index=>$row)
+                <div class="col-md-12 shopping_item_row ">
                     <div class="col-md-1"></div>
                     <div class="col-md-2">
                         <img src="{{$row->options->thumbnail_small}}" />

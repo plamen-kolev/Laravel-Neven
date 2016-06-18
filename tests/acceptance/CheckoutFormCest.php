@@ -3,7 +3,12 @@
 use App\Product as Product;
 use App\Http\Controllers\HelperController as HelperController;
 class CheckoutFormCest
-{
+{   
+    private $name = 'neven';
+    private $email = "neven@nevensite.com";
+    private $password = 'password';
+    private $new_password = 'password1';
+
     public function _before(AcceptanceTester $I)
     {
 
@@ -55,46 +60,7 @@ class CheckoutFormCest
 
 
         # now fill every one sequentially and check if the error count goes down
-        $inputs = array(
-            [
-                'input_id' => 'guest_email',
-                'text'     => 'foo@gmail.com',
-                'expected_errors' => 6
-            ],
-            [
-                'input_id' => '#row1_input',
-                'text'     => 'First name',
-                'expected_errors' => 5
-            ],
-            [
-                'input_id' => '#row2_input',
-                'text'     => 'Last name',
-                'expected_errors' => 4
-            ],
-            [
-                'input_id' => '#row3_input',
-                'text'     => 'Address',
-                'expected_errors' => 3
-            ],
-            [
-                'input_id' => '#row5_input',
-                'text'     => 'City',
-                'expected_errors' => 2
-            ],
-            [
-                'input_id' => '#row7_input',
-                'text'     => 'Post Code',
-                'expected_errors' => 1
-            ],
-            [
-                'input_id' => '#row8_input',
-                'text'     => '0886689632',
-                'expected_errors' => 0
-            ],
-        );
-        foreach ($inputs as $index=>$input){
-            \App\Http\Controllers\HelperController::iterate_and_fill_form($I, $input['input_id'], $input['text'], $input['expected_errors']);
-        }
+        fill_shipping($I);
         $I->see( trans('text.successful_order') , '#order_successful_message');
 
     }
@@ -102,12 +68,13 @@ class CheckoutFormCest
     // test empty card field (other payment details valid)
     public function testEmptyCardFields(AcceptanceTester $I){
 
-        \App\Http\Controllers\HelperController::login($I);
+        \App\Http\Controllers\HelperController::login($I, $this->email, $this->password);
         $I->amOnPage('checkout');
         \App\Http\Controllers\HelperController::fill_valid_address($I);
         $I->click('#submitform');
         sleep(1);
         $I->selectOption("#exp_element", 'December');
+        sleep(100);
 
         $I->see('The card number is not a valid credit card number.', '#card_error_field');
 
@@ -222,5 +189,49 @@ class CheckoutFormCest
             )
         );
     }
+
+
     
+}
+function fill_shipping($I){
+    $inputs = array(
+        [
+            'input_id' => 'guest_email',
+            'text'     => 'foo@gmail.com',
+            'expected_errors' => 6
+        ],
+        [
+            'input_id' => '#row1_input',
+            'text'     => 'First name',
+            'expected_errors' => 5
+        ],
+        [
+            'input_id' => '#row2_input',
+            'text'     => 'Last name',
+            'expected_errors' => 4
+        ],
+        [
+            'input_id' => '#row3_input',
+            'text'     => 'Address',
+            'expected_errors' => 3
+        ],
+        [
+            'input_id' => '#row5_input',
+            'text'     => 'City',
+            'expected_errors' => 2
+        ],
+        [
+            'input_id' => '#row7_input',
+            'text'     => 'Post Code',
+            'expected_errors' => 1
+        ],
+        [
+            'input_id' => '#row8_input',
+            'text'     => '0886689632',
+            'expected_errors' => 0
+        ],
+    );
+    foreach ($inputs as $index=>$input){
+        \App\Http\Controllers\HelperController::iterate_and_fill_form($I, $input['input_id'], $input['text'], $input['expected_errors']);
+    }
 }

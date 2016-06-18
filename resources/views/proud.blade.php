@@ -5,23 +5,23 @@
             <div class="col-md-12 row-fluid icons">
                 <div class="col-md-1"></div>
                 <div class="col-md-2 proud_to">
-                    <img src="images/proud_cold_processed.png" alt="Cold processed" />
+                    <img src="/images/proud_cold_processed.png" alt="Cold processed" />
                 </div>
 
                 <div class="col-md-2 proud_to">
-                    <img src="images/proud_no_syntetic.png" alt="No syntetic ingredients" />
+                    <img src="/images/proud_no_syntetic.png" alt="No syntetic ingredients" />
                 </div>
 
                 <div class="col-md-2 proud_to">
-                    <img src="images/proud_no_fillers.png" alt="no fillers" />
+                    <img src="/images/proud_no_fillers.png" alt="no fillers" />
                 </div>
 
                 <div class="col-md-2 proud_to">
-                    <img src="images/produd_vegan.png" alt="Vegan" />
+                    <img src="/images/produd_vegan.png" alt="Vegan" />
                 </div>
 
                 <div class="col-md-2 proud_to">
-                    <img src="images/proud_cruelty_free.png" alt="cruelty free" />
+                    <img src="/images/proud_cruelty_free.png" alt="cruelty free" />
                 </div>
 	            <div class="col-md-1"></div>
             </div>

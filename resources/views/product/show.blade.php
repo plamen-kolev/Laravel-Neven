@@ -15,13 +15,13 @@
     <div class="wrapper">
         <div class="col-md-5">
             <a href="{{$product->thumbnail_full}}" data-lightbox="image-1" data-title="{{$product->title()}}">
-                <img width=100% id="item-display" src="{{$product->thumbnail_medium}}" alt="{{$product->title()}}"/>
+                <img align="middle" style="width:100%;" id="item-display" data-src="{{$product->thumbnail_medium}}" src="{{ asset('images/loading.gif') }}" alt="{{$product->title()}}"/>
             </a>
             <div class="col-md-12 nopadding">
                 @foreach($product->images as $index => $image)
-                <div class="col-md-3 nopadding pull-left" style="padding:5px; max-width:150px; overflow:hidden;display:inline-block">
+                <div class="col-md-3 nopadding pull-left related_container" style="padding:5px; max-width:150px; overflow:hidden;display:inline-block">
                     <a href="{{$image->thumbnail_full}}" data-lightbox="image-1" data-title="Related image for {{$product->title()}}">
-                        <img style="width:100%;" src="{{$image->thumbnail_small}}" alt="Related image for {{$product->title()}}"/>    
+                        <img data-src="{{$image->thumbnail_small}}" src="{{ asset('images/loading.gif') }}"  alt="Related image for {{$product->title()}}"/>    
                     </a>
                 </div>
                 @endforeach
@@ -38,7 +38,7 @@
                     <form action="" class="col-md-12 nopadding" method="POST">
                         <input type="hidden" name="_token" value="{{csrf_token()}}"/>
                         <div class="col-md-8 nopadding_left">
-                            <select class="generic_input" name="option" onchange="this.form.submit()">
+                            <select class="generic_input option_dropdown" name="option" onchange="this.form.submit()">
                             @foreach($product->options as $opt)
                                 <option 
                                     {{ ($opt->slug == $option->slug) ? 'selected' : "" }} value="{{$opt->slug}}">{{$opt->title}} 
@@ -56,7 +56,8 @@
                     
                 </div>
                 <div class="col-md-6 nopadding">
-                    <button class="generic_submit btn btn-success add_to_cart"
+                    <div class="product_added_trigger"><p>{{trans('text.item_added')}}</p></div>
+                    <button id="add_to_cart_button" class="generic_submit btn btn-success add_to_cart"
                             onclick="add_to_cart('{{$product->slug}}', '{{$option->slug}}', '{!! route('add_to_cart') !!}')">
                                 + {{ trans('text.add_to_cart') }}
                     </button>    
@@ -81,7 +82,7 @@
                         @foreach($product->ingredients as $ingredient)
                             <div class="col-sm-6 ingredient_label_container" id="{{$ingredient->slug}}">
                                 <span class="ingredient_tip">
-                                    <img src="/images/ingr-tip.svg"/>
+                                    <img data-src="/images/ingr-tip.svg" src="{{ asset('images/loading.gif') }}"/>
                                 </span>
                                 <div class="ingredients_bg" id="{{$ingredient->slug}}" class="col-md-4 product_ingredient thumbnail" >
                                     {{ str_limit($ingredient->title(), $limit = 17, $end = '') }}
@@ -200,7 +201,7 @@
                 <div class="col-md-2 thumbnail_item">
                     <div class="thumbnail_item_inner">
                         
-                        <img src="{{$product->thumbnail_small}}">
+                        <img data-src="{{$product->thumbnail_small}}" src="{{ asset('images/loading.gif') }}"/>
                         <h2 class="thumbnail_title">
                             <a class="" href="{!! route('product.show', [ $product->slug ]) !!}"> {{$product->title()}} </a>
                         </h2>

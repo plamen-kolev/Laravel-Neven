@@ -121,7 +121,7 @@
 
                     <div class="col-md-12">
                         <div class="col-md-6">
-                            <a class="pull-left capital generic_submit purple" href=""> {{trans('text.backc')}}</a>
+                            <a class="pull-left capital generic_submit purple" href=""> {{trans('text.back')}}</a>
                             
                         </div>
 
@@ -130,17 +130,22 @@
                         </div>
                     </div>
 
-                    
-                        
-                    
-
                     <div class="col-md-12 progress_circle_container">
                         <span style="height:40px;" class="progress_block"></span>
                         <span class="progress_circle"></span>
                         <h1 class="capital center">{{trans('text.payment')}}</h1>
                         <span style="height:40px;" class="progress_block"></span>
                     </div>
-                    <span class="payment-errors"></span>
+
+                    
+                    <div class="col-md-12 payment_errors" style="display:none;">
+                        <div class="alert alert-danger" role="alert">
+                            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                            <span class="sr-only">{{trans('text.error')}}</span>
+                            <span class="payment-errors"></span>
+                        </div>
+                    </div>
+
                     <div class="col-md-12">
                         {!! Form::text('', '', array(
                             'class'         => 'generic_input', 
@@ -188,15 +193,13 @@
 
                     </div>
                     
-
-                    
-
-
                     @if (Auth::user())
-                        <fieldset class="form-group">
+                        <div class="col-md-12">
                             <label for="remember_me_input">{{trans('text.remember_user_details')}}</label>
-                            <input type="checkbox" id="remember_me_input" name="remember_me"/>
-                        </fieldset>
+                            <input type="checkbox" id="remember_me_input" name="remember_me"/>    
+                        </div>
+                        
+                        
                     @endif
                 <div class="col-md-12 progress_circle_container">
                     {!! Form::submit(trans('text.complete_checkout'), array('class' => 'generic_submit big_btn ', 'id' => 'submitform') )!!}    
@@ -228,7 +231,7 @@
                 dataType: "json",
                 url: '/cart/calculate_shipping_cost/' + country_code,
                 success: function(cost){
-                    console.log(cost);
+                    // console.log(cost);
                     $('#shipping_calc').html("Shipping: {{\App\Http\Controllers\HelperController::getCurrencySymbol()}}<span id='shipping_cost'>"+ cost.shipping + "</span> Product cost: {{\App\Http\Controllers\HelperController::getCurrencySymbol()}}" + cost.product + " Total: {{\App\Http\Controllers\HelperController::getCurrencySymbol()}}" + cost.total);
                 }
             });
@@ -236,9 +239,7 @@
 
         jQuery(function($) {
             $('.main_menu').hide();
-
             $('#payment-form').submit(function(event) {
-//                event.preventDefault();
 
                 var $form = $(this);
 
@@ -257,10 +258,11 @@
 
             if (response.error) {
                 // Show the errors on the form
+                $('.payment_errors').show();
                 $form.find('.payment-errors').text(response.error.message);
-                console.log(response.error.message);
                 $form.find('button').prop('disabled', false);
             } else {
+                $('.payment_errors').hide();
                 // response contains id and card, which contains additional card details
                 var token = response.id;
                 // Insert the token into the form so it gets submitted to the server

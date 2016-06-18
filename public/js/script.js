@@ -1,4 +1,7 @@
 jQuery(document).ready(function() {
+    
+    // unveil js
+    $("img").unveil();
 
     $('.hamburger_toggle').click(function(e) {
         console.log("trigger");
@@ -76,12 +79,12 @@ function add_to_cart(product_slug, option_slug, url, csrf_token){
         }, success: function(response){
             // get current count items
             $('.counter_number').html(response.total_items);
-
-
             
             $('.cart_count').css('background', 'black');
+            $('.product_added_trigger').css('display','block');
             
             setTimeout(function(){  
+                $('.product_added_trigger').css('display','none');
                 $('.cart_count').css('background', '#a0d6d2');
             }, 1000);
 

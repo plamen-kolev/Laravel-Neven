@@ -51,7 +51,7 @@ class EmailController extends Controller
                 ->subject( trans('text.password_change_email_title') );
             }
         );
-
+        Cart::destroy();
         return View::make('order_confirmation', $data);
     }
 

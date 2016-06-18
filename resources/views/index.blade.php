@@ -8,7 +8,9 @@
             <ul id="slider" class="rslides centered-btns centered-btns1">
                 @foreach ($slides as $slide)
                 <li>
-                    <div class="slide_item" style="background-image:url('{{$slide->image}}');">
+                    <img class="slide_image" data-src="{{$slide->image}}" src="{{ asset('images/loading.gif') }}" alt="{{ $slide->title}}">
+                    <div class="slide_item">
+                        
                         <div class="col-md-2"></div>
                         <div class="col-md-10">
                             <h1>{{$slide->description}}</h1>

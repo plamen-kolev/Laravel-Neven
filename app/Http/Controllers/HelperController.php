@@ -58,29 +58,23 @@ class HelperController extends Controller
         // calculate weight
         $product = $data['product'];
         $option  = $data['option'];
-
         $total_weight = 0;
         for ($i=0; $i < $data['qty']; $i++) {
             $total_weight += $option->weight;
         }
-        $found = Cart::search(   array('id' => $product->id)    );
-        if($found){
 
-            Cart::update($found[0], $data['qty']);
-        } else {
-            Cart::add(array(
-                    'id'        => $product->id,
-                    'name'      => $product->title(),
-                    'qty'       => $data['qty'],
-                    'price'     => $option->price,
-                    'options'=> array(
-                        'option'    => $option,
-                        'thumbnail_small' => $product->thumbnail_small,
-                        'weight'    => $total_weight
-                    )
+        Cart::add(array(
+                'id'        => $product->id,
+                'name'      => $product->title(),
+                'qty'       => $data['qty'],
+                'price'     => $option->price,
+                'options'=> array(
+                    'option'    => $option,
+                    'thumbnail_small' => $product->thumbnail_small,
+                    'weight'    => $total_weight
                 )
-            );
-        }
+            )
+        );
 
         return 1;
     }
@@ -159,7 +153,7 @@ class HelperController extends Controller
 
     public static function hangon(){
         print "Press any key to continue";
-        fgets('STDIN');
+        fgets(STDIN);
     }
 
 
@@ -199,12 +193,13 @@ class HelperController extends Controller
         $I->fillField('#row8_input', '088888');
     }
 
-    public static function login($I){
+    public static function login($I, $email, $password){
        $I->amOnPage('/');
-       $I->click('#menu_login_button');
-       $I->fillField('#login_email_field', env('SELENIUM_TEST_USER') . "@neven.com");
-       $I->fillField('#password', 'password');
-       $I->click('#login_button');
+       $I->click('.hamburger_toggle');
+       $I->click('.login_button');
+       $I->fillField('#login_email_field', $email);
+       $I->fillField('#password', $password);
+       $I->click('#login_form_button');
     }
 
 }

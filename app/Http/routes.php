@@ -76,7 +76,7 @@ use App\Product as Product;
 
         // CartController
         Route::post('cart/add_to_cart/',    array('before' => 'csrf', 'as' => 'add_to_cart', 'uses' => 'CartController@add_to_cart'));
-        Route::match(                       array('GET', 'POST'),'cart/show_cart/',
+        Route::match(                       array('GET', 'POST'),'cart/',
                                             array('as' => 'show_cart', 'uses' => 'CartController@show_cart'));
         Route::get('cart/remove_cart/{$cart_instance}',
                                             array('as' => 'remove_cart', 'uses' => 'CartController@remove_cart'));
