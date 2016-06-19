@@ -5,23 +5,23 @@
             <div class="col-md-12 row-fluid icons">
                 <div class="col-md-1"></div>
                 <div class="col-md-2 proud_to">
-                    <img src="/images/proud_cold_processed.png" alt="Cold processed" />
+                    <img data-src="{{asset('images/proud_cold_processed.png')}}" src="{{ asset('images/loading.gif') }}" alt="Cold processed"/>
                 </div>
 
                 <div class="col-md-2 proud_to">
-                    <img src="/images/proud_no_syntetic.png" alt="No syntetic ingredients" />
+                    <img data-src="{{asset('images/proud_no_syntetic.png')}}" src="{{ asset('images/loading.gif') }}" alt="No syntetic ingredients"/>
                 </div>
 
                 <div class="col-md-2 proud_to">
-                    <img src="/images/proud_no_fillers.png" alt="no fillers" />
+                    <img data-src="{{asset('images/proud_no_fillers.png')}}" src="{{ asset('images/loading.gif') }}" alt="no fillers"/>
                 </div>
 
                 <div class="col-md-2 proud_to">
-                    <img src="/images/produd_vegan.png" alt="Vegan" />
+                    <img data-src="{{asset('images/produd_vegan.png')}}" src="{{ asset('images/loading.gif') }}" alt="Vegan"/>
                 </div>
 
                 <div class="col-md-2 proud_to">
-                    <img src="/images/proud_cruelty_free.png" alt="cruelty free" />
+                    <img data-src="{{asset('images/proud_cruelty_free.png')}}" src="{{ asset('images/loading.gif') }}" alt="cruelty free"/>
                 </div>
 	            <div class="col-md-1"></div>
             </div>

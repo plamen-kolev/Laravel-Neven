@@ -163,7 +163,7 @@ class HelperController extends Controller
         $I->fillField('#cvc_number_input', '123');
         $I->selectOption("#exp_element", 'December');
         $I->click('#submitform');
-        // sleep(2);
+         sleep(2);
     }
 
     public static function iterate_and_fill_form($I, $input_id, $text, $expected_errors){
@@ -200,6 +200,45 @@ class HelperController extends Controller
        $I->fillField('#login_email_field', $email);
        $I->fillField('#password', $password);
        $I->click('#login_form_button');
+    }
+
+    public static function create_account($I, $username, $email, $password){
+        $I->amOnPage( route('auth.register') );
+        $I->fillField('.input_name', $username);
+        $I->fillField('email', $email);
+        $I->fillField('password', $password);
+        $I->fillField('password_confirmation', $password);
+
+        $I->click('#user_register_button');
+
+        $I->seeRecord('users', ['email' => $email]);
+        $user =  \App\User::where('email',$email)->first();
+
+        $active = (bool) $user->active;
+        $I->assertFalse($active);
+
+        return $user;
+    }
+
+    public static function common_login($I, $name, $email, $password){
+        $user = HelperController::create_account($I, $name, $email, $password);
+    //        user is logged in automatically first time, so visit logout page first
+        $I->click( trans('text.log_out') );
+
+        $I->amOnPage( route('auth.login') );
+        $I->see( trans('text.forgotten_password_question') );
+        $I->fillField('email', $email);
+        $I->fillField('password', $password);
+        $I->click( '#login_form_button' );
+        $I->see( $name, '.logged_user' );
+        $I->see( $name );
+
+        return $user;
+    }
+
+    public static function logout($I){
+        $I->click( '#log_out_button' );
+        $I->amOnPage( route('auth.login') );
     }
 
 }

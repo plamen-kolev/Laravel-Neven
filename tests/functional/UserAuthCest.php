@@ -25,14 +25,14 @@ class UserAuthCest{
         $I->wantTo('go to register');
         $I->lookForwardTo('getting registered successfully');
 
-        common_login($I, $this->name, $this->email, $this->password);
+        HelperController::common_login($I, $this->name, $this->email, $this->password);
 
     }
 
    // try logging in wrong password
     public function loggingWithWrongPasswordTest(FunctionalTester $I){
-        common_login($I, $this->name, $this->email, $this->password);
-        logout($I);
+        HelperController::common_login($I, $this->name, $this->email, $this->password);
+        HelperController::logout($I);
         $I->fillField('email', $this->email);
         $I->fillField('password', 'wrong_password');
         $I->click( '#login_form_button' );
@@ -41,7 +41,7 @@ class UserAuthCest{
 
    // enter activation code twice as logged in user
     public function visitActivationUrlTwiceAsLoggedUserTest(FunctionalTester $I){
-        $user = common_login($I, $this->name, $this->email, $this->password);
+        $user = HelperController::common_login($I, $this->name, $this->email, $this->password);
         $I->assertFalse( (bool) $user->active);
         $I->see($this->name, '.logged_user');
 
@@ -56,9 +56,9 @@ class UserAuthCest{
 
     // enter activation code twice as logged in user
     public function visitActivationUrlTwiceAsGuestTest(FunctionalTester $I){
-        $user = common_login($I, $this->name, $this->email, $this->password);
+        $user = HelperController::common_login($I, $this->name, $this->email, $this->password);
         $I->assertFalse( (bool) $user->active);
-        logout($I);
+        HelperController::logout($I);
         $I->see( trans( 'text.log_in' ) , '.login_button');
         $I->amOnPage( route('account_activation', $user->activation_code ));
         $I->see( trans('text.activation_successful') );
@@ -71,7 +71,7 @@ class UserAuthCest{
     public function userSignsUpSuccessful(FunctionalTester $I){
 
         
-        $user = create_account($I, $this->name, $this->email, $this->password);
+        $user = HelperController::create_account($I, $this->name, $this->email, $this->password);
         $activation_code = $user->activation_code;
         $activation_url = "register/verify/{$activation_code}";
 
@@ -161,7 +161,7 @@ class UserAuthCest{
     public function changePasswordTest(FunctionalTester $I){
         $I->amOnPage( route('change_password') );
         $I->seeResponseCodeIs(403);
-        $user = common_login($I, $this->name, $this->email, $this->password);
+        $user = HelperController::common_login($I, $this->name, $this->email, $this->password);
 
         $current_password = $user->password;
 
@@ -229,7 +229,7 @@ class UserAuthCest{
     }
 
     public function passwordLongerThan120CharsTest(FunctionalTester $I){
-        $user = common_login($I, $this->name, $this->email, $this->password);
+        $user = HelperController::common_login($I, $this->name, $this->email, $this->password);
         $I->amOnPage( route('change_password') );
         
         $out_of_bound_password = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';
@@ -245,8 +245,8 @@ class UserAuthCest{
 
     // test forgotten password email
     public function forgottenpasswordTest(FunctionalTester $I){
-        $user = common_login($I, $this->name, $this->email, $this->password);
-        logout($I);
+        $user = HelperController::common_login($I, $this->name, $this->email, $this->password);
+        HelperController::logout($I);
         $I->amOnPage( route('auth.password.reset') );
         $I->fillField('.email_form', 'nonregistered email');
         $I->click( trans('text.send_password_reset_link') );
@@ -268,7 +268,7 @@ class UserAuthCest{
 
         preg_match('#href="(.*)"#', $match, $url);
         $url = $url[1];
-        $I->comment($url);
+
         # follow email
         $I->amOnPage($url);
 
@@ -304,46 +304,4 @@ class UserAuthCest{
         $I->click('#user_register_button');
         $I->see('The password must be at least 6 characters.');
     }
-}
-
-//  ============   HELPER CONTROLLER
-
-function common_login($I, $name, $email, $password){
-
-    $user = create_account($I, $name, $email, $password);
-//        user is logged in automatically first time, so visit logout page first
-    $I->click( trans('text.log_out') );
-
-    $I->amOnPage( route('auth.login') );
-    $I->see( trans('text.forgotten_password_question') );
-    $I->fillField('email', $email);
-    $I->fillField('password', $password);
-    $I->click( '#login_form_button' );
-    $I->see( $name, '.logged_user' );
-    $I->see( $name );
-
-    return $user;
-}
-
-function logout($I){
-    $I->click( '#log_out_button' );
-    $I->amOnPage( route('auth.login') );
-}
-
-function create_account($I, $username, $email, $password){
-    $I->amOnPage( route('auth.register') );
-    $I->fillField('.input_name', $username);
-    $I->fillField('email', $email);
-    $I->fillField('password', $password);
-    $I->fillField('password_confirmation', $password);
-
-    $I->click('#user_register_button');
-
-    $I->seeRecord('users', ['email' => $email]);
-    $user =  \App\User::where('email',$email)->first();
-
-    $active = (bool) $user->active;
-    $I->assertFalse($active);
-
-    return $user;
 }

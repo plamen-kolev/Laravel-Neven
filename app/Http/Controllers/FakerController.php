@@ -59,7 +59,7 @@ class FakerController extends Controller
                 'title' => $title,
                 'address'   => $faker->address,
                 'slug'  => Str::slug($title),
-                'thumbnail_full' => $faker->imageUrl($width = 150, $height = 150),
+                'thumbnail_full' => $this::local_image($faker->image($dir = public_path('media'), $width = 150, $height = 150)),
                 'lat' => $faker->randomFloat($nbMaxDecimals = 6, $min = 40, $max = 41) ,
                 'lng'  => $faker->randomFloat($nbMaxDecimals = 6, $min = 0, $max = 1),
                 'body'  => $faker->text,
@@ -79,7 +79,7 @@ class FakerController extends Controller
 
         foreach(range(1,$this->slide_images) as $index){
             Slide::create([
-                'image' => $faker->imageUrl($width = 1560, $height = 480),
+                'image' => $this::local_image($faker->image($dir = public_path('media'), $width = 1560, $height = 480)),
                 'url'   => "google.com",
                 'description' => $faker->text
             ]);
@@ -89,9 +89,9 @@ class FakerController extends Controller
             // CATEGORY
             $title = 'Category' . $index . " " . str_random(10);
             $category = new Category ([
-                'thumbnail_full'    => $faker->imageUrl($width = 1280, $height = 720),
-                'thumbnail_medium'  => $faker->imageUrl($width = 640, $height = 480),
-                'thumbnail_small'   => $faker->imageUrl($width = 150, $height = 150),
+                'thumbnail_full'    => $this::local_image($faker->image($dir = public_path('media'), $width = 1280, $height = 720)),
+                'thumbnail_medium'  => $this::local_image($faker->image($dir = public_path('media'), $width = 640, $height = 480)),
+                'thumbnail_small'   => $this::local_image($faker->image($dir = public_path('media'), $width = 150, $height = 150)),
                 'slug'      =>  Str::slug($title),
                 
                 'title_en'  => $title,
@@ -109,9 +109,9 @@ class FakerController extends Controller
         foreach(range(1,$this->ingredient_num) as $index){
             $title = 'Ingredient' . $index  . str_random(10);
             $ingredient = Ingredient::create([
-                'thumbnail_full'    => $faker->imageUrl($width = 1280, $height = 720),
-                'thumbnail_medium'  => $faker->imageUrl($width = 640, $height = 480),
-                'thumbnail_small'   => $faker->imageUrl($width = 150, $height = 70),
+                'thumbnail_full'    => $this::local_image($faker->image($dir = public_path('media'), $width = 1280, $height = 720)),
+                'thumbnail_medium'  => $this::local_image($faker->image($dir = public_path('media'), $width = 640, $height = 480)),
+                'thumbnail_small'   => $this::local_image($faker->image($dir = public_path('media'), $width = 150, $height = 70)),
                 'slug'              =>  Str::slug($title),
                 
                 'title_en'          => "{$title}",
@@ -133,9 +133,9 @@ class FakerController extends Controller
             // Add products
             $title = "Title{$faker->word} en " . str_random(10);
             $product = new Product([
-                'thumbnail_full'    => $faker->imageUrl($width = 1280, $height = 720),
-                'thumbnail_medium'  => $faker->imageUrl($width = 640, $height = 480),
-                'thumbnail_small'   => $faker->imageUrl($width = 150, $height = 150),
+                'thumbnail_full'    => $this::local_image($faker->image($dir = public_path('media'), $width = 1280, $height = 720)),
+                'thumbnail_medium'  => $this::local_image($faker->image($dir = public_path('media'), $width = 640, $height = 480)),
+                'thumbnail_small'   => $this::local_image($faker->image($dir = public_path('media'), $width = 150, $height = 150)),
                 'in_stock'  => $faker->boolean(50),
                 'featured'  => $faker->boolean(10),
                 'slug'      => Str::slug($title),
@@ -186,9 +186,9 @@ class FakerController extends Controller
             // ADD related images
             foreach(range(1, $this->related_images) as $index){
                 $image = new Image([
-                    'thumbnail_full'    => $faker->imageUrl($width = 1280, $height = 720),
-                    'thumbnail_medium'  => $faker->imageUrl($width = 640, $height = 480),
-                    'thumbnail_small'   => $faker->imageUrl($width = 150, $height = 150),
+                    'thumbnail_full'    => $this::local_image($faker->image($dir = public_path('media'), $width = 1280, $height = 720)),
+                    'thumbnail_medium'  => $this::local_image($faker->image($dir = public_path('media'), $width = 640, $height = 480)),
+                    'thumbnail_small'   => $this::local_image($faker->image($dir = public_path('media'), $width = 150, $height = 150)),
                 ]);
 
                 $image->product()->associate($product);
@@ -284,6 +284,11 @@ class FakerController extends Controller
             ]);
             return $user;
         }
+    }
+
+    public static function local_image($image){
+        preg_match('~/media/.*~', $image, $m );
+        return $m[0];
     }
 
 }

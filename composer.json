@@ -14,7 +14,8 @@
         "laravelcollective/html": "5.2.*",
         "florianv/laravel-swap": "^0.2.1",
         "unisharp/laravel-ckeditor": "^4.5",
-        "intervention/image": "^2.3"
+        "intervention/image": "^2.3",
+        "monolog/monolog": "^1.19"
 
     },
     "require-dev": {

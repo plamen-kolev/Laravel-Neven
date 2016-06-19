@@ -2,10 +2,11 @@
 
 use App\Product as Product;
 use App\Http\Controllers\HelperController as HelperController;
+use App\User as User;
 class CheckoutFormCest
 {   
-    private $name = 'neven';
-    private $email = "neven@nevensite.com";
+    private $name = 'user';
+    private $email = "user@neven.com";
     private $password = 'password';
     private $new_password = 'password1';
 
@@ -70,67 +71,66 @@ class CheckoutFormCest
 
         \App\Http\Controllers\HelperController::login($I, $this->email, $this->password);
         $I->amOnPage('checkout');
-        \App\Http\Controllers\HelperController::fill_valid_address($I);
+        // \App\Http\Controllers\HelperController::fill_valid_address($I);
         $I->click('#submitform');
-        sleep(1);
-        $I->selectOption("#exp_element", 'December');
-        sleep(100);
-
-        $I->see('The card number is not a valid credit card number.', '#card_error_field');
-
-        // $card_not_filled = $this->byCssSelector('#card_error_field')->text();
-        // $this->assertEquals('The card number is not a valid credit card number.', $card_not_filled);
-
+        
+        sleep(2);
+        $I->see('Could not find payment information', '.payment-errors');
+        sleep(2);
+        
         $I->fillField('#card_number_input', '4242424242424242');
         $I->click('#submitform');
-        sleep(1);
 
+        sleep(2);
+        $I->see('Your card\'s expiration month is invalid.');
+        sleep(2);
 
-        $I->see("Your card's security code is invalid.", '#card_error_field');
+        $I->selectOption("#exp_element", 'December');
+        $I->click('#submitform');
+        sleep(2);        
+
+        $I->see("Your card's security code is invalid.", '.payment-errors');
 
         $I->fillField('#cvc_number_input', '123');
-        $I->selectOption("#exp_element", 'January');
         $I->click('#submitform');
-        sleep(3);
+        $I->dontSee('.payment-errors');
 
-        // \App\Http\Controllers\HelperController::hangon();
-        $I->see("Your card's expiration month is invalid." ,'#card_error_field');
     }
 
     // test save details checkbox ticked, email field missing when logged in and checkbox missing
     public function testSaveDetailsForUser(AcceptanceTester $I){
         # First, check that the user details are not filled
-        $user = \App\User::where( 'email', env('SELENIUM_TEST_USER') . '@neven.com' )->first();
+
+        $user = User::where('email', 'user@neven.com')->first();
         $user->address_1    = "";
         $user->address_2    = "";
         $user->city         = "";
         $user->post_code    = "";
         $user->country      = "";
         $user->phone        = "";
+        
         $user->save();
-        $I->assertEmpty($user->address_1);
-        $I->assertEmpty($user->address_2);
-        $I->assertEmpty($user->city);
-        $I->assertEmpty($user->post_code);
-        $I->assertEmpty($user->country);
-        $I->assertEmpty($user->phone);
+
+        $I->amOnPage( 'checkout' );
 
         # when not logged in, you will see the email input
         $I->seeElement('#email_input');
-        # and not see the checkbox to save details
         $I->dontSeeElement('#remember_me_input');
-        \App\Http\Controllers\HelperController::login($I);
-        $I->amOnPage('checkout');
+
+        login($I, $this->email, $this->password);
+        sleep(2);
+        $I->amOnPage( 'checkout' );
+        # and not see the checkbox to save details
         # these elements should appear after login
         $I->dontSeeElement('#email_input');
         $I->seeElement('#remember_me_input');
-        \App\Http\Controllers\HelperController::fill_valid_address($I);
+        HelperController::fill_valid_address($I);
         $I->click('#remember_me_input');
-        \App\Http\Controllers\HelperController::fill_valid_bank_details_and_submit($I);
-
+        HelperController::fill_valid_bank_details_and_submit($I);
 
         # check that the user details have been saved
-        $I->seeInDatabase( 'users',
+
+        $I->seeRecord( 'users',
             array(
                 'address_1' => 'Address',
                 'address_2' => 'Address part2',
@@ -148,7 +148,7 @@ class CheckoutFormCest
     // test not checking save will not store your details
     public function dontStoreInfo(AcceptanceTester $I){
         # First, check that the user details are not filled
-        $user = \App\User::where( 'email', env('SELENIUM_TEST_USER') . '@neven.com' )->first();
+        $user = \App\User::where( 'email', $this->email )->first();
         $user->address_1    = "";
         $user->address_2    = "";
         $user->city         = "";
@@ -165,16 +165,17 @@ class CheckoutFormCest
         $I->assertEmpty($user->phone);
 
         # when not logged in, you will see the email input
+
         $I->seeElement('#email_input');
         # and not see the checkbox to save details
         $I->dontSeeElement('#remember_me_input');
-        \App\Http\Controllers\HelperController::login($I);
+        
         $I->amOnPage('checkout');
         # these elements should appear after login
         $I->dontSeeElement('#email_input');
         $I->seeElement('#remember_me_input');
-        \App\Http\Controllers\HelperController::fill_valid_address($I);
-        \App\Http\Controllers\HelperController::fill_valid_bank_details_and_submit($I);
+        HelperController::fill_valid_address($I);
+        HelperController::fill_valid_bank_details_and_submit($I);
 
 
         # check that the user details have been saved
@@ -189,10 +190,8 @@ class CheckoutFormCest
             )
         );
     }
-
-
-    
 }
+
 function fill_shipping($I){
     $inputs = array(
         [
@@ -234,4 +233,14 @@ function fill_shipping($I){
     foreach ($inputs as $index=>$input){
         \App\Http\Controllers\HelperController::iterate_and_fill_form($I, $input['input_id'], $input['text'], $input['expected_errors']);
     }
+}
+
+function login($I, $email, $password){
+   $I->amOnPage('/');
+   $I->click('.hamburger_toggle');
+   $I->click('.login_button');
+   $I->fillField('#login_email_field', $email);
+   $I->fillField('#password', $password);
+
+   $I->click('#login_form_button');
 }

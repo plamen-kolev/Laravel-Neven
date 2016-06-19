@@ -15,6 +15,13 @@ modules:
         - Laravel5:
             environment_file: .env.testing
             part: ORM
+            cleanup: true
+        - Db:
+            dsn: 'mysql:host=localhost;dbname=test'
+            user: 'root'
+            password: 'password'
+            dump: tests/_data/dump_acceptance.sql
+
     config:
         WebDriver:
             url: 'http://localhost:8000'

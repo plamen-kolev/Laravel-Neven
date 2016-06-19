@@ -274,6 +274,8 @@ class ProductController extends Controller
         $term = $request->input('term');
         $products = Product::where('title_en', 'LIKE', '%'.$term.'%')
             ->orWhere('title_nb', 'LIKE', '%'.$term.'%')
+            ->orWhere('tags', 'LIKE', '%'.$term.'%')
+            ->orWhere('hidden_tags', 'LIKE', '%'.$term.'%')
             ->paginate( env('PAGINATION') );
 
         $data = array(

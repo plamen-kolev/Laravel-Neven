@@ -19,13 +19,13 @@
         <div class="col-md-4 form_border">
             {!! Form::open(array('url' => route('change_password'), 'method' => 'POST')) !!}
                 
-                {{ Form::label('current_password', trans('text.current_password')) }}
+                {{-- {{ Form::label('current_password', trans('text.current_password')) }} --}}
                 {!! Form::password('current_password', array('class'=>'generic_input', 'placeholder' => trans('text.current_password'))) !!}
 
-                {{ Form::label('password', trans('text.password')) }}
+                {{-- {{ Form::label('password', trans('text.password')) }} --}}
                 {!! Form::password('password', array('class'=>'generic_input', 'placeholder' => trans('text.password'))) !!}
 
-                {{ Form::label('password_confirmation', trans('text.confirm_password')) }}
+                {{-- {{ Form::label('password_confirmation', trans('text.confirm_password')) }} --}}
                 {!! Form::password('password_confirmation', array('class'=>'generic_input', 'placeholder' => trans('text.confirm_password'))) !!}
                 
                 {!! Form::submit(trans('text.change_password'), array('class'=>'generic_submit capital', 'id' => 'change_password_button')) !!}

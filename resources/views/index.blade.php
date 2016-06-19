@@ -45,7 +45,7 @@
                     
                     @foreach($chunk as $stockist)
                         <div class="col-md-2 stockist_icon">
-                            <img width=150 src="{{$stockist->thumbnail_full}}" alt="{{$stockist->title}}" />
+                            <img data-src="{{$stockist->thumbnail_full}}" src="{{ asset('images/loading.gif') }}" width=150 alt="{{$stockist->title}}" />
                         </div>
                     @endforeach
                     
@@ -63,6 +63,7 @@
 
     $('#slider').responsiveSlides({
         pager: true,
+        speed: 1000,            // Integer: Speed of the transition, in milliseconds
         // nav: true,
         namespace: "centered-btns"
     });

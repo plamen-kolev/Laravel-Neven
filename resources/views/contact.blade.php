@@ -33,28 +33,28 @@
                 
                 {!! Form::open(array('url' => route('contact') ) ) !!}
                     <div class="col-md-12">
-                        {{ Form::label('first_name', trans('text.first_name') ) }}
+                        {{-- {{ Form::label('first_name', trans('text.first_name') ) }} --}}
                         <p>{!! Form::text('first_name', Input::old('first_name'), array('placeholder' => trans("text.first_name"), 'class' => 'generic_input' )); !!}</p>    
                     </div>
                     
                     <div class="col-md-12">
-                        {{ Form::label('last_name', trans('text.last_name') ) }}
+                        {{-- {{ Form::label('last_name', trans('text.last_name') ) }} --}}
                         <p>{!! Form::text('last_name', Input::old('last_name'), array('placeholder' => trans("text.last_name"), 'class' => 'generic_input' )); !!}</p>    
                     </div>
                     
                     <div class="col-md-12">
-                        {{ Form::label('email', trans('text.email') ) }}
+                        {{-- {{ Form::label('email', trans('text.email') ) }} --}}
                         <p>{!! Form::text('email', Input::old('email'), array('placeholder' => trans("text.email") , 'class' => 'generic_input')); !!}</p>    
                     </div>
                     
                     <div class="col-md-12">
-                        {{ Form::label('telephone', trans('text.telephone') ) }}
+                        {{-- {{ Form::label('telephone', trans('text.telephone') ) }} --}}
                         <p>{!! Form::text('telephone', Input::old('telephone'), array('placeholder' => trans("text.telephone"), 'class' => 'generic_input' )); !!}</p>    
                     </div>
                     
 
                     <p>
-                        {{ Form::label('about', trans('text.about') ) }}
+                        {{-- {{ Form::label('about', trans('text.about') ) }} --}}
                         {!! Form::textarea('about', Input::old('about'), 
                                 array(
                                     'placeholder' => trans("text.about"),

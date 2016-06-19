@@ -69,6 +69,7 @@ class PaymentController extends Controller
 
             // if the user is logged in, remember him
             if( $user && $request->input('remember_me')){
+                $user->last_name = $request->input('surname');
                 $user->address_1 = $request->input('address_1');
                 $user->city      = $request->input('city');
                 $user->country   = $request->input('country');

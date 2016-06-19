@@ -16,7 +16,7 @@
                 @if (!Auth::user())
                 <div class="col-md-12">
                     {!! Form::open(array('url' => route('auth.login'), 'method' => 'POST')) !!}
-                            {!! Form::text('email', old('email'), array('class'=>'generic_input', 'placeholder'=>trans('text.username')) ) !!}
+                            {!! Form::text('email', old('email'), array('id' => 'email_input', 'class'=>'generic_input', 'placeholder'=>trans('text.username')) ) !!}
                             {!! Form::password('password', array('class'=>'generic_input', 'placeholder' => trans('text.password')) , old('password')) !!}
                             {!! Form::submit(trans('text.login'), array('class'=>'generic_submit capital')) !!}
                     {!! Form::close() !!}
@@ -58,7 +58,7 @@
                             {!! Form::text('guest_email', old('guest_email'), array('class'=>'generic_input', 'placeholder'=>trans('text.email')) ) !!}
                         </div>
                     @endif
-                        <div class="col-md-6">{!! Form::text('name', old('name'), array(
+                        <div class="col-md-6">{!! Form::text('name', old('name', Auth::user()->name), array(
                             'class'         => 'generic_input', 
                             'placeholder'   => trans('text.first_name'),
                             'id'            => 'row1_input'
@@ -66,7 +66,7 @@
                         </div>
 
                         <div class="col-md-6">
-                        {!! Form::text('surname', old('surname'), array(
+                        {!! Form::text('surname', old('surname', Auth::user()->last_name)  , array(
                             'class'         => 'generic_input', 
                             'placeholder'   => trans('text.last_name'),
                             'id'            => 'row2_input'
@@ -74,7 +74,7 @@
                         </div>
 
                         <div class="col-md-6">
-                        {!! Form::text('address_1', old('address_1'), array(
+                        {!! Form::text('address_1', old('address_1', Auth::user()->address_1), array(
                             'class'         => 'generic_input', 
                             'placeholder'   => trans('text.address_1'),
                             'id'            => 'row3_input'
@@ -82,7 +82,7 @@
                         </div>
 
                         <div class="col-md-6">
-                        {!! Form::text('address_2', old('address_2'), array(
+                        {!! Form::text('address_2', old('address_2', Auth::user()->address_2), array(
                             'class'         => 'generic_input', 
                             'placeholder'   => trans('text.address_2'),
                             'id'            => 'row4_input'
@@ -90,7 +90,7 @@
                         </div>
 
                         <div class="col-md-6">
-                        {!! Form::text('city', old('city'), array(
+                        {!! Form::text('city', old('city', Auth::user()->city), array(
                             'class'         => 'generic_input', 
                             'placeholder'   => trans('text.city'),
                             'id'            => 'row5_input'
@@ -98,7 +98,7 @@
                         </div>
                        
                         <div class="col-md-6">
-                        {!! Form::text('post_code', old('post_code'), array(
+                        {!! Form::text('post_code', old('post_code', Auth::user()->post_code), array(
                             'class'         => 'generic_input', 
                             'placeholder'   => trans('text.post_code'),
                             'id'            => 'row7_input'
@@ -106,7 +106,7 @@
                         </div>
 
                         <div class="col-md-6">
-                        {!! Form::text('phone', old('phone'), array(
+                        {!! Form::text('phone', old('phone', Auth::user()->phone), array(
                             'class'         => 'generic_input', 
                             'placeholder'   => trans('text.phone'),
                             'id'            => 'row8_input'
@@ -114,7 +114,8 @@
                         </div>
                         
                         <div class="col-md-6">
-                        {!! Form::select('country', $shipping_countries, 'NO', ['placeholder' => trans('text.country'),
+
+                        {!! Form::select('country', $shipping_countries, (Auth::user()->country), ['placeholder' => trans('text.country'),
                                         'class'     => 'generic_input'
                             ]) !!}
                         </div>
@@ -181,7 +182,6 @@
 
                         ] ) }}
                     </div>
-
 
                     <div class="col-md-12 total_info">
                         <h1>

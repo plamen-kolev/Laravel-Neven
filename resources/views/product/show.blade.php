@@ -82,7 +82,7 @@
                         @foreach($product->ingredients as $ingredient)
                             <div class="col-sm-6 ingredient_label_container" id="{{$ingredient->slug}}">
                                 <span class="ingredient_tip">
-                                    <img data-src="/images/ingr-tip.svg" src="{{ asset('images/loading.gif') }}"/>
+                                    <img src="/images/ingr-tip.svg"/>
                                 </span>
                                 <div class="ingredients_bg" id="{{$ingredient->slug}}" class="col-md-4 product_ingredient thumbnail" >
                                     {{ str_limit($ingredient->title(), $limit = 17, $end = '') }}
