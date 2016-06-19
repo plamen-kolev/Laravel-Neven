@@ -16,7 +16,7 @@ class CreateUsersTable extends Migration
             $table->increments('id')->unsigned();
             $table->string('name', 200);
             $table->string('last_name', 200)->default('');
-            $table->boolean('admin', 0);
+            $table->boolean('admin')->default(0);
             $table->string('email')->unique();
             // payment
             $table->string('stripe_id')->nullable();
@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('card_last_four')->nullable();
             // activation
             $table->boolean('active')->default(0);
-            $table->string('activation_code',60) ;
+            $table->string('activation_code',60)->default('') ;
 
             $table->string('password', 120);
 
