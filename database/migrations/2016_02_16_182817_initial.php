@@ -1,4 +1,4 @@
-<?php
+description_nb<?php
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -32,8 +32,8 @@ class Initial extends Migration
             $table->string('title_en',255);
             $table->string('title_nb',255);
 
-            $table->text('description_en');
-            $table->text('description_nb');
+            $table->text('description_en')->default('');
+            $table->text('description_nb')->default('');
 
             $table->timestamps();
         });
@@ -60,8 +60,8 @@ class Initial extends Migration
             $table->string('thumbnail_full', 255);
             $table->string('thumbnail_medium', 255);
             $table->string('thumbnail_small', 255);
-            $table->string('tags', 255);
-            $table->string('hidden_tags', 255);
+            $table->string('tags', 255)->default('');
+            $table->string('hidden_tags', 255)->default('');
 
             $table->string('title_en',255);
             $table->string('title_nb',255);
@@ -143,7 +143,7 @@ class Initial extends Migration
             $table->string('order_number', 8);
             $table->string('email',255);
             $table->string('first_name',255);
-            $table->string('last_name',255)->default('');
+            $table->string('last_name',255);
             $table->string('address_1',255);
             $table->string('address_2',255)->default('');
 
@@ -183,7 +183,7 @@ class Initial extends Migration
 
         Schema::create('reviews', function (Blueprint $table){
             $table->increments('id')->unsigned();
-            $table->string('body', 3);
+            $table->text('body');
             $table->tinyInteger('rating')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->integer('product_id')->unsigned();

@@ -10,8 +10,9 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-use App\Category as Category;
-use App\Product as Product;
+// use App\Category as Category;
+// use App\Product as Product;
+
     if (env('APP_DEBUG')){
         Route::get('init', "FakerController@init");
     }
