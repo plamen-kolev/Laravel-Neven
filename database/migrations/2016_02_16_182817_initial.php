@@ -13,12 +13,6 @@ class Initial extends Migration
     public function up()
     {
 
-        Schema::create('cache', function($table) {
-            $table->string('key')->unique();
-            $table->text('value');
-            $table->integer('expiration');
-        });
-
         Schema::create('slides', function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->string('image', 255)->unique();
@@ -246,6 +240,7 @@ class Initial extends Migration
         Schema::drop('products');
         Schema::drop('ingredient_product');
         Schema::drop('categories');
+        Schema::drop('cache');
         
         
         // many to many
