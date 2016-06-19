@@ -240,12 +240,5 @@ class Initial extends Migration
         Schema::drop('products');
         Schema::drop('ingredient_product');
         Schema::drop('categories');
-        Schema::drop('cache');
-        
-        
-        // many to many
-
-
-
     }
 }

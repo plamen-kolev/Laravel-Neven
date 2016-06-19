@@ -69,7 +69,7 @@ return [
     'cache' => [
         'type' => 'illuminate',
         // 'store' => 'memcached', // Name of the cache store
-        'store' => 'database', // Name of the cache store
+        'store' => env('CACHE_DRIVER'), // Name of the cache store
         'ttl' => 720 // Ttl in minutes (defaults to 0)
     ],
 
