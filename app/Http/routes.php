@@ -13,10 +13,6 @@
 // use App\Category as Category;
 // use App\Product as Product;
 
-    if (env('APP_DEBUG')){
-        Route::get('init', "FakerController@init");
-    }
-
     Route::group(['middleware' => ['web', 'admin'] ], function () {
         Route::get('admin', array('as' => 'admin', 'uses' => 'PageController@admin'));
 
