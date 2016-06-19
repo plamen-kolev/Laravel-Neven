@@ -1,6 +1,8 @@
 <?php
-namespace App\Http\Controllers;
 
+namespace App\Console\Commands;
+
+use Illuminate\Console\Command;
 use App\User;
 
 // require_once base_path('vendor/fzaninotto/faker/src/autoload.php');
@@ -23,8 +25,13 @@ use App\ShippingOption as ShippingOption;
 use App\Stockist as Stockist;
 use File;
 
-class FakerController extends Controller
+class Faker extends Command
 {
+    /**
+     * The name and signature of the console command.
+     *
+     * @var string
+     */
     protected $category_num = 2;
     protected $ingredient_num = 2;
     protected $product_num = 5;
@@ -37,10 +44,36 @@ class FakerController extends Controller
     protected $reviews = 1;
     protected $stockists = 4;
 
+    protected $signature = 'faker:init';
 
-    public function init(){
+    /**
+     * The console command description.
+     *
+     * @var string
+     */
+    protected $description = 'Command description';
 
-        File::exists(public_path('media')) or File::makeDirectory(public_path('media'));
+    /**
+     * Create a new command instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        parent::__construct();
+        
+  
+
+    }
+
+    /**
+     * Execute the console command.
+     *
+     * @return mixed
+     */
+    public function handle()
+    {
+              File::exists(public_path('media')) or File::makeDirectory(public_path('media'));
         File::exists(public_path('media/stockists')) or File::makeDirectory(public_path('media/stockists'));
         File::exists(public_path('media/slides')) or File::makeDirectory(public_path('media/slides'));
         File::exists(public_path('media/products')) or File::makeDirectory(public_path('media/products'));
@@ -261,8 +294,6 @@ class FakerController extends Controller
             'weight'       => 300,
             'price'        => 300
         ]);
-
-        return 1;
     }
 
     public static function get_or_create_test_user($name){
@@ -293,5 +324,4 @@ class FakerController extends Controller
         preg_match('~/media/.*~', $image, $m );
         return $m[0];
     }
-
 }
