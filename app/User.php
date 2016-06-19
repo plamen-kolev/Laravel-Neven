@@ -15,7 +15,7 @@ class User extends Authenticatable
     use Billable;
 
     protected $fillable = [
-        'name', 'email', 'admin','password', 'activation_code', 'active', 'last_name'
+        'name', 'email', 'password', 'activation_code', 'active', 'last_name'
     ];
 
     /**
