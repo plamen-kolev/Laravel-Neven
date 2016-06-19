@@ -143,7 +143,7 @@ class Initial extends Migration
             $table->string('order_number', 8);
             $table->string('email',255);
             $table->string('first_name',255);
-            $table->string('last_name',255);
+            $table->string('last_name',255)->default('');
             $table->string('address_1',255);
             $table->string('address_2',255)->default('');
 

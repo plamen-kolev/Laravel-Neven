@@ -1,6 +1,7 @@
 <?php
 
-return [
+
+$conf = [
 
     /*
     |--------------------------------------------------------------------------
@@ -148,7 +149,6 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-
         
         /*
          * Application Service Providers...
@@ -161,14 +161,12 @@ return [
         // external classes
 
         Mcamara\LaravelLocalization\LaravelLocalizationServiceProvider::class,
-        'Clockwork\Support\Laravel\ClockworkServiceProvider',
-        'Gloudemans\Shoppingcart\ShoppingcartServiceProvider',
+        Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Laravel\Cashier\CashierServiceProvider::class,
         Florianv\LaravelSwap\SwapServiceProvider::class,
         Unisharp\Ckeditor\ServiceProvider::class,
-        Intervention\Image\ImageServiceProvider::class
-
+        Intervention\Image\ImageServiceProvider::class,
 
     ],
 
@@ -218,13 +216,19 @@ return [
 
         //  extra
         'LaravelLocalization'   => Mcamara\LaravelLocalization\Facades\LaravelLocalization::class,
-        'Swap' => Florianv\LaravelSwap\Facades\Swap::class,
-        'Cart'            => 'Gloudemans\Shoppingcart\Facades\Cart',
-        'Input' => Illuminate\Support\Facades\Input::class,
-        'Form' => Collective\Html\FormFacade::class,
-        'Html' => Collective\Html\HtmlFacade::class,
-        'Socialize' => 'Laravel\Socialite\Facades\Socialite',
-        'Image' => Intervention\Image\Facades\Image::class
+        'Swap'                  => Florianv\LaravelSwap\Facades\Swap::class,
+        'Cart'                  => Gloudemans\Shoppingcart\Facades\Cart::class,
+        'Input'                 => Illuminate\Support\Facades\Input::class,
+        'Form'                  => Collective\Html\FormFacade::class,
+        'Html'                  => Collective\Html\HtmlFacade::class,
+        'Socialize'             => Laravel\Socialite\Facades\Socialite::class,
+        'Image'                 => Intervention\Image\Facades\Image::class
     ],
 
 ];
+
+if(!env('APP_DEBUG')){
+    array_push($conf['providers'],'Clockwork\Support\Laravel\ClockworkServiceProvider');
+} 
+
+return $conf;

@@ -12,7 +12,7 @@
 */
 use App\Category as Category;
 use App\Product as Product;
-    if (App::environment('development')){
+    if (env('APP_DEBUG')){
         Route::get('init', "FakerController@init");
     }
 

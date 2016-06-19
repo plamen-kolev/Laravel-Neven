@@ -8,7 +8,7 @@
             <ul id="slider" class="rslides centered-btns centered-btns1">
                 @foreach ($slides as $slide)
                 <li>
-                    <img class="slide_image" data-src="{{$slide->image}}" src="{{ asset('images/loading.gif') }}" alt="{{ $slide->title}}">
+                    <img class="slide_image" data-src="{{$slide->image}}" src="{{ secure_asset('images/loading.gif') }}" alt="{{ $slide->title}}">
                     <div class="slide_item">
                         
                         <div class="col-md-2"></div>
@@ -45,7 +45,7 @@
                     
                     @foreach($chunk as $stockist)
                         <div class="col-md-2 stockist_icon">
-                            <img data-src="{{$stockist->thumbnail_full}}" src="{{ asset('images/loading.gif') }}" width=150 alt="{{$stockist->title}}" />
+                            <img data-src="{{$stockist->thumbnail_full}}" src="{{ secure_asset('images/loading.gif') }}" width=150 alt="{{$stockist->title}}" />
                         </div>
                     @endforeach
                     
@@ -73,5 +73,5 @@
 @stop
 
 @section('links')
-    <script src="{{ asset('responsiveslides/responsiveslides.min.js') }}" type="text/javascript"></script>
+    <script src="{{ secure_asset('responsiveslides/responsiveslides.min.js') }}" type="text/javascript"></script>
 @stop
