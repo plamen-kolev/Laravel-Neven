@@ -5,6 +5,9 @@ use App\Category as Category;
 use Illuminate\Support\ServiceProvider;
 use Cache;
 use Config;
+use Storage;
+
+use League\Glide\ServerFactory;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -32,18 +35,17 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('League\Glide\Server', function($app){
-
-            $filesystem = $app->make('Illuminate\Contracts\Filesystem\Filesystem');
-
-            return \League\Glide\ServerFactory::create([
-                'source'    => $filesystem->getDriver(),
-                'cache'     => $filesystem->getDriver(),
-                'source_path_prefix'    => 'images',
-                'cache_path_prefix'     =>  'images/.cache',
-                // 'base_url'  => 'img'
-            ]);
-
-        });
+        
+        $this->app->singleton('League\Glide\Server', function($app) {
+                $storageDriver = Storage::getDriver();
+                return ServerFactory::create([
+                    'source' => $storageDriver,
+                    'cache' => $storageDriver,
+                    'source_path_prefix'    => 'images',
+                    'cache_path_prefix'     =>  'images/.cache',
+                    'base_url' => '/images/'
+                ]);
+            });
     }
+    
 }

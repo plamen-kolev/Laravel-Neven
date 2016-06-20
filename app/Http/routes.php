@@ -13,10 +13,12 @@
 // use App\Category as Category;
 // use App\Product as Product;
 
-    Route::get('pics/{path}', function(League\Glide\Server $server, $path){
-        // dd($server);
-        $server->outputImage($path, $_GET);
-    })->where('path', '.+');
+
+Route::get('images/{path}', function($path, League\Glide\Server $server, Illuminate\Http\Request $request) {
+    // dd($server);
+    $server->outputImage($path, $request->all());
+})->where('path', '.+');
+
 
     Route::group(['middleware' => ['web', 'admin'] ], function () {
         Route::get('admin', array('as' => 'admin', 'uses' => 'PageController@admin'));
