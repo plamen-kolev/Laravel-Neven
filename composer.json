@@ -15,7 +15,8 @@
         "florianv/laravel-swap": "^0.2.1",
         "unisharp/laravel-ckeditor": "^4.5",
         "intervention/image": "^2.3",
-        "monolog/monolog": "^1.19"
+        "monolog/monolog": "^1.19",
+        "league/glide-laravel": "^1.0"
 
     },
     "require-dev": {

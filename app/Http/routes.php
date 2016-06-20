@@ -13,6 +13,11 @@
 // use App\Category as Category;
 // use App\Product as Product;
 
+    Route::get('pics/{path}', function(League\Glide\Server $server, $path){
+        // dd($server);
+        $server->outputImage($path, $_GET);
+    })->where('path', '.+');
+
     Route::group(['middleware' => ['web', 'admin'] ], function () {
         Route::get('admin', array('as' => 'admin', 'uses' => 'PageController@admin'));
 
@@ -30,22 +35,6 @@
 
     });
 
-    Route::get('images/{image}', 'ImageController@get');
-
-
-    // Route::get('a/{filename}', function ($filename){
-    //     $path = storage_path('media/images/' . $filename);
-    //     if(!File::exists($path)) abort(404);
-
-    //     // $file = File::get($path);
-    //     // $type = File::mimeType($path);
-
-    //     // $response = Response::make($file, 200);
-    //     // $response->header("Content-Type", $type);
-    //     return Image::make($path)->response();
-    //     // return $response;
-    // });
-    
     Route::group(
     [
         'prefix' => LaravelLocalization::setLocale(),
