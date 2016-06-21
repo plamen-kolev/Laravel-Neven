@@ -14,7 +14,7 @@
                             <div class="stockist_item" id="{{$stockist->slug}}">
 
                                 <div class="stockist_tumbnail col-md-5">
-                                    <img width=100% src="{{$stockist->thumbnail_full}}" />
+                                    <img width=100% src="{{$stockist->thumbnail}}?w=150&h=150&fit=crop" />
                                 </div>
                                 <div class="col-md-7">
                                     <h2 >{{$stockist->title}}</h2>

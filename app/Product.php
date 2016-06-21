@@ -12,7 +12,7 @@ use Validator;
 class Product extends Model
 {   
     public $errors = '';
-    protected $fillable = array('featured', 'title_en', 'title_nb', 'description_en', 'benefits_en', 'benefits_nb' , 'tips_en','tips_nb','description_nb', 'in_stock', 'slug', 'thumbnail_full', 'thumbnail_small', 'thumbnail_medium', 'tips', 'benefits', 'tags', 'hidden_tags', 'category_id');
+    protected $fillable = array('featured', 'title_en', 'title_nb', 'description_en', 'benefits_en', 'benefits_nb' , 'tips_en','tips_nb','description_nb', 'in_stock', 'slug', 'thumbnail', 'tips', 'benefits', 'tags', 'hidden_tags', 'category_id');
     
 
     public function price(){

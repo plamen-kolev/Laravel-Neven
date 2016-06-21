@@ -25,9 +25,10 @@ class Initial extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->string('slug',255)->unique();
-            $table->string('thumbnail_full',255);
-            $table->string('thumbnail_medium',255);
-            $table->string('thumbnail_small',255);
+            // $table->string('thumbnail_full',255);
+            // $table->string('thumbnail_medium',255);
+            // $table->string('thumbnail_small',255);
+            $table->string('thumbnail',255);
 
             $table->string('title_en',255);
             $table->string('title_nb',255);
@@ -40,9 +41,11 @@ class Initial extends Migration
 
         Schema::create('ingredients', function (Blueprint $table) {
             $table->increments('id')->unsigned();
-            $table->string('thumbnail_full',255);
-            $table->string('thumbnail_medium',255);
-            $table->string('thumbnail_small',255);
+            // $table->string('thumbnail_full',255);
+            // $table->string('thumbnail_medium',255);
+            // $table->string('thumbnail_small',255);
+
+            $table->string('thumbnail',255);
 
             $table->string('title_en',255);
             $table->string('title_nb',255);
@@ -57,9 +60,12 @@ class Initial extends Migration
 
         Schema::create('products', function (Blueprint $table) {
             $table->increments('id')->unsigned();
-            $table->string('thumbnail_full', 255);
-            $table->string('thumbnail_medium', 255);
-            $table->string('thumbnail_small', 255);
+            // $table->string('thumbnail_full', 255);
+            // $table->string('thumbnail_medium', 255);
+            // $table->string('thumbnail_small', 255);
+
+            $table->string('thumbnail',255);
+
             $table->string('tags', 255)->default('');
             $table->string('hidden_tags', 255)->default('');
 
@@ -102,9 +108,12 @@ class Initial extends Migration
 
         Schema::create('images', function (Blueprint $table) {
             $table->increments('id')->unsigned();
-            $table->string('thumbnail_full',255);
-            $table->string('thumbnail_medium',255);
-            $table->string('thumbnail_small',255);
+            // $table->string('thumbnail_full',255);
+            // $table->string('thumbnail_medium',255);
+            // $table->string('thumbnail_small',255);
+
+            $table->string('thumbnail',255);
+
             $table->integer('product_id')->unsigned();
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->timestamps();
@@ -210,7 +219,8 @@ class Initial extends Migration
             $table->string('lat', 500);
             $table->string('lng', 500);
 
-            $table->string('thumbnail_full',255);
+            // $table->string('thumbnail_full',255);
+            $table->string('thumbnail',255);
 
             $table->timestamps();
         });

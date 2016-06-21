@@ -14,10 +14,10 @@
 // use App\Product as Product;
 
 
-Route::get('images/{path}', function($path, League\Glide\Server $server, Illuminate\Http\Request $request) {
-    // dd($server);
-    $server->outputImage($path, $request->all());
-})->where('path', '.+');
+
+    Route::get('images/{path}', function($path, League\Glide\Server $server, Illuminate\Http\Request $request) {
+        $server->outputImage($path, $request->all());
+    })->where('path', '.+');
 
 
     Route::group(['middleware' => ['web', 'admin'] ], function () {

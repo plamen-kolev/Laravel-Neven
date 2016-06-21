@@ -45,7 +45,13 @@ return [
 
         'local' => [
             'driver' => 'local',
-            'root' => storage_path('app'),
+            'root' => public_path('media'),
+        ],
+
+        'dropbox' => [
+            'driver' => 'dropbox',
+            'app'       => env('DROPBOX_KEY'),
+            'token'    => env('DROPBOX_SECRET')
         ],
 
         'public' => [
@@ -60,6 +66,21 @@ return [
             'secret' => 'your-secret',
             'region' => 'your-region',
             'bucket' => 'your-bucket',
+        ],
+
+        'ftp' => [
+            'driver'   => 'ftp',
+            'host'     => env('FTP_HOSTNAME'),
+            'username' => env('FTP_USERNAME'),
+            'password' => env('FTP_PASSWORD'),
+            'port'     => 21,
+            'root'     => '/home/pi/',
+            // Optional FTP Settings...
+            
+            
+            // 'passive'  => true,
+            // 'ssl'      => true,
+            // 'timeout'  => 30,
         ],
 
     ],

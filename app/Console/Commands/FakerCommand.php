@@ -71,15 +71,16 @@ class FakerCommand extends Command
      */
     public function handle()
     {
-        File::exists(storage_path('app/images')) or File::makeDirectory(storage_path('app/images'));
-        File::exists(storage_path('app/images/.cache')) or File::makeDirectory(storage_path('app/images/.cache'));
-        // File::exists(storage_path('app/images')) or File::makeDirectory(storage_path('app/images'));
-        // File::exists(storage_path('app/images/stockists')) or File::makeDirectory(storage_path('app/images/stockists'));
-        // File::exists(storage_path('app/images/slides')) or File::makeDirectory(storage_path('app/images/slides'));
-        // File::exists(storage_path('app/images/products')) or File::makeDirectory(storage_path('app/images/products'));
-        // File::exists(storage_path('app/images/categories')) or File::makeDirectory(storage_path('app/images/categories'));
-        // File::exists(storage_path('app/images/images')) or File::makeDirectory(storage_path('app/images/images'));
-        // File::exists(storage_path('app/images/ingredients')) or File::makeDirectory(storage_path('app/images/ingredients'));
+        File::exists(public_path('media')) or File::makeDirectory(public_path('media'));
+        File::exists(public_path('media/images')) or File::makeDirectory(public_path('media/images'));
+        File::exists(public_path('media/images/.cache')) or File::makeDirectory(public_path('media/images/.cache'));
+        // File::exists(public_path('media/images')) or File::makeDirectory(public_path('media/images'));
+        // File::exists(public_path('media/images/stockists')) or File::makeDirectory(public_path('media/images/stockists'));
+        // File::exists(public_path('media/images/slides')) or File::makeDirectory(public_path('media/images/slides'));
+        // File::exists(public_path('media/images/products')) or File::makeDirectory(public_path('media/images/products'));
+        // File::exists(public_path('media/images/categories')) or File::makeDirectory(public_path('media/images/categories'));
+        // File::exists(public_path('media/images/images')) or File::makeDirectory(public_path('media/images/images'));
+        // File::exists(public_path('media/images/ingredients')) or File::makeDirectory(public_path('media/images/ingredients'));
 
         $this->get_or_create_test_user( env('SELENIUM_TEST_USER') );
         $this->product_num = $this->product_num;
@@ -95,7 +96,7 @@ class FakerCommand extends Command
                 'title' => $title,
                 'address'   => $faker->address,
                 'slug'  => Str::slug($title),
-                'thumbnail_full' => $this::local_image($faker->image($dir = storage_path('app/images'), $width = 150, $height = 150)),
+                'thumbnail' => $this::local_image($faker->image($dir = public_path('media/images'), $width = 1560, $height = 480)),
                 'lat' => $faker->randomFloat($nbMaxDecimals = 6, $min = 40, $max = 41) ,
                 'lng'  => $faker->randomFloat($nbMaxDecimals = 6, $min = 0, $max = 1),
                 'body'  => $faker->text,
@@ -115,7 +116,7 @@ class FakerCommand extends Command
 
         foreach(range(1,$this->slide_images) as $index){
             Slide::create([
-                'image' => $this::local_image($faker->image($dir = storage_path('app/images'), $width = 1560, $height = 480)),
+                'image' => $this::local_image($faker->image($dir = public_path('media/images'), $width = 1560, $height = 480)),
                 'url'   => "google.com",
                 'description' => $faker->text
             ]);
@@ -125,9 +126,9 @@ class FakerCommand extends Command
             // CATEGORY
             $title = 'Category' . $index . " " . str_random(10);
             $category = new Category ([
-                'thumbnail_full'    => $this::local_image($faker->image($dir = storage_path('app/images'), $width = 1280, $height = 720)),
-                'thumbnail_medium'  => $this::local_image($faker->image($dir = storage_path('app/images'), $width = 640, $height = 480)),
-                'thumbnail_small'   => $this::local_image($faker->image($dir = storage_path('app/images'), $width = 150, $height = 150)),
+                'thumbnail'    => $this::local_image($faker->image($dir = public_path('media/images'), $width = 1280, $height = 720)),
+                // 'thumbnail_medium'  => $this::local_image($faker->image($dir = public_path('media/images'), $width = 640, $height = 480)),
+                // 'thumbnail_small'   => $this::local_image($faker->image($dir = public_path('media/images'), $width = 150, $height = 150)),
                 'slug'      =>  Str::slug($title),
                 
                 'title_en'  => $title,
@@ -145,9 +146,9 @@ class FakerCommand extends Command
         foreach(range(1,$this->ingredient_num) as $index){
             $title = 'Ingredient' . $index  . str_random(10);
             $ingredient = Ingredient::create([
-                'thumbnail_full'    => $this::local_image($faker->image($dir = storage_path('app/images'), $width = 1280, $height = 720)),
-                'thumbnail_medium'  => $this::local_image($faker->image($dir = storage_path('app/images'), $width = 640, $height = 480)),
-                'thumbnail_small'   => $this::local_image($faker->image($dir = storage_path('app/images'), $width = 150, $height = 70)),
+                'thumbnail'    => $this::local_image($faker->image($dir = public_path('media/images'), $width = 1280, $height = 720)),
+                // 'thumbnail_medium'  => $this::local_image($faker->image($dir = public_path('media/images'), $width = 640, $height = 480)),
+                // 'thumbnail_small'   => $this::local_image($faker->image($dir = public_path('media/images'), $width = 150, $height = 70)),
                 'slug'              =>  Str::slug($title),
                 
                 'title_en'          => "{$title}",
@@ -169,9 +170,9 @@ class FakerCommand extends Command
             // Add products
             $title = "Title{$faker->word} en " . str_random(10);
             $product = new Product([
-                'thumbnail_full'    => $this::local_image($faker->image($dir = storage_path('app/images'), $width = 1280, $height = 720)),
-                'thumbnail_medium'  => $this::local_image($faker->image($dir = storage_path('app/images'), $width = 640, $height = 480)),
-                'thumbnail_small'   => $this::local_image($faker->image($dir = storage_path('app/images'), $width = 150, $height = 150)),
+                'thumbnail'    => $this::local_image($faker->image($dir = public_path('media/images'), $width = 1280, $height = 720)),
+                // 'thumbnail_medium'  => $this::local_image($faker->image($dir = public_path('media/images'), $width = 640, $height = 480)),
+                // 'thumbnail_small'   => $this::local_image($faker->image($dir = public_path('media/images'), $width = 150, $height = 150)),
                 'in_stock'  => $faker->boolean(50),
                 'featured'  => $faker->boolean(10),
                 'slug'      => Str::slug($title),
@@ -222,9 +223,9 @@ class FakerCommand extends Command
             // ADD related images
             foreach(range(1, $this->related_images) as $index){
                 $image = new Image([
-                    'thumbnail_full'    => $this::local_image($faker->image($dir = storage_path('app/images'), $width = 1280, $height = 720)),
-                    'thumbnail_medium'  => $this::local_image($faker->image($dir = storage_path('app/images'), $width = 640, $height = 480)),
-                    'thumbnail_small'   => $this::local_image($faker->image($dir = storage_path('app/images'), $width = 150, $height = 150)),
+                    'thumbnail'    => $this::local_image($faker->image($dir = public_path('media/images'), $width = 1280, $height = 720)),
+                    // 'thumbnail_medium'  => $this::local_image($faker->image($dir = public_path('media/images'), $width = 640, $height = 480)),
+                    // 'thumbnail_small'   => $this::local_image($faker->image($dir = public_path('media/images'), $width = 150, $height = 150)),
                 ]);
 
                 $image->product()->associate($product);

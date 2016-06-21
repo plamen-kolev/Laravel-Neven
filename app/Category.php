@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     public $errors = '';
-    protected $fillable = array('title_en', 'title_nb', 'slug','description_en', 'description_en', 'thumbnail_full', 'thumbnail_medium', 'thumbnail_small');
+    protected $fillable = array('title_en', 'title_nb', 'slug','description_en', 'description_en', 'thumbnail');
 
 
     private $store_rules = array(

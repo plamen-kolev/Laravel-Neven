@@ -24,7 +24,7 @@
     <div class="col-md-12 bs-example row bg-img related_images">
         @foreach($product->images as $index => $image)
             <div class="col-md-3">
-                <a href="{{$image->thumbnail_full}}" data-lightbox="image-{{$index}}" data-title="Related images">
+                <a href="{{$image->thumbnail}}?w=150&h=150&fit=crop" data-lightbox="image-{{$index}}" data-title="Related images">
                     <img style="margin:10px;width:100%;" src="{{$image->thumbnail_small}}" alt="Related image for {{$product->title}}"/>
                 </a>
             </div>

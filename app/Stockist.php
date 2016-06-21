@@ -8,7 +8,7 @@ use Validator;
 class Stockist extends Model
 {
 
-    protected $fillable = ['title', 'slug', 'lat', 'lng', 'thumbnail_full', 'address'];
+    protected $fillable = ['title', 'slug', 'lat', 'lng', 'thumbnail', 'address'];
     public $errors = '';
     private $rules = array(
         'title'      => 'unique:stockists,title|required|String|min:1',

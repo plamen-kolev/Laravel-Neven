@@ -36,7 +36,7 @@
                             <span class="underliner"></span>
 
                             <a class="" href="{!! route('category.show', [ $category->slug ]) !!}">
-                                <img src="{{ $category->thumbnail_small }}">
+                                <img src="{{ $category->thumbnail }}?w=150&h=150&fit=crop">
                             </a>
 
                            
