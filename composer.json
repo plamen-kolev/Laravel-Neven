@@ -17,7 +17,6 @@
         "monolog/monolog": "^1.19",
         "league/glide-laravel": "^1.0",
         "dropbox/dropbox-sdk": "^1.1",
-        "graham-campbell/flysystem": "^3.4",
         "league/flysystem-dropbox": "^1.0"
 
     },

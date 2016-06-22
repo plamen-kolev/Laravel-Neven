@@ -167,7 +167,8 @@ $conf = [
         Florianv\LaravelSwap\SwapServiceProvider::class,
         Unisharp\Ckeditor\ServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
-        App\Providers\DropboxServiceProvider::class
+        App\Providers\DropboxServiceProvider::class,
+        App\Providers\FTPServiceProvider::class
 
     ],
 

@@ -72,6 +72,7 @@ class FakerCommand extends Command
      */
 
     public function deploy_image($w, $h, $faker){
+        // $filename = $this::local_image($faker->image($dir = $this->storage_path, $width = $w, $height = $h));
         $filename = $this::local_image($faker->image($dir = $this->storage_path, $width = $w, $height = $h));
         // if(env('FILESYSTEM') != 'local'){
         Storage::disk(env('FILESYSTEM'))->put('images/' . $filename, File::get($this->storage_path . $filename)     );    
