@@ -168,6 +168,33 @@ p{
     width:65%;
 }
 
+.width_55{
+    width:55%;
+}
+
+
+#landing_text{
+    background: rgba(86, 75, 75, 0.6);
+    color: white;
+}
+
+.landing_container{
+    z-index: 1;
+    position: absolute;
+    position:absolute;
+    margin-top:-25px;
+    top:50%;
+    left:0%;
+    right:0%;
+}
+
+#landing_link{
+    border: 1px solid white;
+    padding: 20px;
+    width: 25%;
+
+}
+
 .width_100{
     width:100%;
 }
@@ -1379,11 +1406,19 @@ a:hover{
     }
 }
 
+@media screen and (max-width: 560px) {
+    #landing_text{
+        font-size:1.5em;
+        top:5px;
+    }
+}
 
 @media screen and (max-width: 940px) {
     .hidden_flower{
         display: none;
     }
+
+
 
 }
 

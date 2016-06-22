@@ -22,12 +22,19 @@ class Initial extends Migration
 
         });
 
+        Schema::create('heroes', function (Blueprint $table) {
+            $table->increments('id')->unsigned();
+            $table->string('video', 255)->unique();
+            $table->string('image', 255);
+            $table->string('title_en',255);
+            $table->string('title_nb',255);
+            $table->timestamps();
+
+        });
+
         Schema::create('categories', function (Blueprint $table) {
             $table->increments('id')->unsigned();
             $table->string('slug',255)->unique();
-            // $table->string('thumbnail_full',255);
-            // $table->string('thumbnail_medium',255);
-            // $table->string('thumbnail_small',255);
             $table->string('thumbnail',255);
 
             $table->string('title_en',255);
@@ -41,9 +48,6 @@ class Initial extends Migration
 
         Schema::create('ingredients', function (Blueprint $table) {
             $table->increments('id')->unsigned();
-            // $table->string('thumbnail_full',255);
-            // $table->string('thumbnail_medium',255);
-            // $table->string('thumbnail_small',255);
 
             $table->string('thumbnail',255);
 
@@ -60,9 +64,6 @@ class Initial extends Migration
 
         Schema::create('products', function (Blueprint $table) {
             $table->increments('id')->unsigned();
-            // $table->string('thumbnail_full', 255);
-            // $table->string('thumbnail_medium', 255);
-            // $table->string('thumbnail_small', 255);
 
             $table->string('thumbnail',255);
 
@@ -108,9 +109,6 @@ class Initial extends Migration
 
         Schema::create('images', function (Blueprint $table) {
             $table->increments('id')->unsigned();
-            // $table->string('thumbnail_full',255);
-            // $table->string('thumbnail_medium',255);
-            // $table->string('thumbnail_small',255);
 
             $table->string('thumbnail',255);
 
@@ -236,6 +234,7 @@ class Initial extends Migration
     public function down()
     {
         Schema::drop('stockists');
+        Schema::drop('heroes');
         Schema::drop('subscribers');
         Schema::drop('reviews');
         Schema::drop('order_product');

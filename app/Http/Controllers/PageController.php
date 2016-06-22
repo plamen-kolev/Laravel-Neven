@@ -12,6 +12,7 @@ use App;
 use Validator;
 use App\Article as Article;
 use Session;
+use DB;
 use App\Ingredient as Ingredient;
 use App\Product as Product;
 use App\Category as Category;
@@ -21,7 +22,10 @@ use App\Stockist as Stockist;
 use Auth;
 use App\Subscriber as Subscriber;
 use App\Tag as Tag;
+use App\Hero as Hero;
 use App\Image as Image;
+use Cookie;
+
 class PageController extends Controller
 {
 
@@ -30,11 +34,17 @@ class PageController extends Controller
         $slides = Slide::all();
         $featured_products = Product::where('featured', true)->get();
         $stockists = Stockist::all();
-        return View::make('index', [
+        $hero = Hero::orderBy(DB::raw('RAND()'))->first();
+
+        $data = [
             'slides' => $slides, 
             'products' => $featured_products,
-            'stockists' => $stockists
-        ]);
+            'stockists' => $stockists,
+            'hero'      => $hero
+            
+        ];
+
+        return View::make('index', $data);
 
     }
 

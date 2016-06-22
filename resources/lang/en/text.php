@@ -3,6 +3,8 @@
 return [
     // menu mappings
     'home'          => 'home',
+    'landing_page_title' => 'discover the secrets of nature trough',
+    'our_products'  => 'our products',
     'searching_for' => 'Searching for',
     'customer_care' => "customer care",
     'shipping_return'=> 'shipping/returns',
