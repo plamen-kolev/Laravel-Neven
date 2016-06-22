@@ -74,7 +74,7 @@ return [
             'username' => env('FTP_USERNAME'),
             'password' => env('FTP_PASSWORD'),
             'port'     => 21,
-            'root'     => '/home/pi/',
+            'root'     => env('FTP_PATH', '/'),
             // Optional FTP Settings...
             
             

@@ -19,7 +19,7 @@ class DropboxServiceProvider extends ServiceProvider
     {
         Storage::extend('dropbox', function($app, $config) {
             $client = new DropboxClient(
-                $config['DROPBOX_SECRET'], $config['DROPBOX_KEY']
+                env('DROPBOX_TOKEN'), env('DROPBOX_KEY')
             );
 
             return new Filesystem(new DropboxAdapter($client));

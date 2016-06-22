@@ -167,6 +167,7 @@ $conf = [
         Florianv\LaravelSwap\SwapServiceProvider::class,
         Unisharp\Ckeditor\ServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+        App\Providers\DropboxServiceProvider::class
 
     ],
 
@@ -222,7 +223,7 @@ $conf = [
         'Form'                  => Collective\Html\FormFacade::class,
         'Html'                  => Collective\Html\HtmlFacade::class,
         'Socialize'             => Laravel\Socialite\Facades\Socialite::class,
-        'Image'                 => Intervention\Image\Facades\Image::class
+        'Image'                 => Intervention\Image\Facades\Image::class,
     ],
 
 ];

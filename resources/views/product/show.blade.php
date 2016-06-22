@@ -14,14 +14,14 @@
 <div class="col-md-12">
     <div class="wrapper">
         <div class="col-md-5">
-            <a href="{{$product->thumbnail}}" data-lightbox="image-1" data-title="{{$product->title()}}">
-                <img align="middle" style="width:100%;" id="item-display" data-src="{{$product->thumbnail}}?w=720&h=450&fit=crop" src="{{ asset('images/loading.gif') }}" alt="{{$product->title()}}"/>
+            <a href="{{route('image', $product->thumbnail)}}" data-lightbox="image-1" data-title="{{$product->title()}}">
+                <img align="middle" style="width:100%;" id="item-display" data-src="{{route('image', $product->thumbnail)}}?w=720&h=450&fit=crop" src="{{ asset('images/loading.gif') }}" alt="{{$product->title()}}"/>
             </a>
             <div class="col-md-12 nopadding">
                 @foreach($product->images as $index => $image)
                 <div class="col-md-3 nopadding pull-left related_container" style="padding:5px; max-width:150px; overflow:hidden;display:inline-block">
-                    <a href="{{$image->thumbnail_full}}" data-lightbox="image-1" data-title="Related image for {{$product->title()}}">
-                        <img data-src="{{$image->thumbnail}}?w=150&h=150&fit=crop" src="{{ asset('images/loading.gif') }}"  alt="Related image for {{$product->title()}}"/>    
+                    <a href="{{route('image', $image->thumbnail)}}" data-lightbox="image-1" data-title="Related image for {{$product->title()}}">
+                        <img data-src="{{route('image',$image->thumbnail)}}?w=150&h=150&fit=crop" src="{{ asset('images/loading.gif') }}"  alt="Related image for {{$product->title()}}"/>    
                     </a>
                 </div>
                 @endforeach
