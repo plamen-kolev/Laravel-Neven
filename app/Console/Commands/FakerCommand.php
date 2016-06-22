@@ -62,7 +62,7 @@ class FakerCommand extends Command
     public function __construct()
     {
         parent::__construct();
-        $this->storage_path = public_path('media/images') . '/';
+        $this->storage_path = '/tmp/';
     }
 
     /**
