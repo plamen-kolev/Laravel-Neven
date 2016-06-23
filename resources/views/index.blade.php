@@ -34,7 +34,7 @@
 
 @include('proud')
 
-<div class="col-md-12 shops">
+<div class="col-md-12 center shops">
     <div class="wrapper">
     
         <h1 class="align-center capital stockists">{{ trans('text.find_our_products_in_these_stores_as_well')}}</h1>

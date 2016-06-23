@@ -72,6 +72,8 @@ class FakerCommand extends Command
      */
 
     public function deploy_image($w, $h, $faker){
+        Artisan::call('migrate:rollback');
+        Artisan::call('migrate');
         // $filename = $this::local_image($faker->image($dir = $this->storage_path, $width = $w, $height = $h));
         $filename = $this::local_image($faker->image($dir = $this->storage_path, $width = $w, $height = $h));
         // if(env('FILESYSTEM') != 'local'){

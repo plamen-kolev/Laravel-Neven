@@ -5,7 +5,7 @@
         
         <div class="col-md-12 center">
 
-            <img class="full_map" data-src="{{ asset('images/world-map.svg')}}" src="{{ asset('images/loading.gif') }}" alt="map of the world"/>
+            <img class="full_map width_100" data-src="{{ asset('images/world-map.svg')}}" src="{{ asset('images/loading.gif') }}" alt="map of the world"/>
         </div>
         
         <div class="col-md-12 ingredients_world_list">

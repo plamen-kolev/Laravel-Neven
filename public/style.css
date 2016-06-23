@@ -3,6 +3,10 @@
     display: none;
 }
 
+#category_listing{
+    margin-bottom:20px;
+}
+
 .hamburger_toggle{
     text-decoration: none;
     color:gray;
@@ -1017,7 +1021,7 @@ a:hover{
     display: block;
     color:#a0d6d2;
     text-align: center;
-    margin-top:40px;
+    margin-top:60px;
 }
 
 .white{
