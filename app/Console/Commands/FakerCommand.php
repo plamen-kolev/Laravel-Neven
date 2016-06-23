@@ -85,23 +85,22 @@ class FakerCommand extends Command
     {
         $faker = Faker::create();
 
-
- 
+        $this->line("Generating heroes");
 
         DB::table('heroes')->insert([
-            ['video' => 'videos/bee.ogv', 'image' => 'videos/thumbnails/bee.jpg', 
+            ['video' => 'videos/bee.webm', 'image' => 'videos/thumbnails/bee.jpg', 
             'title_en' => $faker->name, 'title_nb' => $faker->name . " norge"],
 
             ['video' => 'videos/lavander2.ogv', 'image' => 'videos/thumbnails/lavander2.jpg', 
             'title_en' => $faker->name, 'title_nb' => $faker->name . " norge"],
 
-            ['video' => 'videos/mountains-clouds.ogv', 'image' => 'videos/thumbnails/mountains-clouds.jpg', 
+            ['video' => 'videos/mountain_clouds.webm', 'image' => 'videos/thumbnails/mountain_clouds.jpg', 
             'title_en' => $faker->name, 'title_nb' => $faker->name . " norge"],
 
-            ['video' => 'videos/northern.ogv', 'image' => 'videos/thumbnails/northern.jpg', 
+            ['video' => 'videos/northern.webm', 'image' => 'videos/thumbnails/northern.jpg', 
             'title_en' => $faker->name, 'title_nb' => $faker->name . " norge"],
 
-            ['video' => 'videos/riverlapse.ogv', 'image' => 'videos/thumbnails/riverlapse.jpg', 
+            ['video' => 'videos/riverlapse.webm', 'image' => 'videos/thumbnails/riverlapse.jpg', 
             'title_en' => $faker->name, 'title_nb' => $faker->name . " norge"]
         ]);
 
@@ -113,6 +112,7 @@ class FakerCommand extends Command
         $languages = array_keys(LaravelLocalization::getSupportedLocales());
 
         # create stockists
+        $this->line("Generating $this->stockists stockists");
         foreach(range(1,$this->stockists) as $index){
             
             $filename = $this::deploy_image(1560,480, $faker);
@@ -131,6 +131,7 @@ class FakerCommand extends Command
 
 
         # create articles
+        $this->line("Generating $this->articles articles");
         foreach(range(1,$this->articles) as $index){
             $title = "$faker->word " . str_random(10);
             Article::create([
@@ -141,6 +142,7 @@ class FakerCommand extends Command
             ]);
         }
 
+        $this->line("Generating $this->slide_images slides");
         foreach(range(1,$this->slide_images) as $index){
             
             $filename = $this::deploy_image(1560,480, $faker);
@@ -152,7 +154,7 @@ class FakerCommand extends Command
             ]);
         }
 
-
+        $this->line("Generating $this->category_num categories");
         foreach(range(1,$this->category_num) as $index){
             // CATEGORY
             $title = 'Category' . $index . " " . str_random(10);
@@ -177,6 +179,7 @@ class FakerCommand extends Command
 
 
         // INGREDIENT
+        $this->line("Generating $this->ingredient_num ingredients");
         foreach(range(1,$this->ingredient_num) as $index){
             $title = 'Ingredient' . $index  . str_random(10);
 
@@ -203,6 +206,7 @@ class FakerCommand extends Command
 
 
         // Create product
+        $this->line("Generating $this->product_num products");
         foreach(range(1,$this->product_num) as $index){
             
             $filename = $this::deploy_image(1280,720, $faker);
@@ -305,6 +309,9 @@ class FakerCommand extends Command
                 'tags'=> $faker->word . str_random(10),
             ]);
         }
+
+
+        $this->line("Generating shipping options");
 
         // create shipping options
         ShippingOption::create([

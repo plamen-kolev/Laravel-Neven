@@ -41,7 +41,7 @@
 <div class="col-md-12 center shops">
     <div class="wrapper">
     
-        <h1 class="align-center capital stockists">{{ trans('text.find_our_products_in_these_stores_as_well')}}</h1>
+        <h1 class="margin_bottom_100 align-center capital stockists">{{ trans('text.find_our_products_in_these_stores_as_well')}}</h1>
         <div class="">
              @foreach ($stockists->chunk(4) as $chunk)
                 <div class="col-md-12">

@@ -3,7 +3,11 @@
 return [
     // menu mappings
     'home'          => 'home',
+    '404_title'       => 'Whoops, 404',
+    '404_verbose_message' => 'Sorry, the page never returned from the Dividal tundra.',
+    '404_action_button' => 'go home',
     'landing_page_title' => 'discover the secrets of nature trough',
+
     'our_products'  => 'our products',
     'searching_for' => 'Searching for',
     'customer_care' => "customer care",

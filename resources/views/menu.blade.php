@@ -8,7 +8,8 @@
         </div>
 
         <div class="col-md-12 main_menu">
-            <div class="col-sm-6 menu_links">
+            <div class="col-md-1"></div>
+            <div class="col-sm-5 menu_links">
                 <a class="hamburger_toggle toggle-nav glyphicon glyphicon-menu-hamburger" href="#"></a>
 
                 <ul class="menu_links_ul">
@@ -38,7 +39,7 @@
             </div>
 
             
-            <div class="col-md-4 menu_links">
+            <div class="col-md-3 menu_links">
                 <ul class="menu_links_ul align_right mobile_left">
                     <li class="mobieicon_align">
                         <a href="{{ route('show_cart', []) }}">
@@ -67,12 +68,12 @@
     
             </div>
             <div class="col-md-2 menu_links">
-                    <form  id="search_form" class="" role="search" method="GET" action="{{ route('search') }}">
-                        <input id="search_input" placeholder={{trans('text.search')}} size=10 type="text" name="term" class=""/>
-                        <input src="/images/search-nn.svg" id="search_submit" size=1 type="image" class="btn-default" alt="Search icon"/>
-                    </form>
+                <form  id="search_form" class="" role="search" method="GET" action="{{ route('search') }}">
+                    <input id="search_input" placeholder={{trans('text.search')}} size=10 type="text" name="term" class=""/>
+                    <input src="/images/search-nn.svg" id="search_submit" size=1 type="image" class="btn-default" alt="Search icon"/>
+                </form>
             </div>
-
+            <div class="col-md-1"></div>
         </div>
     </div>
 </div>

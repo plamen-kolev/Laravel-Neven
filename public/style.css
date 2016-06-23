@@ -11,6 +11,37 @@
     margin-bottom:50px;
 }
 
+.error_video{
+    position: absolute;
+    bottom:0px;
+    left: 0;
+}
+
+
+
+.margin_bottom_100{
+    margin-bottom:100px;
+}
+
+.http_container{
+    display: flex;
+    align-items: center;
+    margin-top: 20%;
+}
+
+.http_wrapper{
+}
+
+.http_code{
+    font-size:7em;
+    color:#315959;
+}
+
+.http_message{
+    font-size: 2em;
+    margin-bottom:50px;
+}
+
 .hamburger_toggle{
     text-decoration: none;
     color:gray;
@@ -411,7 +442,7 @@ p{
 }
 
 .main_menu{
-    margin-bottom:20px;
+    margin-bottom:10px;
     margin-top:10px;
 }
 
@@ -824,13 +855,13 @@ p{
     display: inline; 
     font-family: 'PT Sans', sans-serif;
     font-size:1.3em;
-    margin-right:14px;
+    margin-right:13px;
 }
 
 #search_form{
     width:100%;
     min-width:200px;
-    margin-top:-8px;
+    margin-top:-2px;
     margin-bottom:50px;
     display: inline-block;
 }

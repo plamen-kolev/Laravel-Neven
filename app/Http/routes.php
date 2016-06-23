@@ -11,11 +11,6 @@
 |
 */
 
-    Route::get('test/', ['as' => 'test', function () {
-        // $img = Image::make('/tmp/hello.jpg');
-        Storage::disk('dropbox')->put('images/hello.jpg', File::get('/tmp/hello.jpg') );
-    }]);
-
     Route::get('images/{path}', ['as' => 'image', function ($path, League\Glide\Server $server, Illuminate\Http\Request $request) {
         $server->outputImage($path, $request->all());
     }])->where('path', '.+');

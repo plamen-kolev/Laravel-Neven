@@ -30,7 +30,6 @@ class PageController extends Controller
 {
 
     public function index(){
-
         $slides = Slide::all();
         $featured_products = Product::where('featured', true)->get();
         $stockists = Stockist::all();
