@@ -36,7 +36,7 @@ class FakerCommand extends Command
      */
     protected $category_num = 2;
     protected $ingredient_num = 2;
-    protected $product_num = 5;
+    protected $product_num = 10;
     protected $ingredients_per_product = 2;
     protected $related_images = 2;
     protected $tags = 5;
@@ -73,8 +73,6 @@ class FakerCommand extends Command
      */
 
     public function deploy_image($w, $h, $faker){
-        Artisan::call('migrate:rollback');
-        Artisan::call('migrate');
         // $filename = $this::local_image($faker->image($dir = $this->storage_path, $width = $w, $height = $h));
         $filename = $this::local_image($faker->image($dir = $this->storage_path, $width = $w, $height = $h));
         // if(env('FILESYSTEM') != 'local'){
@@ -215,7 +213,7 @@ class FakerCommand extends Command
                 // 'thumbnail_medium'  => $this::local_image($faker->image($dir = public_path('media/images'), $width = 640, $height = 480)),
                 // 'thumbnail_small'   => $this::local_image($faker->image($dir = public_path('media/images'), $width = 150, $height = 150)),
                 'in_stock'  => $faker->boolean(50),
-                'featured'  => $faker->boolean(10),
+                'featured'  => $faker->boolean(40),
                 'slug'      => Str::slug($title),
                 'title_en'          => $title,
                 'description_en'    => "descr {$faker->text}",

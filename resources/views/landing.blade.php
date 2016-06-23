@@ -1,4 +1,4 @@
-<div class="col-md-12">
+<div class="col-md-12 landing" >
     <div class="wrapper">
         <div class="landing_container">
             <h1 class="capital center width_55 white" id="landing_text">{{$hero->title()}}</h1>

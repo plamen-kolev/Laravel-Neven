@@ -6,9 +6,7 @@
 
 @section('content')
 
-
-
-<div class="col-md-12 nomargin nopadding">
+<div class="col-md-12 nomargin  nopadding">
     <div class="wrapper">
         <div class="rslides_container">
             <ul id="slider" class="rslides centered-btns centered-btns1">
