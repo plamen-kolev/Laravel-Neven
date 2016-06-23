@@ -25,6 +25,7 @@ use App\ShippingOption as ShippingOption;
 use App\Stockist as Stockist;
 use Storage;
 use File;
+use DB;
 
 class FakerCommand extends Command
 {
@@ -84,16 +85,27 @@ class FakerCommand extends Command
 
     public function handle()
     {
-        // File::exists(public_path('media')) or File::makeDirectory(public_path('media'));
-        // File::exists(public_path('media/images')) or File::makeDirectory(public_path('media/images'));
-        // File::exists(public_path('media/images/.cache')) or File::makeDirectory(public_path('media/images/.cache'));
-        // File::exists(public_path('media/images')) or File::makeDirectory(public_path('media/images'));
-        // File::exists(public_path('media/images/stockists')) or File::makeDirectory(public_path('media/images/stockists'));
-        // File::exists(public_path('media/images/slides')) or File::makeDirectory(public_path('media/images/slides'));
-        // File::exists(public_path('media/images/products')) or File::makeDirectory(public_path('media/images/products'));
-        // File::exists(public_path('media/images/categories')) or File::makeDirectory(public_path('media/images/categories'));
-        // File::exists(public_path('media/images/images')) or File::makeDirectory(public_path('media/images/images'));
-        // File::exists(public_path('media/images/ingredients')) or File::makeDirectory(public_path('media/images/ingredients'));
+        $faker = Faker::create();
+
+
+ 
+
+        DB::table('heroes')->insert([
+            ['video' => 'videos/bee.ogv', 'image' => 'videos/thumbnails/bee.jpg', 
+            'title_en' => $faker->name, 'title_nb' => $faker->name . " norge"],
+
+            ['video' => 'videos/lavander2.ogv', 'image' => 'videos/thumbnails/lavander2.jpg', 
+            'title_en' => $faker->name, 'title_nb' => $faker->name . " norge"],
+
+            ['video' => 'videos/mountains-clouds.ogv', 'image' => 'videos/thumbnails/mountains-clouds.jpg', 
+            'title_en' => $faker->name, 'title_nb' => $faker->name . " norge"],
+
+            ['video' => 'videos/northern.ogv', 'image' => 'videos/thumbnails/northern.jpg', 
+            'title_en' => $faker->name, 'title_nb' => $faker->name . " norge"],
+
+            ['video' => 'videos/riverlapse.ogv', 'image' => 'videos/thumbnails/riverlapse.jpg', 
+            'title_en' => $faker->name, 'title_nb' => $faker->name . " norge"]
+        ]);
 
         $this->get_or_create_test_user( env('SELENIUM_TEST_USER') );
         $this->product_num = $this->product_num;
@@ -101,7 +113,6 @@ class FakerCommand extends Command
 
         
         $languages = array_keys(LaravelLocalization::getSupportedLocales());
-        $faker = Faker::create();
 
         # create stockists
         foreach(range(1,$this->stockists) as $index){
