@@ -16,9 +16,6 @@ class FTPServiceProvider extends ServiceProvider
     public function boot()
     {
         Storage::extend('ftp', function($app, $config) {
-            // $client = new DropboxClient(
-            //     env('DROPBOX_TOKEN'), env('DROPBOX_KEY')
-            // );
             return new Filesystem(new Adapter([
                 'host'      => env('FTP_HOSTNAME'),
                 'username'  => env('FTP_USERNAME'),
@@ -29,7 +26,6 @@ class FTPServiceProvider extends ServiceProvider
                 'root' => env('FTP_PATH', '/home/www/'),
                 'timeout' => 10,
             ])); 
-            // return new Filesystem(new DropboxAdapter($client));
         });
     }
 

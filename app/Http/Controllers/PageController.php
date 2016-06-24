@@ -30,7 +30,6 @@ class PageController extends Controller
 {
 
     public function index(){
-
         $slides = Slide::all();
         $featured_products = Product::where('featured', true)->get();
         $stockists = Stockist::all();
@@ -50,7 +49,10 @@ class PageController extends Controller
     }
 
     public function about(){
-        return View::make('about');
+        $data = [
+            'page_title'    => ' - ' . trans('text.about_us')
+        ];
+        return View::make('about', $data);
     }
 
     public function contact(Request $request){

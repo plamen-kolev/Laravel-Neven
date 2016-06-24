@@ -13,6 +13,7 @@
 @section('content')
 <div class="col-md-12">
     <div class="wrapper">
+        <div class="col-md-1"></div>
         <div class="col-md-5">
             <a href="{{route('image', $product->thumbnail)}}" data-lightbox="image-1" data-title="{{$product->title()}}">
                 <img align="middle" style="width:100%;" id="item-display" data-src="{{route('image', $product->thumbnail)}}?w=720&h=450&fit=crop" src="{{ asset('images/loading.gif') }}" alt="{{$product->title()}}"/>
@@ -31,8 +32,8 @@
                 @endforeach
             </div>
         </div>
-        <div class="col-md-2 clearfix"></div>
-        <div class="col-md-5">
+        <div class="col-md-1 clearfix"></div>
+        <div class="col-md-4">
             <h1 class='product_title'>{{$product->title()}}</h1>
             <p class="green_text inline_block">
                 {{\App\Http\Controllers\HelperController::getCurrencySymbol()}}<span id="option_price">{{ number_format($option->price * $rate, 2, '.', ',') }}</span>
@@ -114,10 +115,10 @@
 
                 <div class="col-md-12">
                     <div class="tag">{{$product->tags}}    </div>
-                    <div>Hidden:  {{$product->hidden_tags}}    </div>
                 </div>
             </div>
         </div>
+        <div class="col-md-1"></div>
     </div>
 
 </div>
@@ -170,10 +171,11 @@
                 {!! Form::close() !!}
             @endif
         </div>
-        <div>
-            <h1 class="capital center">{{ trans('text.reviews')}}</h1>
+        <div class="col-md-12">
+            <h1 style="padding-top: 30px;" class="capital center">{{ trans('text.reviews')}}</h1>
             @foreach ($reviews as $review)
-            <div class="reviews">
+            <div class="col-md-1"></div>
+            <div class="col-md-10 reviews">
                 <p>
                     @if(Auth::user() == $review->user)
                         {!! Form::open(array('url' => route("delete_review")  )) !!}
@@ -187,7 +189,7 @@
                 <p>{!! $review->body !!}</p>    
                 <p>By: {{$review->user->name}} On: {{$review->updated_at}}</p>
             </div>
-            
+            <div class="col-md-1"></div>
             @endforeach
 
         </div>

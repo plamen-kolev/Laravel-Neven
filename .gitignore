@@ -1,7 +1,6 @@
 /vendor
-public/media
+public/media/*
 selenium/*
-public/images/media
 output.html
 /node_modules
 /public/storage

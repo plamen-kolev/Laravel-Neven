@@ -3,7 +3,18 @@
 return [
     // menu mappings
     'home'          => 'home',
-    'landing_page_title' => 'discover the secrets of nature trough',
+    
+    '404_verbose_message' => 'Sorry, the page never returned from the Dividal tundra.',
+    '404_action_button' => 'go home',
+    
+    '404_title'       => 'Whoops, 404',
+    'home_title'    => ' - Home',
+    'all_products_title'    => ' - All products',
+    'stockists_title'   => ' - stockists',
+    'about_us_title'    => ' - about us',
+    'blog_title'    => ' - blog',
+    'contact_us_title'  => ' - contact us',
+
     'our_products'  => 'our products',
     'searching_for' => 'Searching for',
     'customer_care' => "customer care",

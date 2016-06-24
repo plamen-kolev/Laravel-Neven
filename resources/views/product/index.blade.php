@@ -10,7 +10,7 @@
 
 @if(!empty($categories))
 
-    <div class="item_container col-md-12 row-fluid nopadding">
+    <div class="item_container col-md-12 row-fluid" id='category_listing'>
         @foreach ($categories->chunk(5) as $chunk)
             <div class="row">
                 <div class="col-md-1"></div>

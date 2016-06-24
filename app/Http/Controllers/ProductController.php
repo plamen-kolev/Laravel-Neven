@@ -30,8 +30,8 @@ class ProductController extends Controller
         $data = array(
             'products'  => $products,
             'categories'=> Category::all(),
-            'title'     => trans('text.products'),
-            'page_title' => ' - ' . trans('text.all_products')
+            'title'     => trans('text.categories'),
+            'page_title' => trans('text.all_products_title')
         );
 
         return View::make('product.index')->with($data);
