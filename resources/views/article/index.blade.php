@@ -1,42 +1,42 @@
 @extends('master_page')
 @section('content')
-    <div class="col-md-12">
-        <div class="wrapper">
-            @if(Auth::user() && Auth::user()->admin)
-                <a class="generic_submit" href="{{route('blog.create')}}">Create an Article</a>
-            @endif
+<div class="col-md-12">
+    <div class="wrapper blog_wrap">
+        @if(Auth::user() && Auth::user()->admin)
+            <a class="generic_submit" href="{{route('blog.create')}}">Create an Article</a>
+        @endif
 
-            @foreach ($articles->chunk(4) as $chunk)
-            <div class="col-md-12 row">
-                @foreach ($chunk as $article)
-                    <div class="col-md-3 article_thumbnail">
-                        <div class="article_wrapper">
-                            <img class="width_100" data-src="{{route('image', $article->thumbnail)}}?w=220&h=150&fit=crop" src="{{ asset('images/loading.gif') }}" alt="{{ $article->title}}">
+        @foreach ($articles->chunk(4) as $chunk)
+        <div class="col-md-12 row">
+            @foreach ($chunk as $article)
+                <div class="col-md-3 article_thumbnail">
+                    <div class="article_wrapper">
+                        <img class="width_100" data-src="{{route('image', $article->thumbnail)}}?w=220&h=150&fit=crop" src="{{ asset('images/loading.gif') }}" alt="{{ $article->title}}">
 
-                            @if(Auth::user() && Auth::user()->admin)
-                                {!! Form::model($article, array('route' => array('blog.destroy', $article->slug), 'method'=>'delete'  )) !!}
-                                    {!! Form::submit('delete', array('class' => '') )!!}
-                                {!! Form::close() !!}
+                        @if(Auth::user() && Auth::user()->admin)
+                            {!! Form::model($article, array('route' => array('blog.destroy', $article->slug), 'method'=>'delete'  )) !!}
+                                {!! Form::submit('delete', array('class' => '') )!!}
+                            {!! Form::close() !!}
 
-                                <a href="{{route('blog.edit', $article->slug)}}">Edit</a>
-                            @endif
-                            <h1><a href="{{ route('blog.show', $article->slug) }}">{{ $article->title}}</a></h1>
+                            <a href="{{route('blog.edit', $article->slug)}}">Edit</a>
+                        @endif
+                        <h1><a href="{{ route('blog.show', $article->slug) }}">{{ $article->title}}</a></h1>
 
-                            <p>{!! str_limit($article->body, $limit = 120, $end = '...') !!}</p>
-                            <p>{{$article->updated_at}}</p>
-                            <p>{{$article->tags}}</p>
-                        </div>
+                        <p>{!! str_limit($article->body, $limit = 120, $end = '...') !!}</p>
+                        <p>{{$article->updated_at}}</p>
+                        <p>{{$article->tags}}</p>
                     </div>
-                @endforeach
-            </div>
+                </div>
             @endforeach
+        </div>
+        @endforeach
 
-        </div>
     </div>
-    <div class="col-md-12">
-        <div class="wrapper center">
-            {!! $articles->links() !!}
-        </div>
+</div>
+<div class="col-md-12">
+    <div class="wrapper center">
+        {!! $articles->links() !!}
     </div>
+</div>
 
 @stop

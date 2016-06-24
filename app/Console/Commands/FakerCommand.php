@@ -44,7 +44,7 @@ class FakerCommand extends Command
     protected $articles = 20;
     protected $options = 2;
     protected $reviews = 1;
-    protected $stockists = 4;
+    protected $stockists = 5;
     protected $storage_path =  "";
     protected $signature = 'faker:init';
 

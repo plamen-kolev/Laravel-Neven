@@ -9,7 +9,7 @@
 
         <div class="col-md-12 main_menu">
             <div class="col-md-1"></div>
-            <div class="col-sm-5 menu_links">
+            <div class="col-sm-6 menu_links">
                 <a class="hamburger_toggle toggle-nav glyphicon glyphicon-menu-hamburger" href="#"></a>
 
                 <ul class="menu_links_ul">
@@ -67,7 +67,7 @@
                 </ul>        
     
             </div>
-            <div class="col-md-2 menu_links">
+            <div class="col-md-1 menu_links">
                 <form  id="search_form" class="" role="search" method="GET" action="{{ route('search') }}">
                     <input id="search_input" placeholder={{trans('text.search')}} size=10 type="text" name="term" class=""/>
                     <input src="/images/search-nn.svg" id="search_submit" size=1 type="image" class="btn-default" alt="Search icon"/>

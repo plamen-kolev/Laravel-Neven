@@ -17,8 +17,8 @@
     </div>
 
     <div class="wrapper" id="stockist_form">
-        <div class="col-md-4"></div>
-        <div class="col-md-4" id="stockist_container">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
             @if( $errors->all() )
                 @foreach ($errors->all() as $error)
                     <div class="alert alert-danger" role="alert">
@@ -28,7 +28,8 @@
                     </div>
                 @endforeach
             @endif
-            {!! Form::open(array('url' => route('stockist') )) !!}
+
+            {!! Form::open(array('url' => route('stockist'), 'class' => 'generic_form', 'id' => '' )) !!}
                 <p>{!! Form::text('first_name', Input::old('first_name'), array('placeholder' => trans("text.first_name"), 'class' => 'generic_input' )); !!}</p>
                 <p>{!! Form::text('last_name', Input::old('last_name'), array('placeholder' => trans("text.last_name"), 'class' => 'generic_input' )); !!}</p>
                 <p>{!! Form::text('email', Input::old('email'), array('placeholder' => trans("text.email") , 'class' => 'generic_input')); !!}</p>
@@ -50,7 +51,7 @@
                 
             {!! Form::close() !!}
         </div>
-        <div class="col-md-4"></div>
+        <div class="col-md-3"></div>
     </div>
 
 

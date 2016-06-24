@@ -1,7 +1,7 @@
 <div class="col-md-12 ingredients_map">
     <div class="wrapper ">
         
-        <h1 class="white align-center capital">{{ trans('text.origin_of_our_ingredients')}}</h1>
+        <h1 class="white align-center capital" id="origin_of_our">{{ trans('text.origin_of_our_ingredients')}}</h1>
         
         <div class="col-md-12 center">
 

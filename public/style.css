@@ -21,8 +21,6 @@ img{
     left: 0;
 }
 
-
-
 .margin_bottom_100{
     margin-bottom:100px;
 }
@@ -400,7 +398,7 @@ p{
     height: 33px;
     border-bottom: 2px solid #a0d6d2;
     border-radius: 0px;
-    width:80%;
+    /*width:80%;*/
 }
 
 #search_submit{
@@ -413,24 +411,31 @@ p{
     padding: 10px;
 }
 
-#stockist_container{
+.generic_form{
+    border:3px solid #e6e6e6;
+    padding:10px;
+    background-color:#fff;
     margin-top:80px;
     text-align:center;
 }
 
-#stockist_submit {
+.generic_form input[@submit] {
     text-align: center;
     width: 56% !important;
     margin-bottom: 9px;
-
     background-color: #a0d6d2 !important ;
 }
 
-#stockist_container form, .form_border{
+.generic_form > p{
+    margin:10px;
 
-    border:3px solid #e6e6e6;
-    padding:10px;
-    background-color:#fff;
+}
+
+#stockist_form{
+    position: absolute;
+    top: 100px;
+    width: 100%;
+    z-index: 9;
 }
 
 .register_container{
@@ -439,19 +444,6 @@ p{
     border-color: #f3f0f0;
     text-align: center;
     margin-top: 40px;
-}
-
-/*#stockist_container > form input, #stockist_container > form textarea{
-    padding:10px;
-    background-color:#f2f2f2;
-    border:none;
-    margin-top:15px;
-    width:100%;
-}*/
-
-#stockist_container > form > p{
-    margin:10px;
-
 }
 
 .product_thumbnail img{
@@ -705,7 +697,7 @@ p{
 .transparent-btns_nav.next {
     left: auto;
     right: 0;
-  }
+}
 
 .large-btns_nav {
     z-index: 3;
@@ -720,9 +712,6 @@ p{
     background: #000 url("images/arrows.png") no-repeat left 50%;
     width: 38px;
   }
-
-
-
 
 
 .large-btns_nav.next {
@@ -740,7 +729,8 @@ p{
 .centered-btns_tabs,
 .transparent-btns_tabs,
 .large-btns_tabs {
-    margin-top: 20px;
+    margin-top: 45px;
+    margin-bottom: 40px;
     text-align: center;
   }
 
@@ -810,7 +800,7 @@ p{
 .ingredients_world_list{
     color: white;
     display: inline-block;
-    margin-top: 40px;
+    margin-top: 60px;
 }
 
 .map{
@@ -1111,10 +1101,14 @@ a:hover{
     margin-bottom: 30px;
 }
 
+#origin_of_our{
+    margin-bottom:45px;
+}
+
 .shops{
     padding-top: 40px;
     padding-bottom: 40px;
-    margin-bottom: 40px;
+    margin-bottom: 70px;
 }
 
 .stockists{
@@ -1469,6 +1463,7 @@ a:hover{
     }
 }
 
+
 @media screen and (max-width: 560px) {
     #landing_text{
         font-size:1.5em;
@@ -1481,7 +1476,9 @@ a:hover{
         display: none;
     }
 
-
+    #search_input{
+        width:95%;
+    }
 
 }
 
