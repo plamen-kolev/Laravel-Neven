@@ -73,11 +73,9 @@ class FakerCommand extends Command
      */
 
     public function deploy_image($w, $h, $faker){
-        // $filename = $this::local_image($faker->image($dir = $this->storage_path, $width = $w, $height = $h));
-        $filename = $this::local_image($faker->image($dir = $this->storage_path, $width = $w, $height = $h));
-        // if(env('FILESYSTEM') != 'local'){
-        Storage::disk(env('FILESYSTEM'))->put('images/' . $filename, File::get($this->storage_path . $filename)     );    
 
+        $filename = $this::local_image($faker->image($dir = $this->storage_path, $width = $w, $height = $h));
+        Storage::disk(env('FILESYSTEM'))->put('images/' . $filename, File::get($this->storage_path . $filename) );    
         return $filename;
     }
 
@@ -92,16 +90,16 @@ class FakerCommand extends Command
             ['video' => 'videos/bee.ogv', 'image' => 'videos/thumbnails/bee.jpg', 
             'title_en' => $faker->name, 'title_nb' => $faker->name . " norge"],
 
-            ['video' => 'videos/lavander2.ogv', 'image' => 'videos/thumbnails/lavander2.jpg', 
+            ['video' => 'videos/lavander2.ogv', 'image' => 'videos/thumbnails/lavander.jpg', 
             'title_en' => $faker->name, 'title_nb' => $faker->name . " norge"],
 
-            ['video' => 'videos/mountains-clouds.ogv', 'image' => 'videos/thumbnails/mountains-clouds.jpg', 
+            ['video' => 'videos/mountains-clouds.ogv', 'image' => 'videos/thumbnails/mountain.jpg', 
             'title_en' => $faker->name, 'title_nb' => $faker->name . " norge"],
 
-            ['video' => 'videos/northern.ogv', 'image' => 'videos/thumbnails/northern.jpg', 
+            ['video' => 'videos/northern.ogv', 'image' => 'videos/thumbnails/aurora.jpg', 
             'title_en' => $faker->name, 'title_nb' => $faker->name . " norge"],
 
-            ['video' => 'videos/riverlapse.ogv', 'image' => 'videos/thumbnails/riverlapse.jpg', 
+            ['video' => 'videos/riverlapse.ogv', 'image' => 'videos/thumbnails/riverside.jpg', 
             'title_en' => $faker->name, 'title_nb' => $faker->name . " norge"]
         ]);
 
@@ -132,9 +130,13 @@ class FakerCommand extends Command
 
         # create articles
         foreach(range(1,$this->articles) as $index){
+            
+            $filename = $this::deploy_image(1560,480, $faker);
+
             $title = "$faker->word " . str_random(10);
             Article::create([
                 'title' => $title,
+                'thumbnail' => $filename,
                 'slug'  => Str::slug($title),
                 'tags'  => "$faker->word, $faker->word, $faker->word, $faker->word",
                 'body'  => $faker->text,

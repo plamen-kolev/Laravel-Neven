@@ -58,78 +58,7 @@
                             {!! Form::text('guest_email', old('guest_email'), array('class'=>'generic_input', 'placeholder'=>trans('text.email')) ) !!}
                         </div>
                     @endif
-                        <div class="col-md-6">{!! Form::text('name', old('name', Auth::user()->name), array(
-                            'class'         => 'generic_input', 
-                            'placeholder'   => trans('text.first_name'),
-                            'id'            => 'row1_input'
-                            )) !!}
-                        </div>
 
-                        <div class="col-md-6">
-                        {!! Form::text('surname', old('surname', Auth::user()->last_name)  , array(
-                            'class'         => 'generic_input', 
-                            'placeholder'   => trans('text.last_name'),
-                            'id'            => 'row2_input'
-                            )) !!}
-                        </div>
-
-                        <div class="col-md-6">
-                        {!! Form::text('address_1', old('address_1', Auth::user()->address_1), array(
-                            'class'         => 'generic_input', 
-                            'placeholder'   => trans('text.address_1'),
-                            'id'            => 'row3_input'
-                            )) !!}
-                        </div>
-
-                        <div class="col-md-6">
-                        {!! Form::text('address_2', old('address_2', Auth::user()->address_2), array(
-                            'class'         => 'generic_input', 
-                            'placeholder'   => trans('text.address_2'),
-                            'id'            => 'row4_input'
-                            )) !!}
-                        </div>
-
-                        <div class="col-md-6">
-                        {!! Form::text('city', old('city', Auth::user()->city), array(
-                            'class'         => 'generic_input', 
-                            'placeholder'   => trans('text.city'),
-                            'id'            => 'row5_input'
-                            )) !!}
-                        </div>
-                       
-                        <div class="col-md-6">
-                        {!! Form::text('post_code', old('post_code', Auth::user()->post_code), array(
-                            'class'         => 'generic_input', 
-                            'placeholder'   => trans('text.post_code'),
-                            'id'            => 'row7_input'
-                            )) !!}
-                        </div>
-
-                        <div class="col-md-6">
-                        {!! Form::text('phone', old('phone', Auth::user()->phone), array(
-                            'class'         => 'generic_input', 
-                            'placeholder'   => trans('text.phone'),
-                            'id'            => 'row8_input'
-                            )) !!}
-                        </div>
-                        
-                        <div class="col-md-6">
-
-                        {!! Form::select('country', $shipping_countries, (Auth::user()->country), ['placeholder' => trans('text.country'),
-                                        'class'     => 'generic_input'
-                            ]) !!}
-                        </div>
-
-                    <div class="col-md-12">
-                        <div class="col-md-6">
-                            <a class="pull-left capital generic_submit purple" href=""> {{trans('text.back')}}</a>
-                            
-                        </div>
-
-                        <div class="col-md-6">
-                            <a class="pull-right capital generic_submit" href="">{{trans('text.next')}}</a>
-                        </div>
-                    </div>
 
                     <div class="col-md-12 progress_circle_container">
                         <span style="height:40px;" class="progress_block"></span>

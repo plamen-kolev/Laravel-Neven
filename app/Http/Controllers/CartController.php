@@ -25,7 +25,8 @@ class CartController extends Controller
         $cart = Cart::content();
         $data = array(
             'rate'      => HelperController::getRate(),
-            'cart'      => $cart
+            'cart'      => $cart,
+            'page_title'    => ' - ' . trans('text.cart')
         );
         return View::make('cart')->with($data);
     }

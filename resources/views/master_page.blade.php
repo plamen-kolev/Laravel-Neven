@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="shortcut icon" href="{{ asset('favicon.png') }}" />
 
-    <title>Neven</title>
+    <title>Neven {{$page_title or ''}}</title>
 </head>
 <body>
         @include('menu')

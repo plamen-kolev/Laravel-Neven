@@ -21,7 +21,11 @@
                 @foreach($product->images as $index => $image)
                 <div class="col-md-3 nopadding pull-left related_container" style="padding:5px; max-width:150px; overflow:hidden;display:inline-block">
                     <a href="{{route('image', $image->thumbnail)}}" data-lightbox="image-1" data-title="Related image for {{$product->title()}}">
-                        <img data-src="{{route('image',$image->thumbnail)}}?w=150&h=150&fit=crop" src="{{ asset('images/loading.gif') }}"  alt="Related image for {{$product->title()}}"/>    
+                        
+                        <img    data-src="{{route('image',$image->thumbnail)}}?w=150&h=150&fit=crop" 
+                                src="{{ asset('images/loading.gif') }}"  
+                                alt="Related image for {{$product->title()}}"
+                        />    
                     </a>
                 </div>
                 @endforeach
@@ -201,7 +205,7 @@
                 <div class="col-md-2 thumbnail_item">
                     <div class="thumbnail_item_inner">
                         
-                        <img data-src="{{$product->thumbnail}}?w=150&h=150&fit=crop" src="{{ asset('images/loading.gif') }}"/>
+                        <img data-src="{{route('image', $product->thumbnail)}}?w=150&h=150&fit=crop" src="{{ asset('images/loading.gif') }}"/>
                         <h2 class="thumbnail_title">
                             <a class="" href="{!! route('product.show', [ $product->slug ]) !!}"> {{$product->title()}} </a>
                         </h2>

@@ -70,7 +70,7 @@ class HelperController extends Controller
                 'price'     => $option->price,
                 'options'=> array(
                     'option'    => $option,
-                    'thumbnail_small' => $product->thumbnail_small,
+                    'thumbnail' => $product->thumbnail,
                     'weight'    => $total_weight
                 )
             )

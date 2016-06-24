@@ -32,7 +32,7 @@
             <div class="google_map" id="map"></div>
        </div>
        <div class="col-md-12 center">
-            <a class="green_link " href="">{{trans('text.become_stockist')}}</a>    
+            <a class="green_link" href="{{route('stockist')}}">{{trans('text.become_stockist')}}</a>    
        </div>
        
     </div> 

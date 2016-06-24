@@ -40,7 +40,6 @@
     </div>
 
     <p>{!! html_entity_decode($product->description) !!}</p>
-    {{--<p>{{$product->description}}</p>--}}
     <p>{{ trans('text.ingredients') }}:
         @foreach($product->ingredients as $ingredient)
             <span id="{{$ingredient->slug}}" class="product_ingredient" style="background-color:#E4B7B7;">{{$ingredient->title}}</span>,

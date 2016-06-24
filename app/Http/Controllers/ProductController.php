@@ -26,13 +26,12 @@ class ProductController extends Controller
 
     public function index(){
         $paginate_count = (int) env('PAGINATION');
-        // $products = Product::paginate($paginate_count);
-        // $products = DB::table('products')->orderBy('created_at', 'desc')->paginate($paginate_count);
         $products = Product::orderBy("created_at", 'desc')->paginate($paginate_count);
         $data = array(
             'products'  => $products,
             'categories'=> Category::all(),
-            'title'     => trans('text.products')
+            'title'     => trans('text.products'),
+            'page_title' => ' - ' . trans('text.all_products')
         );
 
         return View::make('product.index')->with($data);
@@ -45,7 +44,6 @@ class ProductController extends Controller
         $product = Product::where('slug', $product_slug)->first();
 
         $selected_option = 0;
-        // get option if specified (dropdown)
         if($option){
             $selected_option = ProductOption::where('product_id', $product->id)->where('slug', $option)->first();
         }
@@ -58,7 +56,8 @@ class ProductController extends Controller
             'product'   => $product,
             'option'    => $selected_option,
             'rate'      => HelperController::getRate(),
-            'reviews'   => Review::where('product_id', $product->id)->get()
+            'reviews'   => Review::where('product_id', $product->id)->get(),
+            'page_title'    => ' - ' . trans($product->title())
         );
         return View::make('product.show')->with($data);
     }

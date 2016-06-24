@@ -20,7 +20,8 @@ class CategoryController extends Controller
         $products = Product::where('category_id', $category->id)->orderBy("created_at", 'desc')->paginate($paginate_count);
         $data = array(
             'products'  => $products,
-            'title'     => "Category " . $category->title()
+            'title'     => "Category " . $category->title(),
+            'page_title'    => ' - ' . trans($category->title())
         );
 //      == END ==
         return View::make('product.index')->with($data);

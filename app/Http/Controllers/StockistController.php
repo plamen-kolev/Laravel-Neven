@@ -15,7 +15,8 @@ class StockistController extends Controller
         $stockists = Stockist::all();
 
         $data = array(
-            'stockists'  => $stockists
+            'stockists'  => $stockists,
+            'page_title'    => ' - ' . trans('text.stockists')
         );
 
         return View::make('stockist.index')->with($data);
@@ -50,6 +51,33 @@ class StockistController extends Controller
                 ->withInput();
         }
         
+    }
+
+    public function become_stockist(Request $request){
+        if ($request->method() == 'POST'){
+            $this->validate($request, [
+                'first_name'    => 'required|max:255|string',
+                'last_name'     => 'required|max:255|string',
+                'email'         => 'required|max:255|email',
+                'website'       => 'required|max:255|string',
+                'company'       => 'required|max:255|string',
+                'about_you'     => 'required|max:5000|'
+
+            ]);
+            EmailController::send_contact_email( $request->all() );
+            $our_response = [
+                'alert_text' => 'Thank you !', 
+                'alert_type' =>'success',
+                'message'    => 'Thank you',
+            ];
+            return View::make('message', $our_response);
+        }
+
+        $data = [
+            'page_title'    => ' - ' . trans('text.become_stockist')
+        ];
+
+        return View::make('stockist', $data);
     }
 
 

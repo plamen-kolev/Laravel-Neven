@@ -120,6 +120,7 @@ class Initial extends Migration
         // Blog schema
         Schema::create('articles', function (Blueprint $table) {
             $table->increments('id')->unsigned();
+            $table->string('thumbnail',255);
             $table->string('title',600);
             $table->string('tags', 255);
             $table->string('slug')->unique();

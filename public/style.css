@@ -1,4 +1,8 @@
 /* ============== Responsive menu css here ================ */
+
+img{
+}
+
 .toggle-nav{
     display: none;
 }
@@ -1217,9 +1221,16 @@ a:hover{
 }
 
 .article_thumbnail{
+    /*margin-left: 10px;*/
+    /*margin-right: 10px;*/
+}
+
+.article_wrapper{
     background-color: #f5f5f5;
-    margin-left: 10px;
-    margin-right: 10px;
+    padding:10px;
+    margin-top:20px;
+    min-height: 319px;
+
 }
 
 .footer_email_form input{

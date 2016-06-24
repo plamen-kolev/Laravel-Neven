@@ -34,7 +34,7 @@
                 <div class="col-md-12 shopping_item_row ">
                     <div class="col-md-1"></div>
                     <div class="col-md-2">
-                        <img src="{{$row->options->thumbnail_small}}" />
+                        <img src="{{route('image', $row->options->thumbnail)}}?w=150&h=150&fit=crop" />
                     </div>
                     
                     <div class="col-md-3">

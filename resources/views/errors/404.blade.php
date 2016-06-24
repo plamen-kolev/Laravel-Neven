@@ -8,8 +8,13 @@
 
 
 <video width="640" height="360" controls preload="none">
-    <source src="{{asset('images/error_pages/400.mp4')}}"  type="video/mp4" />
-    <source src="{{asset('images/error_pages/400.mp4')}}"  type="video/ogg" />
+    <source src="{{asset('errors/error_pages/grass_small.ogv')}}"  type="video/mp4" />
+    <source src="{{asset('errors/error_pages/grass_small.ogv')}}"  type="video/ogg" />
+</video>
+
+<video width="640" height="360" controls preload="none">
+    <source src="{{asset('errors/error_pages/bird house_small.ogv')}}"  type="video/mp4" />
+    <source src="{{asset('errors/error_pages/bird house_small.ogv')}}"  type="video/ogg" />
 </video>
 
 

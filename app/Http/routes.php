@@ -73,8 +73,8 @@
         Route::get('blog', ['as' => 'blog.index', 'uses' => 'ArticleController@index']);
         Route::get('blog/{slug}', ['as' => 'blog.show', 'uses' => 'ArticleController@show']);
 
-        Route::match( array('GET', 'POST'),'stockist',
-                      array('as' => 'stockist', 'uses' => 'PageController@stockist'));
+        Route::match( array('GET', 'POST'),'stockist/become',
+                      array('as' => 'stockist', 'uses' => 'StockistController@become_stockist'));
 
         Route::post('subscribe', ['before' => 'csrf','as' => 'subscribe', 'uses' => 'PageController@subscribe']);
 
@@ -127,15 +127,15 @@
         Route::get('ingredient/{slug}/', ['as' => 'ingredient.show', 'uses' => 'IngredientController@show']
         );
 
-        Route::get('stockists/', ['as' => 'stockists', 
-            'uses' => 'ProductController@stockists']
-        );
+        // Route::get('stockists/', ['as' => 'stockists', 
+        //     'uses' => 'ProductController@stockists']
+        // );
 
-        Route::get('stockists/become', ['as' => 'become_stockist', 
-            'uses' => 'ProductController@become_stockist']
-        );
+        // Route::get('stockists/become', ['as' => 'become_stockist', 
+        //     'uses' => 'ProductController@become_stockist']
+        // );
 
-        Route::get('stockist_all/', array('as' => 'stockist.index', 'uses' => 'StockistController@index'));
+        Route::get('stockist/all', array('as' => 'stockist.index', 'uses' => 'StockistController@index'));
         
 
 
