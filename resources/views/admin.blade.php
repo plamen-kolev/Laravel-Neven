@@ -7,6 +7,16 @@
             <h1 class="capital">Stockists<a href="{{route('stockist.create')}}">+</a></h1>
             <hr/>
             <h1 class="capital">products<a href="{{route('product.create')}}">+</a></h1>
+            <hr/>
+            <h1 class="capital">categories<a href="{{route('category.create')}}">+</a></h1>
+            <hr/>
+            <h1 class="capital">ingredients<a href="{{route('ingredient.create')}}">+</a></h1>
+
+            <hr/>
+            <h1 class="capital">shipping options<a href="{{route('shipping.create')}}">+</a></h1>
+
+            <hr/>
+            <h1 class="capital">slides<a href="{{route('slide.create')}}">+</a></h1>
         </div>
     </div>
     

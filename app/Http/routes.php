@@ -23,11 +23,12 @@
 
         Route::resource('ingredient', 'IngredientController', ['only' => ['create','store'] ]);
         
-        Route::get('stockist_create/', array('as' => 'stockist.create', 'uses' => 'StockistController@create'));
-        Route::post('stockist_store/', array('as' => 'stockist.store', 'uses' => 'StockistController@store'));
-        
+        Route::resource('stockist', 'StockistController', ['only' => ['create','store', 'edit', 'update'] ]);
 
-        Route::resource('stockist', 'StockistController', ['only' => ['edit', 'update'] ]);
+        Route::resource('shipping', 'ShippingController', ['only' => ['create','store', 'edit', 'update'] ]);
+
+        Route::resource('slide', 'SlideController', ['only' => ['create','store', 'edit', 'update'] ]);
+        
         Route::resource('blog', 'ArticleController', ['only' => ['create', 'store' ,'destroy', 'edit']] );
 
     });
@@ -112,26 +113,11 @@
         Route::get('password/reset/{token}', ['as' => 'auth.password.getRest', 'uses' => 'Auth\PasswordController@getReset']);
         Route::post('password/reset', [ 'as' => 'auth.password.postReset', 'uses' => 'Auth\PasswordController@postReset']);
 
-        // // // Password Reset Routes...
-        // Route::get('password/reset/{token?}/', ['as' => 'auth.password.reset', 'uses' => 'Auth\PasswordController@showResetForm']);
-        // Route::post('password/email/', ['as' => 'auth.password.email', 'uses' => 'Auth\PasswordController@sendResetLinkEmail']);
-
-        // Route::post('password/reset/', ['as' => 'auth.password.reset', 'uses' => 'Auth\PasswordController@reset']);
-
         # ingredients
         Route::get('ingredient/{slug}/', ['as' => 'ingredient.show', 'uses' => 'IngredientController@show']
         );
 
-        // Route::get('stockists/', ['as' => 'stockists', 
-        //     'uses' => 'ProductController@stockists']
-        // );
-
-        // Route::get('stockists/become', ['as' => 'become_stockist', 
-        //     'uses' => 'ProductController@become_stockist']
-        // );
-
-        Route::get('stockist/all', array('as' => 'stockist.index', 'uses' => 'StockistController@index'));
-        
+        Route::get('stockist', array('as' => 'stockist.index', 'uses' => 'StockistController@index'));
 
 
     });

@@ -1,7 +1,7 @@
 jQuery(document).ready(function() {
     
     // unveil js
-    $("img").unveil();
+    $("img").unveil(100);
 
     $('.hamburger_toggle').click(function(e) {
         console.log("trigger");

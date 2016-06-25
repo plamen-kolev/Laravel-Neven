@@ -17,7 +17,8 @@ class Initial extends Migration
             $table->increments('id')->unsigned();
             $table->string('image', 255)->unique();
             $table->string('url', 255);
-            $table->text('description');
+            $table->text('description_en');
+            $table->text('description_nb');
             $table->timestamps();
 
         });

@@ -30,7 +30,7 @@ class PageController extends Controller
 {
 
     public function index(){
-        $slides = Slide::all();
+        $slides = Slide::orderBy('id', 'desc')->get();
         $featured_products = Product::where('featured', true)->get();
         $stockists = Stockist::all();
         $hero = Hero::orderBy(DB::raw('RAND()'))->first();

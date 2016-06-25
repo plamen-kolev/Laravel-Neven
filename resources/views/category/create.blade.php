@@ -54,7 +54,7 @@
 
 
         <div class="col-md-12">
-            {!! Form::submit('Add product', array('class' => 'generic_submit') )!!}
+            {!! Form::submit('Add category', array('class' => 'generic_submit') )!!}
         </div>
 
     {!! Form::close() !!}

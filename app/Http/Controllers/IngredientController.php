@@ -25,8 +25,8 @@ class IngredientController extends Controller
 
     public function store(Request $request){
         $this->validate($request, [
-            'title_en'          => 'unique:ingredient_translations,title|required|max:255',
-            'title_nb'          => 'unique:ingredient_translations,title|required|max:255',
+            'title_en'          => 'unique:ingredients,title_en|required|max:255',
+            'title_nb'          => 'unique:ingredients,title_nb|required|max:255',
             'description_en'    => 'required|max:255',
             'description_nb'    => 'required|max:255',
             'thumbnail'         => 'required|max:10000|mimes:jpeg,jpg,png'
@@ -34,31 +34,16 @@ class IngredientController extends Controller
 
         if ($request->file('thumbnail')->isValid()) {
             
+            Ingredient::create([
+                'thumbnail'    => HelperController::upload_image( $request->file('thumbnail') ),
+                'title_en'  => $request->get('title_en'),
+                'title_nb'  => $request->get('title_nb'),
 
-            $paths = HelperController::crop_image(
-                $request->file('thumbnail'), 
-                'ingredients', 
-                $request->input('title_en'), 
-                array(env('MEDIUM_THUMBNAIL'), 
-                env('SMALL_THUMBNAIL'))
-            );
-            
-            $ingredient = new Ingredient([
-                'thumbnail_full'    => $paths[0],
-                'thumbnail_medium'  => $paths[1],
-                'thumbnail_small'   => $paths[2],
+                'description_en' => $request->get('description_en'),
+                'description_nb' => $request->get('description_nb'),
+
                 'slug'      =>  Str::slug($request->get('title_en'))
             ]);
-
-            $ingredient->save();
-            
-            $ingredient->translateOrNew('en')->title          = $request->get('title_en');
-            $ingredient->translateOrNew('en')->description    = $request->get('description_en');
-
-            $ingredient->translateOrNew('nb')->title          = $request->get('title_nb');
-            $ingredient->translateOrNew('nb')->description    = $request->get('description_nb');
-
-            $ingredient->save();
 
             $data = array(
                 'alert_type'    => 'alert-success',

@@ -148,7 +148,7 @@ class PaymentController extends Controller
         $data = [
             'rate' => $rate, 
             'shipping_countries' => $shipping_countries,
-            'cart' => Cart::total()
+            'cart' => Cart::total(),
         ];
         return View::make('checkout')->with($data);
     }

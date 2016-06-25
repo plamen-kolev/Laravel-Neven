@@ -130,9 +130,9 @@
                         
                         <div class="col-md-6">
 
-                        <?php if(Auth::user()){ $country = Auth::user()->country; } else {$country = 'NO';} ?>
+                        <?php if(Auth::user()){ $country = Auth::user()->country or $country = 'NO'; } else {$country = 'NO';} ?>
 
-                        {!! Form::select('country', $shipping_countries, ($country), ['placeholder' => trans('text.country'),
+                        {!! Form::select('country', $shipping_countries, $country, ['placeholder' => trans('text.country'),
                                         'class'     => 'generic_input'
                             ]) !!}
                         </div>
@@ -201,12 +201,12 @@
                     </div>
 
                     <div class="col-md-12 total_info">
-                        <h1>
-                            {{ trans('text.total') }} 
+                        <!-- <h1>
+                            {{ trans('text.total') }}
                             {{\App\Http\Controllers\HelperController::getCurrencySymbol()}}
                             {{ number_format(Cart::total() * $rate, 2, '.', ',') }}
-                        </h1> 
-                        <span id="shipping_calc"></span>
+                        </h1>  -->
+                        <h1 id="shipping_calc">Select a country to calculate shipping</h1>
 
                     </div>
                     

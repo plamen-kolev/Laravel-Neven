@@ -2,24 +2,16 @@
 @section('content')
 <div class="col-md-12">
     <div class="wrapper blog_wrap">
-        @if(Auth::user() && Auth::user()->admin)
-            <a class="generic_submit" href="{{route('blog.create')}}">Create an Article</a>
-        @endif
 
         @foreach ($articles->chunk(4) as $chunk)
         <div class="col-md-12 row">
             @foreach ($chunk as $article)
                 <div class="col-md-3 article_thumbnail">
                     <div class="article_wrapper">
-                        <img class="width_100" data-src="{{route('image', $article->thumbnail)}}?w=220&h=150&fit=crop" src="{{ asset('images/loading.gif') }}" alt="{{ $article->title}}">
-
-                        @if(Auth::user() && Auth::user()->admin)
-                            {!! Form::model($article, array('route' => array('blog.destroy', $article->slug), 'method'=>'delete'  )) !!}
-                                {!! Form::submit('delete', array('class' => '') )!!}
-                            {!! Form::close() !!}
-
-                            <a href="{{route('blog.edit', $article->slug)}}">Edit</a>
+                        @if($article->thumbnail)
+                            <img class="width_100" data-src="{{route('image', $article->thumbnail)}}?w=220&h=150&fit=crop" src="{{ asset('images/loading.gif') }}" alt="{{ $article->title}}">
                         @endif
+
                         <h1><a href="{{ route('blog.show', $article->slug) }}">{{ $article->title}}</a></h1>
 
                         <p>{!! str_limit($article->body, $limit = 120, $end = '...') !!}</p>

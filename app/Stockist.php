@@ -13,7 +13,7 @@ class Stockist extends Model
     private $rules = array(
         'title'      => 'unique:stockists,title|required|String|min:1',
         'thumbnail'  => 'required|max:10000|mimes:jpeg,jpg,png',
-        
+        'address'   => 'required',
         'lat'   => 'required|Numeric',
         'lng'  => 'required|Numeric',
         'address'    => 'required|String'

@@ -16,9 +16,16 @@ img{
 }
 
 .error_video{
+}
+
+.pull_right{
+    right:0;
+}
+
+.error_video_tile_container{
     position: absolute;
     bottom:0px;
-    left: 0;
+
 }
 
 .margin_bottom_100{
@@ -26,9 +33,13 @@ img{
 }
 
 .http_container{
-    display: flex;
-    align-items: center;
-    margin-top: 20%;
+    padding: 14px;
+    z-index: 1;
+    width: 100%;
+    position: absolute;
+    left: 12%;
+    top: 10%;
+    margin: -77px 0 0 -31px;
 }
 
 .http_wrapper{

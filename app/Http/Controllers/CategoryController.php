@@ -49,18 +49,10 @@ class CategoryController extends Controller
                     'message'       => 'Creation successful'
                 );
 
-                $paths = HelperController::crop_image(
-                    $request->file('thumbnail'), 
-                    'categories', 
-                    $request->input('title_en'), 
-                    array(env('MEDIUM_THUMBNAIL'), 
-                    env('SMALL_THUMBNAIL'))
-                );
+                $image = HelperController::upload_image($request->file('thumbnail') );
                 
                 $category = new Category([
-                    'thumbnail_full'    => $paths[0],
-                    'thumbnail_medium'  => $paths[1],
-                    'thumbnail_small'   => $paths[2],
+                    'thumbnail'    => $image,
                     'slug'      =>  Str::slug($request->get('title_en')),
 
                     'title_en'          => $request->get('title_en'),

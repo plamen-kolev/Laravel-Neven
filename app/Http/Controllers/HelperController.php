@@ -13,44 +13,14 @@ use File;
 use Image;
 use App\ShippingOption as ShippingOption;
 use Cart;
+use Storage;
+
 class HelperController extends Controller
 {
-    public static function upload_image($imate_input, $path, $name){
-        $filename  = time() . $name . "." . $image_input->getClientOriginalExtension();
-        File::exists(public_path('media')) or File::makeDirectory(public_path('media'));
-        File::exists(public_path("media/$path/")) or File::makeDirectory(public_path("media/$path/"));
-        $image_locations = array();
-
-        $relative_storage_path = "media/$path/full_$filename";
-        $storage_path = public_path($relative_storage_path);
-        $image_tmp_path = $image_input->getRealPath();
-        Image::make($image_tmp_path)->save($storage_path);
-        return $relative_storage_path;
-
-    }
-
-    public static function crop_image($image_input, $path, $name, $sizes){
-        $filename  = time() . Str::slug($name) . "." . $image_input->getClientOriginalExtension();
-        File::exists(public_path('media')) or File::makeDirectory(public_path('media'));
-        File::exists(public_path("media/$path/")) or File::makeDirectory(public_path("media/$path/"));
-        $image_locations = array();
-
-        $relative_storage_path = "/media/$path/full_$filename";
-        $storage_path = public_path($relative_storage_path);
-        $image_tmp_path = $image_input->getRealPath();
-        Image::make($image_tmp_path)->save($storage_path);
-        array_push($image_locations, $relative_storage_path);
-
-        foreach($sizes as $size){
-            $relative_storage_path = "/media/$path/" . $size .  "_$filename";
-            $storage_path = public_path($relative_storage_path);
-            Image::make($image_tmp_path)->resize($size, null, function ($constraint) {
-                                                $constraint->aspectRatio();
-                                            })->save($storage_path);
-            array_push($image_locations, $relative_storage_path);
-        }
-        return $image_locations;
-
+    public static function upload_image($image_input){        
+        $filename = $image_input->getClientOriginalName();
+        Storage::disk(env('FILESYSTEM'))->put('images/' . $filename, File::get($image_input) );    
+        return $filename;
     }
 
     // usage $data=['product'=>productOBJ, 'option'=>optionObj, 'quantity'=>number]
@@ -64,17 +34,17 @@ class HelperController extends Controller
         }
 
         Cart::add(array(
-                'id'        => $product->id,
-                'name'      => $product->title(),
-                'qty'       => $data['qty'],
-                'price'     => $option->price,
-                'options'=> array(
-                    'option'    => $option,
-                    'thumbnail' => $product->thumbnail,
-                    'weight'    => $total_weight
-                )
+            'id'        => $product->id,
+            'name'      => $product->title(),
+            'qty'       => $data['qty'],
+            'price'     => $option->price,
+        
+            'options'=> array(
+                'option'    => $option,
+                'thumbnail' => $product->thumbnail,
+                'weight'    => $total_weight
             )
-        );
+        ));
 
         return 1;
     }
@@ -88,13 +58,12 @@ class HelperController extends Controller
     }
 
     public static function getRate(){
-        if ( ! env('CONVERT_CURRENCY')) {
+        $location = Config::get('app.locale');
+        if ( ! env('CONVERT_CURRENCY') or $location = 'nb') {
             return 1;
         }
         #by default 10 NOK equals to 10*1=10 NOK
-        $rate = '1';
-        # if language is english, switch to euro converter
-        if( Config::get('app.locale') == 'en' ){
+        if( $location == 'en' ){
             $rate = Swap::quote('NOK/EUR')->getValue();
         }
         return $rate;
@@ -114,9 +83,10 @@ class HelperController extends Controller
         }
 
         $option = ShippingOption::where('country_code', $country_code)
-                                ->where('weight', '>=', $total_weight)
-                                ->orderBy('weight', 'asc')
-                                ->first();
+            ->where('weight', '>=', $total_weight)
+            ->orderBy('weight', 'asc')
+            ->first();
+
         if(!$option){
             $option = ShippingOption::where('country_code', 'ALL')
                 ->where('weight', '>', $total_weight)
@@ -124,19 +94,22 @@ class HelperController extends Controller
                 ->first();
         }
 
-        $shipping_cost = $option->price;
-        $product_cost = Cart::total();
-        $total = $shipping_cost + $product_cost;
-        $costs = [
-            'shipping_lowest'  => HelperController::get_price($option->price) * 100,
-            'product_lowest'   => HelperController::get_price(Cart::total())*100,
-            
-            'shipping'         => HelperController::get_price($option->price),
-            'product'          => HelperController::get_price(Cart::total()),
+        if(!$option){
+            return "We cannot ship the specified weight";
+        }
 
-            'total_lowest'     => HelperController::get_price($total) * 100,
-            'total'            => HelperController::get_price($total),
+        $shipping_cost = HelperController::get_price($option->price);
+        $product_cost = HelperController::get_price(Cart::total());
+        $total = HelperController::get_price( $shipping_cost + $product_cost ) ;
+        $costs = [
+            'shipping_lowest'  => $shipping_cost * 100,
+            'product_lowest'   => $product_cost * 100,
             
+            'shipping'         => $shipping_cost,
+            'product'          => $product_cost,
+
+            'total_lowest'     => $total * 100,
+            'total'            => $total
         ];
         return $costs;
     }

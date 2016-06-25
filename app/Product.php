@@ -23,17 +23,7 @@ class Product extends Model
 
         return $option->price * HelperController::getRate();
     }
-    
-    // public function getCachedTranslation($language){
-    //     $key = 'translation' + $this->id;
-    //     if(Cache::has($key)){
-    //         return Cache::get($key);
-    //     }
-    //     print "not cached";
-    //     $translation = $this->translations()->where('locale', $language)->first();
-    //     Cache::put($key, $translation, env('CACHE_TIMEOUT', 60));
-    //     return $translation;
-    // }
+
 
     public function title(){
         return ( strcmp(Config::get('app.locale'), 'en') ? $this->title_nb : $this->title_en);
@@ -104,7 +94,7 @@ class Product extends Model
             'benefits_en'       => 'required',
             'benefits_nb'       => 'required',
 
-//            'thumbnail'         => 'required|max:10000|mimes:jpeg,jpg,png',
+            'thumbnail'         => 'required|max:10000|mimes:jpeg,jpg,png',
             
             'tags'              => 'required',
     );

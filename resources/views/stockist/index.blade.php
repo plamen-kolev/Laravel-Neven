@@ -18,7 +18,7 @@
                                 </div>
                                 <div class="col-md-7">
                                     <h2 >{{$stockist->title}}</h2>
-                                    <p>{{$stockist->address}}</p>
+                                    <p>{!! $stockist->address !!}</p>
                                 </div>
                             </div>
                         </div>

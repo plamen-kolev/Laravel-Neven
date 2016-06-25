@@ -152,7 +152,8 @@ class FakerCommand extends Command
             Slide::create([
                 'image' => $filename,
                 'url'   => "google.com",
-                'description' => $faker->text
+                'description_en' => $faker->text,
+                'description_nb' => 'nb ' . $faker->text
             ]);
         }
 

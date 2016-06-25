@@ -91,28 +91,17 @@ class ProductController extends Controller
         $opt_titles = $request->get('option_title');
         $opt_weights = $request->get('option_weight');
         $opt_prices = $request->get('option_price');
-
+        
         if(empty( $opt_titles ) || !(( count($opt_titles) == count($opt_weights) || count($opt_weights) == count($opt_prices) )) ) {
             abort(400, 'Specify at least one product option and fill all fields in it !');
         }
 
         if( $product->validate_store($request->all()) ){
 
-            $paths = HelperController::crop_image(
-                $request->file('thumbnail'),
-                'categories',
-                $request->input('title_en'),
-                array(env('MEDIUM_THUMBNAIL'),
-                env('SMALL_THUMBNAIL'))
-            );
-
             # base product and thumbnails
-
             $product = new Product([
                 'slug'              => Str::slug($request->get('title_en') ),
-                'thumbnail_full'    => $paths[0],
-                'thumbnail_medium'  => $paths[1],
-                'thumbnail_small'   => $paths[2],
+                'thumbnail'         => HelperController::upload_image($request->file('thumbnail')),
 
                 'category_id'       => Category::find((int) $request->get('category'))->id,
                 'in_stock'        => (bool) $request->get('in_stock'),
@@ -132,21 +121,11 @@ class ProductController extends Controller
 
             $product->save();
 
-            if($request->file('images')){
+            if($request->file('images') && $request->file('images')[0]){
 
                 foreach($request->file('images') as $image){
-                    $paths = HelperController::crop_image(
-                        $image,
-                        'products',
-                        '',
-                        array(env('MEDIUM_THUMBNAIL'),
-                        env('SMALL_THUMBNAIL'))
-                    );
-
                     Image::create([
-                        'thumbnail_full'    => $paths[0],
-                        'thumbnail_medium'  => $paths[1],
-                        'thumbnail_small'   => $paths[2],
+                        'thumbnail'   => HelperController::upload_image( $image ),
                         'product_id'        => $product->id
                     ]);
 

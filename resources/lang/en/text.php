@@ -5,9 +5,11 @@ return [
     'home'          => 'home',
     
     '404_verbose_message' => 'Sorry, the page never returned from the Dividal tundra.',
-    '404_action_button' => 'go home',
+    '403_verbose_message'   => 'Unauthorized. Sorry, Birdy doesn\'t want guests.',
+    'error_action_button' => 'go home',
     
-    '404_title'       => 'Whoops, 404',
+    '404_title'       => ' - Whoops, 404',
+    '403_title'       => ' - Whoops, 403',
     'home_title'    => ' - Home',
     'all_products_title'    => ' - All products',
     'stockists_title'   => ' - stockists',

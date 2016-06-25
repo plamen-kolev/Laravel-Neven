@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use View;
+use Illuminate\Support\Str as Str;
 use App\Stockist as Stockist;
 
 class StockistController extends Controller
@@ -33,15 +34,15 @@ class StockistController extends Controller
     }
 
     public function store(Request $request){
-
         $stockist = new Stockist();
         if( $stockist->validate($request->all()) ){
             $slug = Str::slug($request->get('title'));
-            $stockist->thumbnail_full = HelperController::upload_image($request->get('thumbnail'), 'stockists', $slug);
+            $stockist->thumbnail = HelperController::upload_image($request->file('thumbnail'));
             $stockist->title = $request->get('title');
             $stockist->slug = $slug;
-            $stockist->x = $request->get('x');
-            $stockist->y = $request->get('y');
+            $stockist->address = $request->get('address');
+            $stockist->lat = $request->get('lat');
+            $stockist->lng = $request->get('lng');
 
             $stockist->save();
             return "Done";
@@ -77,7 +78,7 @@ class StockistController extends Controller
             'page_title'    => ' - ' . trans('text.become_stockist')
         ];
 
-        return View::make('stockist', $data);
+        return View::make('stockist.become_form', $data);
     }
 
 

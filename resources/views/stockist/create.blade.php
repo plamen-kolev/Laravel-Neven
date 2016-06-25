@@ -24,12 +24,16 @@
             {!! Form::text('title', Input::old('title'), array('placeholder' => 'Title', 'class' => 'generic_input' )); !!}
         </div>
 
-        <div class="col-md-6">
-            {!! Form::text('longitude', Input::old('longitude '), array('placeholder' => 'longitude', 'class' => 'generic_input' )); !!}
+        <div class="col-md-12">
+            {!! Form::textarea('address', Input::old('address'), array('placeholder' => 'address', 'class' => 'generic_input' )); !!}
         </div>
 
         <div class="col-md-6">
-            {!! Form::text('latitude', Input::old('latitude'), array('placeholder' => 'latitude', 'class' => 'generic_input' )); !!}
+            {!! Form::text('lat', Input::old('lat'), array('placeholder' => 'latitude', 'class' => 'generic_input' )); !!}
+        </div>
+        
+        <div class="col-md-6">
+            {!! Form::text('lng', Input::old('lng '), array('placeholder' => 'longitude', 'class' => 'generic_input' )); !!}
         </div>
 
         <div class="col-md-12">
