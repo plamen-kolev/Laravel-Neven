@@ -13,6 +13,7 @@
     <title>Neven {{$page_title or ''}}</title>
 </head>
 <body>
+        @yield('landing')
         @include('menu')
         @yield('content')
         @yield('password_reset')

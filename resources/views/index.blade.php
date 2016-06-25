@@ -1,11 +1,8 @@
-@if(!Cookie::get('visited'))
-    @include('landing')
-@endif
-
 @extends('master_page')
 
-@section('content')
+@include('landing')
 
+@section('content')
 <div class="col-md-12 nomargin  nopadding">
     <div class="wrapper">
         <div class="rslides_container">

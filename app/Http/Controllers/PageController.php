@@ -40,7 +40,7 @@ class PageController extends Controller
             'products' => $featured_products,
             'stockists' => $stockists,
             'hero'      => $hero,
-            'page_title'    => ' - ' . trans('text.home_title')
+            'page_title'    => trans('text.home_title')
             
         ];
 
@@ -68,7 +68,7 @@ class PageController extends Controller
             EmailController::send_contact_email($request->all());
         }
 
-        return View::make('contact');
+        return View::make('contact', ['page_title' => trans('text.contact_us_title')]);
     }
 
 

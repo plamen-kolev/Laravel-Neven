@@ -12,18 +12,22 @@ class ArticleController extends Controller
 {
     public function index(){
         $data = [
-            'articles' => DB::table('articles')->orderBy('created_at', 'desc')->paginate( env('PAGINATION') )
+            'articles' => DB::table('articles')->orderBy('created_at', 'desc')->paginate( env('PAGINATION') ),
+            'page_title'    => trans('text.blog_title')
         ];
 
         return View::make('article.index')->with($data);
     }
 
     public function show($slug){
+        $article = Article::where('slug', $slug)->first();
+
         $data = [
-            'articles' => Article::where('slug', $slug)->paginate( env('PAGINATION') )
+            'article' => $article,
+            'page_title'    => ' - ' . $article->title
         ];
 
-        return View::make('article.index')->with($data);
+        return View::make('article.show')->with($data);
     }
 
     public function create(){

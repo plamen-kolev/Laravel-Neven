@@ -125,6 +125,16 @@ return [
     'item_price' => 'Item price',
     'remove_item' => 'remove_item',
 
+    // img alt > eg accessabiliity for the visually impaired and devices like kindle,etc
+    'sign_in_alt'   => 'sign in',
+    'search_icon_all'   => 'search icon',
+    'sign_up_alt'   => 'sign up',
+    'facebook_icon_alt' => 'facebook icon',
+    'instagram_icon_alt' => 'instagram icon',
+    'pinterest_icon_alt'    => 'pinterest icon',
+    'google_icon_alt'   => 'google icon',
+    'neven_logo_alt'    => 'neven logo',
+    'ingredient_tip_alt' => 'ingredient tip',
 
 
     // controls and buttons

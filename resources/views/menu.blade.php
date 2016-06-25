@@ -3,7 +3,7 @@
     <div class="wrapper">
          <div class="menu">
             <div id="menu_logo_container">
-                <a href="{{route('index')}}"><img src="/images/neven_logo.png" alt="Neven logo"/></a>
+                <a href="{{route('index')}}"><img src="/images/neven_logo.png" alt="{{trans('text.neven_logo_alt')}}"/></a>
             </div>
         </div>
 
@@ -56,8 +56,12 @@
                     
                     @if(!Auth::check())
 
-                        <li class="mobieicon_align"><a class="login_button" href="{{ route('auth.login') }}"><span class="menu_icon mobile_only" ><img src="/images/sign-in.svg"/></span>{{ trans('text.log_in')}}</a></li>
-                        <li class="mobieicon_align"><a href="{{ route('auth.register') }}"><span class="menu_icon mobile_only" ><img src="/images/sign-up.svg"/></span>{{ trans('text.sign_up')}}</a></li>
+                        <li class="mobieicon_align"><a class="login_button" href="{{ route('auth.login') }}"><span class="menu_icon mobile_only" ><img alt="{{trans('text.sign_in_alt')}}" src="/images/sign-in.svg"/></span>{{ trans('text.log_in')}}</a></li>
+                        <li class="mobieicon_align">
+                            <a href="{{ route('auth.register') }}"><span class="menu_icon mobile_only" >
+                                    <img src="/images/sign-up.svg" alt="{{ trans('text.sign_up_alt')}}"/>
+                            </span>{{ trans('text.sign_up')}}</a>
+                        </li>
 
                     @else
                         <li><a id="log_out_button" href="{{ route('auth.logout') }}">{{ trans('text.log_out')}}</a></li>
@@ -70,7 +74,7 @@
             <div class="col-md-1 menu_links">
                 <form  id="search_form" class="" role="search" method="GET" action="{{ route('search') }}">
                     <input id="search_input" placeholder={{trans('text.search')}} size=10 type="text" name="term" class=""/>
-                    <input src="/images/search-nn.svg" id="search_submit" size=1 type="image" class="btn-default" alt="Search icon"/>
+                    <input src="/images/search-nn.svg" id="search_submit" size=1 type="image" class="btn-default" alt="{{trans('text.search_icon_all')}}"/>
                 </form>
             </div>
             <div class="col-md-1"></div>

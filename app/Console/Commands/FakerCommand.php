@@ -45,7 +45,7 @@ class FakerCommand extends Command
     protected $options = 2;
     protected $reviews = 1;
     protected $stockists = 5;
-    protected $storage_path =  "";
+
     protected $signature = 'faker:init';
 
     /**
@@ -201,11 +201,7 @@ class FakerCommand extends Command
             ]);
 
             $ingredient->save();
-            
-
         }
-
-
 
         // Create product
         $this->line("Generating $this->product_num products");
@@ -270,8 +266,6 @@ class FakerCommand extends Command
                 $filename = $this::deploy_image(1280,720, $faker);
                 $image = new Image([
                     'thumbnail'    => $filename,
-                    // 'thumbnail_medium'  => $this::local_image($faker->image($dir = public_path('media/images'), $width = 640, $height = 480)),
-                    // 'thumbnail_small'   => $this::local_image($faker->image($dir = public_path('media/images'), $width = 150, $height = 150)),
                 ]);
 
                 $image->product()->associate($product);
@@ -287,11 +281,9 @@ class FakerCommand extends Command
             $product->save();
 
             // Add ingredients
-            foreach(range(1, $this->ingredients_per_product) as $index){
+            foreach(range(0, $this->ingredients_per_product) as $index){
                 $product->ingredients()
-                    ->attach(Ingredient::find(
-                        $faker->numberBetween($min=1, $max=$this->ingredient_num)
-                    )
+                    ->attach(Ingredient::find($index)
                 );
             }
         }

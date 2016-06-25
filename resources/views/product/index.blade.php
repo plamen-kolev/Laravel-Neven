@@ -36,7 +36,7 @@
                             <span class="underliner"></span>
 
                             <a class="" href="{!! route('category.show', [ $category->slug ]) !!}">
-                                <img src="{{ route('image',$category->thumbnail) }}?w=150&h=150&fit=crop">
+                                <img alt="{{$category->title()}}" src="{{ route('image',$category->thumbnail) }}?w=150&h=150&fit=crop">
                             </a>
 
                            
@@ -51,26 +51,22 @@
     </div>
 @endif
 
-<div class="col-md-12 gallery_second">
-    <div class="wrapper">
-        @if(Auth::user() && Auth::user()->admin)
-            <a class="generic_submit" href="{{route('product.create')}}">Create a product</a>
-        @endif
 
-        
+@if(Auth::user() && Auth::user()->admin)
+    <a class="generic_submit" href="{{route('product.create')}}">Create a product</a>
+@endif
 
-        @include('index_products')
+
+@include('index_products')
+
+
+<div class="col-md-12">
+    <div class="wrapper center">
+        {{$products->render()}}        
     </div>
-
-    <div class="col-md-12">
-        <div class="wrapper center">
-            {{$products->render()}}        
-        </div>
-    
-        
-    </div>
-
 </div>
+
+
 
 
 @stop

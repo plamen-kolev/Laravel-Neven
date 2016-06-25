@@ -220,6 +220,7 @@ p{
 }
 
 #landing_video{
+    width:100%;
     min-height:180px;
     min-width: 960px;
 }

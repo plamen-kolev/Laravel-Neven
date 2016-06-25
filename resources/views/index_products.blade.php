@@ -1,4 +1,4 @@
-<div class="item_container col-md-12 row-fluid">
+<div class="item_container col-md-12 row-fluid gallery_second">
     @foreach ($products->chunk(5) as $chunk)
         <div class="row">
             <div class="col-md-1"></div>

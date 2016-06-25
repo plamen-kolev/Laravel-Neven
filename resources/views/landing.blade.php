@@ -1,3 +1,4 @@
+@section('landing')
 <div class="col-md-12 landing nopadding">
     <div class="wrapper">
         <div class="landing_container">
@@ -6,7 +7,7 @@
                 <a class="capital center white" id="landing_link" href="#products">{{trans('text.our_products')}}</a>        
             </div>
             <div id="landing_player">
-                <video autoplay loop poster="{{asset($hero->image)}}" id="landing_video" width="100%" >
+                <video autoplay loop poster="{{asset($hero->image)}}" id="landing_video" >
                     <source src="{{asset($hero->video)}}" type="video/mp4">
                     <source src="{{asset($hero->video)}}" type="video/ogg">
                     Your browser does not support the video tag.
@@ -19,3 +20,4 @@
 
     </div>
 </div>
+@stop

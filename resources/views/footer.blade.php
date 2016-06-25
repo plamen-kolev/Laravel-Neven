@@ -35,10 +35,10 @@
         <div class="col-sm-3 ">
             <p>{{ trans('text.find_us_on')}}</p>
 
-                <a class="soc_icons" href=""><img src="{{ asset('images/loading.gif') }}" data-src="{{asset('images/facebook-icon.svg')}}" /></a>
-                <a class="soc_icons" href=""><img src="{{ asset('images/loading.gif') }}" data-src="{{asset('images/insta-icon.svg')}}" /></a>
-                <a class="soc_icons" href=""><img src="{{ asset('images/loading.gif') }}" data-src="{{asset('images/pin-icon.svg')}}" /></a>
-                <a class="soc_icons" href=""><img src="{{ asset('images/loading.gif') }}" data-src="{{asset('images/google-icon.svg')}}" /></a>
+                <a class="soc_icons" href=""><img alt="{{trans('text.facebook_icon_alt')}}" src="{{ asset('images/loading.gif') }}" data-src="{{asset('images/facebook-icon.svg')}}" /></a>
+                <a class="soc_icons" href=""><img alt="{{trans('text.instagram_icon_alt')}}" src="{{ asset('images/loading.gif') }}" data-src="{{asset('images/insta-icon.svg')}}" /></a>
+                <a class="soc_icons" href=""><img alt="{{trans('text.pinterest_icon_alt')}}" src="{{ asset('images/loading.gif') }}" data-src="{{asset('images/pin-icon.svg')}}" /></a>
+                <a class="soc_icons" href=""><img alt="{{trans('text.google_icon_alt')}}" src="{{ asset('images/loading.gif') }}" data-src="{{asset('images/google-icon.svg')}}" /></a>
             
         </div>
 

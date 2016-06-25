@@ -16,7 +16,7 @@
         <div class="col-md-1"></div>
         <div class="col-md-5">
             <a href="{{route('image', $product->thumbnail)}}" data-lightbox="image-1" data-title="{{$product->title()}}">
-                <img align="middle" style="width:100%;" id="item-display" data-src="{{route('image', $product->thumbnail)}}?w=720&h=450&fit=crop" src="{{ asset('images/loading.gif') }}" alt="{{$product->title()}}"/>
+                <img style="width:100%;" id="item-display" data-src="{{route('image', $product->thumbnail)}}?w=720&h=450&fit=crop" src="{{ asset('images/loading.gif') }}" alt="{{$product->title()}}"/>
             </a>
             <div class="col-md-12 nopadding">
                 @foreach($product->images as $index => $image)
@@ -40,7 +40,7 @@
             </p>
             <div class="col-md-12 nopadding">
                 <div class="col-md-6 nopadding">
-                    <form action="" class="col-md-12 nopadding" method="POST">
+                    <form class="col-md-12 nopadding" method="POST">
                         <input type="hidden" name="_token" value="{{csrf_token()}}"/>
                         <div class="col-md-8 nopadding_left">
                             <select class="generic_input option_dropdown" name="option" onchange="this.form.submit()">
@@ -70,10 +70,10 @@
 
                <div class="col-lg-12 product_nav nopadding">
                     <ul class="nav nav-tabs" id="product_information">
-                        <li class="active"><a id="description_toggle" data-toggle="tab" href="#description" class="capital" href="#">{{ trans('text.description')}}</a></li>
-                        <li><a id="ingredient_toggle" class="capital" data-toggle="tab" href="#ingredients" href="#">{{ trans('text.ingredients')}}</a></li>
-                        <li><a id="tips_toggle" class="capital" data-toggle="tab" href="#tipsforuse" href="#">{{ trans('text.tips_for_use')}}</a></li>
-                        <li><a id="benefits_toggle" class="capital" data-toggle="tab" href="#benefits" href="#">{{ trans('text.benefits')}}</a></li>
+                        <li class="active"><a id="description_toggle" data-toggle="tab" href="#description" class="capital" >{{ trans('text.description')}}</a></li>
+                        <li><a id="ingredient_toggle" class="capital" data-toggle="tab" href="#ingredients">{{ trans('text.ingredients')}}</a></li>
+                        <li><a id="tips_toggle" class="capital" data-toggle="tab" href="#tipsforuse">{{ trans('text.tips_for_use')}}</a></li>
+                        <li><a id="benefits_toggle" class="capital" data-toggle="tab" href="#benefits">{{ trans('text.benefits')}}</a></li>
                     </ul>
                </div>
 
@@ -87,9 +87,9 @@
                         @foreach($product->ingredients as $ingredient)
                             <div class="col-sm-6 ingredient_label_container" id="{{$ingredient->slug}}">
                                 <span class="ingredient_tip">
-                                    <img src="/images/ingr-tip.svg"/>
+                                    <img alt="{{trans('text.ingredient_tip_alt')}}" src="/images/ingr-tip.svg"/>
                                 </span>
-                                <div class="ingredients_bg" id="{{$ingredient->slug}}" class="col-md-4 product_ingredient thumbnail" >
+                                <div class="ingredients_bg col-md-4 product_ingredient thumbnail" id="{{$ingredient->slug}}">
                                     {{ str_limit($ingredient->title(), $limit = 17, $end = '') }}
                                 </div>
                             </div>
@@ -207,7 +207,7 @@
                 <div class="col-md-2 thumbnail_item">
                     <div class="thumbnail_item_inner">
                         
-                        <img data-src="{{route('image', $product->thumbnail)}}?w=150&h=150&fit=crop" src="{{ asset('images/loading.gif') }}"/>
+                        <img alt="image" data-src="{{route('image', $product->thumbnail)}}?w=150&h=150&fit=crop" src="{{ asset('images/loading.gif') }}"/>
                         <h2 class="thumbnail_title">
                             <a class="" href="{!! route('product.show', [ $product->slug ]) !!}"> {{$product->title()}} </a>
                         </h2>
@@ -226,16 +226,9 @@
             </div>
             @endforeach
             <a class="green_link" href="">{{ trans('text.view_all_products')}}</a>
+        </div>
     </div>
 </div>
-
-<div class="col-md-12">
-    <div class="wrapper">
-        
-    </div>
-    
-</div>
-
 @if(Auth::user())
     <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
     <script>
