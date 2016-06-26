@@ -19,6 +19,8 @@ class ArticleController extends Controller
         return View::make('article.index')->with($data);
     }
 
+
+
     public function show($slug){
         $article = Article::where('slug', $slug)->first();
 
@@ -71,13 +73,12 @@ class ArticleController extends Controller
         };
         $article->delete();
 
-        $data = array(
-            'alert_type'    => 'alert-success',
-            'alert_text'    => 'Article added successful',
-            'message'       => 'Deleting ' . $article->title . ' successful'
-        );
-
-        return View::make('message')->with($data);
+        // $data = array(
+        //     // 'alert_text'    => 'Article added successful',
+        //     'message'       => 'Deleting ' . $article->title . ' successful'
+        // );
+        return back();
+        // return View::make('message')->with($data);
     }
 
     public function edit($slug){

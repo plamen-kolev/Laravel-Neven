@@ -12,7 +12,8 @@
 */
 
     Route::get('images/{path}', ['as' => 'image', function ($path, League\Glide\Server $server, Illuminate\Http\Request $request) {
-        $server->outputImage($path, $request->all());
+        $result = $server->outputImage($path, $request->all());
+        dd($result);
     }])->where('path', '.+');
 
     Route::group(['middleware' => ['web', 'admin'] ], function () {
@@ -21,9 +22,9 @@
         Route::resource('category', 'CategoryController', ['only' => ['create', 'store', 'destroy', 'edit', 'update']] );
         Route::resource('product', 'ProductController', ['only' => ['create', 'store', 'destroy', 'edit', 'update' ]] );
 
-        Route::resource('ingredient', 'IngredientController', ['only' => ['create','store'] ]);
+        Route::resource('ingredient', 'IngredientController', ['only' => ['create','store', 'index', 'destroy'] ]);
         
-        Route::resource('stockist', 'StockistController', ['only' => ['create','store', 'edit', 'update'] ]);
+        Route::resource('stockist', 'StockistController', ['only' => ['create','store', 'edit', 'update', 'destroy'] ]);
 
         Route::resource('shipping', 'ShippingController', ['only' => ['create','store', 'edit', 'update'] ]);
 

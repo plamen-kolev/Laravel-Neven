@@ -10,6 +10,15 @@ use App\Http\Requests;
 
 class IngredientController extends Controller
 {
+
+    public function index(){
+        $data = [
+            'ingredients' => Ingredient::all()
+        ];
+
+        return View::make('ingredient.index', $data);
+    }
+
     public function show($slug){
         $ingredient = Ingredient::where('slug', $slug)->first();
         if(!$ingredient){
@@ -55,5 +64,10 @@ class IngredientController extends Controller
         }
 
         return Response('File upload failed', 400);
+    }
+
+    public function destroy($slug){
+        Ingredient::where('slug', $slug)->first()->delete();
+        return back();
     }
 }

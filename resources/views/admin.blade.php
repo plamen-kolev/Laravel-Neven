@@ -2,15 +2,15 @@
 @section('content')
     <div class="col-md-12">
         <div class="wrapper">
-            <h1 class="capital">Articles <a href="{{route('blog.create')}}">+</a></h1>
+            <h1 class="capital"><a href="{{route('blog.index')}}">Articles</a> <a href="{{route('blog.create')}}">+</a></h1>
             <hr/>
-            <h1 class="capital">Stockists<a href="{{route('stockist.create')}}">+</a></h1>
+            <h1 class="capital"><a href="{{route('stockist.index')}}">Stockists</a><a href="{{route('stockist.create')}}">+</a></h1>
             <hr/>
-            <h1 class="capital">products<a href="{{route('product.create')}}">+</a></h1>
+            <h1 class="capital"><a href="{{route('product.index')}}">products</a><a href="{{route('product.create')}}">+</a></h1>
             <hr/>
-            <h1 class="capital">categories<a href="{{route('category.create')}}">+</a></h1>
+            <h1 class="capital"><a href="{{route('category.index')}}">categories</a><a href="{{route('category.create')}}">+</a></h1>
             <hr/>
-            <h1 class="capital">ingredients<a href="{{route('ingredient.create')}}">+</a></h1>
+            <h1 class="capital"><a href="{{route('ingredient.index')}}">ingredients</a><a href="{{route('ingredient.create')}}">+</a></h1>
 
             <hr/>
             <h1 class="capital">shipping options<a href="{{route('shipping.create')}}">+</a></h1>

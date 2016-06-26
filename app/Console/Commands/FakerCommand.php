@@ -184,7 +184,7 @@ class FakerCommand extends Command
         // INGREDIENT
         $this->line("Generating $this->ingredient_num ingredients");
         foreach(range(1,$this->ingredient_num) as $index){
-            $title = 'Ingredient' . $index  . str_random(10);
+            $title = 'Ingredient' . ' ' . $index . ' '  . str_random(6);
 
             $filename = $this::deploy_image(1280,720, $faker);
 

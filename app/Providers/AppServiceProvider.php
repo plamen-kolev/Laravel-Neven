@@ -7,10 +7,6 @@ use Cache;
 use Config;
 use Storage;
 use League\Flysystem\Filesystem;
-// use League\Flysystem\Adapter\Ftp as Adapter;
-
-use League\Flysystem\Dropbox\DropboxAdapter;
-use Dropbox\Client;
 
 use League\Glide\ServerFactory;
 
@@ -26,7 +22,13 @@ class AppServiceProvider extends ServiceProvider
     {
         view()->composer('master_page', function($view){
             $categories = Category::all();
-            $view->with('categories', $categories);
+            if (Cache::has('menu_categories')){
+                $view->with('categories', Cache::get('menu_categories'));                
+            } else {
+                Cache::add('menu_categories', $categories, env('CACHE_TIMEOUT') );
+                $view->with('categories', $categories);    
+            }
+            
         });
     }
 
@@ -36,19 +38,24 @@ class AppServiceProvider extends ServiceProvider
      * @return void
      */
     public function register(){
-        
+
+
         $this->app->singleton('League\Glide\Server', function($app) {
+            if(Cache::has('glide_factory')){
+                return Cache::get('glide_factory');
+            }
+
             $storageDriver = Storage::disk(env('FILESYSTEM'))->getDriver();
             
             $factory = ServerFactory::create([
                 'source' => $storageDriver,
                 'cache'  => Storage::disk('local')->getDriver(),
-                // 'cache'  => '/tmp/',
-                // 'cache'  => $storageDriver,
+
                 'source_path_prefix'    => 'images',
                 'cache_path_prefix'     =>  'images/.cache',
                 'base_url' => '/images/'
             ]);
+            Cache::add('glide_factory', $factory, env('CACHE_TIMEOUT'));
             return $factory;
         });
     }

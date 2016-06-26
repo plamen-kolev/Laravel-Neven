@@ -18,16 +18,6 @@
                 @foreach ($chunk as $index=>$category)
 
                     <div class="col-md-2 thumbnail_item">
-                        @if(Auth::user() && Auth::user()->admin)
-                            {!! Form::model($category, ['method' => 'DELETE', 'route' => array('category.destroy', $category->slug) ] ) !!}
-                                {!! Form::submit('delete', array('class' => 'generic_submit') )!!}
-                            {{ Form::close() }}
-
-                            {!! Form::model($category, ['method' => 'GET', 'route' => array('category.edit', $category->slug)] ) !!}
-                                {!! Form::submit('edit', array('class' => 'generic_submit') )!!}
-                            {{ Form::close() }}
-                        @endif
-
 
                         <div class="thumbnail_item_inner category_item">
                             <h2 class="thumbnail_title">
@@ -39,7 +29,16 @@
                                 <img alt="{{$category->title()}}" src="{{ route('image',$category->thumbnail) }}?w=150&h=150&fit=crop">
                             </a>
 
-                           
+                            @if(Auth::user() && Auth::user()->admin)
+                                <span class="pull-right">
+                                    {{ Form::open(['method' => 'DELETE', 'route' => ['category.destroy', $category->slug]]) }}
+                                        {{ Form::submit('Delete', ['class' => 'glyphicon glyphicon-remove danger confirm_delete']) }}
+                                    {{ Form::close() }}
+
+                                    <a class="glyphicon glyphicon-pencil success" href="{{route('blog.edit', $category->slug)}}"></a>
+                                </span>
+                            @endif
+
                         </div>
                     </div>
                 @endforeach
@@ -50,12 +49,6 @@
 
     </div>
 @endif
-
-
-@if(Auth::user() && Auth::user()->admin)
-    <a class="generic_submit" href="{{route('product.create')}}">Create a product</a>
-@endif
-
 
 @include('index_products')
 

@@ -19,6 +19,17 @@
                                 <div class="col-md-7">
                                     <h2 >{{$stockist->title}}</h2>
                                     <p>{!! $stockist->address !!}</p>
+
+                                    @if(Auth::user() && Auth::user()->admin)
+                                        <span class="pull-right">
+                                            {{ Form::open(['method' => 'DELETE', 'route' => ['stockist.destroy', $stockist->slug]]) }}
+                                                {{ Form::submit('Delete', ['class' => 'glyphicon glyphicon-remove danger confirm_delete']) }}
+                                            {{ Form::close() }}
+
+                                            <a class="glyphicon glyphicon-pencil success" href="{{route('blog.edit', $stockist->slug)}}"></a>
+                                        </span>
+                                    @endif
+
                                 </div>
                             </div>
                         </div>

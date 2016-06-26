@@ -264,19 +264,9 @@ class ProductController extends Controller
     }
 
     public function destroy($slug){
-        $product = Product::where('slug', $slug)->first();
-        if (!$product){
-            return abort(404, "Product $slug not found");
-        };
-        $product->delete();
-
-        $data = array(
-            'alert_type'    => 'alert-success',
-            'alert_text'    => 'Product added successful',
-            'message'       => 'Deleting ' . $product->title . ' successful'
-        );
-
-        return View::make('message')->with($data);
+        $product = Product::where('slug', $slug)->first()->delete();
+        return back();
+        // return View::make('message')->with($data);
     }
 
 }

@@ -11,6 +11,11 @@ img{
     margin-bottom:20px;
 }
 
+.proud_to p{
+    color: white;
+    font-style: italic;
+}
+
 .landing{
     margin-bottom:50px;
 }
@@ -20,6 +25,10 @@ img{
 
 .pull_right{
     right:0;
+}
+
+.product_title{
+    margin-top:-10px;
 }
 
 .error_video_tile_container{

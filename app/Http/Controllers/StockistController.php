@@ -33,6 +33,11 @@ class StockistController extends Controller
         return View::make('stockist.create')->with($data);
     }
 
+    public function destroy($slug){
+        Stockist::where('slug', $slug)->first()->delete();
+        return back();
+    }
+
     public function store(Request $request){
         $stockist = new Stockist();
         if( $stockist->validate($request->all()) ){

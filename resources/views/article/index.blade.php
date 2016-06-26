@@ -15,8 +15,20 @@
                         <h1><a href="{{ route('blog.show', $article->slug) }}">{{ $article->title}}</a></h1>
 
                         <p>{!! str_limit($article->body, $limit = 120, $end = '...') !!}</p>
-                        <p>{{$article->updated_at}}</p>
-                        <p>{{$article->tags}}</p>
+                        <p>{{$article->updated_at}}
+                        @if(Auth::user() && Auth::user()->admin)
+                            <span class="pull-right">
+
+                                {{ Form::open(['method' => 'DELETE', 'route' => ['blog.destroy', $article->slug]]) }}
+                                    {{ Form::submit('Delete', ['class' => 'glyphicon glyphicon-remove danger confirm_delete']) }}
+                                {{ Form::close() }}
+
+
+                                <a class="glyphicon glyphicon-pencil success" href="{{route('blog.edit', $article->slug)}}"></a>
+                            </span>
+                        @endif
+                        </p>
+                        
                     </div>
                 </div>
             @endforeach

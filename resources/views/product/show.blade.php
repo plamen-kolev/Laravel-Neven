@@ -16,24 +16,23 @@
         <div class="col-md-1"></div>
         <div class="col-md-5">
             <a href="{{route('image', $product->thumbnail)}}" data-lightbox="image-1" data-title="{{$product->title()}}">
-                <img style="width:100%;" id="item-display" data-src="{{route('image', $product->thumbnail)}}?w=720&h=450&fit=crop" src="{{ asset('images/loading.gif') }}" alt="{{$product->title()}}"/>
+                    <img style="width:100%" data-src="{{route('image', $product->thumbnail)}}?w=720&h=450&fit=crop" src="{{ asset('images/loading.gif') }}" alt="{{$product->title()}}"/>
             </a>
             <div class="col-md-12 nopadding">
                 @foreach($product->images as $index => $image)
                 <div class="col-md-3 nopadding pull-left related_container" style="padding:5px; max-width:150px; overflow:hidden;display:inline-block">
                     <a href="{{route('image', $image->thumbnail)}}" data-lightbox="image-1" data-title="Related image for {{$product->title()}}">
-                        
-                        <img    data-src="{{route('image',$image->thumbnail)}}?w=150&h=150&fit=crop" 
-                                src="{{ asset('images/loading.gif') }}"  
-                                alt="Related image for {{$product->title()}}"
-                        />    
+                        <img data-src="{{route('image',$image->thumbnail)}}?w=150&h=150&fit=crop" 
+                            src="{{ asset('images/loading.gif') }}"  
+                            alt="Related image for {{$product->title()}}"
+                        />
+
                     </a>
                 </div>
                 @endforeach
             </div>
         </div>
-        <div class="col-md-1 clearfix"></div>
-        <div class="col-md-4">
+        <div class="col-md-5">
             <h1 class='product_title'>{{$product->title()}}</h1>
             <p class="green_text inline_block">
                 {{\App\Http\Controllers\HelperController::getCurrencySymbol()}}<span id="option_price">{{ number_format($option->price * $rate, 2, '.', ',') }}</span>

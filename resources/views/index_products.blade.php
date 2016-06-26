@@ -9,6 +9,16 @@
                     
                     <div class="thumbnail_item_inner">
 
+                        @if(Auth::user() && Auth::user()->admin)
+                            <span class="pull-right">
+                                {{ Form::open(['method' => 'DELETE', 'route' => ['product.destroy', $product->slug]]) }}
+                                    {{ Form::submit('Delete', ['class' => 'glyphicon glyphicon-remove danger confirm_delete']) }}
+                                {{ Form::close() }}
+
+                                <a class="glyphicon glyphicon-pencil success" href="{{route('blog.edit', $product->slug)}}"></a>
+                            </span>
+                        @endif
+                        
                         <a class="" href="{!! route('product.show', [ $product->slug ]) !!}">
                             <img data-src="{{ route('image', $product->thumbnail) }}?w=150&h=150&fit=crop" src="{{ asset('images/loading.gif') }}" alt="{{ $product->title() }}">
                         </a>
@@ -20,6 +30,7 @@
                         <p class="product_price">
                             {{\App\Http\Controllers\HelperController::getCurrencySymbol()}} {{ number_format($product->price(), 2, '.', ',') }}
                         </p>
+
                         <div class="view_product">
                             <p>
                                 <a class="" href="{!! route('product.show', [ $product->slug ]) !!}">{{ trans('text.view_product')}}</a>

@@ -17,6 +17,12 @@ return [
     'blog_title'    => ' - blog',
     'contact_us_title'  => ' - contact us',
 
+    'proud_cold_processed' => 'cold processed',
+    'proud_no_syntetic' => 'no synthetics',
+    'proud_no_fillers'  => 'no fillers',
+    'proud_vegan'   => 'vegan',
+    'proud_cruelty_free'    => 'cruelty free',
+
     'our_products'  => 'our products',
     'searching_for' => 'Searching for',
     'customer_care' => "customer care",

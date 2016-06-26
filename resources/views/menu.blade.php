@@ -3,7 +3,7 @@
     <div class="wrapper">
          <div class="menu">
             <div id="menu_logo_container">
-                <a href="{{route('index')}}"><img src="/images/neven_logo.png" alt="{{trans('text.neven_logo_alt')}}"/></a>
+                <a href="{{route('index')}}"><img src="{{ asset('images/loading.gif') }}" data-src="{{asset('images/neven_logo.png')}}" alt="{{trans('text.neven_logo_alt')}}"/></a>
             </div>
         </div>
 
@@ -43,7 +43,7 @@
                 <ul class="menu_links_ul align_right mobile_left">
                     <li class="mobieicon_align">
                         <a href="{{ route('show_cart', []) }}">
-                            <img alt="Cart icon" class="cart_icon" src="/images/cart.svg"/>
+                            <img src="{{ asset('images/loading.gif') }}" alt="Cart icon" class="cart_icon" data-src="{{asset('images/cart.svg')}}"/>
                             <span class="cart_count"> <span class="counter_number">{{Cart::count()}}</span></span>
                         </a>
 

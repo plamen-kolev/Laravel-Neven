@@ -97,18 +97,7 @@ class CategoryController extends Controller
     }
 
     public function destroy($slug){
-        $category = Category::where('slug', $slug)->first();
-        if (!$category){
-            return abort(404, "Category $slug not found");
-        };
-        $category->delete();
-
-        $data = array(
-            'alert_type'    => 'alert-success',
-            'alert_text'    => 'Product added successful',
-            'message'       => 'Deleting ' . $category->title . ' successful'
-        );
-
-        return View::make('message')->with($data);
+        Category::where('slug', $slug)->first()->delete();
+        return back();
     }
 }
