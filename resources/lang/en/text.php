@@ -23,6 +23,8 @@ return [
     'proud_vegan'   => 'vegan',
     'proud_cruelty_free'    => 'cruelty free',
 
+    'new_blog_entry_subject_email'  => 'New article from Neven',
+
     'our_products'  => 'our products',
     'searching_for' => 'Searching for',
     'customer_care' => "customer care",

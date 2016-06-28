@@ -58,10 +58,18 @@ class ArticleController extends Controller
         $article->save();
 
         $data = array(
-            'alert_type'    => 'alert-success',
+            'type'    => 'alert-success',
             'alert_text'    => 'Article added successful',
             'message'       => 'Creation successful'
         );
+
+
+        // now send email to every subscriber
+        $subscribers = DB::table('subscribers')->select('email')->get();
+
+        foreach ($subscribers as $subscriber) {
+            EmailController::send_article( ['article' => $article], $subscriber);
+        }
 
         return View::make('message')->with($data);
     }
@@ -73,12 +81,7 @@ class ArticleController extends Controller
         };
         $article->delete();
 
-        // $data = array(
-        //     // 'alert_text'    => 'Article added successful',
-        //     'message'       => 'Deleting ' . $article->title . ' successful'
-        // );
         return back();
-        // return View::make('message')->with($data);
     }
 
     public function edit($slug){
@@ -89,7 +92,7 @@ class ArticleController extends Controller
         $data = array(
             'article'   => $article
         );
-        return View::make('article.edit')->with($data);
+        return View::make('article.create')->with($data);
 
     }
 }

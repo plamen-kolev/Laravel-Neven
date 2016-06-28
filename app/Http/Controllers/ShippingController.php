@@ -9,6 +9,15 @@ use App\Http\Requests;
 
 class ShippingController extends Controller{
 
+    public function index(){
+        $shipping_options = ShippingOption::all();
+        $data = [
+            'shipping_options'  => $shipping_options
+        ];
+
+        return View::make('shipping.index')->with($data);
+    }
+
     public function create(){
         $shipping = new ShippingOption();
         return View::make('shipping.create')->with('shipping', $shipping);
@@ -32,5 +41,17 @@ class ShippingController extends Controller{
         ];
 
         return View::make('message')->with($data);
+    }
+
+    public function destroy($id){
+
+        ShippingOption::where('id', $id)->first()->delete();
+
+        $data = [
+            'type'    => 'success',
+            'message' => 'Shipping option successfully deleted !'
+        ];
+
+        return back();
     }
 }

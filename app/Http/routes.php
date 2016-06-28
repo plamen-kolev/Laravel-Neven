@@ -26,7 +26,7 @@
         
         Route::resource('stockist', 'StockistController', ['only' => ['create','store', 'edit', 'update', 'destroy'] ]);
 
-        Route::resource('shipping', 'ShippingController', ['only' => ['create','store', 'edit', 'update'] ]);
+        Route::resource('shipping', 'ShippingController', ['only' => ['index', 'create','store', 'edit', 'update', 'destroy'] ]);
 
         Route::resource('slide', 'SlideController', ['only' => ['create','store', 'edit', 'update'] ]);
         

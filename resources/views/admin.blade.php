@@ -8,15 +8,15 @@
             <hr/>
             <h1 class="capital"><a href="{{route('product.index')}}">products</a><a href="{{route('product.create')}}">+</a></h1>
             <hr/>
-            <h1 class="capital"><a href="{{route('category.index')}}">categories</a><a href="{{route('category.create')}}">+</a></h1>
+            <h1 class="capital"><a href="{{route('product.index')}}">categories</a><a href="{{route('category.create')}}">+</a></h1>
             <hr/>
             <h1 class="capital"><a href="{{route('ingredient.index')}}">ingredients</a><a href="{{route('ingredient.create')}}">+</a></h1>
 
             <hr/>
-            <h1 class="capital">shipping options<a href="{{route('shipping.create')}}">+</a></h1>
+            <h1 class="capital"><a href="{{route('shipping.index')}}">shipping options</a><a href="{{route('shipping.create')}}">+</a></h1>
 
             <hr/>
-            <h1 class="capital">slides<a href="{{route('slide.create')}}">+</a></h1>
+            <h1 class="capital"><a href="{{route('index')}}/?#slides">slides</a><a href="{{route('slide.create')}}">+</a></h1>
         </div>
     </div>
     

@@ -5,7 +5,7 @@
 @section('content')
 <div class="col-md-12 nomargin  nopadding">
     <div class="wrapper">
-        <div class="rslides_container">
+        <div id="slides" class="rslides_container">
             <ul id="slider" class="rslides centered-btns centered-btns1">
                 @foreach ($slides as $slide)
                 <li>

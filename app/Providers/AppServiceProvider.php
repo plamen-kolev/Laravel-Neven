@@ -21,10 +21,10 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         view()->composer('master_page', function($view){
-            $categories = Category::all();
             if (Cache::has('menu_categories')){
                 $view->with('categories', Cache::get('menu_categories'));                
             } else {
+                $categories = Category::all();
                 Cache::add('menu_categories', $categories, env('CACHE_TIMEOUT') );
                 $view->with('categories', $categories);    
             }

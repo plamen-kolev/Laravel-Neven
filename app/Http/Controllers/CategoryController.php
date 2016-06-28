@@ -13,6 +13,11 @@ use App\Http\Controllers\HelperController as HelperController ;
 
 class CategoryController extends Controller
 {
+
+    public function index(){
+        
+    }
+
     public function show($slug){
         $paginate_count = (int) env('PAGINATION');
         $category = Category::where('slug', $slug)->first();

@@ -24,16 +24,31 @@ use App\Subscriber as Subscriber;
 use App\Tag as Tag;
 use App\Hero as Hero;
 use App\Image as Image;
-use Cookie;
+use Cache;
 
 class PageController extends Controller
 {
 
     public function index(){
-        $slides = Slide::orderBy('id', 'desc')->get();
-        $featured_products = Product::where('featured', true)->get();
+        
         $stockists = Stockist::all();
         $hero = Hero::orderBy(DB::raw('RAND()'))->first();
+
+        if(Cache::has('index_slides')){
+            $slides = Cache::get('index_slides');
+
+        } else {
+            $slides = Slide::orderBy('id', 'desc')->get();    
+            Cache::add('index_slides', $slides, env('CACHE_TIMEOUT'));
+        }
+
+        if(Cache::has('all_products')){
+            $featured_products = Cache::get('all_products');
+        } else {
+            $featured_products = Product::where('featured', true)->get();
+            Cache::add('all_products', $featured_products, env('CACHE_TIMEOUT'));
+        }
+        
 
         $data = [
             'slides' => $slides, 

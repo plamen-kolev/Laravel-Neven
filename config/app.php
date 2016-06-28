@@ -168,7 +168,8 @@ $conf = [
         Unisharp\Ckeditor\ServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         App\Providers\DropboxServiceProvider::class,
-        App\Providers\FTPServiceProvider::class
+        App\Providers\FTPServiceProvider::class,
+        'Clockwork\Support\Laravel\ClockworkServiceProvider'
 
     ],
 
@@ -224,13 +225,13 @@ $conf = [
         'Form'                  => Collective\Html\FormFacade::class,
         'Html'                  => Collective\Html\HtmlFacade::class,
         'Socialize'             => Laravel\Socialite\Facades\Socialite::class,
-        'Image'                 => Intervention\Image\Facades\Image::class,
+        'Image'                 => Intervention\Image\Facades\Image::class
     ],
 
 ];
 
-if(!env('APP_DEBUG')){
-    array_push($conf['providers'],'Clockwork\Support\Laravel\ClockworkServiceProvider');
-} 
+// if(!env('APP_DEBUG')){
+//     array_push($conf['providers'],'Clockwork\Support\Laravel\ClockworkServiceProvider');
+// } 
 
 return $conf;

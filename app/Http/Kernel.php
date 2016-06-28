@@ -14,8 +14,8 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $middleware = [
-        \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class
-        // (!$this->app->environment('development')) ?: 'Clockwork\Support\Laravel\ClockworkServiceProvider'
+        \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
+        'Clockwork\Support\Laravel\ClockworkMiddleware'
     ];
 
     /**

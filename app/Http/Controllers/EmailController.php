@@ -68,11 +68,18 @@ class EmailController extends Controller
     }
 
     public static function send_contact_email($data){
-
         $response = Mail::send('contact_email', $data, function($message){
             $message->to( env('MAIL_USERNAME') , env('MAIL_NAME') )
                 ->from( env('MAIL_USERNAME') )
                 ->subject( 'New stockist received' );
+        });
+    }
+
+    public static function send_article($data, $email){
+        Mail::send('article.show', $data, function($message) use($email){
+            $message->to( 'p.kolev22@gmail.com', 'user')
+                ->from( env('MAIL_USERNAME') )
+                ->subject( trans('text.new_blog_entry_subject_email') );
         });
     }
 
