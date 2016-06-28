@@ -205,7 +205,7 @@ class Initial extends Migration
 
         Schema::create('subscribers', function (Blueprint $table){
             $table->increments('id')->unsigned();
-            $table->string('email', 300)->unique();
+            $table->string('email', 255)->unique();
             $table->boolean('send')->default(1);
 
             $table->timestamps();
@@ -213,11 +213,11 @@ class Initial extends Migration
 
         Schema::create('stockists', function (Blueprint $table){
             $table->increments('id')->unsigned();
-            $table->string('slug', 500)->unique();
-            $table->string('title', 500);
-            $table->string('address', 500);
-            $table->string('lat', 500);
-            $table->string('lng', 500);
+            $table->string('slug', 255)->unique();
+            $table->string('title', 255);
+            $table->string('address', 255);
+            $table->string('lat', 255);
+            $table->string('lng', 255);
 
             // $table->string('thumbnail_full',255);
             $table->string('thumbnail',255);
