@@ -19,43 +19,46 @@
 <div class="col-md-12">
     <div class="wrapper">
         <div class="col-md-1"></div>
-        <div class="col-md-10">
+        <div class="col-md-10 nopadding">
             <form method="POST" action="{{ route('show_cart') }}">
-            <table style="width:100%">
-                <tr>
-                  <th>{{trans('text.product')}}</th>
-                  <th>{{trans('text.title')}}</th>
-                  <th>{{trans('text.grams')}}</th>
-                  <th>{{trans('text.quantity')}}</th>
-                  <th>{{trans('text.price')}}</th>
-                </tr>
-                <div class="col-md-12"><span class="gray_line"></span></div>
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <table class="width_100">
 
-            @foreach($cart as $index=>$row)
-                <tr>
-                    <td>
-                        <img src="{{route('image', $row->options->thumbnail)}}?w=150&h=150&fit=crop" />
-                    </td>
-                    
-                    <td>{{$row->name}} ({{$row->options->option->title}})</td>
-                    
-                    <td>
-                        {{$row->options->weight}}
-                    </td>
+                    <tr>
+                        <th>{{trans('text.product')}}</th>
+                        <th>{{trans('text.title')}}</th>
+                        <th>{{trans('text.grams')}}</th>
+                        <th>{{trans('text.price')}}</th>
+                    </tr>
+                    <div class="col-md-12"><span class="gray_line"></span></div>
 
-                    <td>
-                        {{\App\Http\Controllers\HelperController::getCurrencySymbol()}}
-                        {{ number_format($row->price * $rate, 2, '.', ',') }}
-                    </td>
+                    @foreach($cart as $index=>$row)
+                        <tr>
+                            <td>
+                                <img class="checkout_image" src="{{route('image', $row->options->thumbnail)}}?w=150&h=150&fit=crop" />
+                            </td>
+                            
+                            <td>{{$row->name}} ({{$row->options->option->title}})</td>
+                            
+                            <td>
+                                <input name="{{$row->rowid}}" class="checkout_input" type="number" value="{{$row->qty}}"/>x
 
-                    <td>
-                        <a href="{{ route('remove_cart_item', $row->rowid) }}" > <img src="/images/x.svg"/> </a>    
-                    </td>
-                </tr>
-            @endforeach
-          </table>
-          <input class="generic_submit" type="submit" value="{{ trans('text.update') }}" />
-          <a class="generic_submit checkout_btn" href="{{ route('checkout') }}"> {{ trans('text.checkout') }} </a>
+                                {{$row->options->weight}}
+                            </td>
+
+                            <td>
+                                {{\App\Http\Controllers\HelperController::getCurrencySymbol()}}
+                                {{ number_format($row->price * $rate, 2, '.', ',') }}
+                            </td>
+
+                            <td>
+                                <a href="{{ route('remove_cart_item', $row->rowid) }}" > <img src="/images/x.svg"/> </a>    
+                            </td>
+                        </tr>
+                    @endforeach
+                </table>
+                <input class="generic_submit" type="submit" value="{{ trans('text.update') }}" />
+                <a class="generic_submit checkout_btn" href="{{ route('checkout') }}"> {{ trans('text.checkout') }} </a>
             </form>
         </div>
             
@@ -70,7 +73,7 @@
         <div class="col-md-1"></div>
         <div class="col-md-12"><span class="gray_line"></span></div>
         <form method="POST" action="{{ route('show_cart') }}">
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            
             @foreach($cart as $index=>$row)
                 <div class="col-md-12 shopping_item_row ">
                     <div class="col-md-1"></div>

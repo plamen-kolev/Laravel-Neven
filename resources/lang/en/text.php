@@ -24,7 +24,7 @@ return [
     'proud_cruelty_free'    => 'cruelty free',
 
     'new_blog_entry_subject_email'  => 'New article from Neven',
-
+    'all_products'  => 'All Products',
     'our_products'  => 'our products',
     'searching_for' => 'Searching for',
     'customer_care' => "customer care",
@@ -72,7 +72,6 @@ return [
     'log_out' => 'log out',
     'view_product' => 'view product',
     'special_offers' => 'special offers',
-    'view_all_products' => 'View all products',
     'proud_to_be' => 'proud to be',
     'learn_more' => 'Learn more',
     'find_our_products_in_these_stores_as_well' => 'find our products in these stores as well',

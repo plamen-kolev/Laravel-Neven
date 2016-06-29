@@ -49,6 +49,15 @@ class HelperController extends Controller
         return 1;
     }
 
+    public static function get_stripe_currency(){
+        $lang = Config::get('app.locale');
+        if($lang == 'en'){
+            return 'EUR';
+        } else {
+            return 'NOK';
+        }
+    }
+
     public static function getCurrencySymbol(){
         if( Config::get('app.locale') == 'en' ){
             return '&euro;';
@@ -118,7 +127,7 @@ class HelperController extends Controller
     public static function render_message($message, $alert_type, $alert_text ){
         $data = [
             'message'   => $message,
-            'alert_type'=> $alert_type,
+            'type'=> $alert_type,
             'alert_text'=> $alert_text
         ];
         return View::make('message', $data);

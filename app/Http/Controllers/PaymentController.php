@@ -90,6 +90,7 @@ class PaymentController extends Controller
             $cost = HelperController::calculate_shipping_cost($request->input('country'));
             $result = $user->charge($cost['total_lowest'] , [
                 'source' => $payment_token,
+                'currency' => HelperController::get_stripe_currency(),
             ]);
 
             // if charging unsuccessful, return error

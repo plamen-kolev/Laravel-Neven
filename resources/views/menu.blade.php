@@ -14,21 +14,33 @@
 
                 <ul class="menu_links_ul">
                     <li class="active mobieicon_align"><a href="{{ route('index', []) }}"><span class="menu_icon mobile_only" ><img src="/images/home.svg" alt="home icon that takes you to the inex page"/></span>{{ trans('text.home') }}</a></li>
-
                     <li class="dropdown mobieicon_align">
-                        <a href="{{route('product.index')}}" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false"><span class="menu_icon mobile_only" ><img src="/images/categories.svg" alt="Dropdown for categories"/></span>{{ trans('text.categories') }} <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
+                    
+                      <button class="menu_button dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        <span class="menu_icon mobile_only" ><img src="/images/categories.svg" alt="Dropdown for categories"/></span>
+                        {{ trans('text.categories') }}
+
+                        <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        <li><a href="{{route('product.index')}}">{{trans('text.all_products')}}</a></li>
                         @foreach ($categories as $category)           
                             <li><a href="{{ route('category.show', [$category->slug]) }}"> {{$category->title()}}</a></li>
                         @endforeach
-                        </ul>
+                      </ul>
+                    
                     </li>
+
                     <li class="dropdown mobieicon_align">
-                        <a href="{{route('stockist.index')}}" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false"><span class="menu_icon mobile_only" ><img src="/images/stockist.svg" alt="Stockists" /></span>{{ trans('text.stockists') }} <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
+
+                        <button class="menu_button dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <span class="menu_icon mobile_only" ><img src="/images/stockist.svg" alt="Stockists" /></span>{{ trans('text.stockists') }}
+                            <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                             <li><a href="{{route('stockist.index')}}">{{ trans('text.view_stockists')}}</a></li>
                             <li><a href="{{route('stockist')}}">{{ trans('text.become_stockist')}}</a></li>
-                        </ul>
+                      </ul>
                         
                     </li>
                     <li class="mobieicon_align"><a href="{{ route('about') }}"><span class="menu_icon mobile_only" ><img alt="{{ trans('text.about_us') }}" src="/images/about.svg"/></span>{{ trans('text.about_us') }}</a></li>
@@ -43,7 +55,7 @@
                 <ul class="menu_links_ul align_right mobile_left">
                     <li class="mobieicon_align">
                         <a href="{{ route('show_cart', []) }}">
-                            <img src="{{ asset('images/loading.gif') }}" alt="Cart icon" class="cart_icon" data-src="{{asset('images/cart.svg')}}"/>
+                            <img src="{{asset('images/cart.svg')}}" alt="Cart icon" class="cart_icon"/>
                             <span class="cart_count"> <span class="counter_number">{{Cart::count()}}</span></span>
                         </a>
 

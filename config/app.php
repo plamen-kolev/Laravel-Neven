@@ -168,8 +168,8 @@ $conf = [
         Unisharp\Ckeditor\ServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         App\Providers\DropboxServiceProvider::class,
-        App\Providers\FTPServiceProvider::class,
-        'Clockwork\Support\Laravel\ClockworkServiceProvider'
+        App\Providers\FTPServiceProvider::class
+        // ,'Clockwork\Support\Laravel\ClockworkServiceProvider'
 
     ],
 
@@ -226,6 +226,7 @@ $conf = [
         'Html'                  => Collective\Html\HtmlFacade::class,
         'Socialize'             => Laravel\Socialite\Facades\Socialite::class,
         'Image'                 => Intervention\Image\Facades\Image::class
+        // ,'Clockwork\Support\Laravel\ClockworkServiceProvider'
     ],
 
 ];

@@ -32,7 +32,7 @@ class PageController extends Controller
     public function index(){
         
         $stockists = Stockist::all();
-        $hero = Hero::orderBy(DB::raw('RAND()'))->first();
+        $hero = Hero::orderByRaw(DB::raw('RAND()'))->first();
 
         if(Cache::has('index_slides')){
             $slides = Cache::get('index_slides');

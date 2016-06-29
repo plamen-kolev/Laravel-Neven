@@ -5,7 +5,7 @@
         
         <div class="col-md-12 center">
           <div class="width_100">
-            <img class="full_map " data-src="{{ asset('images/world-map.svg')}}" src="{{ asset('images/loading.gif') }}" alt="map of the world"/>
+            <img class="width_100" class="full_map " data-src="{{ asset('images/world-map.svg')}}" src="{{ asset('images/loading.gif') }}" alt="map of the world"/>
           </div>
             
         </div>
