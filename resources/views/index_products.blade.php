@@ -20,7 +20,7 @@
                         @endif
                         
                         <a class="" href="{!! route('product.show', [ $product->slug ]) !!}">
-                            <img data-src="{{ route('image', $product->thumbnail) }}?w=150&h=150&fit=crop" src="{{ asset('images/loading.gif') }}" alt="{{ $product->title() }}">
+                            <img class="b-lazy" data-src="{{ route('image', $product->thumbnail) }}?w=150&h=150&fit=crop" src="{{ asset('images/loading.gif') }}" alt="{{ $product->title() }}">
                         </a>
 
                         <h2 class="thumbnail_title">

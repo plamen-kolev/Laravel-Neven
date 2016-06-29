@@ -1,8 +1,15 @@
 jQuery(document).ready(function() {
-    
-    // unveil js
-    $("img").unveil(150);
 
+    setTimeout(function(){
+        var bLazy = new Blazy({
+            container: 'body', // Default is window
+            // error: function(ele, msg){console.log(msg)},
+            // success: function(ele, msg){
+                // console.log(ele);
+            // }
+        });
+    }, 500);
+    
     $('.hamburger_toggle').click(function(e) {
         console.log("trigger");
         $(this).toggleClass('active');

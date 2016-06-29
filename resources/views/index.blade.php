@@ -9,7 +9,7 @@
             <ul id="slider" class="rslides centered-btns centered-btns1">
                 @foreach ($slides as $slide)
                 <li>
-                    <img class="slide_image" data-src="{{route('image', $slide->image)}}?w=1560&h=480&fit=crop" src="{{ asset('images/loading.gif') }}" alt="{{ $slide->title}}">
+                    <img class="slide_image b-lazy" data-src="{{route('image', $slide->image)}}?w=1560&h=480&fit=crop" src="{{ asset('images/loading.gif') }}" alt="{{ $slide->title}}">
                     <div class="slide_item">
                         
                         <div class="col-md-1"></div>
@@ -50,7 +50,7 @@
                 
                 @foreach($chunk as $stockist)
                     <div class="col-md-2 stockist_icon">
-                        <img data-src="{{ route('image',$stockist->thumbnail)}}?w=150&h=150&fit=crop" src="{{ asset('images/loading.gif') }}" width=150 alt="{{$stockist->title}}" />
+                        <img class="b-lazy" data-src="{{ route('image',$stockist->thumbnail)}}?w=150&h=150&fit=crop" src="{{ asset('images/loading.gif') }}" width=150 alt="{{$stockist->title}}" />
                     </div>
                 @endforeach
                 
