@@ -1,0 +1,16 @@
+/vendor
+public/media/*
+selenium/*
+output.html
+/node_modules
+/public/storage
+Homestead.yaml
+Homestead.json
+.idea
+tests/_support/_generated/WebGuyActions.php
+tests/_output/*
+/nbproject/private/
+/nbproject
+
+tests/_output/*
+tests/_output/*
