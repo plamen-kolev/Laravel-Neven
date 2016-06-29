@@ -3,7 +3,9 @@
     <div class="wrapper">
          <div class="menu">
             <div id="menu_logo_container">
-                <a href="{{route('index')}}"><img src="{{ asset('images/loading.gif') }}" data-src="{{asset('images/neven_logo.png')}}" alt="{{trans('text.neven_logo_alt')}}"/></a>
+                <a href="{{route('index')}}">
+                    <img class="b-lazy" src="{{ asset('images/loading.gif') }}" data-src="{{asset('images/neven_logo.png')}}" alt="{{trans('text.neven_logo_alt')}}"/>
+                </a>
             </div>
         </div>
 

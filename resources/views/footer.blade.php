@@ -2,12 +2,12 @@
     <div class="col-sm-12 footer_flowers"> 
         <div class="col-sm-1"></div>
         <div class="col-sm-2">
-            <img src="{{ asset('images/loading.gif') }}" data-src='{{asset("images/neven2.png")}}' alt="Side image above the footer"/>
+            <img src="{{ asset('images/loading.gif') }}" class="b-lazy" data-src='{{asset("images/neven2.png")}}' alt="Side image above the footer"/>
 
         </div>
         <div class="col-sm-6"></div>
         <div class="col-sm-2 hidden_flower">
-            <img src="{{ asset('images/loading.gif') }}" data-src='{{asset("images/neven1.png")}}' alt="Side image above the footer"/>
+            <img src="{{ asset('images/loading.gif') }}" class="b-lazy" data-src='{{asset("images/neven1.png")}}' alt="Side image above the footer"/>
         </div>
         <div class="col-sm-1"></div>
 
@@ -35,10 +35,10 @@
         <div class="col-sm-3 ">
             <p>{{ trans('text.find_us_on')}}</p>
 
-                <a class="soc_icons" href=""><img alt="{{trans('text.facebook_icon_alt')}}" src="{{ asset('images/loading.gif') }}" data-src="{{asset('images/facebook-icon.svg')}}" /></a>
-                <a class="soc_icons" href=""><img alt="{{trans('text.instagram_icon_alt')}}" src="{{ asset('images/loading.gif') }}" data-src="{{asset('images/insta-icon.svg')}}" /></a>
-                <a class="soc_icons" href=""><img alt="{{trans('text.pinterest_icon_alt')}}" src="{{ asset('images/loading.gif') }}" data-src="{{asset('images/pin-icon.svg')}}" /></a>
-                <a class="soc_icons" href=""><img alt="{{trans('text.google_icon_alt')}}" src="{{ asset('images/loading.gif') }}" data-src="{{asset('images/google-icon.svg')}}" /></a>
+                <a class="soc_icons" href=""><img alt="{{trans('text.facebook_icon_alt')}}" src="{{ asset('images/loading.gif') }}" class="b-lazy" data-src="{{asset('images/facebook-icon.svg')}}" /></a>
+                <a class="soc_icons" href=""><img alt="{{trans('text.instagram_icon_alt')}}" src="{{ asset('images/loading.gif') }}" class="b-lazy" data-src="{{asset('images/insta-icon.svg')}}" /></a>
+                <a class="soc_icons" href=""><img alt="{{trans('text.pinterest_icon_alt')}}" src="{{ asset('images/loading.gif') }}" class="b-lazy" data-src="{{asset('images/pin-icon.svg')}}" /></a>
+                <a class="soc_icons" href=""><img alt="{{trans('text.google_icon_alt')}}" src="{{ asset('images/loading.gif') }}" class="b-lazy" data-src="{{asset('images/google-icon.svg')}}" /></a>
             
         </div>
 
@@ -68,10 +68,10 @@
 
         <div class="icons_and_trade">
             <p>Copyright &copy; 2016 Neven</p>
-            <img src="{{ asset('images/loading.gif') }}" data-src="{{asset('images/visa_icon.png')}}" alt="Visa icon"/>
-            <img src="{{ asset('images/loading.gif') }}" data-src="{{asset('images/mastercard_icon.png')}}" alt="Mastercard icon"/>
-            <img src="{{ asset('images/loading.gif') }}" data-src="{{asset('images/amex_icon.png')}}" alt="American express icon"/>
-            <img src="{{ asset('images/loading.gif') }}" data-src="{{asset('images/paypal_icon.png')}}" alt="Paypal icon"/>
+            <img src="{{ asset('images/loading.gif') }}" class="b-lazy" data-src="{{asset('images/visa_icon.png')}}" alt="Visa icon"/>
+            <img src="{{ asset('images/loading.gif') }}" class="b-lazy" data-src="{{asset('images/mastercard_icon.png')}}" alt="Mastercard icon"/>
+            <img src="{{ asset('images/loading.gif') }}" class="b-lazy" data-src="{{asset('images/amex_icon.png')}}" alt="American express icon"/>
+            <img src="{{ asset('images/loading.gif') }}" class="b-lazy" data-src="{{asset('images/paypal_icon.png')}}" alt="Paypal icon"/>
         </div>
 
     </div>

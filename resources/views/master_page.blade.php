@@ -3,7 +3,7 @@
 <head>
     <script src="{{ asset('js/jquery-2.2.0.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/script.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('js/jquery.unveil.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/blazy.min.js') }}" type="text/javascript"></script>
     @yield('links')
     <link rel="stylesheet" type="text/css" href="{{ asset('bootstrap/css/bootstrap.min.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('style.css') }}"/>
@@ -28,5 +28,3 @@
 
 </body>
 </html>
-
-
