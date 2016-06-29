@@ -7,7 +7,6 @@ use Cache;
 use Config;
 use Storage;
 use League\Flysystem\Filesystem;
-use App\Http\Controllers\HelperController as HelperController;
 
 use League\Glide\ServerFactory;
 
@@ -22,8 +21,14 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         view()->composer('master_page', function($view){
-            // $view->with('categories', HelperController::use_cache(Category::orderBy('id', 'asc'), 'menu_categories', 'get') );
-            $view->with('categories', Category::orderBy('id', 'asc')->get() );
+            if (Cache::has('menu_categories')){
+                $view->with('categories', Cache::get('menu_categories'));                
+            } else {
+                $categories = Category::all();
+                Cache::add('menu_categories', $categories, env('CACHE_TIMEOUT') );
+                $view->with('categories', $categories);    
+            }
+            
         });
     }
 

@@ -31,17 +31,14 @@ class PageController extends Controller
 
     public function index(){
         
+        $stockists = Stockist::all();
+        
         $hero = Hero::all()->random(1);
-
-        $stockists = Stockist::orderBy('id', 'desc')->get();
-        // $stockists = HelperController::use_cache(Stockist::orderBy('id', 'desc'), 'all_stockists', 'get');
-
-        $slides = Slide::orderBy('id', 'desc')->get();
-        // $slides = HelperController::use_cache(Slide::orderBy('id', 'desc'), 'all_slides', 'get' );
-
+    
+        $slides = Slide::orderBy('id', 'desc')->get();    
+        
         $featured_products = Product::where('featured', true)->get();
-        // $featured_products = HelperController::use_cache(Product::where('featured', true), 'all_featured', 'get');
-
+    
         $data = [
             'slides' => $slides, 
             'products' => $featured_products,

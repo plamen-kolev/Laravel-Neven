@@ -14,7 +14,6 @@ use Image;
 use App\ShippingOption as ShippingOption;
 use Cart;
 use Storage;
-use Cache;
 
 class HelperController extends Controller
 {
@@ -23,7 +22,8 @@ class HelperController extends Controller
         Storage::disk(env('FILESYSTEM'))->put('images/' . $filename, File::get($image_input) );    
         return $filename;
     }
-    
+
+    // usage $data=['product'=>productOBJ, 'option'=>optionObj, 'quantity'=>number]
     public static function add_to_cart($data){
         // calculate weight
         $product = $data['product'];
@@ -47,17 +47,6 @@ class HelperController extends Controller
         ));
 
         return 1;
-    }
-
-    public static function use_cache($item, $cache_name, $directive){
-        if(Cache::has($cache_name)){
-            return Cache::get($cache_name);
-        } else {
-            $fetched = $item->$directive();
-            Cache::put($cache_name, $fetched, env('CACHE_TIMEOUT'));
-            return $fetched;
-        }
-
     }
 
     public static function get_stripe_currency(){
