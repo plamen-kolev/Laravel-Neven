@@ -92,15 +92,7 @@
                                     {{ str_limit($ingredient->title(), $limit = 17, $end = '') }}
                                 </div>
                             </div>
-                            <script>
-                                var loaded_ingredients = {};
 
-                                $('#{{$ingredient->slug}}').bind('click', { slug: '{{$ingredient->slug}}' }, function(event) {
-                                    var slug = event.data.slug;
-                                    render_ingredient("{{route('ingredient.show', $ingredient->slug)}} ", slug);
-                                });
-
-                            </script>
                         @endforeach
                         </div>
                     </div>
@@ -237,6 +229,20 @@
     
 @endif
 
-<script src="{{ asset('js/lightbox.js') }}" type="text/javascript"></script>
+@stop
+
+@section('scripts')
+    <script src="{{ asset('js/lightbox.js') }}" type="text/javascript"></script>
+    @foreach($product->ingredients as $ingredient)
+    <script>
+    var loaded_ingredients = {};
+
+    $('#{{$ingredient->slug}}').bind('click', { slug: '{{$ingredient->slug}}' }, function(event) {
+        var slug = event.data.slug;
+        render_ingredient("{{route('ingredient.show', $ingredient->slug)}} ", slug);
+    });
+    </script>
+    
+    @endforeach
 
 @stop

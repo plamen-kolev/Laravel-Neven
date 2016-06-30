@@ -64,19 +64,19 @@
 
 @include('ingredient_origin')
 
-<script type="text/javascript">
-
-    $('#slider').responsiveSlides({
-        pager: true,
-        speed: 2000,            // Integer: Speed of the transition, in milliseconds
-        // nav: true,
-        namespace: "centered-btns"
-    });
-
-</script>
-
 @stop
 
-@section('links')
+@section('scripts')
     <script src="{{ asset('responsiveslides/responsiveslides.min.js') }}" type="text/javascript"></script>
+    <script type="text/javascript">
+
+        $('#slider').responsiveSlides({
+            pager: true,
+            speed: 2000,            // Integer: Speed of the transition, in milliseconds
+            // nav: true,
+            namespace: "centered-btns"
+        });
+
+    </script>
 @stop
+
