@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "98982e4d2f183f507ea274663636200f",
-    "content-hash": "033de0d96d02db3dd307fbfebdae63ce",
+    "hash": "519d575030bcc616035b7264b271200b",
+    "content-hash": "4a68eadeea1d640ee9f61d3de96dbb72",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -590,50 +590,6 @@
                 "uri"
             ],
             "time": "2016-06-24 23:00:38"
-        },
-        {
-            "name": "heroku/heroku-buildpack-php",
-            "version": "v107",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/heroku/heroku-buildpack-php.git",
-                "reference": "118cfbb3e6940bd6c1a953b0c482f458582162a6"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/heroku/heroku-buildpack-php/zipball/118cfbb3e6940bd6c1a953b0c482f458582162a6",
-                "reference": "118cfbb3e6940bd6c1a953b0c482f458582162a6",
-                "shasum": ""
-            },
-            "bin": [
-                "bin/heroku-hhvm-apache2",
-                "bin/heroku-hhvm-nginx",
-                "bin/heroku-php-apache2",
-                "bin/heroku-php-nginx"
-            ],
-            "type": "library",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "David Zuelke",
-                    "email": "dz@heroku.com"
-                }
-            ],
-            "description": "Toolkit for starting a PHP application locally, with or without foreman, using the same config for PHP/HHVM and Apache2/Nginx as on Heroku",
-            "homepage": "https://github.com/heroku/heroku-buildpack-php",
-            "keywords": [
-                "apache",
-                "apache2",
-                "foreman",
-                "heroku",
-                "hhvm",
-                "nginx",
-                "php"
-            ],
-            "time": "2016-06-17 22:36:40"
         },
         {
             "name": "intervention/image",
@@ -1871,16 +1827,16 @@
         },
         {
             "name": "stripe/stripe-php",
-            "version": "v3.14.3",
+            "version": "v3.15.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/stripe/stripe-php.git",
-                "reference": "ca3523743f2865c942c80537b85079485ebd23dc"
+                "reference": "6bc921a03af31387ef3f0a1fc233d432315ecb3a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/ca3523743f2865c942c80537b85079485ebd23dc",
-                "reference": "ca3523743f2865c942c80537b85079485ebd23dc",
+                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/6bc921a03af31387ef3f0a1fc233d432315ecb3a",
+                "reference": "6bc921a03af31387ef3f0a1fc233d432315ecb3a",
                 "shasum": ""
             },
             "require": {
@@ -1922,7 +1878,7 @@
                 "payment processing",
                 "stripe"
             ],
-            "time": "2016-06-20 21:57:56"
+            "time": "2016-06-29 21:32:55"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -3314,6 +3270,50 @@
                 "test"
             ],
             "time": "2015-05-11 14:41:42"
+        },
+        {
+            "name": "heroku/heroku-buildpack-php",
+            "version": "v107",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/heroku/heroku-buildpack-php.git",
+                "reference": "118cfbb3e6940bd6c1a953b0c482f458582162a6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/heroku/heroku-buildpack-php/zipball/118cfbb3e6940bd6c1a953b0c482f458582162a6",
+                "reference": "118cfbb3e6940bd6c1a953b0c482f458582162a6",
+                "shasum": ""
+            },
+            "bin": [
+                "bin/heroku-hhvm-apache2",
+                "bin/heroku-hhvm-nginx",
+                "bin/heroku-php-apache2",
+                "bin/heroku-php-nginx"
+            ],
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "David Zuelke",
+                    "email": "dz@heroku.com"
+                }
+            ],
+            "description": "Toolkit for starting a PHP application locally, with or without foreman, using the same config for PHP/HHVM and Apache2/Nginx as on Heroku",
+            "homepage": "https://github.com/heroku/heroku-buildpack-php",
+            "keywords": [
+                "apache",
+                "apache2",
+                "foreman",
+                "heroku",
+                "hhvm",
+                "nginx",
+                "php"
+            ],
+            "time": "2016-06-17 22:36:40"
         },
         {
             "name": "itsgoingd/clockwork",
