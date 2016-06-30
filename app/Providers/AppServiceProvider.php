@@ -41,9 +41,6 @@ class AppServiceProvider extends ServiceProvider
 
 
         $this->app->singleton('League\Glide\Server', function($app) {
-            if(Cache::has('glide_factory')){
-                return Cache::get('glide_factory');
-            }
 
             $storageDriver = Storage::disk(env('FILESYSTEM'))->getDriver();
             
@@ -55,7 +52,6 @@ class AppServiceProvider extends ServiceProvider
                 'cache_path_prefix'     =>  'images/.cache',
                 'base_url' => '/images/'
             ]);
-            Cache::add('glide_factory', $factory, env('CACHE_TIMEOUT'));
             return $factory;
         });
     }
