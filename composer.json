@@ -23,7 +23,8 @@
         "florianv/laravel-swap": "^0.2.1",
         "unisharp/laravel-ckeditor": "^4.5",
         
-        "fzaninotto/faker": "^1.6"
+        "fzaninotto/faker": "^1.6",
+        "heroku/heroku-buildpack-php": "^107.0"
 
     },
     "require-dev": {
