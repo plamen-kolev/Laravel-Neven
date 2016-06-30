@@ -2,12 +2,7 @@
 
 @section('links')
     <link href="{{ asset('css/lightbox.css') }}" rel="stylesheet">
-
-
     <link rel="stylesheet" href="{{ asset('css/drop-theme-arrows.css') }}" />
-    <script src={{ asset('js/tether.min.js') }}></script>
-    <script src={{ asset('js/drop.min.js') }}></script>
-
 @stop
 
 @section('content')
@@ -232,17 +227,17 @@
 @stop
 
 @section('scripts')
-    <script src="{{ asset('js/lightbox.js') }}" type="text/javascript"></script>
+    <script src={{ asset('js/tether.min.js') }}></script>
+    <script src={{ asset('js/drop.min.js') }}></script>
+    <script src="{{ asset('js/lightbox.min.js') }}" type="text/javascript"></script>
     @foreach($product->ingredients as $ingredient)
-    <script>
-    var loaded_ingredients = {};
-
-    $('#{{$ingredient->slug}}').bind('click', { slug: '{{$ingredient->slug}}' }, function(event) {
-        var slug = event.data.slug;
-        render_ingredient("{{route('ingredient.show', $ingredient->slug)}} ", slug);
-    });
-    </script>
-    
+        <script>
+            var loaded_ingredients = {};
+            $('#{{$ingredient->slug}}').bind('click', { slug: '{{$ingredient->slug}}' }, function(event) {
+                var slug = event.data.slug;
+                render_ingredient("{{route('ingredient.show', $ingredient->slug)}} ", slug);
+            });
+        </script>
     @endforeach
 
 @stop
