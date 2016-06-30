@@ -13,7 +13,6 @@
 
     Route::get('media/{path}', ['as' => 'image', function ($path, League\Glide\Server $server, Illuminate\Http\Request $request) {
         $result = $server->outputImage($path, $request->all());
-        dd($result);
     }])->where('path', '.+');
 
     Route::group(['middleware' => ['web', 'admin'] ], function () {
