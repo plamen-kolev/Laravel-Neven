@@ -31,14 +31,26 @@ class PageController extends Controller
 
     public function index(){
         
-        $stockists = Stockist::all();
+        if(Cache::has('stockists')){
+            $stockists = Cache::get('stockists');
+        } else {
+            $stockists = Stockist::all();
+            Cache::add('stockists', $stockists, env('CACHE_TIMEOUT'));
+        }
+        
         
         $hero = Hero::all()->random(1);
     
-        $slides = Slide::orderBy('id', 'desc')->get();    
+        // $slides = Slide::orderBy('id', 'desc')->get();
+        if(Cache::has('slides')){
+            $slides = Cache::get('slides');
+        } else {
+            $slides = Slide::orderBy('id', 'desc')->get();
+            Cache::add('slides', $slides, env('CACHE_TIMEOUT'));
+        }
         
         $featured_products = Product::where('featured', true)->get();
-    
+
         $data = [
             'slides' => $slides, 
             'products' => $featured_products,
