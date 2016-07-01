@@ -2,12 +2,12 @@
     <div class="col-sm-12 footer_flowers"> 
         <div class="col-sm-1"></div>
         <div class="col-sm-2">
-            <img src="{{ asset('images/loading.gif') }}" class="b-lazy" data-src='{{asset("images/neven2.png")}}' alt="Side image above the footer"/>
+            <img src="{{ asset('images/loading.gif') }}" class="b-lazy" data-src='{{asset("images/neven2.jpg")}}' alt="Side image above the footer"/>
 
         </div>
         <div class="col-sm-6"></div>
         <div class="col-sm-2 hidden_flower">
-            <img src="{{ asset('images/loading.gif') }}" class="b-lazy" data-src='{{asset("images/neven1.png")}}' alt="Side image above the footer"/>
+            <img src="{{ asset('images/loading.gif') }}" class="b-lazy" data-src='{{asset("images/neven1.jpg")}}' alt="Side image above the footer"/>
         </div>
         <div class="col-sm-1"></div>
 
