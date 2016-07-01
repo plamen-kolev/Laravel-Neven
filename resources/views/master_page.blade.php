@@ -17,10 +17,15 @@
         @yield('login')
         @yield('register')
         @include('footer')
-</body>
-</html>
 
 <script src="{{ asset('js/jquery-2.2.0.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/script.js') }}" type="text/javascript"></script>
 @yield('scripts')
+
+</body>
+
+
+</html>
+
+

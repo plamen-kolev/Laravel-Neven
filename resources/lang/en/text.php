@@ -3,6 +3,7 @@
 return [
     // menu mappings
     'home'          => 'home',
+    'main_logo_subtitle' => 'natural body care',
     
     '404_verbose_message' => 'Sorry, the page never returned from the Dividal tundra.',
     '403_verbose_message'   => 'Unauthorized. Sorry, Birdy doesn\'t want guests.',
@@ -22,6 +23,8 @@ return [
     'proud_no_fillers'  => 'no fillers',
     'proud_vegan'   => 'vegan',
     'proud_cruelty_free'    => 'cruelty free',
+
+    'home_icon_that_takes_you_to_the_inex_page' => 'home icon that takes you to the inex page',
 
     'new_blog_entry_subject_email'  => 'New article from Neven',
     'all_products'  => 'All Products',

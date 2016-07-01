@@ -7,6 +7,15 @@ html,body
     padding: 0px;
 }
 
+.logo_title{
+    color: black;
+}
+
+.logo_subtitle{
+    margin-top: -5px;
+    font-size:1.3em;
+}
+
 .toggle-nav{
     display: none;
 }
@@ -1432,10 +1441,44 @@ a:hover{
     padding-top:0px;
 }
 
-
-
 /* mobile version css goes here */
 @media screen and (max-width: 960px) {
+
+    .home_mobile_icon{
+        background-image: url('../images/home.svg');
+    }
+
+    .categories_mobile_icon{
+        background-image: url('../images/categories.svg');
+    }
+
+    .stockist_mobile_icon{
+        background-image: url('../images/stockist.svg');
+    }
+
+    .aboutus_mobile_icon{
+        background-image: url('../images/about.svg');
+    }
+
+    .contact_mobile_icon{
+        background-image: url('../images/contact.svg');
+    }
+
+    .blog_mobile_icon{
+        background-image: url('../images/blog.svg');   
+    }
+
+    .language_mobile_icon{
+        background-image: url('../images/languages.svg');   
+    }
+
+    .signin_mobile_icon{
+        background-image: url('../images/sign-in.svg');   
+    }
+
+    .signup_mobile_icon{
+        background-image: url('../images/sign-up.svg');   
+    }
 
     #search_form{
         margin-top:10px;
@@ -1448,8 +1491,11 @@ a:hover{
     .mobile_left{
         text-align: left;
     }
+
     .mobile_only{
-        display: inline;
+        display: inline-block;
+        height:25px;
+        width:25px;
     }
 
     .mobieicon_align{
@@ -1481,6 +1527,15 @@ a:hover{
         padding:10px;
         font-size:1.4em;
     }
+
+    .menu_links .dropdown-menu li {
+        padding:0px;
+    }
+
+/*    .menu_links .dropdown-menu {
+        background-color: black;
+        color:white;
+    }*/
 
     .toggle-nav{
         display: block;
@@ -1581,4 +1636,3 @@ a:hover{
     width: 100%;
     z-index: 9;
 }
-

@@ -9,7 +9,6 @@
             <div id="landing_player">
                 <video autoplay loop poster="{{asset($hero->image)}}" id="landing_video" >
                     <source src="{{asset($hero->video)}}" type="video/mp4">
-                    <source src="{{asset($hero->video)}}" type="video/ogg">
                     Your browser does not support the video tag.
                 </video>        
             </div>
