@@ -9,14 +9,20 @@ return [
     '403_verbose_message'   => 'Unauthorized. Sorry, Birdy doesn\'t want guests.',
     'error_action_button' => 'go home',
     
-    '404_title'       => ' - Whoops, 404',
-    '403_title'       => ' - Whoops, 403',
-    'home_title'    => ' - Home',
-    'all_products_title'    => ' - All products',
-    'stockists_title'   => ' - stockists',
-    'about_us_title'    => ' - about us',
-    'blog_title'    => ' - blog',
-    'contact_us_title'  => ' - contact us',
+    '404_title'       => 'Whoops, 404',
+    '403_title'       => 'Whoops, 403',
+    'home_title'    => 'Home',
+    'all_products_title'    => 'All products',
+    'stockists_title'   => 'Stockists',
+    'about_us_title'    => 'About us',
+    'blog_title'    => 'Blog',
+    'contact_us_title'  => 'Contact us',
+    'become_stockist_title'=> 'Become a stockist',
+    "checkout_title" => 'Checkout',
+    'search_title' => 'Searching',
+
+    'specify_email_address' => 'Specify email address',
+    'email_sent_successfully' => 'Email sent successfully',
 
     'proud_cold_processed' => 'cold processed',
     'proud_no_syntetic' => 'no synthetics',
@@ -24,6 +30,7 @@ return [
     'proud_vegan'   => 'vegan',
     'proud_cruelty_free'    => 'cruelty free',
 
+    'email_subscription_successful' => 'Email :email subscribed succesfully !',
     'home_icon_that_takes_you_to_the_inex_page' => 'home icon that takes you to the inex page',
 
     'new_blog_entry_subject_email'  => 'New article from Neven',

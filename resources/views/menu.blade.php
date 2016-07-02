@@ -68,7 +68,7 @@
             <div class="col-md-3 menu_links">
                 <ul class="menu_links_ul align_right mobile_left">
                     <li class="mobieicon_align">
-                        <a href="{{ route('show_cart', []) }}">
+                        <a href="{{ route('cart', []) }}">
                             <img src="{{asset('images/cart.svg')}}" alt="Cart icon" class="cart_icon"/>
                             <span class="cart_count"> <span class="counter_number">{{Cart::count()}}</span></span>
                         </a>

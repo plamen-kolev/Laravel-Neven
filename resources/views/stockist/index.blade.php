@@ -49,40 +49,42 @@
     </div> 
 </div>
 
-<script>
-    function initMap() {
-        var myLatlng = {lat: 59.914095, lng: 10.746957};
-        var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 13,
-            center: myLatlng
-        });
 
-        @foreach($stockists as $stockist)
-            var myLatlng = {lat: {{$stockist->lat}}, lng: {{$stockist->lng}} };
-            var marker = new google.maps.Marker({
-              position: myLatlng,
-              map: map,
-              title: 'Click to zoom'
+
+
+@stop
+
+@section('scripts')
+    <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDBcXrf03SUBrXH55xMQr46NKAUavfqxSE&callback=initMap"></script>
+    <script>
+        function initMap() {
+            var myLatlng = {lat: 59.914095, lng: 10.746957};
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 13,
+                center: myLatlng
             });
 
-            $('#{{$stockist->slug}}').bind('click', { lat: '{{$stockist->lat}}', lng: '{{$stockist->lng}}' }, function(event) {
-                var data = event.data;
-                console.log(data);
-                map.panTo(new google.maps.LatLng('{{$stockist->lat}}', '{{$stockist->lng}}'));
-               
+            @foreach($stockists as $stockist)
+                var myLatlng = {lat: {{$stockist->lat}}, lng: {{$stockist->lng}} };
+                var marker = new google.maps.Marker({
+                  position: myLatlng,
+                  map: map,
+                  title: 'Click to zoom'
+                });
+
+                $('#{{$stockist->slug}}').bind('click', { lat: '{{$stockist->lat}}', lng: '{{$stockist->lng}}' }, function(event) {
+                    var data = event.data;
+
+                    map.panTo(new google.maps.LatLng('{{$stockist->lat}}', '{{$stockist->lng}}'));
+                   
+                });
+            @endforeach
+
+            marker.addListener('click', function() {
+                map.setZoom(8);
+                map.setCenter(marker.getPosition());
             });
-        @endforeach
 
-        marker.addListener('click', function() {
-            map.setZoom(8);
-            map.setCenter(marker.getPosition());
-        });
-
-    }
-</script>
-
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDBcXrf03SUBrXH55xMQr46NKAUavfqxSE&callback=initMap">
-</script>
-
-
+        }
+    </script>
 @stop

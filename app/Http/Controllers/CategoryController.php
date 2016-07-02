@@ -26,7 +26,7 @@ class CategoryController extends Controller
         $data = array(
             'products'  => $products,
             'title'     => "Category " . $category->title(),
-            'page_title'    => ' - ' . trans($category->title())
+            'page_title'    => trans($category->title())
         );
 //      == END ==
         return View::make('product.index')->with($data);

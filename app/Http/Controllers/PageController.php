@@ -31,14 +31,26 @@ class PageController extends Controller
 
     public function index(){
         
-        $stockists = Stockist::all();
+        if(Cache::has('stockists')){
+            $stockists = Cache::get('stockists');
+        } else {
+            $stockists = Stockist::all();
+            Cache::add('stockists', $stockists, env('CACHE_TIMEOUT'));
+        }
+        
         
         $hero = Hero::all()->random(1);
     
-        $slides = Slide::orderBy('id', 'desc')->get();    
+        // $slides = Slide::orderBy('id', 'desc')->get();
+        if(Cache::has('slides')){
+            $slides = Cache::get('slides');
+        } else {
+            $slides = Slide::orderBy('id', 'desc')->get();
+            Cache::add('slides', $slides, env('CACHE_TIMEOUT'));
+        }
         
         $featured_products = Product::where('featured', true)->get();
-    
+
         $data = [
             'slides' => $slides, 
             'products' => $featured_products,
@@ -54,7 +66,7 @@ class PageController extends Controller
 
     public function about(){
         $data = [
-            'page_title'    => ' - ' . trans('text.about_us')
+            'page_title'    => trans('text.about_us_title')
         ];
         return View::make('about', $data);
     }
@@ -90,9 +102,8 @@ class PageController extends Controller
             Subscriber::create(['email' => $request->get('subscribe_email')]);
         }
 
-        return Response("Email " . $request->get('subscribe_email') . " subscribed succesfully !", 200);
+        return Response( trans('text.email_subscription_successful', ['email' => $request->get('subscribe_email')]) , 200 );
     }
-
 
 
     public function admin(){

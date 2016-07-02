@@ -26,7 +26,7 @@ class ArticleController extends Controller
 
         $data = [
             'article' => $article,
-            'page_title'    => ' - ' . $article->title
+            'page_title'    => $article->title
         ];
 
         return View::make('article.show')->with($data);

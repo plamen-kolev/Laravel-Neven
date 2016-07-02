@@ -150,6 +150,8 @@ class PaymentController extends Controller
             'rate' => $rate, 
             'shipping_countries' => $shipping_countries,
             'cart' => Cart::total(),
+            'items' => Cart::content(),
+            'page_title'    => trans('text.checkout_title')
         ];
         return View::make('checkout')->with($data);
     }
