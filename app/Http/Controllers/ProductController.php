@@ -55,9 +55,9 @@ class ProductController extends Controller
         $data = array(
             'product'   => $product,
             'option'    => $selected_option,
-            'rate'      => HelperController::getRate(),
+            'rate'      => HelperController::get_rate(),
             'reviews'   => Review::where('product_id', $product->id)->get(),
-            'page_title'    => ' - ' . trans($product->title())
+            'page_title'    => trans($product->title())
         );
         return View::make('product.show')->with($data);
     }

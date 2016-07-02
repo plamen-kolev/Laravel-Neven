@@ -66,21 +66,17 @@ class HelperController extends Controller
         }
     }
 
-    public static function getRate(){
+    public static function get_rate(){
         $location = Config::get('app.locale');
-        if ( ! env('CONVERT_CURRENCY') or $location = 'nb') {
+        if ( ! env('CONVERT_CURRENCY') or $location == 'nb') {
             return 1;
+        } else {
+            return Swap::quote('NOK/EUR')->getValue();
         }
-        #by default 10 NOK equals to 10*1=10 NOK
-        if( $location == 'en' ){
-            $rate = Swap::quote('NOK/EUR')->getValue();
-        }
-        return $rate;
-
     }
 
     public static function get_price($price){
-        return round(HelperController::getRate() * $price, 2);
+        return round(HelperController::get_rate() * $price, 2);
     }
 
     // will see how much the cart weights and where it is send to, returning a price according to the Shipment options object
@@ -132,12 +128,6 @@ class HelperController extends Controller
         ];
         return View::make('message', $data);
     }
-
-    public static function hangon(){
-        print "Press any key to continue";
-        fgets(STDIN);
-    }
-
 
     # Testing helpers
     public static function fill_valid_bank_details_and_submit($I){

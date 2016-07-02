@@ -1,5 +1,5 @@
 # Let's output to a jpeg file
-set terminal jpeg size 1280,720
+set terminal jpeg size 1920,1080
 # This sets the aspect ratio of the graph
 set size 1, 1
 # The file we'll write to

@@ -277,6 +277,7 @@
     jQuery(function($) {
         $('.main_menu').hide();
         $('#payment-form').submit(function(event) {
+            $('.collapse').show();
             var $form = $(this);
 
             // Disable the submit button to prevent repeated clicks
