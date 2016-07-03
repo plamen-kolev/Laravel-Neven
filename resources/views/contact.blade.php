@@ -1,7 +1,7 @@
 @extends('master_page')
 @section('content')
 <div class="col-md-12 nomargin nopadding">
-    <h1 class="capital center">{{trans('text.contact')}}</h1>
+    <h1 class="capital center">{{trans('text.contact_us')}}</h1>
     <h2 class="center capital green_text no_top_spacing">{{trans('text.hearing_from_you')}}</h2>
 
 
@@ -32,22 +32,22 @@
             <div class="col-md-12">
                 
                 {!! Form::open(array('url' => route('contact') ) ) !!}
-                    <div class="col-md-12">
+                    <div class="col-md-12 nopadding">
                         {{-- {{ Form::label('first_name', trans('text.first_name') ) }} --}}
                         <p>{!! Form::text('first_name', Input::old('first_name'), array('placeholder' => trans("text.first_name"), 'class' => 'generic_input' )); !!}</p>    
                     </div>
                     
-                    <div class="col-md-12">
+                    <div class="col-md-12 nopadding">
                         {{-- {{ Form::label('last_name', trans('text.last_name') ) }} --}}
                         <p>{!! Form::text('last_name', Input::old('last_name'), array('placeholder' => trans("text.last_name"), 'class' => 'generic_input' )); !!}</p>    
                     </div>
                     
-                    <div class="col-md-12">
+                    <div class="col-md-12 nopadding">
                         {{-- {{ Form::label('email', trans('text.email') ) }} --}}
                         <p>{!! Form::text('email', Input::old('email'), array('placeholder' => trans("text.email") , 'class' => 'generic_input')); !!}</p>    
                     </div>
                     
-                    <div class="col-md-12">
+                    <div class="col-md-12 nopadding">
                         {{-- {{ Form::label('telephone', trans('text.telephone') ) }} --}}
                         <p>{!! Form::text('telephone', Input::old('telephone'), array('placeholder' => trans("text.telephone"), 'class' => 'generic_input' )); !!}</p>    
                     </div>

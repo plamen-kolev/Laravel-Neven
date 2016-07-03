@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="{{ asset('favicon.png') }}" />
 
-    <title>Neven {{$page_title or ''}}</title>
+    <title>{{$page_title or ''}} - Neven</title>
 </head>
 <body>
         @yield('landing')

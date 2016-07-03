@@ -9,14 +9,20 @@ return [
     '403_verbose_message'   => 'Unauthorized. Sorry, Birdy doesn\'t want guests.',
     'error_action_button' => 'go home',
     
-    '404_title'       => ' - Whoops, 404',
-    '403_title'       => ' - Whoops, 403',
-    'home_title'    => ' - Home',
-    'all_products_title'    => ' - All products',
-    'stockists_title'   => ' - stockists',
-    'about_us_title'    => ' - about us',
-    'blog_title'    => ' - blog',
-    'contact_us_title'  => ' - contact us',
+    '404_title'       => 'Whoops, 404',
+    '403_title'       => 'Whoops, 403',
+    'home_title'    => 'Home',
+    'all_products_title'    => 'All products',
+    'stockists_title'   => 'Stockists',
+    'about_us_title'    => 'About us',
+    'blog_title'    => 'Blog',
+    'contact_us_title'  => 'Contact us',
+    'become_stockist_title'=> 'Become a stockist',
+    "checkout_title" => 'Checkout',
+    'search_title' => 'Searching',
+
+    'specify_email_address' => 'Specify email address',
+    'email_sent_successfully' => 'Email sent successfully',
 
     'proud_cold_processed' => 'cold processed',
     'proud_no_syntetic' => 'no synthetics',
@@ -24,6 +30,7 @@ return [
     'proud_vegan'   => 'vegan',
     'proud_cruelty_free'    => 'cruelty free',
 
+    'email_subscription_successful' => 'Email :email subscribed succesfully !',
     'home_icon_that_takes_you_to_the_inex_page' => 'home icon that takes you to the inex page',
 
     'new_blog_entry_subject_email'  => 'New article from Neven',
@@ -172,7 +179,7 @@ return [
     'incorrect_number' => "The card number is incorrect.",
     'invalid_number'=> "The card number is not a valid credit card number.",
     'invalid_expiry_month' => "The card's expiration month is invalid.",
-    'invalid_expiry_year' => "The card&quote;s expiration year is invalid.",
+    'invalid_expiry_year' => "The card&quote;s expiratcurrency_symbolion year is invalid.",
     'invalid_cvc'=> "The card&quote;s security code is invalid.",
     'expired_card' => "The card has expired.",
     'incorrect_cvc' => "The card&quote;s security code is incorrect.",
@@ -209,6 +216,9 @@ return [
         Please follow the link below to verify your email address at :email
         <a id="confirm_account_url" href=":confirmation_url">:confirmation_url</a>. You can also copy and paste this url in your browser.<br/>
 EOD
+,
+    'user_created_message' => 'Account :email created successfully, we have sent you an activation link',
+    'shipping_calculator' => "Shipping: :currency_symbol <span id='shipping_cost'> :cost_shipping </span> Product cost: :currency_symbol :cost_product Total: :currency_symbol :total_cost"
 
 
 ];

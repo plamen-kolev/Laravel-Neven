@@ -16,7 +16,7 @@ class EmailController extends Controller
 {
     public static function send_confirmation_email($recipient_email){
         if(! $recipient_email){
-            return \Response::make('Specify email address', 400);
+            return \Response::make( trans('text.specify_email_address'), 400);
         }
 
         $user = User::where('email', $recipient_email)->first();
@@ -27,7 +27,7 @@ class EmailController extends Controller
 
         $data = [
             'verify_email_text' => trans('text.verify_email_address'),
-            'body' => trans('text.email_confirmation_text', ['name' => $recipient_name, 'email' => $recipient_email, 'confirmation_url'=> env('HOST_ADDRESS') . "/register/verify/{$activation_code}" ] )
+            'body' => trans('text.email_confirmation_text', ['name' => $recipient_name, 'email' => $recipient_email, 'confirmation_url'=> route('account_activation', $activation_code) ] )
         ];
 
         $response = Mail::send('confirmation_email', $data, function($message) use($activation_code, $recipient_email, $recipient_name) {
@@ -35,7 +35,7 @@ class EmailController extends Controller
                 ->from( env('MAIL_USERNAME') )
                 ->subject(  trans('text.email_message_subject', ['name'=>$recipient_name])   );
         });
-        return \Response::make('Email sent successfully', 200);
+        return \Response::make( trans('text.email_sent_successfully'), 200);
     }
 
     public static function send_order_email($data){

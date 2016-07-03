@@ -77,7 +77,7 @@
         // CartController
         Route::post('cart/add_to_cart/',    array('before' => 'csrf', 'as' => 'add_to_cart', 'uses' => 'CartController@add_to_cart'));
         Route::match(                       array('GET', 'POST'),'cart/',
-                                            array('as' => 'show_cart', 'uses' => 'CartController@show_cart'));
+                                            array('as' => 'cart', 'uses' => 'CartController@show_cart'));
         Route::get('cart/remove_cart/{$cart_instance}',
                                             array('as' => 'remove_cart', 'uses' => 'CartController@remove_cart'));
         Route::get('cart/remove_cart_item/{item_rowid}',array('as'=> 'remove_cart_item', 'uses' => 'CartController@remove_cart_item'));

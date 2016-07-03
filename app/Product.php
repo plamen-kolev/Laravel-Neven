@@ -21,7 +21,7 @@ class Product extends Model
             abort('Product price missing', 503);
         }
 
-        return $option->price * HelperController::getRate();
+        return $option->price * HelperController::get_rate();
     }
 
 

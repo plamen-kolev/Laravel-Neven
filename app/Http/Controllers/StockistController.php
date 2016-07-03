@@ -17,7 +17,7 @@ class StockistController extends Controller
 
         $data = array(
             'stockists'  => $stockists,
-            'page_title'    => ' - ' . trans('text.stockists')
+            'page_title'    => trans('text.stockists_title')
         );
 
         return View::make('stockist.index')->with($data);
@@ -80,7 +80,7 @@ class StockistController extends Controller
         }
 
         $data = [
-            'page_title'    => ' - ' . trans('text.become_stockist')
+            'page_title'    => trans('text.become_stockist_title')
         ];
 
         return View::make('stockist.become_form', $data);

@@ -66,7 +66,7 @@ class PageController extends Controller
 
     public function about(){
         $data = [
-            'page_title'    => ' - ' . trans('text.about_us')
+            'page_title'    => trans('text.about_us_title')
         ];
         return View::make('about', $data);
     }
@@ -102,9 +102,8 @@ class PageController extends Controller
             Subscriber::create(['email' => $request->get('subscribe_email')]);
         }
 
-        return Response("Email " . $request->get('subscribe_email') . " subscribed succesfully !", 200);
+        return Response( trans('text.email_subscription_successful', ['email' => $request->get('subscribe_email')]) , 200 );
     }
-
 
 
     public function admin(){

@@ -66,21 +66,17 @@ class HelperController extends Controller
         }
     }
 
-    public static function getRate(){
+    public static function get_rate(){
         $location = Config::get('app.locale');
-        if ( ! env('CONVERT_CURRENCY') or $location = 'nb') {
+        if ( ! env('CONVERT_CURRENCY') or $location == 'nb') {
             return 1;
+        } else {
+            return Swap::quote('NOK/EUR')->getValue();
         }
-        #by default 10 NOK equals to 10*1=10 NOK
-        if( $location == 'en' ){
-            $rate = Swap::quote('NOK/EUR')->getValue();
-        }
-        return $rate;
-
     }
 
     public static function get_price($price){
-        return round(HelperController::getRate() * $price, 2);
+        return round(HelperController::get_rate() * $price, 2);
     }
 
     // will see how much the cart weights and where it is send to, returning a price according to the Shipment options object
@@ -91,34 +87,44 @@ class HelperController extends Controller
             $total_weight += (int) $row->options->weight;
         }
 
-        $option = ShippingOption::where('country_code', $country_code)
+        $shipping_option = ShippingOption::where('country_code', $country_code)
             ->where('weight', '>=', $total_weight)
             ->orderBy('weight', 'asc')
             ->first();
 
-        if(!$option){
-            $option = ShippingOption::where('country_code', 'ALL')
+        if(!$shipping_option){
+            $shipping_option = ShippingOption::where('country_code', 'ALL')
                 ->where('weight', '>', $total_weight)
                 ->orderBy('weight', 'asc')
                 ->first();
         }
 
-        if(!$option){
+        if(!$shipping_option){
             return "We cannot ship the specified weight";
         }
 
-        $shipping_cost = HelperController::get_price($option->price);
-        $product_cost = HelperController::get_price(Cart::total());
-        $total = HelperController::get_price( $shipping_cost + $product_cost ) ;
-        $costs = [
-            'shipping_lowest'  => $shipping_cost * 100,
-            'product_lowest'   => $product_cost * 100,
-            
-            'shipping'         => $shipping_cost,
-            'product'          => $product_cost,
+        $shipping_cost  = HelperController::get_price($shipping_option->price);
+        $product_cost   = HelperController::get_price(Cart::total());
+        $total          = $shipping_cost + $product_cost  ;
 
-            'total_lowest'     => $total * 100,
-            'total'            => $total
+        $html = trans('text.shipping_calculator', [
+            'currency_symbol'   => \App\Http\Controllers\HelperController::getCurrencySymbol(), 
+            'cost_shipping'     => $shipping_cost, 
+            'cost_product'      => $product_cost,
+            'total_cost'        => $total
+        ]);
+
+
+        $costs = [
+            // 'shipping_lowest'  => $shipping_cost * 100,
+            // 'product_lowest'   => $product_cost * 100,
+            
+            // 'shipping'         => $shipping_cost,
+            // 'product'          => $product_cost,
+
+            // 'total_lowest'     => $total * 100,
+            // 'total'            => $total,
+            'html'             => $html
         ];
         return $costs;
     }
@@ -132,12 +138,6 @@ class HelperController extends Controller
         ];
         return View::make('message', $data);
     }
-
-    public static function hangon(){
-        print "Press any key to continue";
-        fgets(STDIN);
-    }
-
 
     # Testing helpers
     public static function fill_valid_bank_details_and_submit($I){

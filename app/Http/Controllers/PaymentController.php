@@ -144,12 +144,14 @@ class PaymentController extends Controller
         }
         
         $shipping_countries = DB::table('shipping_options')->distinct()->lists('shipping_options.country', 'shipping_options.country_code');
-        $rate = HelperController::getRate();
+        $rate = HelperController::get_rate();
 
         $data = [
             'rate' => $rate, 
             'shipping_countries' => $shipping_countries,
             'cart' => Cart::total(),
+            'items' => Cart::content(),
+            'page_title'    => trans('text.checkout_title')
         ];
         return View::make('checkout')->with($data);
     }

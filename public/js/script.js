@@ -11,7 +11,6 @@ jQuery(document).ready(function() {
     });
     
     $('.hamburger_toggle').click(function(e) {
-        console.log("trigger");
         $(this).toggleClass('active');
         $('.menu_links_ul').toggleClass('active');
         e.preventDefault();
