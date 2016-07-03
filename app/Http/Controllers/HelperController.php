@@ -87,34 +87,44 @@ class HelperController extends Controller
             $total_weight += (int) $row->options->weight;
         }
 
-        $option = ShippingOption::where('country_code', $country_code)
+        $shipping_option = ShippingOption::where('country_code', $country_code)
             ->where('weight', '>=', $total_weight)
             ->orderBy('weight', 'asc')
             ->first();
 
-        if(!$option){
-            $option = ShippingOption::where('country_code', 'ALL')
+        if(!$shipping_option){
+            $shipping_option = ShippingOption::where('country_code', 'ALL')
                 ->where('weight', '>', $total_weight)
                 ->orderBy('weight', 'asc')
                 ->first();
         }
 
-        if(!$option){
+        if(!$shipping_option){
             return "We cannot ship the specified weight";
         }
 
-        $shipping_cost = HelperController::get_price($option->price);
-        $product_cost = HelperController::get_price(Cart::total());
-        $total = HelperController::get_price( $shipping_cost + $product_cost ) ;
-        $costs = [
-            'shipping_lowest'  => $shipping_cost * 100,
-            'product_lowest'   => $product_cost * 100,
-            
-            'shipping'         => $shipping_cost,
-            'product'          => $product_cost,
+        $shipping_cost  = HelperController::get_price($shipping_option->price);
+        $product_cost   = HelperController::get_price(Cart::total());
+        $total          = $shipping_cost + $product_cost  ;
 
-            'total_lowest'     => $total * 100,
-            'total'            => $total
+        $html = trans('text.shipping_calculator', [
+            'currency_symbol'   => \App\Http\Controllers\HelperController::getCurrencySymbol(), 
+            'cost_shipping'     => $shipping_cost, 
+            'cost_product'      => $product_cost,
+            'total_cost'        => $total
+        ]);
+
+
+        $costs = [
+            // 'shipping_lowest'  => $shipping_cost * 100,
+            // 'product_lowest'   => $product_cost * 100,
+            
+            // 'shipping'         => $shipping_cost,
+            // 'product'          => $product_cost,
+
+            // 'total_lowest'     => $total * 100,
+            // 'total'            => $total,
+            'html'             => $html
         ];
         return $costs;
     }

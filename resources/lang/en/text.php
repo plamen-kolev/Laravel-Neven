@@ -179,7 +179,7 @@ return [
     'incorrect_number' => "The card number is incorrect.",
     'invalid_number'=> "The card number is not a valid credit card number.",
     'invalid_expiry_month' => "The card's expiration month is invalid.",
-    'invalid_expiry_year' => "The card&quote;s expiration year is invalid.",
+    'invalid_expiry_year' => "The card&quote;s expiratcurrency_symbolion year is invalid.",
     'invalid_cvc'=> "The card&quote;s security code is invalid.",
     'expired_card' => "The card has expired.",
     'incorrect_cvc' => "The card&quote;s security code is incorrect.",
@@ -216,6 +216,9 @@ return [
         Please follow the link below to verify your email address at :email
         <a id="confirm_account_url" href=":confirmation_url">:confirmation_url</a>. You can also copy and paste this url in your browser.<br/>
 EOD
+,
+    'user_created_message' => 'Account :email created successfully, we have sent you an activation link',
+    'shipping_calculator' => "Shipping: :currency_symbol <span id='shipping_cost'> :cost_shipping </span> Product cost: :currency_symbol :cost_product Total: :currency_symbol :total_cost"
 
 
 ];

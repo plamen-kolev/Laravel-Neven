@@ -4,7 +4,6 @@
     <title></title>
 </head>
 <body>
-@section('content')
-@stop
+@yield('content')
 </body>
 </html>

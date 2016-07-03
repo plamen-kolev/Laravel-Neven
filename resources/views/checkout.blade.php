@@ -268,8 +268,7 @@
             dataType: "json",
             url: '/cart/calculate_shipping_cost/' + country_code,
             success: function(cost){
-                // console.log(cost);
-                $('#shipping_calc').html("Shipping: {{\App\Http\Controllers\HelperController::getCurrencySymbol()}}<span id='shipping_cost'>"+ cost.shipping + "</span> Product cost: {{\App\Http\Controllers\HelperController::getCurrencySymbol()}}" + cost.product + " Total: {{\App\Http\Controllers\HelperController::getCurrencySymbol()}}" + cost.total);
+                $('#shipping_calc').html(cost.html);
             }
         });
     }

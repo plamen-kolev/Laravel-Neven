@@ -27,7 +27,7 @@ class EmailController extends Controller
 
         $data = [
             'verify_email_text' => trans('text.verify_email_address'),
-            'body' => trans('text.email_confirmation_text', ['name' => $recipient_name, 'email' => $recipient_email, 'confirmation_url'=> env('HOST_ADDRESS') . "/register/verify/{$activation_code}" ] )
+            'body' => trans('text.email_confirmation_text', ['name' => $recipient_name, 'email' => $recipient_email, 'confirmation_url'=> route('account_activation', $activation_code) ] )
         ];
 
         $response = Mail::send('confirmation_email', $data, function($message) use($activation_code, $recipient_email, $recipient_name) {
