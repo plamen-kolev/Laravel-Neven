@@ -114,8 +114,9 @@
         Route::post('password/reset', [ 'as' => 'auth.password.postReset', 'uses' => 'Auth\PasswordController@postReset']);
 
         # ingredients
-        Route::get('ingredient/{slug}/', ['as' => 'ingredient.show', 'uses' => 'IngredientController@show']
-        );
+        Route::get('ingredients/{slug}', ['as' => 'product_ingredients', 'uses' => 'IngredientController@get_ingredients_for_product']);
+
+        Route::get('ingredient/{slug}/', ['as' => 'ingredient.show', 'uses' => 'IngredientController@show']);
 
         Route::get('stockist', array('as' => 'stockist.index', 'uses' => 'StockistController@index'));
 

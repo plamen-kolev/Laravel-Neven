@@ -107,7 +107,6 @@ class Initial extends Migration
 
         });
 
-
         Schema::create('images', function (Blueprint $table) {
             $table->increments('id')->unsigned();
 

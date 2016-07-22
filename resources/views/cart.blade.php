@@ -12,8 +12,6 @@
 
         </div>
     @endif
-
-
 @endif
 
 <div class="col-md-12">
@@ -47,7 +45,7 @@
 
                             <td>
                                 {{\App\Http\Controllers\HelperController::getCurrencySymbol()}}
-                                {{ number_format($row->price * $rate, 2, '.', ',') }}
+                                {{ number_format(($row->price * $rate), 2, '.', ',') }}
                             </td>
 
                             <td>

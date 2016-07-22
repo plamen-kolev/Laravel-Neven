@@ -1,7 +1,7 @@
 
 <div class="col-sm-12">
     <div class="wrapper">
-        <div class="menu">
+        <div class="col-md-12 menu">
             <div id="menu_logo_container">
                 <a href="{{route('index')}}">
                     <img class="b-lazy" src="{{ asset('images/loading.gif') }}" data-src="{{asset('images/neven_logo.png')}}" alt="{{trans('text.neven_logo_alt')}}"/>

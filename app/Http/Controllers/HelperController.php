@@ -37,7 +37,7 @@ class HelperController extends Controller
             'id'        => $product->id,
             'name'      => $product->title(),
             'qty'       => $data['qty'],
-            'price'     => $option->price,
+            'price'     => $option->price * $data['qty'],
         
             'options'=> array(
                 'option'    => $option,

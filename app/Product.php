@@ -53,6 +53,7 @@ class Product extends Model
 
     // relatinshop helpers
     public function ingredients(){
+        $language = Config::get('app.locale');
         return $this->belongsToMany('App\Ingredient', 'ingredient_product');
     }
 

@@ -5,11 +5,15 @@ use App\Ingredient as Ingredient;
 use View;
 use Illuminate\Support\Str as Str;
 use Illuminate\Http\Request;
-
+use App\Product as Product;
 use App\Http\Requests;
 
 class IngredientController extends Controller
 {
+    public function get_ingredients_for_product($product_slug){
+        $product = Product::where('slug', $product_slug)->first();
+        return (string) $product->ingredients()->get();
+    } 
 
     public function index(){
         $data = [
