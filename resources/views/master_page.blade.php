@@ -18,7 +18,7 @@
         @yield('register')
         @include('footer')
 
-<script defer src="{{ asset('js/jquery-2.2.0.min.js') }}" type="text/javascript"></script>
+<script defer src="https://code.jquery.com/jquery-2.2.4.min.js"   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="   crossorigin="anonymous"></script>
 <script defer src="{{ asset('bootstrap/js/bootstrap.min.js') }}" type="text/javascript"></script>
 <script defer src="{{ asset('js/script.js') }}" type="text/javascript"></script>
 @yield('scripts')

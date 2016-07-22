@@ -1,6 +1,6 @@
 
 $.ajax({
-    url: 'js/responsiveslides.min.js',
+    url: '/js/responsiveslides.min.js',
     dataType: 'script',
     cache: true,
     success: function() {
@@ -15,7 +15,7 @@ $.ajax({
 
 
 $.ajax({
-    url: 'js/blazy.min.js',
+    url: '/js/blazy.min.js',
     dataType: 'script',
     cache: true,
     success: function() {
@@ -26,7 +26,7 @@ $.ajax({
 });
 
 $.ajax({
-    url: 'js/jquery-2.2.0.min.js',
+    url: 'https://code.jquery.com/jquery-2.2.4.min.js',
     dataType: 'script',
     cache: true,
     success: function() {
