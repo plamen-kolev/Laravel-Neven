@@ -7,6 +7,10 @@ html,body
     padding: 0px;
 }
 
+.article_image_container{
+    margin:10px;
+}
+
 .pointer{
     cursor: pointer;
 }
@@ -49,6 +53,7 @@ html,body
 }
 
 .product_title{
+    clear: both;
     margin-top:-10px;
 }
 
@@ -1398,6 +1403,7 @@ a:hover{
     color:white;
     text-align: right;
     padding-right: 15px;
+    width:90%;
 }
 
 .ingr-pop{

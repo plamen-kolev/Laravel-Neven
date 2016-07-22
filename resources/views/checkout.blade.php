@@ -193,8 +193,9 @@
                         ] ) }}
                     </div>
                 </div>
+                @foreach($items as $index=>$row)
                 <div class="col-md-12">
-                    @foreach($items as $index=>$row)
+                        
                         <div class="col-md-3">
                             <img class="checkout_image" src="{{route('image', $row->options->thumbnail)}}?w=50&h=50&fit=crop" />
                         </div>
@@ -202,25 +203,19 @@
                         <div class="col-md-3">{{$row->name}} ({{$row->options->option->title}})</div>
                         
                         <div class="col-md-3">
-                            <p>{{$row->qty}}x{{$row->options->weight}}</p>
+                            <p>{{$row->qty}}x{{$row->options->weight}} {{trans('text.grams')}}</p>
                         </div>
 
                         <div class="col-md-3">
                             {{\App\Http\Controllers\HelperController::getCurrencySymbol()}}
-                            {{ number_format($row->price * $rate, 2, '.', ',') }}
+                            {{ number_format(($row->price * $rate), 2, '.', ',') }} {{trans("text.each")}}
                         </div>
-
-                    @endforeach
                 </div>
+                @endforeach
+
 
                 <div class="col-md-12 total_info">
-                    <!-- <h1>
-                        {{ trans('text.total') }}
-                        {{\App\Http\Controllers\HelperController::getCurrencySymbol()}}
-                        {{ number_format(Cart::total() * $rate, 2, '.', ',') }}
-                    </h1>  -->
                     <h1 id="shipping_calc">Select a country to calculate shipping</h1>
-
                 </div>
                 
                 @if (Auth::user())

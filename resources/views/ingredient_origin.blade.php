@@ -4,8 +4,8 @@
         <h1 class="white align-center capital" id="origin_of_our">{{ trans('text.origin_of_our_ingredients')}}</h1>
         
         <div class="col-md-12 center">
-          <div class="width_100">
-            <img class="b-lazy width_100 full_map" data-src="{{ asset('images/world-map.svg')}}" src="{{ asset('images/loading.gif') }}" alt="map of the world"/>
+          <div class="">
+            <img class="b-lazy full_map" data-src="{{ asset('images/world-map.svg')}}" src="{{ asset('images/loading.gif') }}" alt="map of the world"/>
           </div>
             
         </div>

@@ -18,7 +18,7 @@
                 <div class="col-md-3 nopadding pull-left related_container" style="padding:5px; max-width:150px; overflow:hidden;display:inline-block">
                     <a href="{{route('image', $image->thumbnail)}}" data-lightbox="image-1" data-title="Related image for {{$product->title()}}">
                         <img class="b-lazy" data-src="{{route('image',$image->thumbnail)}}?w=150&h=150&fit=crop" 
-                            src="{{ asset('images/loading.gif') }}"  
+                            src="{{ asset('images/loading.gif') }}"
                             alt="Related image for {{$product->title()}}"
                         />
 
@@ -46,11 +46,9 @@
                             </select>    
                         </div>
                         
-                        
                         <div class="col-md-4 nopadding_right">
                             <input class="generic_input" id="product_quantity" type="number" name="quantity"  value="1"/>    
                         </div>
-                        
                     </form>
                     
                 </div>
@@ -193,7 +191,7 @@
                 <div class="col-md-2 thumbnail_item">
                     <div class="thumbnail_item_inner">
                         
-                        <img alt="image" data-src="{{route('image', $product->thumbnail)}}?w=150&h=150&fit=crop" src="{{ asset('images/loading.gif') }}"/>
+                        <img class="b-lazy" alt="image" data-src="{{route('image', $product->thumbnail)}}?w=150&h=150&fit=crop" src="{{ asset('images/loading.gif') }}"/>
                         <h2 class="thumbnail_title">
                             <a class="" href="{!! route('product.show', [ $product->slug ]) !!}"> {{$product->title()}} </a>
                         </h2>
@@ -215,29 +213,46 @@
         </div>
     </div>
 </div>
-@if(Auth::user())
-    <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
-    <script>
-        CKEDITOR.replace( 'review_textbox' );
-    </script>
 
-    
-@endif
 
 @stop
 
 @section('scripts')
-    <script src={{ asset('js/tether.min.js') }}></script>
-    <script src={{ asset('js/drop.min.js') }}></script>
-    <script src="{{ asset('js/lightbox.min.js') }}" type="text/javascript"></script>
-    @foreach($product->ingredients as $ingredient)
-        <script>
-            var loaded_ingredients = {};
-            $('#{{$ingredient->slug}}').bind('click', { slug: '{{$ingredient->slug}}' }, function(event) {
-                var slug = event.data.slug;
-                render_ingredient("{{route('ingredient.show', $ingredient->slug)}} ", slug);
+    <script defer src="{{ asset('js/tether.min.js'   ) }}"></script>
+    <script defer src="{{ asset('js/drop.min.js'     ) }}"></script>
+    <script defer src="{{ asset('js/lightbox.min.js' ) }}"></script>
+    
+    @if(Auth::user())
+        <script defer src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
+        <script defer>CKEDITOR.replace( 'review_textbox' );</script>
+    @endif
+
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function(event) { 
+            $.ajax({
+                dataType: "json",
+                url: "{{route('product_ingredients', $product->slug) }}",
+                success: function(data){
+                    for (var i = 0 ; i < data.length; i++) {
+                        var ingredient = data[i];
+                        var html_content = 
+                            '<div class="ingr-pop">'
+                                + '<img class="ingr_pop_img" src="/media/' + ingredient.thumbnail + '?w=150&h=150&fit=crop" alt="' + ingredient.title_{{App::getLocale()}} + '">'
+                                + '<h1>' + ingredient.title_{{App::getLocale()}} + '</h1>'
+                                + '<p>' + ingredient.description_{{App::getLocale()}} + '</p>'
+                            + '</div>';
+                        drop = new Drop({
+                            target: document.querySelector('#' + ingredient.slug),
+                            position: 'bottom left',
+                            openOn: 'click',
+                            content: html_content
+                        });
+                    }
+                },
             });
-        </script>
-    @endforeach
+            
+        
+        });
+    </script>
 
 @stop

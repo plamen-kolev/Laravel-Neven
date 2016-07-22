@@ -5,7 +5,10 @@
         <div class="col-md-1"></div>
         <div class="col-md-10 row">
             <div class="">
-                <img class="b-lazy width_100" data-src="{{route('image', $article->thumbnail)}}?w=220&h=150&fit=crop" src="{{ asset('images/loading.gif') }}" alt="{{ $article->title}}">
+                <div class="article_image_container pull-left">
+                    <img class="b-lazy " data-src="{{route('image', $article->thumbnail)}}?w=220&h=150&fit=crop" src="{{ asset('images/loading.gif') }}" alt="{{ $article->title}}">    
+                </div>
+                
 
                 @if(Auth::user() && Auth::user()->admin)
                     {!! Form::model($article, array('route' => array('blog.destroy', $article->slug), 'method'=>'delete'  )) !!}
