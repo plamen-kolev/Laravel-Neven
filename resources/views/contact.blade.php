@@ -11,10 +11,9 @@
              <div class=" layer-contact-front-left pull-left"></div>
              <div class=" layer-contact-front-right pull-right"></div>
          </div>
-
     </div>
 
-    <div class="wrapper" id="stockist_form">
+    <div class="wrapper">
         <div class="col-md-4"></div>
         <div class="col-md-4" id="stockist_container">
             @if( $errors->all() )
@@ -28,7 +27,7 @@
             @endif
             <div class="col-md-12">
                 
-                {!! Form::open(array('url' => route('contact') ) ) !!}
+                {!! Form::open(array('url' => route('contact'), 'class' => 'generic_form' ) ) !!}
                     <div class="col-md-12 nopadding">
                         {{-- {{ Form::label('first_name', trans('text.first_name') ) }} --}}
                         <p>{!! Form::text('first_name', Input::old('first_name'), array('placeholder' => trans("text.first_name"), 'class' => 'generic_input' )); !!}</p>    

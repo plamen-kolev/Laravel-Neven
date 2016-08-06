@@ -3,20 +3,19 @@
 <div class="col-md-12 nomargin nopadding">
     <h1 class="capital center">{{trans('text.become_stockist')}}</h1>
 
-
-    <div class="parallax">
-        <div class="bg__rose_1"></div>
+    <div id="hero">
+        <div class='layer' data-depth='0.10' data-type='parallax'>
+             <div class="layer-inner layer-generic-back-left pull-left"></div>
+             <div class="layer-inner layer-generic-back-right pull-right"></div>
+        </div>
+        <div class='layer' data-depth='0.40' data-type='parallax'>
+             <div class="layer-inner layer-generic-front-left pull-left"></div>
+             <div class="layer-inner layer-generic-front-right pull-right"></div>
+         </div>
     </div>
 
-    <div class="parallax">
-        <div class="bg__rose_blur"></div>
-    </div>
 
-    <div class="parallax">
-        <div class="bg__rose_2"></div>
-    </div>
-
-    <div class="wrapper" id="stockist_form">
+    <div class="wrapper">
         <div class="col-md-3"></div>
         <div class="col-md-6">
             @if( $errors->all() )

@@ -2,9 +2,20 @@
 @section('content')
 <div class="col-md-12">
     <div class="wrapper">
+        <div id="hero">
+            <div class='layer' data-depth='0.10' data-type='parallax'>
+                 <div class="layer-inner layer-generic-back-left pull-left"></div>
+                 <div class="layer-inner layer-generic-back-right pull-right"></div>
+            </div>
+            <div class='layer' data-depth='0.40' data-type='parallax'>
+                 <div class="layer-inner layer-generic-front-left pull-left"></div>
+                 <div class="layer-inner layer-generic-front-right pull-right"></div>
+             </div>
+        </div>
+
         <div class="col-md-3"></div>
 
-        <div class="col-md-6 big_top_margin">
+        <div class="col-md-6 big_top_margin generic_form">
             <div class="col-md-12">
                 <div class="progress_circle_container">
                     <span class="progress_circle"></span>
@@ -236,11 +247,11 @@
 @stop
 
 @section('scripts')
-<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-<script src="https://checkout.stripe.com/checkout.js"></script>
+<script defer type="text/javascript" src="https://js.stripe.com/v2/"></script>
+<script defer src="https://checkout.stripe.com/checkout.js"></script>
 
-<script type="text/javascript">
-
+<script  type="text/javascript">
+$( document ).ready(function() {
     @if( $errors->all() )
         $('.collapse').show();
     @endif
@@ -251,12 +262,16 @@
     // This identifies your website in the createToken call below
     Stripe.setPublishableKey("{{ env('STRIPE_KEY') }}");
     get_total_price();
+
+
+
     $('select[name="country"').change(function(){
         get_total_price()
     });
     
     $('#row6_input').change( function(){get_total_price()} );
-
+})
+;
     function get_total_price(){
         var country_code = $('select[name="country"]').find(":selected").val();
         $.ajax({
