@@ -1,6 +1,6 @@
 
 $.ajax({
-    url: 'js/responsiveslides.min.js',
+    url: '/js/responsiveslides.min.js',
     dataType: 'script',
     cache: true,
     success: function() {
@@ -15,7 +15,7 @@ $.ajax({
 
 
 $.ajax({
-    url: 'js/blazy.min.js',
+    url: '/js/blazy.min.js',
     dataType: 'script',
     cache: true,
     success: function() {
@@ -26,7 +26,7 @@ $.ajax({
 });
 
 $.ajax({
-    url: 'js/jquery-2.2.0.min.js',
+    url: 'https://code.jquery.com/jquery-2.2.4.min.js',
     dataType: 'script',
     cache: true,
     success: function() {
@@ -43,6 +43,24 @@ $.ajax({
     }
 });
 
+(function () {
+    window.addEventListener('scroll', function (event) {
+        var depth, i, layer, layers, len, movement, topDistance, translate3d;
+        topDistance = this.pageYOffset;
+        layers = document.querySelectorAll('[data-type=\'parallax\']');
+        for (i = 0, len = layers.length; i < len; i++) {
+            layer = layers[i];
+            depth = layer.getAttribute('data-depth');
+            movement = -(topDistance * depth);
+            translate3d = 'translate3d(0, ' + movement + 'px, 0)';
+            layer.style['-webkit-transform'] = translate3d;
+            layer.style['-moz-transform'] = translate3d;
+            layer.style['-ms-transform'] = translate3d;
+            layer.style['-o-transform'] = translate3d;
+            layer.style.transform = translate3d;
+        }
+    });
+}.call(this));
 
 function add_to_cart(product_slug, option_slug, url, csrf_token){
     var url_path = '/' + url.split("/").slice(3).join("/");

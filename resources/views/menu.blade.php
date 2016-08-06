@@ -69,7 +69,7 @@
                 <ul class="menu_links_ul align_right mobile_left">
                     <li class="mobieicon_align">
                         <a href="{{ route('cart', []) }}">
-                            <img src="{{asset('images/cart.svg')}}" alt="Cart icon" class="cart_icon"/>
+                            <img src="{{asset('images/menu/cart.svg')}}" alt="Cart icon" class="cart_icon"/>
                             <span class="cart_count"> <span class="counter_number">{{Cart::count()}}</span></span>
                         </a>
 
@@ -108,7 +108,7 @@
             <div class="col-md-1 menu_links">
                 <form  id="search_form" class="" role="search" method="GET" action="{{ route('search') }}">
                     <input id="search_input" placeholder={{trans('text.search')}} size=10 type="text" name="term" class=""/>
-                    <input src="/images/search-nn.svg" id="search_submit" size=1 type="image" class="btn-default" alt="{{trans('text.search_icon_all')}}"/>
+                    <input src="/images/search.svg" id="search_submit" size=1 type="image" class="btn-default" alt="{{trans('text.search_icon_all')}}"/>
                 </form>
             </div>
             <div class="col-md-1"></div>
