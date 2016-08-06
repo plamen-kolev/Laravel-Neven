@@ -1,47 +1,53 @@
 
-$.ajax({
-    url: '/js/responsiveslides.min.js',
-    dataType: 'script',
-    cache: true,
-    success: function() {
-        $('#slider').responsiveSlides({
-            pager: true,
-            speed: 2000,            // Integer: Speed of the transition, in milliseconds
-            // nav: true,
-            namespace: "centered-btns"
-        });
-    }
-});
+// $.ajax({
+//     url: '/js/responsiveslides.min.js',
+//     dataType: 'script',
+//     cache: true,
+//     success: 
+
+// function() {
+    $('#slider').responsiveSlides({
+        pager: true,
+        speed: 2000,            // Integer: Speed of the transition, in milliseconds
+        // nav: true,
+        namespace: "centered-btns"
+    });
+// }
+// });
 
 
-$.ajax({
-    url: '/js/blazy.min.js',
-    dataType: 'script',
-    cache: true,
-    success: function() {
-        var bLazy = new Blazy({
-            container: 'body', // Default is window
-        });
-    }
-});
+// $.ajax({
+//     url: '/js/blazy.min.js',
+//     dataType: 'script',
+//     cache: true,
+//     success: 
+// function() {
+    var bLazy = new Blazy({
+        container: 'body', // Default is window
+    });
+// }
+// });
 
-$.ajax({
-    url: 'https://code.jquery.com/jquery-2.2.4.min.js',
-    dataType: 'script',
-    cache: true,
-    success: function() {
-        $('.hamburger_toggle').click(function(e) {
-            $(this).toggleClass('active');
-            $('.menu_links_ul').toggleClass('active');
-            e.preventDefault();
-            return false;
-        });
 
-        $(".noclick").click(function (obj){
-            obj.preventDefault();
-        });
-    }
-});
+// $.ajax({
+//     url: 'https://code.jquery.com/jquery-2.2.4.min.js',
+//     dataType: 'script',
+//     cache: true,
+//     success: 
+
+// function() {
+    $('.hamburger_toggle').click(function(e) {
+        $(this).toggleClass('active');
+        $('.menu_links_ul').toggleClass('active');
+        e.preventDefault();
+        return false;
+    });
+
+    $(".noclick").click(function (obj){
+        obj.preventDefault();
+    });
+// }
+// });
 
 (function () {
     window.addEventListener('scroll', function (event) {
