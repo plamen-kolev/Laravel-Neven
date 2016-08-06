@@ -10,6 +10,8 @@
     @endforeach
 </div>
 <div class="col-md-12 create_page">
+
+
     <h1 class="capital center">Add a stockist</h1>
 
     {!! Form::model($stockist, array('route' => array('stockist.store') , 'files' => true)  ) !!}

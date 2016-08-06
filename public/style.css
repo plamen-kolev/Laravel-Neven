@@ -460,6 +460,7 @@ p{
     padding:10px;
     background-color:#fff;
     margin-top:80px;
+    margin-bottom:80px;
     text-align:center;
 }
 
@@ -1580,14 +1581,6 @@ a:hover{
 
 }
 
-
-#stockist_form{
-    /*position: absolute;*/
-    /*top: 100px;*/
-    width: 100%;
-    z-index: 9;
-}
-
 /* parallax */
 .layer {
   /*background-position: bottom center;*/
@@ -1621,4 +1614,30 @@ a:hover{
    background-image: url('../images/parallax/cacao-back-right.jpg');
    height:498px;
    width:459px;
+}
+
+/* generic parallax  */
+
+.layer-generic-front-left{
+   background-image: url('../images/parallax/rose-front-left.png');
+   width:480px;
+   height:522px;
+}
+
+.layer-generic-front-right{
+   background-image: url('../images/parallax/rose-front-right.png');
+   width:423px;
+   height:535px;
+}
+
+.layer-generic-back-left {
+   background-image: url('../images/parallax/rose-back-left.jpg');
+   width:578px;
+   height:746px;
+}
+
+.layer-generic-back-right {
+   background-image: url('../images/parallax/rose-back-right.jpg');
+   height:621px;
+   width:573px;
 }
