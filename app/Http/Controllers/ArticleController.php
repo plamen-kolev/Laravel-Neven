@@ -94,7 +94,11 @@ class ArticleController extends Controller
     public function update(Request $request, $slug){
         $article = Article::where('slug', $slug)->first();
         $article->update( $request->all() );
-        $article->slug = Str::slug($request->get('title'));
+
+        if($request->get('title')){
+            $article->slug = Str::slug($request->get('title'));
+        }
+
         if($request->file('thumbnail') && $request->file('thumbnail')->isValid()){
             $article->thumbnail = HelperController::upload_image($request->file('thumbnail'));
         }

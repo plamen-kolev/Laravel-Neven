@@ -27,8 +27,7 @@ use Storage;
 use File;
 use DB;
 
-class FakerCommand extends Command
-{
+class FakerCommand extends Command{
     /**
      * The name and signature of the console command.
      *
@@ -172,7 +171,7 @@ class FakerCommand extends Command
                 'title_nb'  => 'Norwegian ' . $title,
 
                 'description_en' => 'Desc ' . $faker->text,
-                'description_en' => 'Norwegian Desc ' . $faker->text,
+                'description_nb' => 'Norwegian Desc ' . $faker->text,
 
             ]);
             $category->save();

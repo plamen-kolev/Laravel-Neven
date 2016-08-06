@@ -15,20 +15,18 @@ class CategoryController extends Controller
 {
 
     public function index(){
-        
+        # stub
     }
 
     public function show($slug){
         $paginate_count = (int) env('PAGINATION');
         $category = Category::where('slug', $slug)->first();
-        // $products = $category->products()->paginate($paginate_count);
         $products = Product::where('category_id', $category->id)->orderBy("created_at", 'desc')->paginate($paginate_count);
         $data = array(
             'products'  => $products,
             'title'     => trans('text.category') . $category->title(),
             'page_title'    => trans($category->title())
         );
-//      == END ==
         return View::make('product.index')->with($data);
     }
 
@@ -36,43 +34,29 @@ class CategoryController extends Controller
         $category = new Category;
         
         $data = array(
-            'category'  => $category
+            'category'  => $category,
+            'method' => 'post',
+            'route' => 'category.store'
         );
-        return View::make('category.create')->with($data);
+        return View::make('category.create_or_edit')->with($data);
     }
 
     public function store(Request $request){
         $category = new Category;
-
         if( $category->validate_store($request->all()) ){
-        
-
             if ($request->file('thumbnail')->isValid()) {
-                $data = array(
-                    'alert_type'    => 'alert-success',
-                    'alert_text'    => 'Category created successfully',
-                    'message'       => 'Creation successful'
-                );
-
                 $image = HelperController::upload_image($request->file('thumbnail') );
-                
                 $category = new Category([
                     'thumbnail'    => $image,
                     'slug'      =>  Str::slug($request->get('title_en')),
-
                     'title_en'          => $request->get('title_en'),
                     'description_en'    => $request->get('description_en'),
-
                     'title_nb'          => $request->get('title_nb'),
                     'description_nb'    => $request->get('description_nb')
                 ]);
-
                 $category->save();
-                
-                return View::make('message')->with($data);
+                return redirect()->route('category.show', $category->slug);
             }
-
-
             return Response('File upload failed', 400);
         } else {
             return redirect()->route('category.create')
@@ -83,22 +67,31 @@ class CategoryController extends Controller
 
     public function edit($slug){
         $category = Category::where('slug', $slug)->first();
-
         if (!$category){
             return abort(404, "Category $slug not found");
         };
-
         $data = array(
             'category'   => $category,
-            'en_translation'    => CategoryTranslation::where('category_id', $category->id)
-                                                    ->where('locale','en')
-                                                    ->first(),
-            'nb_translation'    => CategoryTranslation::where('category_id', $category->id)
-                                                    ->where('locale','en')
-                                                    ->first(),
+            'method' => 'put',
+            'route' => 'category.update'
         );
+        return View::make('category.create_or_edit')->with($data);
+    }
 
-        return View::make('category.edit')->with($data);
+    public function update(Request $request, $slug){
+        $category = Category::where('slug', $slug)->first();
+        $category->update( $request->all() );
+
+        if($request->get('title')){
+            $category->slug = Str::slug($request->get('title'));
+        }
+
+        if($request->file('thumbnail') && $request->file('thumbnail')->isValid()){
+            $category->thumbnail = HelperController::upload_image($request->file('thumbnail'));
+        }
+        $category->save();
+        
+        return redirect()->route('category.show', $category->slug);
     }
 
     public function destroy($slug){
