@@ -30,7 +30,6 @@ class PageController extends Controller
 {
 
     public function index(){
-        
         if(Cache::has('stockists')){
             $stockists = Cache::get('stockists');
         } else {
@@ -39,7 +38,12 @@ class PageController extends Controller
         }
         
         
-        $hero = Hero::all()->random(1);
+        $hero = Hero::all();
+        if(!$hero->isEmpty()){
+            $hero = $hero->random(1);
+        } else {
+            $hero = '';
+        }
     
         // $slides = Slide::orderBy('id', 'desc')->get();
         if(Cache::has('slides')){

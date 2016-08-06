@@ -1,6 +1,8 @@
 @section('landing')
 <div class="col-md-12 landing nopadding">
     <div class="wrapper">
+
+        @if( ! empty($hero))
         <div class="landing_container">
             <div id="landing_overlay">
                 <h1 class="capital center width_55 white landing_title" id="landing_text">{{$hero->title()}}</h1>
@@ -14,6 +16,7 @@
             </div>
             
         </div>
+        @endif
 
     </div>
 </div>
