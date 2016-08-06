@@ -1,20 +1,17 @@
 @extends('master_page')
 @section('content')
-<div class="col-md-12 nomargin nopadding">
-    <h1 class="capital center">{{trans('text.contact_us')}}</h1>
-    <h2 class="center capital green_text no_top_spacing">{{trans('text.hearing_from_you')}}</h2>
 
+<div class="col-md-12 nopadding nomargin">
+    <div id="hero">
+         <div class='layer' data-depth='0.10' data-type='parallax'>
+             <div class=" layer-contact-back-left pull-left"></div>
+             <div class=" layer-contact-back-right pull-right"></div>
+         </div>
+         <div class='layer' data-depth='0.40' data-type='parallax'>
+             <div class=" layer-contact-front-left pull-left"></div>
+             <div class=" layer-contact-front-right pull-right"></div>
+         </div>
 
-    <div class="parallax">
-        <div class="bg__rose_1"></div>
-    </div>
-
-    <div class="parallax">
-        <div class="bg__rose_blur"></div>
-    </div>
-
-    <div class="parallax">
-        <div class="bg__rose_2"></div>
     </div>
 
     <div class="wrapper" id="stockist_form">
@@ -74,6 +71,6 @@
         <div class="col-md-4"></div>
     </div>
 
-
 </div>
+
 @stop

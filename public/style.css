@@ -1,7 +1,6 @@
 html,body
 {
     width: 100%;
-    height: 100%;
     overflow-x: hidden; 
     margin: 0px;
     padding: 0px;
@@ -433,13 +432,6 @@ p{
     border-radius: 70px;
 }
 
-#bg_image_1{
-    height:1105px;
-    background-image: url('../images/become-stockist-1560px.jpg');
-    background-position: center;
-
-}
-
 .total_info{
     margin-top: 40px;
     margin-bottom: 40px;
@@ -653,14 +645,6 @@ p{
 
 .main_footer{
     margin-top:100px;
-}
-
-#landing_page{
-    height:473px;
-    background-image:url('images/langing_background.jpg');
-    text-align: center;
-    display: inline-block;
-    width: 100%;
 }
 
 /* ==============  rslides ============= */
@@ -1448,39 +1432,39 @@ a:hover{
 @media screen and (max-width: 960px) {
 
     .home_mobile_icon{
-        background-image: url('../images/home.svg');
+        background-image: url('../images/menu/home.svg');
     }
 
     .categories_mobile_icon{
-        background-image: url('../images/categories.svg');
+        background-image: url('../images/menu/categories.svg');
     }
 
     .stockist_mobile_icon{
-        background-image: url('../images/stockist.svg');
+        background-image: url('../images/menu/stockist.svg');
     }
 
     .aboutus_mobile_icon{
-        background-image: url('../images/about.svg');
+        background-image: url('../images/menu/about.svg');
     }
 
     .contact_mobile_icon{
-        background-image: url('../images/contact.svg');
+        background-image: url('../images/menu/contact.svg');
     }
 
     .blog_mobile_icon{
-        background-image: url('../images/blog.svg');   
+        background-image: url('../images/menu/blog.svg');   
     }
 
     .language_mobile_icon{
-        background-image: url('../images/languages.svg');   
+        background-image: url('../images/menu/languages.svg');   
     }
 
     .signin_mobile_icon{
-        background-image: url('../images/sign-in.svg');   
+        background-image: url('../images/menu/sign-in.svg');   
     }
 
     .signup_mobile_icon{
-        background-image: url('../images/sign-up.svg');   
+        background-image: url('../images/menu/sign-up.svg');   
     }
 
     #search_form{
@@ -1602,4 +1586,39 @@ a:hover{
     /*top: 100px;*/
     width: 100%;
     z-index: 9;
+}
+
+/* parallax */
+.layer {
+  /*background-position: bottom center;*/
+  background-size: auto;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 800px;
+  position: fixed;
+  z-index: -1;
+}
+
+.layer-contact-front-left{
+   background-image: url('../images/parallax/cacao-front-left.png');
+   width:521px;
+   height:522px;
+}
+
+.layer-contact-front-right{
+   background-image: url('../images/parallax/cacao-front-right.png');
+   width:445px;
+   height:606px;
+}
+
+.layer-contact-back-left {
+   background-image: url('../images/parallax/cacao-back-left.jpg');
+   width:445px;
+   height:606px;
+}
+
+.layer-contact-back-right {
+   background-image: url('../images/parallax/cacao-back-right.jpg');
+   height:498px;
+   width:459px;
 }
