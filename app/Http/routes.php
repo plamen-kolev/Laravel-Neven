@@ -29,7 +29,7 @@
 
         Route::resource('slide', 'SlideController', ['only' => ['create','store', 'edit', 'update'] ]);
         
-        Route::resource('blog', 'ArticleController', ['only' => ['create', 'store' ,'destroy', 'edit']] );
+        Route::resource('blog', 'ArticleController', ['only' => ['create', 'store' ,'destroy', 'edit', 'update']] );
 
     });
 
