@@ -48,11 +48,16 @@ class ArticleController extends Controller
 
         ]);
         $article = new Article([
-            'slug'              => Str::slug($request->get('title')),
-            'title'     => $request->get('title'), 
+            'slug'      => Str::slug($request->get('title')),
+            'title'     => $request->get('title'),
             'body'      => $request->get('body'),
-            'tags'   => $request->get('tags'),
+            'tags'      => $request->get('tags'),
         ]);
+
+        if($request->file('thumbnail') && $request->file('thumbnail')->isValid()){
+            $article->thumbnail = HelperController::upload_image($request->file('thumbnail'));
+        }
+
         $article->save();
 
         // now send email to every subscriber
@@ -70,7 +75,7 @@ class ArticleController extends Controller
             return abort(404, "Article $slug not found");
         };
         $article->delete();
-        return back();
+        return redirect()->route('blog.index');
     }
 
     public function edit($slug){
@@ -90,6 +95,9 @@ class ArticleController extends Controller
         $article = Article::where('slug', $slug)->first();
         $article->update( $request->all() );
         $article->slug = Str::slug($request->get('title'));
+        if($request->file('thumbnail') && $request->file('thumbnail')->isValid()){
+            $article->thumbnail = HelperController::upload_image($request->file('thumbnail'));
+        }
         $article->save();
         
         return redirect()->route('blog.show', $article->slug);

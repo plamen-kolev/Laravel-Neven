@@ -9,7 +9,7 @@
                 <ul id="slider" class="rslides centered-btns centered-btns1">
                     @foreach ($slides as $slide)
                     <li>
-                        <img class="slide_image b-lazy" data-src="{{route('image', $slide->image)}}?w=1560&h=480&fit=crop" src="{{ asset('images/loading.gif') }}" alt="{{ $slide->title}}">
+                        <img class="slide_image b-lazy" data-src="{{route('image', $slide->image)}}?w=1560&h=480&fit=crop" src="{{ asset('images/loading.gif') }}" alt="{{ $slide->title}}"/>
                         <div class="slide_item">
                             
                             <div class="col-md-1"></div>

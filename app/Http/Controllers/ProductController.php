@@ -20,10 +20,7 @@ use Validator;
 use Swap;
 use App\Image as Image;
 use Input;
-class ProductController extends Controller
-
-{
-
+class ProductController extends Controller{
     public function index(){
         $paginate_count = (int) env('PAGINATION');
         $products = Product::orderBy("created_at", 'desc')->paginate($paginate_count);

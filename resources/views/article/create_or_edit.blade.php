@@ -20,7 +20,11 @@
 <div class="col-md-12">
     <div class="wrapper">
         <h1 class="capital center">Article</h1>
-        {!! Form::model($article, array('route' => array($route, $article->slug), 'method' => $method )  ) !!}
+        {!! Form::model($article, array('route' => array($route, $article->slug), 'method' => $method, 'files' => true )) !!}
+            
+            <img class="b-lazy" data-src="{{route('image', $article->thumbnail)}}?w=400&fit=crop" src="{{ asset('images/loading.gif') }}"/>
+
+            <p>{!! Form::file('thumbnail', Input::old('thumbnail'), array('placeholder' => 'Thumbnail', 'class' => 'generic_input' )); !!}</p>
             <div class="col-md-12">
                 {!! Form::text('title', Input::old('title'), array('placeholder' => 'Product title', 'class' => 'generic_input' )); !!}
             </div>
