@@ -14,9 +14,12 @@
 @endif
 
 <div class="col-md-12">
-    <h1 class="capital center">Create new Ingredient</h1>
-    {!! Form::model($ingredient, array('route' => array($route), 'method' => $method, 'files' => true )) !!}
-        
+    <h1 class="capital center">Ingredient</h1>
+    @if(! empty($ingredient->thumbnail))
+        <img class="b-lazy" data-src="{{route('image', $ingredient->thumbnail)}}?w=400&fit=crop" src="{{ asset('images/loading.gif') }}"/>
+    @endif
+    {!! Form::model($ingredient, array('route' => array($route, $ingredient->slug), 'method' => $method, 'files' => true )) !!}
+
         <div class="col-md-12">
             {!! Form::file('thumbnail', Input::old('thumbnail'), array('placeholder' => 'Thumbnail', 'class' => 'generic_input' )); !!}
         </div>
