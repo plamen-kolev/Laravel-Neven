@@ -11,8 +11,7 @@ use View;
 use DB;
 use App\Http\Controllers\HelperController as HelperController ;
 
-class CategoryController extends Controller
-{
+class CategoryController extends Controller{
 
     public function index(){
         # stub
@@ -90,7 +89,6 @@ class CategoryController extends Controller
             $category->thumbnail = HelperController::upload_image($request->file('thumbnail'));
         }
         $category->save();
-        
         return redirect()->route('category.show', $category->slug);
     }
 

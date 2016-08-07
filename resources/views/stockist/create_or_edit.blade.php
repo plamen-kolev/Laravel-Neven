@@ -10,13 +10,11 @@
     @endforeach
 </div>
 <div class="col-md-12 create_page">
-
-
     <h1 class="capital center">Add a stockist</h1>
-
-    {!! Form::model($stockist, array('route' => array('stockist.store') , 'files' => true)  ) !!}
-
-        
+    @if(! empty($object->thumbnail))
+        <img class="b-lazy" data-src="{{route('image', $object->thumbnail)}}?w=400&fit=crop" src="{{ asset('images/loading.gif') }}"/>
+    @endif
+    {!! Form::model($object, array('route' => array($route, $object->slug), 'method' => $method , 'files' => true)  ) !!}
         <div class="col-md-12">
             {{ Form::label('thumbnail', 'Main image') }}
             {!! Form::file('thumbnail', Input::old('thumbnail'), array('placeholder' => 'Thumbnail', 'class' => 'generic_input' )); !!}
@@ -48,13 +46,8 @@
 <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
 <script src="/vendor/unisharp/laravel-ckeditor/adapters/jquery.js"></script>
 <script>
-
-$( document ).ready(function() {
-     
+    $( document ).ready(function() {
         $('textarea').ckeditor();
-});
-
+    });
 </script>
-
-
 @stop

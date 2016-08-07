@@ -26,13 +26,11 @@
         Route::resource('shipping', 'ShippingController', ['only' => ['index', 'create','store', 'edit', 'update', 'destroy'] ]);
         Route::resource('slide', 'SlideController', ['only' => ['index', 'create','store', 'edit', 'update', 'destroy'] ]);
         Route::resource('blog', 'ArticleController', ['only' => ['create', 'store' ,'destroy', 'edit', 'update', 'destroy']] );
-        // Route::post('slide', ['as' => 'slide.destroy', 'uses' => 'SlideController@destroy']);
     });
 
     Route::group(
     [
         'prefix' => LaravelLocalization::setLocale(),
-//        'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'web' ],
         'middleware' => [ 'web' ],
     ],
     function()
