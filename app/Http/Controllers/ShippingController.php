@@ -10,7 +10,7 @@ use App\Http\Requests;
 class ShippingController extends Controller{
 
     public function index(){
-        $shipping_options = ShippingOption::all();
+        $shipping_options = ShippingOption::orderBy('id', 'desc')->get();
         $data = [
             'shipping_options'  => $shipping_options
         ];
@@ -20,7 +20,12 @@ class ShippingController extends Controller{
 
     public function create(){
         $shipping = new ShippingOption();
-        return View::make('shipping.create')->with('shipping', $shipping);
+        $data = [
+            'shipping' => $shipping,
+            'method' => 'post',
+            'route' => 'shipping.store'
+        ];
+        return View::make('shipping.create')->with($data);
     }
 
     public function store(Request $request){
@@ -41,6 +46,27 @@ class ShippingController extends Controller{
         ];
 
         return View::make('message')->with($data);
+    }
+
+    public function edit($id){
+        $shipping_option = ShippingOption::where('id', $id)->first();
+        if (!$shipping_option){
+            return abort(404, "Shipping $id not found");
+        };
+        $data = array(
+            'shipping' => $shipping_option,
+            'method' => 'put',
+            'route' => 'shipping.update'
+        );
+        return View::make('shipping.create_or_edit')->with($data);
+    }
+
+    public function update(Request $request, $id){
+        $shipping_option = ShippingOption::where('id', $id)->first();
+        $shipping_option->update( $request->all() );
+        $shipping_option->save();
+        
+        return redirect()->route('shipping.index');
     }
 
     public function destroy($id){

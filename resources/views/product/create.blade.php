@@ -15,7 +15,6 @@
 
     {!! Form::model($product, array('route' => array('product.store') , 'files' => true)  ) !!}
 
-
         <div class="col-md-3">
             {{ Form::label('category', 'Category') }}
             {{ Form::select('category', $category_options, Input::old('category'), array('placeholder' => 'Category', 'class' => 'generic_input' )) }}

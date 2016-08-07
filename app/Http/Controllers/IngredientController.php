@@ -64,7 +64,7 @@ class IngredientController extends Controller
         return Response('File upload failed', 400);
     }
 
-        public function edit($slug){
+    public function edit($slug){
         $ingredient = Ingredient::where('slug', $slug)->first();
         if (!$ingredient){
             return abort(404, "Category $slug not found");
