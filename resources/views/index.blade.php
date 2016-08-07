@@ -1,6 +1,6 @@
 @extends('master_page')
 
-@include('landing')
+@include('partials.landing')
 
 @section('content')
     <div class="col-md-12 nomargin  nopadding">
@@ -34,11 +34,11 @@
     <div class="col-md-12 gallery_second">
         <div class="wrapper ">
             <h1 id="products" class="index_h1_margin capital center">{{ trans('text.special_offers')}}</h1>
-            @include('index_products')
+            @include('partials.products')
         </div>
     </div>
 
-    @include('proud')
+    @include('partials.proud')
 
     <div class="col-md-12 center shops">
         <div class="wrapper">
@@ -62,6 +62,6 @@
         </div>
     </div> 
 
-    @include('ingredient_origin')
+    @include('partials.ingredient_origin')
 
 @stop

@@ -22,19 +22,18 @@
 
         <h1>{{ trans('text.payment')  }}</h1>
 
-        <p> {{ trans('text.total') }} : {{$order->total}}</p>
-        <p> {{ trans('text.last4') }} : {{$order->last4}}</p>
+        <p> {{ trans('text.shipping') }}: {{ HelperController::getCurrencySymbol() }} {{ $cost['shipping'] }}</p>
+        <p> {{ trans('text.products') }}: {{ HelperController::getCurrencySymbol() }} {{ $cost['product'] }}</p>
+
+        <p> 
+            {{ trans('text.total') }}: {{HelperController::getCurrencySymbol()}}
+            {{ number_format($order->total, 2, '.', ',') }}
+        </p>
+
+        <p> {{ trans('text.last4') }}: {{$order->last4}}</p>
 
         <h1>{{ trans("products")  }}</h1>
-        @foreach($cart as $row)
-
-            <p><strong>{{$row->name}} ({{$row->options->option->title}})</strong></p>
-
-            <p> <img width=200 src="{{$row->thumbnail}}"/> {{ trans('text.quantity')  }} {{$row->qty}}    {{ trans('text.price')  }} ${{$row->price}}   {{ trans('text.subtotal')  }} ${{$row->subtotal}}  </p>
-
-
-
-        @endforeach
+        @include('partials.cart_content')
     </div>
 
 

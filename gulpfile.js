@@ -16,6 +16,7 @@ elixir(function(mix) {
 
     mix.scripts([
     "jquery-2.2.0.min.js",
+    'bootstrap.min.js',
     "tether.min.js",
     "drop.min.js",
     "blazy.min.js",

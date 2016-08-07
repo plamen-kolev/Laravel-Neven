@@ -50,7 +50,7 @@
     </div>
 @endif
 
-@include('index_products')
+@include('partials.products')
 
 
 <div class="col-md-12">

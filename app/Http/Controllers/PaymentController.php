@@ -93,10 +93,6 @@ class PaymentController extends Controller
                 'currency' => HelperController::get_stripe_currency(),
             ]);
 
-            // if charging unsuccessful, return error
-            // TODO TEST THIS LINE
-           
-
             if(! $result->getLastResponse()->code == 200){
                 return Response('Charging unsuccessful', 400);
             }
@@ -137,10 +133,10 @@ class PaymentController extends Controller
             $data = [
                 'order' => $order,
                 'cart'  => Cart::content(),
+                'rate' => HelperController::get_rate(),
+                'cost' => $cost
             ];
-
             return EmailController::send_order_email($data);
-
         }
         
         $shipping_countries = DB::table('shipping_options')->distinct()->lists('shipping_options.country', 'shipping_options.country_code');
@@ -150,7 +146,7 @@ class PaymentController extends Controller
             'rate' => $rate, 
             'shipping_countries' => $shipping_countries,
             'cart' => Cart::total(),
-            'items' => Cart::content(),
+            'cart' => Cart::content(),
             'page_title'    => trans('text.checkout_title')
         ];
         return View::make('checkout')->with($data);

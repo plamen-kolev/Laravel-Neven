@@ -225,7 +225,8 @@ $conf = [
         'Form'                  => Collective\Html\FormFacade::class,
         'Html'                  => Collective\Html\HtmlFacade::class,
         'Socialize'             => Laravel\Socialite\Facades\Socialite::class,
-        'Image'                 => Intervention\Image\Facades\Image::class
+        'Image'                 => Intervention\Image\Facades\Image::class,
+        'HelperController'      => App\Http\Controllers\HelperController::class
         // ,'Clockwork\Support\Laravel\ClockworkServiceProvider'
     ],
 
