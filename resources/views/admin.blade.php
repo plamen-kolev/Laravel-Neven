@@ -16,7 +16,7 @@
             <h1 class="capital"><a href="{{route('shipping.index')}}">shipping options</a><a href="{{route('shipping.create')}}">+</a></h1>
 
             <hr/>
-            <h1 class="capital"><a href="{{route('index')}}/?#slides">slides</a><a href="{{route('slide.create')}}">+</a></h1>
+            <h1 class="capital"><a href="{{route('slide.index')}}/?#slides">slides</a><a href="{{route('slide.create')}}">+</a></h1>
         </div>
     </div>
     

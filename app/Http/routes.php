@@ -20,17 +20,13 @@
 
         Route::resource('category', 'CategoryController', ['only' => ['create', 'store', 'destroy', 'edit', 'update']] );
         Route::resource('product', 'ProductController', ['only' => ['create', 'store', 'destroy', 'edit', 'update' ]] );
-
         Route::resource('ingredient', 'IngredientController', ['only' => ['create','store', 'edit', 'update', 'index', 'destroy'] ]);
         
         Route::resource('stockist', 'StockistController', ['only' => ['create','store', 'edit', 'update', 'destroy'] ]);
-
         Route::resource('shipping', 'ShippingController', ['only' => ['index', 'create','store', 'edit', 'update', 'destroy'] ]);
-
-        Route::resource('slide', 'SlideController', ['only' => ['create','store', 'edit', 'update'] ]);
-        
-        Route::resource('blog', 'ArticleController', ['only' => ['create', 'store' ,'destroy', 'edit', 'update']] );
-
+        Route::resource('slide', 'SlideController', ['only' => ['index', 'create','store', 'edit', 'update', 'destroy'] ]);
+        Route::resource('blog', 'ArticleController', ['only' => ['create', 'store' ,'destroy', 'edit', 'update', 'destroy']] );
+        // Route::post('slide', ['as' => 'slide.destroy', 'uses' => 'SlideController@destroy']);
     });
 
     Route::group(

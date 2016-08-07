@@ -65,7 +65,6 @@ class ShippingController extends Controller{
         $shipping_option = ShippingOption::where('id', $id)->first();
         $shipping_option->update( $request->all() );
         $shipping_option->save();
-        
         return redirect()->route('shipping.index');
     }
 

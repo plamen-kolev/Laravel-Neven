@@ -17,7 +17,7 @@
                                 @if($slide->description())
                                     <h1>{!! $slide->description() !!}</h1>
                                 @endif
-                                
+
                                 @if($slide->url)
                                     <a class="action_button" href="{{$slide->url}}">{{ trans('text.view_product')}} <img alt="Right arrow" src="images/right_arrow.png"/> </a>
                                 @endif

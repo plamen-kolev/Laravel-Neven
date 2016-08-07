@@ -18,12 +18,9 @@
                         <p>{{$article->updated_at}}
                         @if(Auth::user() && Auth::user()->admin)
                             <span class="pull-right">
-
                                 {{ Form::open(['method' => 'DELETE', 'route' => ['blog.destroy', $article->slug]]) }}
                                     {{ Form::submit('Delete', ['class' => 'glyphicon glyphicon-remove danger confirm_delete']) }}
                                 {{ Form::close() }}
-
-
                                 <a class="glyphicon glyphicon-pencil success" href="{{route('blog.edit', $article->slug)}}"></a>
                             </span>
                         @endif
