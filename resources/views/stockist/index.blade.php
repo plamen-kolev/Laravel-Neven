@@ -26,7 +26,7 @@
                                                 {{ Form::submit('Delete', ['class' => 'glyphicon glyphicon-remove danger confirm_delete']) }}
                                             {{ Form::close() }}
 
-                                            <a class="glyphicon glyphicon-pencil success" href="{{route('blog.edit', $stockist->slug)}}"></a>
+                                            <a class="glyphicon glyphicon-pencil success" href="{{route('stockist.edit', $stockist->slug)}}"></a>
                                         </span>
                                     @endif
 

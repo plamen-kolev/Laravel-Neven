@@ -109,21 +109,20 @@ class HelperController extends Controller
 
         $html = trans('text.shipping_calculator', [
             'currency_symbol'   => \App\Http\Controllers\HelperController::getCurrencySymbol(), 
-            'cost_shipping'     => $shipping_cost, 
-            'cost_product'      => $product_cost,
-            'total_cost'        => $total
+            'cost_shipping'     => number_format($shipping_cost, 2, '.', ',') , 
+            'cost_product'      => number_format($product_cost, 2, '.', ','),
+            'total_cost'        => number_format($total, 2, '.', ',')
         ]);
 
-
         $costs = [
-            // 'shipping_lowest'  => $shipping_cost * 100,
-            // 'product_lowest'   => $product_cost * 100,
+            'shipping_lowest'  => $shipping_cost * 100,
+            'product_lowest'   => $product_cost * 100,
             
-            // 'shipping'         => $shipping_cost,
-            // 'product'          => $product_cost,
+            'shipping'         => $shipping_cost,
+            'product'          => $product_cost,
 
-            // 'total_lowest'     => $total * 100,
-            // 'total'            => $total,
+            'total_lowest'     => $total * 100,
+            'total'            => $total,
             'html'             => $html
         ];
         return $costs;

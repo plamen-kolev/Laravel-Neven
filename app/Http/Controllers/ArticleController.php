@@ -19,8 +19,6 @@ class ArticleController extends Controller
         return View::make('article.index')->with($data);
     }
 
-
-
     public function show($slug){
         $article = Article::where('slug', $slug)->first();
 
@@ -34,10 +32,12 @@ class ArticleController extends Controller
 
     public function create(){
         $data = [
-            'article' => new Article()
+            'article' => new Article(),
+            'method' => 'post',
+            'route'  => 'blog.store'
         ];
 
-        return View::make('article.create')->with($data);
+        return View::make('article.create_or_edit')->with($data);
     }
 
     public function store(Request $request){
@@ -47,22 +47,18 @@ class ArticleController extends Controller
             'tags'              => 'required',
 
         ]);
-
         $article = new Article([
-            'slug'              => Str::slug($request->get('title')),
-            'title'     => $request->get('title'), 
+            'slug'      => Str::slug($request->get('title')),
+            'title'     => $request->get('title'),
             'body'      => $request->get('body'),
-            'tags'   => $request->get('tags'),
+            'tags'      => $request->get('tags'),
         ]);
 
+        if($request->file('thumbnail') && $request->file('thumbnail')->isValid()){
+            $article->thumbnail = HelperController::upload_image($request->file('thumbnail'));
+        }
+
         $article->save();
-
-        $data = array(
-            'type'    => 'alert-success',
-            'alert_text'    => 'Article added successful',
-            'message'       => 'Creation successful'
-        );
-
 
         // now send email to every subscriber
         $subscribers = DB::table('subscribers')->select('email')->get();
@@ -70,8 +66,7 @@ class ArticleController extends Controller
         foreach ($subscribers as $subscriber) {
             EmailController::send_article( ['article' => $article], $subscriber);
         }
-
-        return View::make('message')->with($data);
+        return redirect()->route('blog.show', $article->slug);
     }
 
     public function destroy($slug){
@@ -80,8 +75,7 @@ class ArticleController extends Controller
             return abort(404, "Article $slug not found");
         };
         $article->delete();
-
-        return back();
+        return redirect()->route('blog.index');
     }
 
     public function edit($slug){
@@ -90,9 +84,26 @@ class ArticleController extends Controller
             return abort(404, "Article $slug not found");
         };
         $data = array(
-            'article'   => $article
+            'article'   => $article,
+            'route' => 'blog.update',
+            'method'    => 'put'
         );
-        return View::make('article.create')->with($data);
+        return View::make('article.create_or_edit')->with($data);
+    }
 
+    public function update(Request $request, $slug){
+        $article = Article::where('slug', $slug)->first();
+        $article->update( $request->all() );
+
+        if($request->get('title')){
+            $article->slug = Str::slug($request->get('title'));
+        }
+
+        if($request->file('thumbnail') && $request->file('thumbnail')->isValid()){
+            $article->thumbnail = HelperController::upload_image($request->file('thumbnail'));
+        }
+        $article->save();
+        
+        return redirect()->route('blog.show', $article->slug);
     }
 }

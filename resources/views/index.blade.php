@@ -1,6 +1,6 @@
 @extends('master_page')
 
-@include('landing')
+@include('partials.landing')
 
 @section('content')
     <div class="col-md-12 nomargin  nopadding">
@@ -9,7 +9,7 @@
                 <ul id="slider" class="rslides centered-btns centered-btns1">
                     @foreach ($slides as $slide)
                     <li>
-                        <img class="slide_image b-lazy" data-src="{{route('image', $slide->image)}}?w=1560&h=480&fit=crop" src="{{ asset('images/loading.gif') }}" alt="{{ $slide->title}}">
+                        <img class="slide_image b-lazy" data-src="{{route('image', $slide->image)}}?w=1560&h=480&fit=crop" src="{{ asset('images/loading.gif') }}" alt="{{ $slide->title}}"/>
                         <div class="slide_item">
                             
                             <div class="col-md-1"></div>
@@ -17,7 +17,7 @@
                                 @if($slide->description())
                                     <h1>{!! $slide->description() !!}</h1>
                                 @endif
-                                
+
                                 @if($slide->url)
                                     <a class="action_button" href="{{$slide->url}}">{{ trans('text.view_product')}} <img alt="Right arrow" src="images/right_arrow.png"/> </a>
                                 @endif
@@ -34,11 +34,11 @@
     <div class="col-md-12 gallery_second">
         <div class="wrapper ">
             <h1 id="products" class="index_h1_margin capital center">{{ trans('text.special_offers')}}</h1>
-            @include('index_products')
+            @include('partials.products')
         </div>
     </div>
 
-    @include('proud')
+    @include('partials.proud')
 
     <div class="col-md-12 center shops">
         <div class="wrapper">
@@ -62,6 +62,6 @@
         </div>
     </div> 
 
-    @include('ingredient_origin')
+    @include('partials.ingredient_origin')
 
 @stop

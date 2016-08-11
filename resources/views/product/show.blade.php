@@ -213,19 +213,15 @@
         </div>
     </div>
 </div>
-
-
 @stop
 
 @section('scripts')
-    <script defer src="{{ asset('js/tether.min.js'   ) }}"></script>
-    <script defer src="{{ asset('js/drop.min.js'     ) }}"></script>
-    <script defer src="{{ asset('js/lightbox.min.js' ) }}"></script>
-    
-    @if(Auth::user())
-        <script defer src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
-        <script defer>CKEDITOR.replace( 'review_textbox' );</script>
-    @endif
+@if(Auth::user())
+<script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
+<script type="text/javascript">
+    CKEDITOR.replace( 'review_textbox' );
+</script>
+@endif
 
     <script type="text/javascript">
         document.addEventListener("DOMContentLoaded", function(event) { 

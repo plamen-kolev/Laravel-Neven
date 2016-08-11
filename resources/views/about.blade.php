@@ -9,7 +9,7 @@
     </div>
 </div>
 
-@include('proud')
+@include('partials.proud')
 <div class="col-md-12">
     <div class="wrapper">
         <h2 class="center capital">{{trans('text.about_page_caption_2')}}</h2>        
@@ -17,7 +17,7 @@
     </div>
 </div>
 
-@include('ingredient_origin')
+@include('partials.ingredient_origin')
 
 
 @stop

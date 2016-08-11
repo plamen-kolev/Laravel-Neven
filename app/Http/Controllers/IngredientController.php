@@ -17,9 +17,8 @@ class IngredientController extends Controller
 
     public function index(){
         $data = [
-            'ingredients' => Ingredient::all()
+            'ingredients' => Ingredient::orderBy('id', 'desc')->get()
         ];
-
         return View::make('ingredient.index', $data);
     }
 
@@ -33,7 +32,12 @@ class IngredientController extends Controller
 
     public function create(){
         $ingredient = new Ingredient();
-        return View::make('ingredient.create')->with('ingredient', $ingredient);
+        $data = [
+            'ingredient' => $ingredient,
+            'method' => 'post',
+            'route' => 'ingredient.store'
+        ];
+        return View::make('ingredient.create_or_edit')->with($data);
     }
 
     public function store(Request $request){
@@ -47,31 +51,50 @@ class IngredientController extends Controller
 
         if ($request->file('thumbnail')->isValid()) {
             
-            Ingredient::create([
+            $ingredient = Ingredient::create([
                 'thumbnail'    => HelperController::upload_image( $request->file('thumbnail') ),
                 'title_en'  => $request->get('title_en'),
                 'title_nb'  => $request->get('title_nb'),
-
                 'description_en' => $request->get('description_en'),
                 'description_nb' => $request->get('description_nb'),
-
                 'slug'      =>  Str::slug($request->get('title_en'))
             ]);
+            return redirect()->route('ingredient.show', $ingredient->slug);
+        }
+        return Response('File upload failed', 400);
+    }
 
-            $data = array(
-                'alert_type'    => 'alert-success',
-                'alert_text'    => 'Ingredient created successfully',
-                'message'       => 'Ingredient '. $request->get('title_en') .' successful'
-            );
-            
-            return View::make('message')->with($data);
+    public function edit($slug){
+        $ingredient = Ingredient::where('slug', $slug)->first();
+        if (!$ingredient){
+            return abort(404, "Category $slug not found");
+        };
+        $data = array(
+            'ingredient'   => $ingredient,
+            'method' => 'put',
+            'route' => 'ingredient.update'
+        );
+        return View::make('ingredient.create_or_edit')->with($data);
+    }
+
+    public function update(Request $request, $slug){
+        $ingredient = Ingredient::where('slug', $slug)->first();
+        $ingredient->update( $request->all() );
+
+        if($request->get('title')){
+            $ingredient->slug = Str::slug($request->get('title'));
         }
 
-        return Response('File upload failed', 400);
+        if($request->file('thumbnail') && $request->file('thumbnail')->isValid()){
+            $ingredient->thumbnail = HelperController::upload_image($request->file('thumbnail'));
+        }
+        $ingredient->save();
+        
+        return redirect()->route('ingredient.show', $ingredient->slug);
     }
 
     public function destroy($slug){
         Ingredient::where('slug', $slug)->first()->delete();
-        return back();
+        return redirect()->route('ingredient.index', $ingredient->slug);
     }
 }

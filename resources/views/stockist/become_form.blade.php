@@ -14,7 +14,6 @@
          </div>
     </div>
 
-
     <div class="wrapper">
         <div class="col-md-3"></div>
         <div class="col-md-6">

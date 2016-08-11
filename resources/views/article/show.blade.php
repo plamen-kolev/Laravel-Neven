@@ -6,14 +6,14 @@
         <div class="col-md-10 row">
             <div class="">
                 <div class="article_image_container pull-left">
-                    <img class="b-lazy " data-src="{{route('image', $article->thumbnail)}}?w=220&h=150&fit=crop" src="{{ asset('images/loading.gif') }}" alt="{{ $article->title}}">    
+                    <img class="b-lazy " data-src="{{route('image', $article->thumbnail)}}?w=720&fit=crop" src="{{ asset('images/loading.gif') }}" alt="{{ $article->title}}">    
                 </div>
                 
 
                 @if(Auth::user() && Auth::user()->admin)
-                    {!! Form::model($article, array('route' => array('blog.destroy', $article->slug), 'method'=>'delete'  )) !!}
-                        {!! Form::submit('delete', array('class' => '') )!!}
-                    {!! Form::close() !!}
+                    {{ Form::open(['method' => 'DELETE', 'route' => ['blog.destroy', $article->slug]]) }}
+                        {{ Form::submit('Delete', ['class' => 'glyphicon glyphicon-remove danger confirm_delete']) }}
+                    {{ Form::close() }}
 
                     <a href="{{route('blog.edit', $article->slug)}}">Edit</a>
                 @endif

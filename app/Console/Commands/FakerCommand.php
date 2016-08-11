@@ -27,8 +27,7 @@ use Storage;
 use File;
 use DB;
 
-class FakerCommand extends Command
-{
+class FakerCommand extends Command{
     /**
      * The name and signature of the console command.
      *
@@ -172,7 +171,7 @@ class FakerCommand extends Command
                 'title_nb'  => 'Norwegian ' . $title,
 
                 'description_en' => 'Desc ' . $faker->text,
-                'description_en' => 'Norwegian Desc ' . $faker->text,
+                'description_nb' => 'Norwegian Desc ' . $faker->text,
 
             ]);
             $category->save();
@@ -190,10 +189,7 @@ class FakerCommand extends Command
 
             $ingredient = Ingredient::create([
                 'thumbnail'    => $filename,
-                // 'thumbnail_medium'  => $this::local_image($faker->image($dir = public_path('media/images'), $width = 640, $height = 480)),
-                // 'thumbnail_small'   => $this::local_image($faker->image($dir = public_path('media/images'), $width = 150, $height = 70)),
                 'slug'              =>  Str::slug($title),
-                
                 'title_en'          => "{$title}",
                 'title_nb'          => "Norwegian {$title}",
 
@@ -213,8 +209,6 @@ class FakerCommand extends Command
             $title = "Title{$faker->word} en " . str_random(10);
             $product = new Product([
                 'thumbnail'    => $filename,
-                // 'thumbnail_medium'  => $this::local_image($faker->image($dir = public_path('media/images'), $width = 640, $height = 480)),
-                // 'thumbnail_small'   => $this::local_image($faker->image($dir = public_path('media/images'), $width = 150, $height = 150)),
                 'in_stock'  => $faker->boolean(50),
                 'featured'  => $faker->boolean(40),
                 'slug'      => Str::slug($title),

@@ -204,27 +204,7 @@
                         ] ) }}
                     </div>
                 </div>
-                @foreach($items as $index=>$row)
-                <div class="col-md-12">
-                        
-                        <div class="col-md-3">
-                            <img class="checkout_image" src="{{route('image', $row->options->thumbnail)}}?w=50&h=50&fit=crop" />
-                        </div>
-                        
-                        <div class="col-md-3">{{$row->name}} ({{$row->options->option->title}})</div>
-                        
-                        <div class="col-md-3">
-                            <p>{{$row->qty}}x{{$row->options->weight}} {{trans('text.grams')}}</p>
-                        </div>
-
-                        <div class="col-md-3">
-                            {{\App\Http\Controllers\HelperController::getCurrencySymbol()}}
-                            {{ number_format(($row->price * $rate), 2, '.', ',') }} {{trans("text.each")}}
-                        </div>
-                </div>
-                @endforeach
-
-
+                @include('partials.cart_content')
                 <div class="col-md-12 total_info">
                     <h1 id="shipping_calc">Select a country to calculate shipping</h1>
                 </div>
@@ -257,14 +237,12 @@ $( document ).ready(function() {
     @endif
     
     @if(Auth::user())
-        $('#part_1').show();
+    $('#part_1').show();
     @endif
+
     // This identifies your website in the createToken call below
     Stripe.setPublishableKey("{{ env('STRIPE_KEY') }}");
     get_total_price();
-
-
-
     $('select[name="country"').change(function(){
         get_total_price()
     });
@@ -288,12 +266,9 @@ $( document ).ready(function() {
         $('#payment-form').submit(function(event) {
             $('.collapse').show();
             var $form = $(this);
-
             // Disable the submit button to prevent repeated clicks
             $form.find('.submitform').prop('disabled', true);
-
             Stripe.card.createToken($form, stripeResponseHandler);
-
             // Prevent the form from submitting with the default action
             return false;
         });
@@ -301,7 +276,6 @@ $( document ).ready(function() {
 
     function stripeResponseHandler(status, response) {
         var $form = $('#payment-form');
-
         if (response.error) {
             // Show the errors on the form
             $('.payment_errors').show();
@@ -317,7 +291,6 @@ $( document ).ready(function() {
             $form.get(0).submit();
         }
     };
-
 </script>
 @stop
 

@@ -20,10 +20,7 @@ use Validator;
 use Swap;
 use App\Image as Image;
 use Input;
-class ProductController extends Controller
-
-{
-
+class ProductController extends Controller{
     public function index(){
         $paginate_count = (int) env('PAGINATION');
         $products = Product::orderBy("created_at", 'desc')->paginate($paginate_count);
@@ -51,7 +48,6 @@ class ProductController extends Controller
         if (!$selected_option) {
             $selected_option = ProductOption::where('product_id', $product->id)->first();
         }
-        // dd($selected_option);
         $data = array(
             'product'   => $product,
             'option'    => $selected_option,
@@ -78,10 +74,15 @@ class ProductController extends Controller
             'category_options'      => $category_options,
             'all_products'          => $all_products, # all related products
             'all_ingredients'       => $all_ingredients,
-            'product'               => $product
+            'product'               => $product,
+
+            'selected_category'     => '',
+            'options'               => array(),
+            'method'                => 'post',
+            'route'                 => 'product.store'
 
         );
-        return View::make('product.create')->with($data);
+        return View::make('product.create_or_edit')->with($data);
     }
 
     public function store(Request $request){
@@ -225,26 +226,22 @@ class ProductController extends Controller
             'options'           => $options,
             'related_ingredients' => $related_ingredients,
             'selected_category' => $selected_category,
-            'all_products'       => $all_products,
-            'related_products' => $related_products
+            'all_products'      => $all_products,
+            'related_products'  => $related_products,
+
+            'method'            => 'put',
+            'route'             => 'product.update'
         );
 
 
-        return View::make('product.edit')->with($data);
+        return View::make('product.create_or_edit')->with($data);
     }
 
-    public function update(Request $request, $slug){
+    public function update(Request $request, $id){
         
-        $product = Product::where('slug', $slug)->first();
+        $product = Product::where('id', $id)->first();
         $product->update($request->all());
-        // if( $product->validate_edit($request->all()) ){
-
-        // } else {
-            // return redirect()->back()
-                // ->withErrors($product->errors)
-                // ->withInput();
-        // }
-        
+        return redirect()->route('product.show', $product->slug);
     }
 
     public function search(Request $request){
