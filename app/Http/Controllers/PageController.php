@@ -54,7 +54,7 @@ class PageController extends Controller
         }
         
         $featured_products = Product::where('featured', true)->get();
-
+        
         $data = [
             'slides' => $slides, 
             'products' => $featured_products,

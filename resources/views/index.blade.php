@@ -65,3 +65,16 @@
     @include('partials.ingredient_origin')
 
 @stop
+
+@section('scripts')
+@if (!empty($slides))
+<script>
+    $('#slider').responsiveSlides({
+        pager: true,
+        speed: 2000,            // Integer: Speed of the transition, in milliseconds
+        // nav: true,
+        namespace: "centered-btns"
+    });
+</script>
+@endif
+@stop
