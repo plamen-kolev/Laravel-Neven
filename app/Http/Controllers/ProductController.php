@@ -237,10 +237,11 @@ class ProductController extends Controller{
         return View::make('product.create_or_edit')->with($data);
     }
 
-    public function update(Request $request, $slug){
+    public function update(Request $request, $id){
         
-        $product = Product::where('slug', $slug)->first();
+        $product = Product::where('id', $id)->first();
         $product->update($request->all());
+        return redirect()->route('product.show', $product->slug);
     }
 
     public function search(Request $request){

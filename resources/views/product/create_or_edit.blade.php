@@ -23,10 +23,24 @@
         
         <div class="col-md-12">
             {{ Form::label('thumbnail', 'Main image') }}
+            <hr/>
+            @if(! empty($product->thumbnail))
+                <img class="b-lazy" data-src="{{route('image', $product->thumbnail)}}?w=200&fit=crop" src="{{ asset('images/loading.gif') }}"/>
+            @endif
             {!! Form::file('thumbnail', Input::old('thumbnail'), array('placeholder' => 'Thumbnail', 'class' => 'generic_input' )); !!}
         </div>
 
         <div class="col-md-12">
+            <div class="col-md-12">
+                @if($product->images()->get())
+                    @foreach($product->images()->get() as $image)
+                    <div class="col-sm-3">
+                        <img src="{{ route('image', $image->thumbnail)}}?w=100&fit=crop"/>
+                    </div>
+                    @endforeach
+                @endif
+            </div>
+            <hr/>
             {{ Form::label('images[]', 'More images') }}
             {!! Form::file('images[]', array('multiple'=>true)) !!}
         </div>
@@ -45,46 +59,46 @@
             <h2 class="center capital">Product variety <strong>(please enter at least one)</strong></h2>    
         </div>
         
-<table class="multiform product_option" style="width:100%">
-  <tr>
-    <th>Option title, like 50g or square 50 gr</th>
-    <th>Weight in grames</th>
-    <th>Price in krona</th>
-  </tr>
-    @foreach($options as $index=>$option)
-  <tr class="replication_protocol">
-    
-    <td>
-        <input class="generic_input" type="text" name="option_title[{{$index}}]" value="{{$option->title}}" placeholder="Like 50g, or different shape"/>
-    </td>
-    <td>
-        <input class="generic_input" type="text" name="option_weight[{{$index}}]" value="{{$option->weight}}" placeholder="Product weight"/>
-    </td> 
-    <td>
-        <input class="generic_input" type="text" name="option_price[{{$index}}]" value="{{$option->price}}" placeholder="Price in krona"/>
-    </td>
-    
-  </tr>
-  @endforeach
+        <table class="multiform product_option" style="width:100%">
+            <tr>
+                <th>Option title, like 50g or square 50 gr</th>
+                <th>Weight in grames</th>
+                <th>Price in krona</th>
+            </tr>
+            @foreach($options as $index=>$option)
+            <tr class="replication_protocol">
+            
+                <td>
+                    <input class="generic_input" type="text" name="option_title[{{$index}}]" value="{{$option->title}}" placeholder="Like 50g, or different shape"/>
+                </td>
+                <td>
+                    <input class="generic_input" type="text" name="option_weight[{{$index}}]" value="{{$option->weight}}" placeholder="Product weight"/>
+                </td> 
+                <td>
+                    <input class="generic_input" type="text" name="option_price[{{$index}}]" value="{{$option->price}}" placeholder="Price in krona"/>
+                </td>
+            
+            </tr>
+            @endforeach
 
-  @if(empty($options))
-    <tr class="replication_protocol">
-    <td>
-        <input class="generic_input" type="text" name="option_title[]" placeholder="Like 50g, or different shape"/>
-    </td>
-    <td>
-        <input class="generic_input" type="text" name="option_weight[]" placeholder="Product weight"/>
-    </td> 
-    <td>
-        <input class="generic_input" type="text" name="option_price[]" placeholder="Price in krona"/>
-    </td>
-  </tr>
-  @endif
+            @if(empty($options))
+            <tr class="replication_protocol">
+                <td>
+                    <input class="generic_input" type="text" name="option_title[]" placeholder="Like 50g, or different shape"/>
+                </td>
+                <td>
+                    <input class="generic_input" type="text" name="option_weight[]" placeholder="Product weight"/>
+                </td> 
+                <td>
+                    <input class="generic_input" type="text" name="option_price[]" placeholder="Price in krona"/>
+                </td>
+            </tr>
+            @endif
 
-</table>
+        </table>
 
-<span class="generic_submit replication_protocol_trigger">Add extra option</span>
-<hr>
+        <span class="generic_submit replication_protocol_trigger">Add extra option</span>
+        <hr>
         <div class="col-md-6">
             {{ Form::label('tags', 'Tags') }}
             {!! Form::text('tags', Input::old('tags'), array('placeholder' => 'Visible tags(coma separate them)', 'class' => 'generic_input' )); !!}
@@ -173,7 +187,7 @@
             {{ Form::label('ingredients[]', 'Ingredients') }}
             <p><a target="_blank" class="generic_submit" href="{{route('ingredient.create')}}">Create ingredient, refresh when done</a></p>
 
-            {{ Form::select('ingredients[]', $all_ingredients , Input::old('ingredients[]'), array(
+            {{ Form::select('ingredients[]', $all_ingredients , Input::old('ingredients[]', $related_ingredients), array(
                 'class' => 'generic_input more_height',
                 'multiple'  => 'multiple',
 
@@ -187,7 +201,7 @@
 
         <div class="col-md-12">
             {{ Form::label('related_products[]', 'Related products') }}
-            {{ Form::select('related_products[]', $all_products , Input::old('related_products[]'), array(
+            {{ Form::select('related_products[]', $all_products , Input::old('related_products[]', $related_products), array(
                 'class' => 'generic_input more_height',
                 'multiple'  => 'multiple',
 
