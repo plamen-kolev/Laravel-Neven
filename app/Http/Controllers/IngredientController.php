@@ -95,6 +95,6 @@ class IngredientController extends Controller
 
     public function destroy($slug){
         Ingredient::where('slug', $slug)->first()->delete();
-        eturn redirect()->route('ingredient.index', $ingredient->slug);
+        return redirect()->route('ingredient.index', $ingredient->slug);
     }
 }

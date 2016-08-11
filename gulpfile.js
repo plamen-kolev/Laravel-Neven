@@ -15,7 +15,6 @@ elixir(function(mix) {
     mix.sass('app.scss');
 
     mix.scripts([
-    "jquery-2.2.0.min.js",
     'bootstrap.min.js',
     "tether.min.js",
     "drop.min.js",

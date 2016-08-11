@@ -1,4 +1,4 @@
-@extends('base')
+@extends('master_page')
 @section('content')
 <div class="col-md-12">
     <div class="wrapper">
@@ -51,14 +51,14 @@
             {!! Form::close() !!}
     </div>
 </div>
+@stop
 
+@section('scripts')
 <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
 <script src="/vendor/unisharp/laravel-ckeditor/adapters/jquery.js"></script>
 <script>
-
-$( document ).ready(function() { 
-    $('textarea').ckeditor();
-});
-
+    $( document ).ready(function() { 
+        $('textarea').ckeditor();
+    });
 </script>
 @stop

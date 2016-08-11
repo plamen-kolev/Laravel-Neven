@@ -59,7 +59,9 @@
         </div>
     {!! Form::close() !!}
 </div>
+@stop
 
+@section('scripts')
 <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
 <script src="/vendor/unisharp/laravel-ckeditor/adapters/jquery.js"></script>
 <script>

@@ -48,7 +48,6 @@ class ProductController extends Controller{
         if (!$selected_option) {
             $selected_option = ProductOption::where('product_id', $product->id)->first();
         }
-        // dd($selected_option);
         $data = array(
             'product'   => $product,
             'option'    => $selected_option,
@@ -75,10 +74,15 @@ class ProductController extends Controller{
             'category_options'      => $category_options,
             'all_products'          => $all_products, # all related products
             'all_ingredients'       => $all_ingredients,
-            'product'               => $product
+            'product'               => $product,
+
+            'selected_category'     => '',
+            'options'               => array(),
+            'method'                => 'post',
+            'route'                 => 'product.store'
 
         );
-        return View::make('product.create')->with($data);
+        return View::make('product.create_or_edit')->with($data);
     }
 
     public function store(Request $request){
@@ -222,26 +226,21 @@ class ProductController extends Controller{
             'options'           => $options,
             'related_ingredients' => $related_ingredients,
             'selected_category' => $selected_category,
-            'all_products'       => $all_products,
-            'related_products' => $related_products
+            'all_products'      => $all_products,
+            'related_products'  => $related_products,
+
+            'method'            => 'put',
+            'route'             => 'product.update'
         );
 
 
-        return View::make('product.edit')->with($data);
+        return View::make('product.create_or_edit')->with($data);
     }
 
     public function update(Request $request, $slug){
         
         $product = Product::where('slug', $slug)->first();
         $product->update($request->all());
-        // if( $product->validate_edit($request->all()) ){
-
-        // } else {
-            // return redirect()->back()
-                // ->withErrors($product->errors)
-                // ->withInput();
-        // }
-        
     }
 
     public function search(Request $request){

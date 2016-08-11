@@ -10,14 +10,14 @@
     @endforeach
 </div>
 <div class="col-md-12 create_page">
-    <h1 class="capital center">Create new Product</h1>
+    <h1 class="capital center">Product</h1>
     <a class=" generic_submit inline_block" style="width:350px; margin-bottom:20px;" target="_blank" href="{{route('category.create')}}">Create category(refresh when done)</a>
 
-    {!! Form::model($product, array('route' => array('product.store') , 'files' => true)  ) !!}
+    {!! Form::model($product, array('route' => array($route, $product) ,'method' => $method, 'files' => true)  ) !!}
 
         <div class="col-md-3">
             {{ Form::label('category', 'Category') }}
-            {{ Form::select('category', $category_options, Input::old('category'), array('placeholder' => 'Category', 'class' => 'generic_input' )) }}
+            {{ Form::select('category', $category_options, Input::old('category', $selected_category), array('placeholder' => 'Category', 'class' => 'generic_input' )) }}
         </div>
         <div class="col-md-9"></div>
         
@@ -51,7 +51,24 @@
     <th>Weight in grames</th>
     <th>Price in krona</th>
   </tr>
+    @foreach($options as $index=>$option)
   <tr class="replication_protocol">
+    
+    <td>
+        <input class="generic_input" type="text" name="option_title[{{$index}}]" value="{{$option->title}}" placeholder="Like 50g, or different shape"/>
+    </td>
+    <td>
+        <input class="generic_input" type="text" name="option_weight[{{$index}}]" value="{{$option->weight}}" placeholder="Product weight"/>
+    </td> 
+    <td>
+        <input class="generic_input" type="text" name="option_price[{{$index}}]" value="{{$option->price}}" placeholder="Price in krona"/>
+    </td>
+    
+  </tr>
+  @endforeach
+
+  @if(empty($options))
+    <tr class="replication_protocol">
     <td>
         <input class="generic_input" type="text" name="option_title[]" placeholder="Like 50g, or different shape"/>
     </td>
@@ -62,15 +79,11 @@
         <input class="generic_input" type="text" name="option_price[]" placeholder="Price in krona"/>
     </td>
   </tr>
+  @endif
 
 </table>
 
 <span class="generic_submit replication_protocol_trigger">Add extra option</span>
-<script type="text/javascript">
-    $('.replication_protocol_trigger').click(function(){
-        $( ".replication_protocol" ).last().clone().appendTo( ".multiform" );
-    });
-</script>
 <hr>
         <div class="col-md-6">
             {{ Form::label('tags', 'Tags') }}
@@ -187,17 +200,19 @@
 
     {!! Form::close() !!}
 </div>
+@stop
 
+@section('scripts')
 <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
 <script src="/vendor/unisharp/laravel-ckeditor/adapters/jquery.js"></script>
 <script>
-
-$( document ).ready(function() {
-     
+    $( document ).ready(function() { 
         $('textarea').ckeditor();
-});
+    });
+    
+    $('.replication_protocol_trigger').click(function(){
+        $( ".replication_protocol" ).last().clone().appendTo( ".multiform" );
+    });
 
 </script>
-
-
 @stop
