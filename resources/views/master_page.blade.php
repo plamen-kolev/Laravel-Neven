@@ -15,7 +15,8 @@
         @yield('login')
         @yield('register')
         @include('partials.footer')
-<script src="{{ asset('js/jquery-3.1.0.min.js') }}" type="text/javascript"></script>
+
+<script src="{{ asset('js/jquery-2.2.4.min.js') }}" type="text/javascript"></script>
 <script src="{{ asset('js/all.js') }}" type="text/javascript"></script>
 @yield('scripts')
 

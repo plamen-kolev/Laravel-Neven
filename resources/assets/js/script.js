@@ -5,17 +5,6 @@
 //     cache: true,
 //     success: 
 
-// function() {
-    $('#slider').responsiveSlides({
-        pager: true,
-        speed: 2000,            // Integer: Speed of the transition, in milliseconds
-        // nav: true,
-        namespace: "centered-btns"
-    });
-// }
-// });
-
-
 // $.ajax({
 //     url: '/js/blazy.min.js',
 //     dataType: 'script',
