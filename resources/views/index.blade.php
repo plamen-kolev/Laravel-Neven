@@ -11,7 +11,7 @@
                     <li>
                         <img class="slide_image b-lazy" data-src="{{route('image', $slide->image)}}?w=1560&h=480&fit=crop" src="{{ asset('images/loading.gif') }}" alt="{{ $slide->title}}"/>
                         <div class="slide_item">
-                            
+
                             <div class="col-md-1"></div>
                             <div class="col-md-11">
                                 @if($slide->description())
@@ -47,20 +47,20 @@
                 @foreach ($stockists->chunk(5) as $chunk)
                 <div class="col-md-12">
                     <div class="col-md-1"></div>
-                    
+
                     @foreach($chunk as $stockist)
                         <div class="col-md-2 stockist_icon">
-                            <img class="b-lazy" data-src="{{ route('image',$stockist->thumbnail)}}?w=150&h=150&fit=crop" src="{{ asset('images/loading.gif') }}" width=150 alt="{{$stockist->title}}" />
+                            <img class="b-lazy" data-src="{{ route('image',$stockist->thumbnail)}}?w=150&h=150&fit=crop" src="{{ asset('images/loading.gif') }}" alt="{{$stockist->title}}" />
                         </div>
                     @endforeach
-                    
+
                     <div class="col-md-1"></div>
                 </div>
                  @endforeach
-                
+
             </div>
         </div>
-    </div> 
+    </div>
 
     @include('partials.ingredient_origin')
 

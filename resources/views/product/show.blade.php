@@ -9,15 +9,15 @@
 <div class="col-md-12">
     <div class="wrapper">
         <div class="col-md-1"></div>
-        <div class="col-md-5">
+        <div class="col-md-5 overflow_protector">
             <a href="{{route('image', $product->thumbnail)}}" data-lightbox="image-1" data-title="{{$product->title()}}">
-                    <img class="width_100 b-lazy" data-src="{{route('image', $product->thumbnail)}}?w=720&h=450&fit=crop" src="{{ asset('images/loading.gif') }}" alt="{{$product->title()}}"/>
+                    <img class="b-lazy" data-src="{{route('image', $product->thumbnail)}}?w=720&h=450&fit=crop" src="{{ asset('images/loading.gif') }}" alt="{{$product->title()}}"/>
             </a>
             <div class="col-md-12 nopadding">
                 @foreach($product->images as $index => $image)
                 <div class="col-md-3 nopadding pull-left related_container" style="padding:5px; max-width:150px; overflow:hidden;display:inline-block">
                     <a href="{{route('image', $image->thumbnail)}}" data-lightbox="image-1" data-title="Related image for {{$product->title()}}">
-                        <img class="b-lazy" data-src="{{route('image',$image->thumbnail)}}?w=150&h=150&fit=crop" 
+                        <img class="b-lazy" data-src="{{route('image',$image->thumbnail)}}?w=150&h=150&fit=crop"
                             src="{{ asset('images/loading.gif') }}"
                             alt="Related image for {{$product->title()}}"
                         />
@@ -39,25 +39,25 @@
                         <div class="col-md-8 nopadding_left">
                             <select class="generic_input option_dropdown" name="option" onchange="this.form.submit()">
                             @foreach($product->options as $opt)
-                                <option 
-                                    {{ ($opt->slug == $option->slug) ? 'selected' : "" }} value="{{$opt->slug}}">{{$opt->title}} 
+                                <option
+                                    {{ ($opt->slug == $option->slug) ? 'selected' : "" }} value="{{$opt->slug}}">{{$opt->title}}
                                 </option>
                             @endforeach
-                            </select>    
+                            </select>
                         </div>
-                        
+
                         <div class="col-md-4 nopadding_right">
-                            <input class="generic_input" id="product_quantity" type="number" name="quantity"  value="1"/>    
+                            <input class="generic_input" id="product_quantity" type="number" name="quantity"  value="1"/>
                         </div>
                     </form>
-                    
+
                 </div>
                 <div class="col-md-6 nopadding">
                     <div class="product_added_trigger"><p>{{trans('text.item_added')}}</p></div>
                     <button id="add_to_cart_button" class="generic_submit btn btn-success add_to_cart"
                             onclick="add_to_cart('{{$product->slug}}', '{{$option->slug}}', '{!! route('add_to_cart') !!}')">
                                 + {{ trans('text.add_to_cart') }}
-                    </button>    
+                    </button>
                 </div>
 
                <div class="col-lg-12 product_nav nopadding">
@@ -123,7 +123,7 @@
                     @endforeach
                 @endif
 
-                
+
 
                 {!! Form::open(array('url' => route("add_review")  )) !!}
                 <p>
@@ -133,21 +133,21 @@
                                         'maxlength'     => '5000',
                                         'id'            => 'review_textbox'
                                         )
-                                    ) 
+                                    )
                     !!}
                 </p>
                 <p>
                     {!! Form::select(
-                            'Rating', 
+                            'Rating',
                             array(
                                 '5' => '5',
                                 '4' => '4',
                                 '3' => '3',
-                                '2' => '2', 
+                                '2' => '2',
                                 '1' => '1'
                             ),
                             Input::old('rating'), ['placeholder' => trans('text.rate_the_product'), 'name'=>'rating']
-                        ) 
+                        )
                     !!}
                 </p>
                 <p>{!! Form::submit('Submit review') !!}</p>
@@ -170,7 +170,7 @@
                     @endif
                 </p>
                 <p>Rating: {{$review->rating}}/5</p>
-                <p>{!! $review->body !!}</p>    
+                <p>{!! $review->body !!}</p>
                 <p>By: {{$review->user->name}} On: {{$review->updated_at}}</p>
             </div>
             <div class="col-md-1"></div>
@@ -190,7 +190,7 @@
                 @foreach ($chunk as $index=>$product)
                 <div class="col-md-2 thumbnail_item">
                     <div class="thumbnail_item_inner">
-                        
+
                         <img class="b-lazy" alt="image" data-src="{{route('image', $product->thumbnail)}}?w=150&h=150&fit=crop" src="{{ asset('images/loading.gif') }}"/>
                         <h2 class="thumbnail_title">
                             <a class="" href="{!! route('product.show', [ $product->slug ]) !!}"> {{$product->title()}} </a>
@@ -224,14 +224,14 @@
 @endif
 
     <script type="text/javascript">
-        document.addEventListener("DOMContentLoaded", function(event) { 
+        document.addEventListener("DOMContentLoaded", function(event) {
             $.ajax({
                 dataType: "json",
                 url: "{{route('product_ingredients', $product->slug) }}",
                 success: function(data){
                     for (var i = 0 ; i < data.length; i++) {
                         var ingredient = data[i];
-                        var html_content = 
+                        var html_content =
                             '<div class="ingr-pop">'
                                 + '<img class="ingr_pop_img" src="/media/' + ingredient.thumbnail + '?w=150&h=150&fit=crop" alt="' + ingredient.title_{{App::getLocale()}} + '">'
                                 + '<h1>' + ingredient.title_{{App::getLocale()}} + '</h1>'
@@ -246,8 +246,8 @@
                     }
                 },
             });
-            
-        
+
+
         });
     </script>
 

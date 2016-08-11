@@ -3,13 +3,22 @@
 html,body
 {
     width: 100%;
-    overflow-x: hidden; 
+    overflow-x: hidden;
     margin: 0px;
     padding: 0px;
 }
 
 .article_image_container{
     margin:10px;
+}
+
+.overflow_protector{
+    overflow: hidden;
+    position: relative;
+}
+
+.overflow_protector img{
+    overflow: hidden;
 }
 
 .pointer{
@@ -31,7 +40,7 @@ html,body
 
 #category_listing{
     margin-bottom:20px;
-}   
+}
 
 .proud_to p{
     color: white;
@@ -238,7 +247,7 @@ p{
     border: none;
     margin-top: 15px;
     width: 100%;
-    
+
 }
 
 .checkout_input{
@@ -585,7 +594,7 @@ p{
 }
 
 /*********************************************
-                ITEM 
+                ITEM
 *********************************************/
 
 .service1-items {
@@ -825,7 +834,7 @@ p{
     display: block;
     padding-top: 40px;
     padding-bottom: 40px;
-    
+
 }
 
 .ingredients_world_list{
@@ -889,8 +898,8 @@ p{
     list-style-type: none;
 }
 
-.menu_links ul li { 
-    display: inline; 
+.menu_links ul li {
+    display: inline;
     font-family: 'PT Sans', sans-serif;
     font-size:1.3em;
     margin-right:13px;
@@ -1056,7 +1065,7 @@ a:hover{
 .gallery_second{
     background-color:#f3f3f3;
     padding: 40px 0px 40px 0px;
-    
+
 
 }
 
@@ -1255,12 +1264,12 @@ a:hover{
 .index_h1_margin{
     margin-top:40px;
     margin-bottom:40px;
-} 
+}
 
 .large-btns_nav:active {
     opacity: 1.0;
   }
-  
+
 .center_map{
     text-align: center;
     padding-top: 30px;
@@ -1454,19 +1463,19 @@ a:hover{
     }
 
     .blog_mobile_icon{
-        background-image: url('../images/menu/blog.svg');   
+        background-image: url('../images/menu/blog.svg');
     }
 
     .language_mobile_icon{
-        background-image: url('../images/menu/languages.svg');   
+        background-image: url('../images/menu/languages.svg');
     }
 
     .signin_mobile_icon{
-        background-image: url('../images/menu/sign-in.svg');   
+        background-image: url('../images/menu/sign-in.svg');
     }
 
     .signup_mobile_icon{
-        background-image: url('../images/menu/sign-up.svg');   
+        background-image: url('../images/menu/sign-up.svg');
     }
 
     #search_form{

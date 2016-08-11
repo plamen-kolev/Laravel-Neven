@@ -9,7 +9,7 @@
                 <div class="col-md-3 article_thumbnail">
                     <div class="article_wrapper">
                         @if($article->thumbnail)
-                            <img class="b-lazy width_100" data-src="{{route('image', $article->thumbnail)}}?w=220&h=150&fit=crop" src="{{ asset('images/loading.gif') }}" alt="{{ $article->title}}">
+                            <img class="b-lazy" data-src="{{route('image', $article->thumbnail)}}?w=220&h=150&fit=crop" src="{{ asset('images/loading.gif') }}" alt="{{ $article->title}}">
                         @endif
 
                         <h1><a href="{{ route('blog.show', $article->slug) }}">{{ $article->title}}</a></h1>
@@ -25,7 +25,7 @@
                             </span>
                         @endif
                         </p>
-                        
+
                     </div>
                 </div>
             @endforeach
