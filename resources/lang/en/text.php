@@ -4,11 +4,11 @@ return [
     // menu mappings
     'home'          => 'home',
     'main_logo_subtitle' => 'natural body care',
-    
+
     '404_verbose_message' => 'Sorry, the page never returned from the Dividal tundra.',
     '403_verbose_message'   => 'Unauthorized. Sorry, Birdy doesn\'t want guests.',
     'error_action_button' => 'go home',
-    
+
     '404_title'       => 'Whoops, 404',
     '403_title'       => 'Whoops, 403',
     'home_title'    => 'Home',
@@ -104,13 +104,13 @@ return [
     'buy_local' => 'buy local',
     'title' => 'title',
     'grams' => 'grams',
-
+    'about' => 'about',
 
     'about_page_intro' => 'We are Veli and Mila - the people behind Neven. Based in Oslo, we create junk-free, cold-processed soaps and shampoo bars, as well as other natural body products such as salves and lip balms. We have always been enthusiastic about handcrafted and luxurious, yet simple products that are free of harmful substances and good for people and the environment. Therefore, we make our own just like that. ',
     'about_page_caption' => 'why, how and what we do',
     'about_page_intro_part_2' => 'why we do it',
     'about_page_caption_2' => 'why we do it',
-    'about_page_intro_part_2' => 'We believe that anything in frequent contact with our skin must not be harmful to our body. It should not contain synthetic preservatives, fragrances, colorants or other well known junk ingredients that go into the average commercial soap. We believe soap is simple and it must remain so. The result of naturally occurring chemical reaction, it should simply clean and disinfect our bodies, but it could also nourish and hydrate the skin by supplying it with fatty acids, phytochemicals, and minerals. 
+    'about_page_intro_part_2' => 'We believe that anything in frequent contact with our skin must not be harmful to our body. It should not contain synthetic preservatives, fragrances, colorants or other well known junk ingredients that go into the average commercial soap. We believe soap is simple and it must remain so. The result of naturally occurring chemical reaction, it should simply clean and disinfect our bodies, but it could also nourish and hydrate the skin by supplying it with fatty acids, phytochemicals, and minerals.
 
     We believe that soap and other cosmetic products should not be tested on animals, nor contain animal fat. They should also not pose a threat to anybody\'s well-being or the environment. We believe people deserve a choice. We deserve better, natural body products that benefit us in the long run.',
     'hearing_from_you' => 'we would love to hear from you',

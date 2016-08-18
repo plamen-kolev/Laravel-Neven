@@ -3,9 +3,9 @@
 
 <div class="col-md-12">
     <div class="wrapper center">
-        <h1>{{$title}}</h1>
+        <h1 class="capital">{{$title}}</h1>
     </div>
-    
+
 </div>
 
 @if(!empty($categories))
@@ -55,7 +55,7 @@
 
 <div class="col-md-12">
     <div class="wrapper center">
-        {{$products->render()}}        
+        {{$products->render()}}
     </div>
 </div>
 

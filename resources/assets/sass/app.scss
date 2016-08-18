@@ -12,6 +12,8 @@ html,body
     margin:10px;
 }
 
+
+
 .overflow_protector{
     overflow: hidden;
     position: relative;
@@ -233,6 +235,7 @@ p{
     margin-bottom:15px;
 }
 
+
 .create_page .generic_input{
     margin-top:5px;
 }
@@ -247,6 +250,8 @@ p{
     border: none;
     margin-top: 15px;
     width: 100%;
+    text-transform: uppercase;
+
 
 }
 
@@ -1650,4 +1655,9 @@ a:hover{
    background-image: url('../images/parallax/rose-back-right.jpg');
    height:621px;
    width:573px;
+}
+
+.403_video{
+    min-width:940px;
+    display: none !important;
 }

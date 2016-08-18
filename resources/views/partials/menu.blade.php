@@ -6,7 +6,7 @@
                 <a href="{{route('index')}}">
                     <img class="b-lazy" src="{{ asset('images/loading.gif') }}" data-src="{{asset('images/neven_logo.png')}}" alt="{{trans('text.neven_logo_alt')}}"/>
                     <h1 class="capital nomargin logo_title">neven</h1>
-                    <h2 class="nomargin logo_subtitle">{{trans('text.main_logo_subtitle')}}</h2>
+                    {{-- <h2 class="nomargin logo_subtitle">{{trans('text.main_logo_subtitle')}}</h2> --}}
                 </a>
             </div>
         </div>
@@ -21,7 +21,7 @@
                         <a href="{{ route('index', []) }}"><span title="{{trans('home_icon_that_takes_you_to_the_inex_page')}}" class="menu_icon mobile_only home_mobile_icon" ></span>{{ trans('text.home') }}</a>
                     </li>
                     <li class="dropdown mobieicon_align">
-                    
+
                       <button class="menu_button dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                         <span title="{{ trans('text.categories') }}" class="menu_icon mobile_only categories_mobile_icon" ></span>
                         {{ trans('text.categories') }}
@@ -29,11 +29,11 @@
                       </button>
                       <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                         <li><a href="{{route('product.index')}}">{{trans('text.all_products')}}</a></li>
-                        @foreach ($categories as $category)           
+                        @foreach ($categories as $category)
                             <li><a href="{{ route('category.show', [$category->slug]) }}"> {{$category->title()}}</a></li>
                         @endforeach
                       </ul>
-                    
+
                     </li>
 
                     <li class="dropdown mobieicon_align">
@@ -62,9 +62,9 @@
                         </a>
                     </li>
 
-                </ul>    
+                </ul>
             </div>
-            
+
             <div class="col-md-3 menu_links">
                 <ul class="menu_links_ul align_right mobile_left">
                     <li class="mobieicon_align">
@@ -85,7 +85,7 @@
                             </a>
                         </li>
                     @endif
-                    
+
                     @if(!Auth::check())
                         <li class="mobieicon_align">
                             <a title="{{trans('text.sign_in_alt')}}" class="login_button" href="{{ route('auth.login') }}"><span class="menu_icon mobile_only signin_mobile_icon"></span>{{ trans('text.log_in')}}
@@ -101,9 +101,9 @@
                         <li><a id="log_out_button" href="{{ route('auth.logout') }}">{{ trans('text.log_out')}}</a></li>
                         <li class="logged_user">{{ Auth::user()->name }}</li>
                     @endif
-                    
-                </ul>        
-    
+
+                </ul>
+
             </div>
             <div class="col-md-1 menu_links">
                 <form  id="search_form" class="" role="search" method="GET" action="{{ route('search') }}">

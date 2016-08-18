@@ -1,5 +1,5 @@
 <div class="col-sm-12 footer">
-    <div class="col-sm-12 footer_flowers"> 
+    <div class="col-sm-12 footer_flowers">
         <div class="col-sm-1"></div>
         <div class="col-sm-2">
             <img src="{{ asset('images/loading.gif') }}" class="b-lazy" data-src='{{asset("images/footer/neven-left.jpg")}}' alt="Side image above the footer"/>
@@ -24,7 +24,7 @@
 
         <div class="col-sm-3">
             <p>{{ trans('text.our_friends')}}</p>
-            <ul>
+            <ul class="nopadding">
                 <li><a href="">foo</a></li>
                 <li><a href="">bar</a></li>
                 <li><a href="">baz</a></li>
@@ -39,7 +39,7 @@
                 <a class="soc_icons" href=""><img alt="{{trans('text.instagram_icon_alt')}}" src="{{ asset('images/loading.gif') }}" class="b-lazy" data-src="{{asset('images/footer/insta-icon.svg')}}" /></a>
                 <a class="soc_icons" href=""><img alt="{{trans('text.pinterest_icon_alt')}}" src="{{ asset('images/loading.gif') }}" class="b-lazy" data-src="{{asset('images/footer/pin-icon.svg')}}" /></a>
                 <a class="soc_icons" href=""><img alt="{{trans('text.google_icon_alt')}}" src="{{ asset('images/loading.gif') }}" class="b-lazy" data-src="{{asset('images/footer/google-icon.svg')}}" /></a>
-            
+
         </div>
 
         <div class="col-sm-3">
