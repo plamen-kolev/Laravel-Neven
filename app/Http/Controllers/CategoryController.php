@@ -13,9 +13,7 @@ use App\Http\Controllers\HelperController as HelperController ;
 
 class CategoryController extends Controller{
 
-    public function index(){
-        # stub
-    }
+    public function index(){}
 
     public function show($slug){
         $paginate_count = (int) env('PAGINATION');
@@ -23,7 +21,7 @@ class CategoryController extends Controller{
         $products = Product::where('category_id', $category->id)->orderBy("created_at", 'desc')->paginate($paginate_count);
         $data = array(
             'products'  => $products,
-            'title'     => trans('text.category') . $category->title(),
+            'title'     =>  $category->title(),
             'page_title'    => trans($category->title())
         );
         return View::make('product.index')->with($data);
@@ -31,7 +29,7 @@ class CategoryController extends Controller{
 
     public function create(){
         $category = new Category;
-        
+
         $data = array(
             'category'  => $category,
             'method' => 'post',

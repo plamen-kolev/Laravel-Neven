@@ -250,9 +250,10 @@ p{
     border: none;
     margin-top: 15px;
     width: 100%;
-    text-transform: uppercase;
+}
 
-
+.generic_input::placeholder {
+  text-transform:capitalize;
 }
 
 .checkout_input{

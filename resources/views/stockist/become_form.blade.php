@@ -15,8 +15,8 @@
     </div>
 
     <div class="wrapper">
-        <div class="col-md-3"></div>
-        <div class="col-md-6">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
             @if( $errors->all() )
                 @foreach ($errors->all() as $error)
                     <div class="alert alert-danger" role="alert">
@@ -34,22 +34,22 @@
                 <p>{!! Form::text('website', Input::old('website'), array('placeholder' => trans("text.website"), 'class' => 'generic_input' )); !!}</p>
                 <p>{!! Form::text('company', Input::old('company'), array('placeholder' => trans("text.company_name"), 'class' => 'generic_input' )); !!}</p>
                 <p>
-                    {!! Form::textarea('about_you', Input::old('about_you'), 
+                    {!! Form::textarea('about_you', Input::old('about_you'),
                             array(
                                 'placeholder' => trans("text.about_you"),
                                 'maxlength'=>'5000',
                                 'class' => 'generic_input'
-                            ) 
-                        ); 
+                            )
+                        );
                     !!}
                 </p>
                 <div>
-                <p>{!! Form::submit(trans('text.submit'), array('class' => 'generic_submit width_65') )!!}</p>    
+                <p>{!! Form::submit(trans('text.submit'), array('class' => 'generic_submit width_65') )!!}</p>
                 </div>
-                
+
             {!! Form::close() !!}
         </div>
-        <div class="col-md-3"></div>
+        <div class="col-md-4"></div>
     </div>
 
 

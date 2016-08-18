@@ -5922,8 +5922,19 @@ p {
   background-color: #f2f2f2;
   border: none;
   margin-top: 15px;
-  width: 100%;
-  text-transform: uppercase; }
+  width: 100%; }
+
+.generic_input::-webkit-input-placeholder {
+  text-transform: capitalize; }
+
+.generic_input::-moz-placeholder {
+  text-transform: capitalize; }
+
+.generic_input:-ms-input-placeholder {
+  text-transform: capitalize; }
+
+.generic_input::placeholder {
+  text-transform: capitalize; }
 
 .checkout_input {
   padding: 10px;

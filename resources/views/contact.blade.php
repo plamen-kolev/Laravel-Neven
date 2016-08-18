@@ -14,8 +14,8 @@
     </div>
 
     <div class="wrapper">
-        <div class="col-md-3"></div>
-        <div class="col-md-6" id="stockist_container">
+        <div class="col-md-4"></div>
+        <div class="col-md-4" id="stockist_container">
             @if( $errors->all() )
                 @foreach ($errors->all() as $error)
                     <div class="alert alert-danger" role="alert">
@@ -58,7 +58,7 @@
                 {!! Form::close() !!}
             </div>
         </div>
-        <div class="col-md-3"></div>
+        <div class="col-md-4"></div>
     </div>
 
 </div>

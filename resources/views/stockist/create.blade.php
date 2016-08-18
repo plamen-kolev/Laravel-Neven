@@ -16,7 +16,7 @@
 
     {!! Form::model($stockist, array('route' => array('stockist.store') , 'files' => true)  ) !!}
 
-        
+
         <div class="col-md-12">
             {{ Form::label('thumbnail', 'Main image') }}
             {!! Form::file('thumbnail', Input::old('thumbnail'), array('placeholder' => 'Thumbnail', 'class' => 'generic_input' )); !!}
@@ -33,7 +33,7 @@
         <div class="col-md-6">
             {!! Form::text('lat', Input::old('lat'), array('placeholder' => 'latitude', 'class' => 'generic_input' )); !!}
         </div>
-        
+
         <div class="col-md-6">
             {!! Form::text('lng', Input::old('lng '), array('placeholder' => 'longitude', 'class' => 'generic_input' )); !!}
         </div>
@@ -50,7 +50,7 @@
 <script>
 
 $( document ).ready(function() {
-     
+
         $('textarea').ckeditor();
 });
 
