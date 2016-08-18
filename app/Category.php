@@ -4,6 +4,7 @@ namespace App;
 use App\Product;
 use Config;
 use Validator;
+use Cache;
 use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
@@ -22,11 +23,11 @@ class Category extends Model
 
     public function validate_store($data){
         $validator = Validator::make($data, $this->store_rules);
-        
+
         if($validator->fails()){
             $this->errors = $validator->errors();
             return false;
-        } 
+        }
         return true;
     }
 
@@ -36,5 +37,11 @@ class Category extends Model
 
     public function title(){
         return ( strcmp(Config::get('app.locale'), 'en') ? $this->title_nb : $this->title_en);
+    }
+
+    public function save(array $options = []){
+       Cache::flush();
+       parent::save();
+       // after save code
     }
 }

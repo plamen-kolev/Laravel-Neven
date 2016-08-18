@@ -1,7 +1,7 @@
 <?php
 
 namespace App;
-
+use Cache;
 use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model{
@@ -10,5 +10,11 @@ class Order extends Model{
 
     public function products(){
         return $this->belongsToMany('App\Product', 'order_product');
+    }
+
+    public function save(array $options = []){
+       Cache::flush();
+       parent::save();
+       // after save code
     }
 }

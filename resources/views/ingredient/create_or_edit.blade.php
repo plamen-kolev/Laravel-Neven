@@ -33,24 +33,24 @@
         </div>
 
         <div class="col-md-12">
-            {!! Form::textarea('description_en', Input::old('description_en'), 
+            {!! Form::textarea('description_en', Input::old('description_en'),
                     array(
                         'placeholder' => 'Description in English',
                         'maxlength'=>'5000',
                         'class' => 'generic_input'
-                    ) 
-                ); 
+                    )
+                );
             !!}
         </div>
 
         <div class="col-md-12">
-            {!! Form::textarea('description_nb', Input::old('description_nb'), 
+            {!! Form::textarea('description_nb', Input::old('description_nb'),
                     array(
                         'placeholder' => 'Description in Norwegian',
                         'maxlength'=>'5000',
                         'class' => 'generic_input'
-                    ) 
-                ); 
+                    )
+                );
             !!}
         </div>
 
@@ -59,4 +59,14 @@
         </div>
     {!! Form::close() !!}
 </div>
+@stop
+
+@section('scripts')
+<script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
+<script src="/vendor/unisharp/laravel-ckeditor/adapters/jquery.js"></script>
+<script>
+    $( document ).ready(function() {
+        $('textarea').ckeditor();
+    });
+</script>
 @stop

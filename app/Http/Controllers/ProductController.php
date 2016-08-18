@@ -70,10 +70,23 @@ class ProductController extends Controller{
         $all_ingredients = Ingredient::all()
             ->lists('title_en','id');
 
+        // if no objects, give blank collection
+        foreach ([$category_options, $all_products, $all_ingredients] as $obj) {
+            if(!$obj){
+                $obj = collect([]);
+            }
+        }
+
+        if(!$category_options){
+            $category_options = collect([]);
+        }
+
         $data = array(
             'category_options'      => $category_options,
             'all_products'          => $all_products, # all related products
             'all_ingredients'       => $all_ingredients,
+            'related_ingredients'   => collect([]),
+            'related_products'      => collect([]),
             'product'               => $product,
 
             'selected_category'     => '',
@@ -92,7 +105,7 @@ class ProductController extends Controller{
         $opt_titles = $request->get('option_title');
         $opt_weights = $request->get('option_weight');
         $opt_prices = $request->get('option_price');
-        
+
         if(empty( $opt_titles ) || !(( count($opt_titles) == count($opt_weights) || count($opt_weights) == count($opt_prices) )) ) {
             abort(400, 'Specify at least one product option and fill all fields in it !');
         }
@@ -160,7 +173,7 @@ class ProductController extends Controller{
                     # do it only if the object exists
                     if($p_object){
                         $product->related()->attach( $p_object );
-                        $product->save();    
+                        $product->save();
                     }
                 }
             }
@@ -174,7 +187,7 @@ class ProductController extends Controller{
                     $i_object = Ingredient::find($ing);
                     if($i_object){
                         $product->ingredients()->attach( $i_object );
-                        $product->save();                    
+                        $product->save();
                     }
                 }
             }
@@ -186,13 +199,7 @@ class ProductController extends Controller{
                 ->withInput();
         }
 
-        $data = array(
-            'alert_type'    => 'alert-success',
-            'alert_text'    => 'Product added successful',
-            'message'       => 'Creating ' . $request->get('title_en') . ' was successful'
-        );
-
-        return View::make('message')->with($data);
+        return redirect()->route('product.show', $product->slug);
     }
 
     public function edit($slug){
@@ -216,7 +223,7 @@ class ProductController extends Controller{
             ->lists('product_related.related_id');
 
         $selected_category = $product->category()->first()->id;
-        
+
         $options = $product->options()->get();
 
         $data = array(
@@ -238,7 +245,7 @@ class ProductController extends Controller{
     }
 
     public function update(Request $request, $id){
-        
+
         $product = Product::where('id', $id)->first();
         $product->update($request->all());
         return redirect()->route('product.show', $product->slug);

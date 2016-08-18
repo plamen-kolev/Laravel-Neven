@@ -40,16 +40,17 @@ a.pauseControls&&d.hover(function(){clearInterval(p)},function(){m()})}}if("unde
 //     url: '/js/responsiveslides.min.js',
 //     dataType: 'script',
 //     cache: true,
-//     success: 
+//     success:
 
 // $.ajax({
 //     url: '/js/blazy.min.js',
 //     dataType: 'script',
 //     cache: true,
-//     success: 
+//     success:
 // function() {
     var bLazy = new Blazy({
         container: 'body', // Default is window
+         offset: 250 // Loads images 100px before they're visible
     });
 // }
 // });
@@ -59,7 +60,7 @@ a.pauseControls&&d.hover(function(){clearInterval(p)},function(){m()})}}if("unde
 //     url: 'https://code.jquery.com/jquery-2.2.4.min.js',
 //     dataType: 'script',
 //     cache: true,
-//     success: 
+//     success:
 
 // function() {
     $('.hamburger_toggle').click(function(e) {
@@ -108,18 +109,18 @@ function add_to_cart(product_slug, option_slug, url, csrf_token){
         type: "POST",
         url: url_path,
         data: {
-            'product_slug' : product_slug, 
-            'option_slug'  : option_slug, 
+            'product_slug' : product_slug,
+            'option_slug'  : option_slug,
             'quantity'     : quantity,
             'csrftoken'    : csrf_token
         }, success: function(response){
             // get current count items
             $('.counter_number').html(response.total_items);
-            
+
             $('.cart_count').css('background', 'black');
             $('.product_added_trigger').css('display','block');
-            
-            setTimeout(function(){  
+
+            setTimeout(function(){
                 $('.product_added_trigger').css('display','none');
                 $('.cart_count').css('background', '#a0d6d2');
             }, 1000);
@@ -129,7 +130,7 @@ function add_to_cart(product_slug, option_slug, url, csrf_token){
             alert(xhr.status);
             alert(xhr.responseText);
         }, dataType: "json"
-    
+
     }).done(function(){
 
     });
@@ -142,4 +143,5 @@ function add_to_cart(product_slug, option_slug, url, csrf_token){
         }
     }
 });
+
 //# sourceMappingURL=all.js.map

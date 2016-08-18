@@ -1,19 +1,18 @@
 <?php
 
 namespace App;
-
+use Cache;
 use App\Http\Controllers\HelperController;
 use Illuminate\Database\Eloquent\Model;
-use Cache;
 use Config;
 use App\ProductOption as ProductOption;
 use Validator;
 
 class Product extends Model
-{   
+{
     public $errors = '';
     protected $fillable = array('featured', 'title_en', 'title_nb', 'description_en', 'benefits_en', 'benefits_nb' , 'tips_en','tips_nb','description_nb', 'in_stock', 'slug', 'thumbnail', 'tips', 'benefits', 'tags', 'hidden_tags', 'category_id');
-    
+
 
     public function price(){
         $option = $this->options()->first();
@@ -96,7 +95,7 @@ class Product extends Model
             'benefits_nb'       => 'required',
 
             'thumbnail'         => 'required|max:10000|mimes:jpeg,jpg,png',
-            
+
             'tags'              => 'required',
     );
 
@@ -107,22 +106,28 @@ class Product extends Model
 
     public function validate_store($data){
         $validator = Validator::make($data, $this->store_rules);
-        
+
         if($validator->fails()){
             $this->errors = $validator->errors();
             return false;
-        } 
+        }
         return true;
     }
 
     public function validate_edit($data){
         $validator = Validator::make($data, $this->update_rules);
-        
+
         if($validator->fails()){
             $this->errors = $validator->errors();
             return false;
-        } 
+        }
         return true;
+    }
+
+    public function save(array $options = []){
+       Cache::flush();
+       parent::save();
+       // after save code
     }
 
 }

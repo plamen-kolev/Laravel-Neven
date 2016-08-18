@@ -23,6 +23,7 @@ use Illuminate\Support\Str as Str;
 use App\ProductOption as ProductOption;
 use App\ShippingOption as ShippingOption;
 use App\Stockist as Stockist;
+use App\Console\Commands\InitCommand as InitCommand;
 use Storage;
 use File;
 use DB;
@@ -74,7 +75,7 @@ class FakerCommand extends Command{
     public function deploy_image($w, $h, $faker){
 
         $filename = $this::local_image($faker->image($dir = $this->storage_path, $width = $w, $height = $h));
-        Storage::disk(env('FILESYSTEM'))->put('images/' . $filename, File::get($this->storage_path . $filename) );    
+        Storage::disk(env('FILESYSTEM'))->put('images/' . $filename, File::get($this->storage_path . $filename) );
         return $filename;
     }
 
@@ -82,38 +83,40 @@ class FakerCommand extends Command{
     {
         $faker = Faker::create();
 
-        $this->line("Generating heroes");
+        InitCommand::generate_heros();
 
-        DB::table('heroes')->insert([
-            ['video' => 'videos/bee.webm', 'image' => 'videos/thumbnails/bee.jpg', 
-            'title_en' => $faker->name, 'title_nb' => $faker->name . " norge"],
+        // $this->line("Generating heroes");
+        //
+        // DB::table('heroes')->insert([
+        //     ['video' => 'videos/bee.webm', 'image' => 'videos/thumbnails/bee.jpg',
+        //     'title_en' => $faker->name, 'title_nb' => $faker->name . " norge"],
+        //
+        //     ['video' => 'videos/lavander2.ogv', 'image' => 'videos/thumbnails/lavander.jpg',
+        //     'title_en' => $faker->name, 'title_nb' => $faker->name . " norge"],
+        //
+        //     ['video' => 'videos/mountain_clouds.webm', 'image' => 'videos/thumbnails/mountain_clouds.jpg',
+        //     'title_en' => $faker->name, 'title_nb' => $faker->name . " norge"],
+        //
+        //     ['video' => 'videos/northern.webm', 'image' => 'videos/thumbnails/northern.jpg',
+        //     'title_en' => $faker->name, 'title_nb' => $faker->name . " norge"],
+        //
+        //     ['video' => 'videos/riverlapse.webm', 'image' => 'videos/thumbnails/riverlapse.jpg',
+        //     'title_en' => $faker->name, 'title_nb' => $faker->name . " norge"]
+        // ]);
 
-            ['video' => 'videos/lavander2.ogv', 'image' => 'videos/thumbnails/lavander.jpg', 
-            'title_en' => $faker->name, 'title_nb' => $faker->name . " norge"],
-
-            ['video' => 'videos/mountain_clouds.webm', 'image' => 'videos/thumbnails/mountain_clouds.jpg', 
-            'title_en' => $faker->name, 'title_nb' => $faker->name . " norge"],
-
-            ['video' => 'videos/northern.webm', 'image' => 'videos/thumbnails/northern.jpg', 
-            'title_en' => $faker->name, 'title_nb' => $faker->name . " norge"],
-
-            ['video' => 'videos/riverlapse.webm', 'image' => 'videos/thumbnails/riverlapse.jpg', 
-            'title_en' => $faker->name, 'title_nb' => $faker->name . " norge"]
-        ]);
-
-        $this->get_or_create_test_user( env('SELENIUM_TEST_USER') );
+        InitCommand::get_or_create_admin();
         $this->product_num = $this->product_num;
         $this->category_num = $this->category_num;
 
-        
+
         $languages = array_keys(LaravelLocalization::getSupportedLocales());
 
         # create stockists
         $this->line("Generating $this->stockists stockists");
         foreach(range(1,$this->stockists) as $index){
-            
+
             $filename = $this::deploy_image(1560,480, $faker);
-            
+
             $title = "$faker->word " . str_random(10);
             Stockist::create([
                 'title' => $title,
@@ -130,7 +133,7 @@ class FakerCommand extends Command{
         # create articles
         $this->line("Generating $this->articles articles");
         foreach(range(1,$this->articles) as $index){
-            
+
             $filename = $this::deploy_image(1560,480, $faker);
 
             $title = "$faker->word " . str_random(10);
@@ -145,7 +148,7 @@ class FakerCommand extends Command{
 
         $this->line("Generating $this->slide_images slides");
         foreach(range(1,$this->slide_images) as $index){
-            
+
             $filename = $this::deploy_image(1560,480, $faker);
 
             Slide::create([
@@ -166,7 +169,7 @@ class FakerCommand extends Command{
                 // 'thumbnail_medium'  => $this::local_image($faker->image($dir = public_path('media/images'), $width = 640, $height = 480)),
                 // 'thumbnail_small'   => $this::local_image($faker->image($dir = public_path('media/images'), $width = 150, $height = 150)),
                 'slug'      =>  Str::slug($title),
-                
+
                 'title_en'  => $title,
                 'title_nb'  => 'Norwegian ' . $title,
 
@@ -203,7 +206,7 @@ class FakerCommand extends Command{
         // Create product
         $this->line("Generating $this->product_num products");
         foreach(range(1,$this->product_num) as $index){
-            
+
             $filename = $this::deploy_image(1280,720, $faker);
             // Add products
             $title = "Title{$faker->word} en " . str_random(10);
@@ -238,7 +241,7 @@ class FakerCommand extends Command{
                 $review->product()->associate($product);
                 $review->save();
             }
-            
+
 
             // Options
             foreach(range(1,$this->options) as $index){
@@ -270,7 +273,7 @@ class FakerCommand extends Command{
             $tag = '';
             foreach(range(1, $this->tags) as $index){
                 $tag .= 'Tag ' . $index . str_random(10) . ',';
-                
+
             }
             $product->tags = $tag;
             $product->save();
@@ -333,29 +336,6 @@ class FakerCommand extends Command{
         ]);
     }
 
-    public static function get_or_create_test_user($name){
-        if($user = User::where('name', $name)->first()){
-            return $user;
-        } else {
-            $user = User::create([
-                'name'      => $name,
-                'email'     => $name . '@neven.com',
-                'active'    => 1,
-                // bcrypt hash for password
-                'password'  => '$2a$10$AqQvOKVP0yHsGr/HnBAwueyna5J8skzTeNEXYYTdxD7RPWv99SHaG'
-            ]);
-            $user->admin = 1;
-            $user->save();
-            $user = User::create([
-                'name'      => 'user',
-                'email'     => 'user' . '@neven.com',
-                'active'    => 1,
-                // bcrypt hash for password
-                'password'  => '$2a$10$AqQvOKVP0yHsGr/HnBAwueyna5J8skzTeNEXYYTdxD7RPWv99SHaG'
-            ]);
-            return $user;
-        }
-    }
 
     public static function local_image($image){
         preg_match('~([a-zA-Z0-9])+.jpg~', $image, $m );

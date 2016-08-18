@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Validator;
-
+use Cache;
 class Stockist extends Model
 {
 
@@ -24,7 +24,13 @@ class Stockist extends Model
         if($validator->fails()){
             $this->errors = $validator->errors();
             return false;
-        } 
+        }
         return true;
+    }
+
+    public function save(array $options = []){
+       Cache::flush();
+       parent::save();
+       // after save code
     }
 }
