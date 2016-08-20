@@ -1,4 +1,5 @@
 /vendor
+public/videos/
 public/media/*
 selenium/*
 output.html
