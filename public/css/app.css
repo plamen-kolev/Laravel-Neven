@@ -6390,7 +6390,7 @@ p {
 /* ============================= */
 .wrapper {
   margin: auto;
-  /*max-width:1560px;*/ }
+  max-width: 1560px; }
 
 .center {
   text-align: center;

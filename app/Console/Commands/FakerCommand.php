@@ -85,25 +85,6 @@ class FakerCommand extends Command{
 
         InitCommand::generate_heros();
 
-        // $this->line("Generating heroes");
-        //
-        // DB::table('heroes')->insert([
-        //     ['video' => 'videos/bee.webm', 'image' => 'videos/thumbnails/bee.jpg',
-        //     'title_en' => $faker->name, 'title_nb' => $faker->name . " norge"],
-        //
-        //     ['video' => 'videos/lavander2.ogv', 'image' => 'videos/thumbnails/lavander.jpg',
-        //     'title_en' => $faker->name, 'title_nb' => $faker->name . " norge"],
-        //
-        //     ['video' => 'videos/mountain_clouds.webm', 'image' => 'videos/thumbnails/mountain_clouds.jpg',
-        //     'title_en' => $faker->name, 'title_nb' => $faker->name . " norge"],
-        //
-        //     ['video' => 'videos/northern.webm', 'image' => 'videos/thumbnails/northern.jpg',
-        //     'title_en' => $faker->name, 'title_nb' => $faker->name . " norge"],
-        //
-        //     ['video' => 'videos/riverlapse.webm', 'image' => 'videos/thumbnails/riverlapse.jpg',
-        //     'title_en' => $faker->name, 'title_nb' => $faker->name . " norge"]
-        // ]);
-
         InitCommand::get_or_create_admin();
         $this->product_num = $this->product_num;
         $this->category_num = $this->category_num;

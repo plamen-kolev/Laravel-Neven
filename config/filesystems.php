@@ -76,8 +76,8 @@ return [
             'port'     => 21,
             'root'     => env('FTP_PATH', '/'),
             // Optional FTP Settings...
-            
-            
+
+
             // 'passive'  => true,
             // 'ssl'      => true,
             // 'timeout'  => 30,

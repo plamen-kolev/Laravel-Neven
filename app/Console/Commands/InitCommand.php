@@ -61,54 +61,54 @@ class InitCommand extends Command
 
     public static function generate_heros(){
         Hero::firstOrCreate([
-            'video' => 'videos/bee.webm',
-            'image' => 'videos/thumbnails/bee.jpg',
+            'video' => 'bee.webm',
+            'image' => 'bee.jpg',
             'title_en' => '',
             'title_nb' => ''
         ]);
 
         Hero::firstOrCreate([
-            'video' => 'videos/lavander2.ogv',
-            'image' => 'videos/thumbnails/bee.jpg',
+            'video' => 'lavander2.ogv',
+            'image' => 'bee.jpg',
             'title_en' => '',
             'title_nb' => ''
         ]);
 
         Hero::firstOrCreate([
-            'video' => 'videos/mountain_clouds.webm',
-            'image' => 'videos/thumbnails/mountain_clouds.jpg',
+            'video' => 'mountain_clouds.webm',
+            'image' => 'mountain_clouds.jpg',
             'title_en' => '',
             'title_nb' => ''
         ]);
 
         Hero::firstOrCreate([
-            'video' => 'videos/northern.webm',
-            'image' => 'videos/thumbnails/northern.jpg',
+            'video' => 'northern.webm',
+            'image' => 'northern.jpg',
             'title_en' => '',
             'title_nb' => ''
         ]);
 
         Hero::firstOrCreate([
-            'video' => 'videos/riverlapse.webm',
-            'image' => 'videos/thumbnails/riverlapse.jpg',
+            'video' => 'riverlapse.webm',
+            'image' => 'riverlapse.jpg',
             'title_en' => '',
             'title_nb' => ''
         ]);
 
         // DB::table('heroes')->insert([
-            // ['video' => 'videos/bee.webm', 'image' => 'videos/thumbnails/bee.jpg',
+            // ['video' => 'bee.webm', 'image' => 'bee.jpg',
             // 'title_en' => '', 'title_nb' => '' . ""],
 
-            // ['video' => 'videos/lavander2.ogv', 'image' => 'videos/thumbnails/lavander.jpg',
+            // ['video' => 'lavander2.ogv', 'image' => 'lavander.jpg',
             // 'title_en' => '', 'title_nb' => ''],
 
-            // ['video' => 'videos/mountain_clouds.webm', 'image' => 'videos/thumbnails/mountain_clouds.jpg',
+            // ['video' => 'mountain_clouds.webm', 'image' => 'mountain_clouds.jpg',
             // 'title_en' => '', 'title_nb' =>  ""],
 
-            // ['video' => 'videos/northern.webm', 'image' => 'videos/thumbnails/northern.jpg',
+            // ['video' => 'northern.webm', 'image' => 'northern.jpg',
             // 'title_en' => '', 'title_nb' => ""],
 
-            // ['video' => 'videos/riverlapse.webm', 'image' => 'videos/thumbnails/riverlapse.jpg',
+            // ['video' => 'riverlapse.webm', 'image' => 'riverlapse.jpg',
             // 'title_en' => '', 'title_nb' =>'']
         // ]);
     }

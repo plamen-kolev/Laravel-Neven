@@ -25,7 +25,7 @@ class Initial extends Migration
 
         Schema::create('heroes', function (Blueprint $table) {
             $table->increments('id')->unsigned();
-            $table->string('video', 255)->unique();
+            $table->string('video', 255);
             $table->string('image', 255);
             $table->string('title_en',255);
             $table->string('title_nb',255);

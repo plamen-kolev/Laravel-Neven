@@ -11,17 +11,16 @@
 |
 */
 
-    Route::get('media/{path}', ['as' => 'image', function ($path, League\Glide\Server $server, Illuminate\Http\Request $request) {
+    Route::get('images/{path}', ['as' => 'image', function ($path, League\Glide\Server $server, Illuminate\Http\Request $request) {
         $result = $server->outputImage($path, $request->all());
     }])->where('path', '.+');
 
     Route::group(['middleware' => ['web', 'admin'] ], function () {
         Route::get('admin', array('as' => 'admin', 'uses' => 'PageController@admin'));
-
+        Route::resource('hero', 'HeroController', ['only' => ['create', 'store', 'destroy', 'edit', 'update', 'index']] );
         Route::resource('category', 'CategoryController', ['only' => ['create', 'store', 'destroy', 'edit', 'update']] );
         Route::resource('product', 'ProductController', ['only' => ['create', 'store', 'destroy', 'edit', 'update' ]] );
         Route::resource('ingredient', 'IngredientController', ['only' => ['create','store', 'edit', 'update', 'index', 'destroy'] ]);
-        
         Route::resource('stockist', 'StockistController', ['only' => ['create','store', 'edit', 'update', 'destroy'] ]);
         Route::resource('shipping', 'ShippingController', ['only' => ['index', 'create','store', 'edit', 'update', 'destroy'] ]);
         Route::resource('slide', 'SlideController', ['only' => ['index', 'create','store', 'edit', 'update', 'destroy'] ]);
@@ -39,20 +38,20 @@
 
         Route::get('/',                     array('as' => 'index', 'uses' => 'PageController@index'));
         Route::get('about/',                     array('as' => 'about', 'uses' => 'PageController@about'));
-        
+
         Route::match( array('GET', 'POST'),'contact',
                       array('before' => 'csrf', 'as' => 'contact', 'uses' => 'PageController@contact'));
 
         Route::get('category/', array('as' => 'category.index', 'uses' => 'CategoryController@index'));
-        Route::get('category/{category}', array('as' => 'category.show', 'uses' => 'CategoryController@show')) ; 
+        Route::get('category/{category}', array('as' => 'category.show', 'uses' => 'CategoryController@show')) ;
         // Route::resource('category', 'CategoryController', ['only' => ['show']] );
 
         // Route::get('admin')
         Route::get('search',                array('as' => 'search', 'uses' => 'ProductController@search'));
-        
+
         // Route::resource('product', 'ProductController', ['only' => ['index', 'show', ]] );
         Route::get('product/', array('as' => 'product.index', 'uses' => 'ProductController@index'));
-        Route::get('product/{product}', array('as' => 'product.show', 'uses' => 'ProductController@show')) ; 
+        Route::get('product/{product}', array('as' => 'product.show', 'uses' => 'ProductController@show')) ;
         Route::post('product/{product}', array('as' => 'product.show', 'uses' => 'ProductController@show')) ;
 
         # 'ProductController', ['only' => ['index', 'show', ]] );

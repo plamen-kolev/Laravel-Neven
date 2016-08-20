@@ -36,15 +36,15 @@ class PageController extends Controller
             $stockists = Stockist::all();
             Cache::add('stockists', $stockists, env('CACHE_TIMEOUT'));
         }
-        
-        
+
+
         $hero = Hero::all();
         if(!$hero->isEmpty()){
             $hero = $hero->random(1);
         } else {
             $hero = '';
         }
-    
+
         // $slides = Slide::orderBy('id', 'desc')->get();
         if(Cache::has('slides')){
             $slides = Cache::get('slides');
@@ -52,16 +52,16 @@ class PageController extends Controller
             $slides = Slide::orderBy('id', 'desc')->get();
             Cache::add('slides', $slides, env('CACHE_TIMEOUT'));
         }
-        
+
         $featured_products = Product::where('featured', true)->get();
-        
+
         $data = [
-            'slides' => $slides, 
+            'slides' => $slides,
             'products' => $featured_products,
             'stockists' => $stockists,
             'hero'      => $hero,
             'page_title'    => trans('text.home_title')
-            
+
         ];
 
         return View::make('index', $data);

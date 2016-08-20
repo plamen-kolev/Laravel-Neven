@@ -17,9 +17,9 @@ use Storage;
 
 class HelperController extends Controller
 {
-    public static function upload_image($image_input){        
+    public static function upload_image($image_input, $path='images'){
         $filename = $image_input->getClientOriginalName();
-        Storage::disk(env('FILESYSTEM'))->put('images/' . $filename, File::get($image_input) );    
+        Storage::disk(env('FILESYSTEM'))->put("$path/$filename", File::get($image_input) );
         return $filename;
     }
 
@@ -38,7 +38,7 @@ class HelperController extends Controller
             'name'      => $product->title(),
             'qty'       => $data['qty'],
             'price'     => $option->price * $data['qty'],
-        
+
             'options'=> array(
                 'option'    => $option,
                 'thumbnail' => $product->thumbnail,
@@ -108,8 +108,8 @@ class HelperController extends Controller
         $total          = $shipping_cost + $product_cost  ;
 
         $html = trans('text.shipping_calculator', [
-            'currency_symbol'   => \App\Http\Controllers\HelperController::getCurrencySymbol(), 
-            'cost_shipping'     => number_format($shipping_cost, 2, '.', ',') , 
+            'currency_symbol'   => \App\Http\Controllers\HelperController::getCurrencySymbol(),
+            'cost_shipping'     => number_format($shipping_cost, 2, '.', ',') ,
             'cost_product'      => number_format($product_cost, 2, '.', ','),
             'total_cost'        => number_format($total, 2, '.', ',')
         ]);
@@ -117,7 +117,7 @@ class HelperController extends Controller
         $costs = [
             'shipping_lowest'  => $shipping_cost * 100,
             'product_lowest'   => $product_cost * 100,
-            
+
             'shipping'         => $shipping_cost,
             'product'          => $product_cost,
 
@@ -150,7 +150,7 @@ class HelperController extends Controller
     public static function iterate_and_fill_form($I, $input_id, $text, $expected_errors){
         $I->fillField($input_id, $text );
         HelperController::fill_valid_bank_details_and_submit($I);
-        
+
         $counter = 5;
         while($counter){
             $error_count = $I->grabMultiple('.alert-danger');
@@ -161,7 +161,7 @@ class HelperController extends Controller
             sleep(1);
             $counter--;
         }
-        
+
     }
 
     public static function fill_valid_address($I){
