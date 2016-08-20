@@ -169,7 +169,7 @@ html,body
     cursor: pointer;
 }
 .stock_hover:hover{
-    border:5px solid #eee;
+    background: #eee;
 
 }
 
@@ -864,6 +864,7 @@ p{
     margin:auto;
     color:white;
     margin-top:40px;
+    display: inline-bock;
 }
 
 #landing_text_container h1{

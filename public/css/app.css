@@ -5862,7 +5862,7 @@ html, body {
   cursor: pointer; }
 
 .stock_hover:hover {
-  border: 5px solid #eee; }
+  background: #eee; }
 
 .stockist_item h2 {
   font-size: 1.3em; }
@@ -6422,7 +6422,8 @@ p {
   max-width: 520px;
   margin: auto;
   color: white;
-  margin-top: 40px; }
+  margin-top: 40px;
+  display: inline-bock; }
 
 #landing_text_container h1 {
   text-transform: uppercase; }
