@@ -106,6 +106,10 @@ class ProductController extends Controller{
         $opt_weights = $request->get('option_weight');
         $opt_prices = $request->get('option_price');
 
+        if(!$opt_titles[0] || $opt_weights[0] || $opt_prices[0]){
+            abort(400, 'Specify at least one product option and fill all fields in it !');
+        }
+
         if(empty( $opt_titles ) || !(( count($opt_titles) == count($opt_weights) || count($opt_weights) == count($opt_prices) )) ) {
             abort(400, 'Specify at least one product option and fill all fields in it !');
         }
@@ -256,6 +260,10 @@ class ProductController extends Controller{
 
         $product = Product::where('id', $id)->first();
         $product->update($request->all());
+        if($request->file('thumbnail')){
+            $product->thumbnail = HelperController::upload_image($request->file('thumbnail'));
+        }
+        $product->save();
         return redirect()->route('product.show', $product->slug);
     }
 
