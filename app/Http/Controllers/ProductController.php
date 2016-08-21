@@ -316,7 +316,7 @@ class ProductController extends Controller{
 
         if($request->file('hover_thumbnail')){
             $product->hover_thumbnail = HelperController::upload_image($request->file('hover_thumbnail'));
-        } else {
+        } else if($request->file('thumbnail')) {
             $product->hover_thumbnail = HelperController::upload_image($request->file('thumbnail'));
         }
 
