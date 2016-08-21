@@ -22,16 +22,27 @@
         <div class="col-md-9"></div>
 
         <div class="col-md-12">
-            {{ Form::label('thumbnail', 'Main image') }}
-            <hr/>
-            @if(! empty($product->thumbnail))
-                <img class="b-lazy" data-src="{{route('image', $product->thumbnail)}}?w=200&fit=crop" src="{{ asset('images/loading.gif') }}"/>
-            @endif
-            {!! Form::file('thumbnail', Input::old('thumbnail'), array('placeholder' => 'Thumbnail', 'class' => 'generic_input' )); !!}
-        </div>
+            <p>
+                {{ Form::label('thumbnail', 'Main image') }}
 
-        <div class="col-md-12">
-            <div class="col-md-12">
+                @if(! empty($product->thumbnail))
+                    <img class="b-lazy" data-src="{{route('image', $product->thumbnail)}}?w=200&fit=crop" src="{{ asset('images/loading.gif') }}"/>
+                @endif
+                {!! Form::file('thumbnail', Input::old('thumbnail'), array('placeholder' => 'Thumbnail', 'class' => 'generic_input' )); !!}
+
+            </p>
+
+            <p>
+                {{ Form::label('hover_image', 'Hover image (defaults to main image if left blank)') }}
+                @if(! empty($product->hover_thumbnail))
+                    <img class="b-lazy" data-src="{{route('image', $product->hover_thumbnail)}}?w=200&fit=crop" src="{{ asset('images/loading.gif') }}"/>
+                @endif
+                {!! Form::file('hover_thumbnail', Input::old('hover_thumbnail'), array('placeholder' => 'Hover thumbnail', 'class' => 'generic_input' )); !!}
+            </p>
+
+            <p>
+                {{ Form::label('images[]', 'More images') }}
+                
                 @if($product->images()->get())
                     @foreach($product->images()->get() as $image)
                     <div class="col-sm-3">
@@ -39,11 +50,12 @@
                     </div>
                     @endforeach
                 @endif
-            </div>
-            <hr/>
-            {{ Form::label('images[]', 'More images') }}
             {!! Form::file('images[]', array('multiple'=>true)) !!}
+            </p>
+
         </div>
+
+
 
         <div class="col-md-6">
             {{ Form::label('title_en', 'Title in English') }}

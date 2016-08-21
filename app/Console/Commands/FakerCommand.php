@@ -115,7 +115,7 @@ class FakerCommand extends Command{
         $this->line("Generating $this->articles articles");
         foreach(range(1,$this->articles) as $index){
 
-            $filename = $this::deploy_image(1560,480, $faker);
+            $filename = $this::deploy_image(720,580, $faker);
 
             $title = "$faker->word " . str_random(10);
             Article::create([
@@ -147,8 +147,6 @@ class FakerCommand extends Command{
             $filename = $this::deploy_image(1280,720, $faker);
             $category = new Category ([
                 'thumbnail'    => $filename,
-                // 'thumbnail_medium'  => $this::local_image($faker->image($dir = public_path('media/images'), $width = 640, $height = 480)),
-                // 'thumbnail_small'   => $this::local_image($faker->image($dir = public_path('media/images'), $width = 150, $height = 150)),
                 'slug'      =>  Str::slug($title),
 
                 'title_en'  => $title,
@@ -188,11 +186,12 @@ class FakerCommand extends Command{
         $this->line("Generating $this->product_num products");
         foreach(range(1,$this->product_num) as $index){
 
-            $filename = $this::deploy_image(1280,720, $faker);
+            $filename = $this::deploy_image(720,580, $faker);
             // Add products
             $title = "Title{$faker->word} en " . str_random(10);
             $product = new Product([
                 'thumbnail'    => $filename,
+                'hover_thumbnail' => $this::deploy_image(720,580, $faker),
                 'in_stock'  => $faker->boolean(50),
                 'featured'  => $faker->boolean(40),
                 'slug'      => Str::slug($title),

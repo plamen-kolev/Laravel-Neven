@@ -6,7 +6,7 @@
             @foreach ($chunk as $index=>$product)
 
                 <div class="col-md-2 thumbnail_item">
-                    
+
                     <div class="thumbnail_item_inner">
 
                         @if(Auth::user() && Auth::user()->admin)
@@ -18,9 +18,11 @@
                                 <a class="glyphicon glyphicon-pencil success" href="{{route('product.edit', $product->slug)}}"></a>
                             </span>
                         @endif
-                        
-                        <a class="" href="{!! route('product.show', [ $product->slug ]) !!}">
-                            <img class="b-lazy" data-src="{{ route('image', $product->thumbnail) }}?w=150&h=150&fit=crop" src="{{ asset('images/loading.gif') }}" alt="{{ $product->title() }}">
+
+                        <a class="hoverable_product_image" href="{!! route('product.show', [ $product->slug ]) !!}">
+                            <img class="b-lazy hide_on_hover" data-src="{{ route('image', $product->thumbnail) }}?w=150&h=150&fit=crop" src="{{ asset('images/loading.gif') }}" alt="{{ $product->title() }}">
+                            
+                            <img class="b-lazy show_on_hover" src="{{ route('image', $product->hover_thumbnail) }}?w=150&h=150&fit=crop"" alt="{{ $product->title() }}">
                         </a>
 
                         <h2 class="thumbnail_title">

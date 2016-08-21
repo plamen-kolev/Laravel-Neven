@@ -5739,6 +5739,22 @@ html, body {
 .article_image_container {
   margin: 10px; }
 
+.hoverable_product_image {
+  /* ...and now for the proper property */
+  transition: .5s; }
+
+.hoverable_product_image > img {
+  margin: auto; }
+
+.hoverable_product_image:hover .hide_on_hover {
+  display: none; }
+
+.hoverable_product_image:hover .show_on_hover {
+  display: block; }
+
+.show_on_hover {
+  display: none; }
+
 .overflow_protector {
   overflow: hidden;
   position: relative; }

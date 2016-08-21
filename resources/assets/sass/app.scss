@@ -12,7 +12,39 @@ html,body
     margin:10px;
 }
 
+.hoverable_product_image{
+    -o-transition:.5s;
+     -ms-transition:.5s;
+     -moz-transition:.5s;
+     -webkit-transition:.5s;
+     /* ...and now for the proper property */
+     transition:.5s;
+}
 
+.hoverable_product_image > img{
+    margin:auto;
+
+
+}
+
+.hoverable_product_image:hover .hide_on_hover{
+    display: none;
+}
+
+.hoverable_product_image:hover .show_on_hover{
+    display: block;
+}
+
+
+.show_on_hover{
+    display: none;
+}
+// .hide_on_hover, #hoverable_product_image:hover .show_on_hover{
+//    display:none;
+// }
+// .show_on_hover, #hoverable_product_image:hover .hide_on_hover{
+//    display:block;
+// }
 
 .overflow_protector{
     overflow: hidden;

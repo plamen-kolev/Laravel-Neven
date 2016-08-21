@@ -111,11 +111,18 @@ class ProductController extends Controller{
         }
 
         if( $product->validate_store($request->all()) ){
+            $hover_name = '';
+            if($request->file('hover_thumbnail') && $request->file('hover_thumbnail')->isValid()){
+                $hover_name = HelperController::upload_image($request->file('hover_thumbnail'));
+            } else {
+                $hover_name = HelperController::upload_image($request->file('thumbnail'));
+            }
 
             # base product and thumbnails
             $product = new Product([
                 'slug'              => Str::slug($request->get('title_en') ),
                 'thumbnail'         => HelperController::upload_image($request->file('thumbnail')),
+                'hover_thumbnail'   => $hover_name,
 
                 'category_id'       => Category::find((int) $request->get('category'))->id,
                 'in_stock'        => (bool) $request->get('in_stock'),
