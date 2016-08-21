@@ -313,6 +313,13 @@ class ProductController extends Controller{
         if($request->file('thumbnail')){
             $product->thumbnail = HelperController::upload_image($request->file('thumbnail'));
         }
+
+        if($request->file('hover_thumbnail')){
+            $product->hover_thumbnail = HelperController::upload_image($request->file('hover_thumbnail'));
+        } else {
+            $product->hover_thumbnail = HelperController::upload_image($request->file('thumbnail'));
+        }
+
         $product->save();
         return redirect()->route('product.show', $product->slug);
     }
