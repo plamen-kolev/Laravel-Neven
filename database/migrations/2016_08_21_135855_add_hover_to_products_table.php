@@ -13,7 +13,7 @@ class AddHoverToProductsTable extends Migration
     public function up()
     {
         Schema::table('products', function (Blueprint $table) {
-            $table->string('hover_image');
+            $table->string('hover_image')->nullable();
         });
     }
 
