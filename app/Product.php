@@ -16,10 +16,6 @@ class Product extends Model
 
     public function price(){
         $option = $this->options()->first();
-        if(! $option){
-            abort('Product price missing', 503);
-        }
-
         return $option->price * HelperController::get_rate();
     }
 

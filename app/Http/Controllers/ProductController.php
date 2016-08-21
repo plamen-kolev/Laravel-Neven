@@ -257,8 +257,44 @@ class ProductController extends Controller{
     }
 
     public function update(Request $request, $id){
-
         $product = Product::where('id', $id)->first();
+
+        $opt_titles = $request->get('option_title');
+        $opt_weights = $request->get('option_weight');
+        $opt_prices = $request->get('option_price');
+
+        if(!$opt_titles[0] || !$opt_weights[0] || !$opt_prices[0]){
+            abort(400, 'Specify at least one product option and fill all fields in it !');
+        }
+
+        if(empty( $opt_titles ) || !(( count($opt_titles) == count($opt_weights) || count($opt_weights) == count($opt_prices) )) ) {
+            abort(400, 'Specify at least one product option and fill all fields in it !');
+        }
+
+        for ($i=0; $i < count($opt_titles); $i++) {
+            $option = ProductOption::where('product_id', $product->id)
+                                    ->where('title', $opt_titles[$i])
+                                    ->where('weight', $opt_weights[$i])
+                                    ->first();
+
+            if(!$option){
+                ProductOption::create([
+                    'weight' => $opt_weights[$i],
+                    'title' => $opt_titles[$i],
+                    'slug'  => Str::slug($opt_titles[$i]),
+                    'price' => $opt_prices[$i],
+                    'product_id' => $product->id
+                ]);
+            } else {
+                $option->update([
+                    'title' => $opt_titles[$i],
+                    'weight' => $opt_weights[$i],
+                    'price' => $opt_prices[$i]
+                ]);
+            }
+
+        }
+
         $product->update($request->all());
         if($request->file('thumbnail')){
             $product->thumbnail = HelperController::upload_image($request->file('thumbnail'));
