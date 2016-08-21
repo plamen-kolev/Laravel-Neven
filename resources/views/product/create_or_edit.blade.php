@@ -42,7 +42,7 @@
 
             <p>
                 {{ Form::label('images[]', 'More images') }}
-                
+
                 @if($product->images()->get())
                     @foreach($product->images()->get() as $image)
                     <div class="col-sm-3">
@@ -117,8 +117,8 @@
         </div>
 
         <div class="col-md-12">
-            <p>In stock: {{ Form::checkbox('in_stock', 1, true) }}</p>
-            <p>Featured: {{ Form::checkbox('featured', 0, false) }}</p>
+            <p>In stock: {{ Form::checkbox('in_stock', true) }}</p>
+            <p>Featured: {{ Form::checkbox('featured') }}</p>
 
         </div>
 

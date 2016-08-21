@@ -99,6 +99,7 @@ class ProductController extends Controller{
     }
 
     public function store(Request $request){
+
         $product = new Product();
         # exit if no options specified, or if an option is missing an argument
         # product price
@@ -130,9 +131,9 @@ class ProductController extends Controller{
                 'hover_thumbnail'   => $hover_name,
 
                 'category_id'       => Category::find((int) $request->get('category'))->id,
-                'in_stock'        => (bool) $request->get('in_stock'),
+                'in_stock'        =>  (bool) $request->get('in_stock'),
 
-                'featured'        => (bool) $request->get('featured'),
+                'featured'        =>  (bool) $request->get('featured'),
 
                 'title_en'           => $request->get('title_en'),
                 'description_en'     => $request->get('description_en'),
@@ -144,7 +145,6 @@ class ProductController extends Controller{
                 'tips_nb'            => $request->get('tips_nb'),
                 'benefits_nb'        => $request->get('benefits_nb'),
             ]);
-
             $product->save();
 
             if($request->file('images') && $request->file('images')[0]){
@@ -293,6 +293,20 @@ class ProductController extends Controller{
                 ]);
             }
 
+        }
+        $still_featured = $request->get('featured');
+        $still_instock = $request->get('in_stock');
+
+        if($still_featured){
+            $product->featured = 1;
+        } else {
+            $product->featured = 0;
+        }
+
+        if($still_instock){
+            $product->in_stock = 1;
+        } else {
+            $product->in_stock = 0;
         }
 
         $product->update($request->all());
