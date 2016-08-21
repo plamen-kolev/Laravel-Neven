@@ -118,10 +118,11 @@ class ProductController extends Controller{
                 $hover_name = HelperController::upload_image($request->file('thumbnail'));
             }
 
+            $thumbnail = HelperController::upload_image($request->file('thumbnail'));
             # base product and thumbnails
             $product = new Product([
                 'slug'              => Str::slug($request->get('title_en') ),
-                'thumbnail'         => HelperController::upload_image($request->file('thumbnail')),
+                'thumbnail'         => $thumbnail,
                 'hover_thumbnail'   => $hover_name,
 
                 'category_id'       => Category::find((int) $request->get('category'))->id,
