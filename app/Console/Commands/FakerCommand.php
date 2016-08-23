@@ -36,15 +36,15 @@ class FakerCommand extends Command{
      */
     protected $category_num = 2;
     protected $ingredient_num = 2;
-    protected $product_num = 10;
+    protected $product_num = 2;
     protected $ingredients_per_product = 2;
     protected $related_images = 2;
-    protected $tags = 5;
+    protected $tags = 1;
     protected $slide_images = 5;
-    protected $articles = 20;
+    protected $articles = 2;
     protected $options = 2;
     protected $reviews = 1;
-    protected $stockists = 5;
+    protected $stockists = 2;
 
     protected $signature = 'faker:init';
 

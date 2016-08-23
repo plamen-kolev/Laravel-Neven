@@ -233,7 +233,7 @@
                         var ingredient = data[i];
                         var html_content =
                             '<div class="ingr-pop">'
-                                + '<img class="ingr_pop_img" src="/media/' + ingredient.thumbnail + '?w=150&h=150&fit=crop" alt="' + ingredient.title_{{App::getLocale()}} + '">'
+                                + '<img class="ingr_pop_img" src="/images/' + ingredient.thumbnail + '?w=150&h=150&fit=crop" alt="' + ingredient.title_{{App::getLocale()}} + '">'
                                 + '<h1>' + ingredient.title_{{App::getLocale()}} + '</h1>'
                                 + '<p>' + ingredient.description_{{App::getLocale()}} + '</p>'
                             + '</div>';
