@@ -5,7 +5,7 @@
         @if( ! empty($hero))
         <div class="landing_container">
             <div id="landing_overlay">
-                <h1 class="capital center width_55 white landing_title" id="landing_text">{{$hero->title()}}</h1>
+                <h1 class="capital center white landing_title" id="landing_text">{{$hero->title()}}</h1>
                 <a class="capital center white" id="landing_link" href="#products">{{trans('text.our_products')}}</a>
             </div>
             <div id="landing_player">
