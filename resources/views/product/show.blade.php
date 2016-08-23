@@ -219,35 +219,47 @@
 @if(Auth::user())
 <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
 <script type="text/javascript">
+
     CKEDITOR.replace( 'review_textbox' );
 </script>
 @endif
 
     <script type="text/javascript">
+    var data = '{{ $ingredients }}' ;
+
         document.addEventListener("DOMContentLoaded", function(event) {
-            $.ajax({
-                dataType: "json",
-                url: "{{route('product_ingredients', $product->slug) }}",
-                success: function(data){
-                    console.log("data" + data)
-                    for (var i = 0 ; i < data.length; i++) {
-                        var ingredient = data[i];
-                        var html_content =
-                            '<div class="ingr-pop">'
-                                + '<img class="ingr_pop_img" src="/images/' + ingredient.thumbnail + '?w=150&h=150&fit=crop" alt="' + ingredient.title_{{App::getLocale()}} + '">'
-                                + '<h1>' + ingredient.title_{{App::getLocale()}} + '</h1>'
-                                + '<p>' + ingredient.description_{{App::getLocale()}} + '</p>'
-                            + '</div>';
-                        console.log("dropping for " + ingredient.slug);
-                        drop = new Drop({
-                            target: document.querySelector('#' + ingredient.slug),
-                            position: 'bottom left',
-                            openOn: 'click',
-                            content: html_content
-                        });
-                    }
-                },
-            });
+          @foreach($ingredients as $ingredient)
+              var html_content ='<div class="ingr-pop"><img class="ingr_pop_img" src="{{route('image', $ingredient->thumbnail)}}?w=200&fit=crop" alt="{{$ingredient->title() }}"><h1>{{$ingredient->title()}}</h1><p>{{ $ingredient->description()}}</p></div>';
+              console.log(html_content);
+              drop = new Drop({
+                  target: document.querySelector('#{{$ingredient->slug}}'),
+                  position: 'bottom left',
+                  openOn: 'click',
+                  content: html_content
+              });
+          @endforeach
+            // $.ajax({
+            //     dataType: "json",
+            //     url: "{{route('product_ingredients', $product->slug) }}",
+            //     success: function(data){
+            //         for (var i = 0 ; i < data.length; i++) {
+            //             var ingredient = data[i];
+            //             var html_content =
+            //                 '<div class="ingr-pop">'
+            //                     + '<img class="ingr_pop_img" src="/images/' + ingredient.thumbnail + '?w=150&h=150&fit=crop" alt="' + ingredient.title_{{App::getLocale()}} + '">'
+            //                     + '<h1>' + ingredient.title_{{App::getLocale()}} + '</h1>'
+            //                     + '<p>' + ingredient.description_{{App::getLocale()}} + '</p>'
+            //                 + '</div>';
+            //             console.log("dropping for " + ingredient.slug);
+            //             drop = new Drop({
+            //                 target: document.querySelector('#' + ingredient.slug),
+            //                 position: 'bottom left',
+            //                 openOn: 'click',
+            //                 content: html_content
+            //             });
+            //         }
+            //     },
+            // });
 
 
         });

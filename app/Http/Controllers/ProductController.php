@@ -20,6 +20,8 @@ use Validator;
 use Swap;
 use App\Image as Image;
 use Input;
+
+
 class ProductController extends Controller{
     public function index(){
         $paginate_count = (int) env('PAGINATION');
@@ -48,12 +50,17 @@ class ProductController extends Controller{
         if (!$selected_option) {
             $selected_option = ProductOption::where('product_id', $product->id)->first();
         }
+
+        # ingredients
+        $ingredients = $product->ingredients()->get();
+
         $data = array(
             'product'   => $product,
             'option'    => $selected_option,
             'rate'      => HelperController::get_rate(),
             'reviews'   => Review::where('product_id', $product->id)->get(),
-            'page_title'    => trans($product->title())
+            'page_title'    => trans($product->title()),
+            'ingredients' => $ingredients,
         );
         return View::make('product.show')->with($data);
     }
