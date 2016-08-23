@@ -26,7 +26,7 @@
                             <span class="underliner"></span>
 
                             <a class="" href="{!! route('category.show', [ $category->slug ]) !!}">
-                                <img alt="{{$category->title()}}" src="{{ route('image',$category->thumbnail) }}?w=150&h=150&fit=crop">
+                                <img class="b-lazy" alt="{{$category->title()}}" data-src="{{ route('image',$category->thumbnail) }}?w=150&h=150&fit=crop" src="{{ asset('images/loading.gif') }}">
                             </a>
 
                             @if(Auth::user() && Auth::user()->admin)
