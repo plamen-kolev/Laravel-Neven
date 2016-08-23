@@ -229,7 +229,12 @@
 
         document.addEventListener("DOMContentLoaded", function(event) {
           @foreach($ingredients as $ingredient)
-              var html_content ="<div class='ingr-pop'><img class='ingr_pop_img' src='{{route('image', $ingredient->thumbnail)}}?w=200&fit=crop' alt='{{$ingredient->title() }}'><h1>{{$ingredient->title()}}</h1><p>{{ $ingredient->description()}}</p></div>";
+              var html_content ="\
+              <div class='ingr-pop'>\
+                  <img class='ingr_pop_img' src='{{route('image', $ingredient->thumbnail)}}?w=200&fit=crop'     alt='{{$ingredient->title() }}'>\
+                  <h1>{{$ingredient->title()}}</h1>\
+                  <p>{{ $ingredient->description()}}</p>\
+              </div>";
               console.log(html_content);
               drop = new Drop({
                   target: document.querySelector('#{{$ingredient->slug}}'),
