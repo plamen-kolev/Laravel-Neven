@@ -230,7 +230,7 @@
               var html_content = "<div class='ingr-pop'>";
               html_content +=         "<img class='ingr_pop_img' src='{{route('image', $ingredient->thumbnail)}}?w=200&fit=crop'     alt='{{$ingredient->title() }}'>";
               html_content +=         "<h1>{{$ingredient->title()}}</h1>";
-              html_content +=          	"{{htmlentities($ingredient->description(), ENT_QUOTES, 'UTF-8', false)}}";
+              html_content +=          	'{{htmlentities($ingredient->description(), ENT_QUOTES, 'UTF-8', false)}}';
               html_content +=      "</div>";
               console.log(html_content);
               drop = new Drop({
