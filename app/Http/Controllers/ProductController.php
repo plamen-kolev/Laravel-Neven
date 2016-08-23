@@ -99,7 +99,6 @@ class ProductController extends Controller{
     }
 
     public function store(Request $request){
-
         $product = new Product();
         # exit if no options specified, or if an option is missing an argument
         # product price
@@ -114,6 +113,8 @@ class ProductController extends Controller{
         if(empty( $opt_titles ) || !(( count($opt_titles) == count($opt_weights) || count($opt_weights) == count($opt_prices) )) ) {
             abort(400, 'Specify at least one product option and fill all fields in it !');
         }
+
+
 
         if( $product->validate_store($request->all()) ){
             $hover_name = '';
@@ -257,6 +258,7 @@ class ProductController extends Controller{
     }
 
     public function update(Request $request, $id){
+      // dd($request);
         $product = Product::where('id', $id)->first();
 
         $opt_titles = $request->get('option_title');
@@ -307,6 +309,18 @@ class ProductController extends Controller{
             $product->in_stock = 1;
         } else {
             $product->in_stock = 0;
+        }
+        $ingredients = $request->get('ingredients');
+        if(! empty($ingredients)){
+
+            $product->ingredients()->detach();
+            foreach($ingredients as $ing){
+                $i_object = Ingredient::find($ing);
+                if($i_object){
+                    $product->ingredients()->attach( $i_object );
+                    $product->save();
+                }
+            }
         }
 
         $product->update($request->all());
