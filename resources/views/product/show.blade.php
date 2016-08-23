@@ -229,6 +229,7 @@
                 dataType: "json",
                 url: "{{route('product_ingredients', $product->slug) }}",
                 success: function(data){
+                    console.log("data" + data)
                     for (var i = 0 ; i < data.length; i++) {
                         var ingredient = data[i];
                         var html_content =
@@ -237,6 +238,7 @@
                                 + '<h1>' + ingredient.title_{{App::getLocale()}} + '</h1>'
                                 + '<p>' + ingredient.description_{{App::getLocale()}} + '</p>'
                             + '</div>';
+                        console.log("dropping for " + ingredient.slug);
                         drop = new Drop({
                             target: document.querySelector('#' + ingredient.slug),
                             position: 'bottom left',
